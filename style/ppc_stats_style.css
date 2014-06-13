@@ -1,0 +1,60 @@
+.ppc_error {
+	display: none; 
+	color: red; 
+	font-weight: bold; 
+	float: left; 
+	width: 70%;
+}
+.ppc_success {
+	display: none;
+	color: green;
+	font-weight: bold;
+	float: left;
+	width: 70%;
+}
+.ppc_ajax_loader {
+	display: none;
+}
+.ppc_table_divider {
+	margin-top: 15px;
+	height: 1px;
+	clear: both;
+}
+.ppc_hr_divider {
+	border-color: #ccc; 
+	border-style: solid; 
+	border-width: 1px 0 0; 
+	clear: both; 
+	margin: 5px 0 20px; 
+	height: 0;
+}
+.ppc_payment_column {
+    border-bottom: 1px dotted; 
+    color: #000000;
+}
+#ppc_stats_header {
+	height: 50px;
+}
+#ppc_stats_header_datepicker {
+	float: left; 
+	text-align: left;
+}
+#ppc_stats_header_datepicker h3 {
+	margin: 10px 0px 5px;
+}
+#ppc_stats_header_features {
+	float: right; 
+	text-align: right;
+	width: 30%;
+}
+#ppc_stats_header_features a {
+	font-size: smaller;
+}
+#ppc_stats_header_links {
+    float: right;
+	height: 100%;
+	border-left: 1px solid;
+    border-color: #ccc;
+	margin-left: 5%;
+	padding-left: 5%;
+}
