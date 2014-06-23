@@ -140,7 +140,8 @@ class PPC_HTML_functions {
                             break;
                         
                         case 'post_total_payment':
-                            $field_value = '<abbr title="'.$post->ppc_misc['tooltip_normal_payment'].'" class="ppc_payment_column">'.sprintf( '%.2f', $field_value ).'</abbr>';
+                            $tooltip = PPC_counting_stuff::build_payment_details_tooltip( $post->ppc_count['normal_count']['to_count'], $post->ppc_payment['normal_payment'] );
+                            $field_value = '<abbr title="'.$tooltip.'" class="ppc_payment_column">'.sprintf( '%.2f', $field_value ).'</abbr>';
                             break;
                     }
                     

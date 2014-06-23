@@ -228,23 +228,21 @@ class PPC_generate_stats {
             $post_stats = current( $author_stats ); //get first post object from stats to determine which countings should be shown
 			
             $formatted_stats['cols']['post_id'] = __( 'ID' , 'ppc');
-            $formatted_stats['cols']['post_title'] = _x( 'Title', '(Stats page) Post title' , 'ppc');
-            $formatted_stats['cols']['post_type'] = _x( 'Type', '(Stats page) Post type' , 'ppc');
-            $formatted_stats['cols']['post_status'] = _x( 'Status', '(Stats page) Post status' , 'ppc');
-            $formatted_stats['cols']['post_publication_date'] = _x( 'Pub. Date', '(Stats page) Post publication date' , 'ppc');
-            
-            //if( isset( $post_stats->ppc_count['normal_count']['real']['basic'] ) )
-                //$formatted_stats['cols']['post_basic_count'] = _x( 'Basic', '(Stats page) Post basic number' , 'ppc');
+            $formatted_stats['cols']['post_title'] = __( 'Title', 'ppc');
+            $formatted_stats['cols']['post_type'] = __( 'Type', 'ppc');
+            $formatted_stats['cols']['post_status'] = __( 'Status', 'ppc');
+            $formatted_stats['cols']['post_publication_date'] = __( 'Pub. Date', 'ppc');
+			
 			if( isset( $post_stats->ppc_count['normal_count']['real']['words'] ) )
-                $formatted_stats['cols']['post_words_count'] = _x( 'Words', '(Stats page) Post words number' , 'ppc');
+                $formatted_stats['cols']['post_words_count'] = __( 'Words', 'ppc');
             if( isset( $post_stats->ppc_count['normal_count']['real']['visits'] ) )
-                $formatted_stats['cols']['post_visits_count'] = _x( 'Visits', '(Stats page) Post visits number' , 'ppc');
+                $formatted_stats['cols']['post_visits_count'] = __( 'Visits', 'ppc');
             if( isset( $post_stats->ppc_count['normal_count']['real']['comments'] ) )
-                $formatted_stats['cols']['post_comments_count'] = _x( 'Comments', '(Stats page) Post comments number' , 'ppc');
+                $formatted_stats['cols']['post_comments_count'] = __( 'Comments', 'ppc');
             if( isset( $post_stats->ppc_count['normal_count']['real']['images'] ) )
-                $formatted_stats['cols']['post_images_count'] = _x( 'Imgs', '(Stats page) Post images number' , 'ppc');
+                $formatted_stats['cols']['post_images_count'] = __( 'Imgs', 'ppc');
             
-            $formatted_stats['cols']['post_total_payment'] = _x( 'Total Pay', '(Stats page) Post total payment' , 'ppc');
+            $formatted_stats['cols']['post_total_payment'] = __( 'Total Pay', 'ppc');
             
             $formatted_stats['cols'] = apply_filters( 'ppc_author_stats_format_stats_after_cols_default', $formatted_stats['cols'] );
             

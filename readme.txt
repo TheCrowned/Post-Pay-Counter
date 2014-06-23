@@ -3,7 +3,7 @@ Contributors: Ste_95
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22
 Tags: counter, authors, payment, revenue sharing, stats, multi author, post management, post
 Tested up to: 3.9.1
-Stable tag: 2.29
+Stable tag: 2.3
 Requires at least: 3.7
 
 Easily handle authors' pay on a multi-author blog by computing posts' remuneration basing on admin defined rules with.
@@ -44,6 +44,15 @@ From this: *define( 'PPC_DEBUG_LOG', true );*
 It must become: *define( 'PPC_DEBUG_LOG', false );*
 
 == Changelog ==
+= 2.3 =
+* Fixed: some translastion would not show up (mainly stats cols header).
+* Tweak: minor performance enhancements due to tooltips for posts only being generated for detailed stats.
+* New: German translation (Julian Beck).
+* New: Spanish Portoguese (pt_PT, pt_BR) translation (Marco Dantas).
+* Fixed: if using names different from their their values for user roles, clicking on a user role in the Personalize settings box would always return an empty result.
+* Fixed: typo in custom default time range tooltip (*rime range* instead of *time range*).
+* Fixed: grammar mistake in personalize settings box (*payed* instead of *paid*).
+
 = 2.29 =
 * Fixed: word counting not working for non-latin charsets due to PHP bug. Restoring old counting method from v. 2.26.
 * Fixed: still some minor issues with time zone differences.
@@ -314,7 +323,8 @@ These the changes from the old Monthly Post Counter:
 == Languages ==
 = Available languages =
 * English
-* Italian
+* German (Julian Beck)
+* Italian (Stefano Ottolenghi)
 
 = What about my language? =
 If you want to translate it in your own language and get a discount on the PRO version, [contact us](http://www.thecrowned.org/contact-me)!

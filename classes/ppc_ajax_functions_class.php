@@ -105,7 +105,7 @@ class PPC_ajax_functions {
         $args = apply_filters( 'ppc_personalize_fetch_users_args', $args );
         
         $users_to_show = new WP_User_Query( $args );
-        if( $users_to_show->get_total() == 0 )
+		if( $users_to_show->get_total() == 0 )
             die( __( 'No users found.' , 'ppc') );
         
         $n = 0;
@@ -149,7 +149,7 @@ class PPC_ajax_functions {
             
             do_action( 'ppc_deleted_user_settings', $user_id );
             
-            die( 'ok'.__( 'User\'s settings deleted successfully. You will be redirected to the general options page.' , 'ppc') );
+            die( 'ok' );
         }
     }
     

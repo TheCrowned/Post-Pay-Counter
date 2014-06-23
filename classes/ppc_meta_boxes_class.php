@@ -106,9 +106,8 @@ class PPC_meta_boxes {
         foreach( $wp_roles->role_names as $key => $value ) {
             $checked = '';
             
-            if( in_array( $key, $current_settings['counting_allowed_user_roles'] ) ) {
+            if( in_array( $key, $current_settings['counting_allowed_user_roles'] ) )
                 $checked = 'checked="checked"';
-            }
             
             echo '<input type="checkbox" name="user_role_'.$key.'" id="user_role_'.$key.'" value="'.$key.'" '.$checked.' />';
             echo '<label for="user_role_'.$key.'">'.$value.'</label>';
@@ -125,7 +124,9 @@ class PPC_meta_boxes {
         echo '<div class="main">';
         echo '<p>'.__( 'Choose the user roles who are allowed to view and edit plugin settings.' , 'ppc').'</p>';
         foreach( $wp_roles->role_names as $key => $value ) {
-            if( in_array( $key, $current_settings['can_see_options_user_roles'] ) )
+			$checked = '';
+			
+			if( in_array( $key, $current_settings['can_see_options_user_roles'] ) )
                 $checked = ' checked="checked"';
             
             echo '<input type="checkbox" name="can_see_options_user_roles_'.$key.'" id="can_see_options_user_roles_'.$key.'" value="'.$key.'"'.@$checked.'>';
@@ -146,9 +147,9 @@ class PPC_meta_boxes {
         echo '<p>'.__( 'Choose the user roles who are allowed to view the stats page.' , 'ppc').'</p>';
         foreach( $wp_roles->role_names as $key => $value ) {
             $checked = '';
-            if( in_array( $key, $current_settings['can_see_stats_user_roles'] ) ) {
+			
+            if( in_array( $key, $current_settings['can_see_stats_user_roles'] ) )
                 $checked = ' checked="checked"';
-            }
             
             echo '<input type="checkbox" name="can_see_stats_user_roles_'.$key.'" id="can_see_stats_user_roles_'.$key.'" value="'.$key.'"'.@$checked.'>';
             echo '<label for="can_see_stats_user_roles_'.$key.'">'.$value.'</label>';
@@ -166,7 +167,7 @@ class PPC_meta_boxes {
         echo '<p>'.__( 'When you open up the stats page, the time range here selected will be shown. This will be the default setting: you will still be able to change the time range the way you want it time to time.' , 'ppc').'</p>';
         echo PPC_HTML_functions::echo_p_field( __( 'Current week', 'ppc' ), $current_settings['default_stats_time_range_week'], 'radio', 'default_stats_time_range', __( 'Posts from the beginning of the week to the current day (week starts on Monday) will be displayed. You should select this if you usually pay your writers weekly.' , 'ppc'), 'default_stats_time_range_week', 'default_stats_time_range_week' );
         echo PPC_HTML_functions::echo_p_field( __( 'Current month', 'ppc' ), $current_settings['default_stats_time_range_month'], 'radio', 'default_stats_time_range', __( 'Posts from the beginning of the month to the current day will be displayed. You should select this if you usually pay your writers monthly.' , 'ppc'), 'default_stats_time_range_month', 'default_stats_time_range_month' );
-        echo PPC_HTML_functions::echo_p_field( __( 'This custom number of days', 'ppc' ), $current_settings['default_stats_time_range_custom'], 'radio', 'default_stats_time_range', __( 'You can manually customize the rime range for the posts that will be displayed. So, for example, if you set this to 365 days, in the stats page it will automatically be selected a time frame that goes from the current day to the previous 365 days.' , 'ppc'), 'default_stats_time_range_custom', 'default_stats_time_range_custom' );
+        echo PPC_HTML_functions::echo_p_field( __( 'This custom number of days', 'ppc' ), $current_settings['default_stats_time_range_custom'], 'radio', 'default_stats_time_range', __( 'You can manually customize the time range for the posts that will be displayed. So, for example, if you set this to 365 days, in the stats page it will automatically be selected a time frame that goes from the current day to the previous 365 days.' , 'ppc'), 'default_stats_time_range_custom', 'default_stats_time_range_custom' );
         echo '<div id="default_stats_time_range_custom_content" class="section">';
         echo PPC_HTML_functions::echo_text_field( 'default_stats_time_range_custom_value', $current_settings['default_stats_time_range_custom_value'], __( 'Time range (days)' , 'ppc') );
         echo '</div>';
@@ -333,7 +334,8 @@ class PPC_meta_boxes {
         echo PPC_HTML_functions::echo_p_field( __( 'Users can see other users\' general stats' , 'ppc'), $current_settings['can_see_others_general_stats'], 'checkbox', 'can_see_others_general_stats', __( 'If unchecked, users will only be able to see their stats in the general page. Other users\' names, posts and pay counts will not be displayed.' , 'ppc') );
         echo PPC_HTML_functions::echo_p_field( __( 'Users can see other users\' detailed stats' , 'ppc'), $current_settings['can_see_others_detailed_stats'], 'checkbox', 'can_see_others_detailed_stats', __( 'If unchecked, users will not be able to see other users\' detailed stats but will still able to see general ones. ' , 'ppc') );
         echo PPC_HTML_functions::echo_p_field( __( 'Let users know if other users have personalized settings' , 'ppc'), $current_settings['can_see_countings_special_settings'], 'checkbox', 'can_see_countings_special_settings', __( 'If you personalize settings by user, do not overlook this. If unchecked, users will not see personalized settings in countings, they will believe everybody is using their settings (or general settings). Anyway, users will see their own personalized settings, if they have them.' , 'ppc') );
-        do_action( 'ppc_permissions_settings_after_default', $current_settings );
+        
+		do_action( 'ppc_permissions_settings_after_default', $current_settings );
         ?>
         
         <div class="ppc_save_success" id="ppc_permissions_success"><?php _e( 'Settings were successfully updated.' , 'ppc'); ?></div>
@@ -431,19 +433,20 @@ class PPC_meta_boxes {
         }
         
         echo '<p><strong>'.__( 'Personalize single user settings' , 'ppc').'</strong><br />';
-        echo __( 'Some people\'s posts are better than somebody others\'? You can adjust settings for each user, so that they will have different permissions and their posts will be payed differently.' , 'ppc').'</p>';
+        echo __( 'Some people\'s posts are better than somebody others\'? You can adjust settings for each user, so that they will have different permissions and their posts will be paid differently.' , 'ppc').'</p>';
         echo '<p>'.__( 'First, select a user role. You will see all users from that role: clicking on one you will be headed to the settings page for that specific user.' , 'ppc').'</p>';
         echo '<div id="ppc_personalize_user_roles">';
         echo '<p><strong>'.__( 'User roles' , 'ppc').'</strong><br />';
         
         $n = 0;
-        foreach( $wp_roles->roles as $role ) {
+        foreach( $wp_roles->role_names as $role => $role_name ) {
             if( $n % 2 == 0 ) {
                 echo '<span style="float: left; width: 50%;">';
             } else {
                 echo '<span style="float: right; width: 50%;">';
             }
-            echo '<a href="" title="'.$role['name'].'" id="'.$role['name'].'" class="ppc_personalize_roles">'.$role['name'].'</a>';
+			
+            echo '<a href="" title="'.$role_name.'" id="'.$role.'" class="ppc_personalize_roles">'.$role_name.'</a>';
             echo '</span>';
             
             $n++;

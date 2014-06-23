@@ -271,8 +271,6 @@ class PPC_counting_stuff {
             }
         }
         
-        $ppc_misc['tooltip_normal_payment'] = self::build_payment_details_tooltip( $post_countings, $ppc_payment['normal_payment'] );
-        
         return apply_filters( 'ppc_get_post_payment', array( 'ppc_payment' => $ppc_payment, 'ppc_misc' => $ppc_misc ) );
     }
     
