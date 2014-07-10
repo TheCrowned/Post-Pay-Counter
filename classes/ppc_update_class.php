@@ -37,6 +37,7 @@ class PPC_update_class {
     
     /**
      * Runs update procedure.
+     * Changed @ 2.3.1
      * 
      * Also updates current version option and pages permissions.
      *
@@ -48,70 +49,101 @@ class PPC_update_class {
         global $ppc_global_settings;
         
         $general_settings = PPC_general_functions::get_settings( 'general' );
+        $general_settings_old = $general_settings;
 		
-        switch( $ppc_global_settings['current_version'] ) {
+        //Fixed: installation added personalized user settings in place of general ones (v 2.1.1)
+		if( $general_settings['userid'] != 'general' ) {
+            delete_option( $ppc_global_settings['option_name'] );
+            unset( $ppc_global_settings['general_settings'] );
             
-            case "2.1":
+			PPC_install_functions::ppc_install_procedure();
+		}
+        
+        /**
+         * Settings updates
+         */
+        
+        $new_settings = array(  
+            'general' => array(
+            ),
             
-        		/* 
-        		 * Version 2.1.1 
-        		 */
-        		
-        		//Fixed: installation added personalized user settings in place of general ones
-        		if( $general_settings['userid'] != 'general' ) {
-                    delete_option( $ppc_global_settings['option_name'] );
-                    unset( $ppc_global_settings['general_settings'] );
-                    
-        			PPC_install_functions::ppc_install_procedure();
-        		}
-                
-                break;
-            
-            case "2.1.1":
-                
-                /*
-                 * Version 2.1.2
-                 */
-                 
-                //Images & comments problems with counting systems - general and personalized settings update
-                $general_settings['counting_images_system_incremental_value'] = $general_settings['counting_images_value'];
-                $general_settings['counting_comments_system_incremental_value'] = $general_settings['counting_comments_value'];
-                unset( $general_settings['counting_images_value'], $general_settings['counting_comments_value'] );
-                if( ! update_option( $ppc_global_settings['option_name'], $general_settings ) ) {
-                    return new WP_Error( 'ppc_update_general_settings_error', __( 'Error: could not update settings.', 'ppc' ) );
-                }
-                
-                $args = array(
-        			'meta_key' => $ppc_global_settings['option_name'],
-                    'fields' => 'ids'
-                );
-        		$personalized_users = get_users( $args );
-        		foreach( $personalized_users as $user ) {
-        			$user_settings = PPC_general_functions::get_settings( $user ); 
-        			
-        			$user_settings['counting_images_system_incremental_value'] = $user_settings['counting_images_value'];
-                    $user_settings['counting_comments_system_incremental_value'] = $user_settings['counting_comments_value'];
-                    unset( $user_settings['counting_images_value'], $user_settings['counting_comments_value'] );
-                    update_option( $ppc_global_settings['option_name'], $user_settings );
-        			
-        			if( ! update_user_option( $user, $ppc_global_settings['option_name'], $user_settings ) ) {
-        				return new WP_Error( 'ppc_update_user_settings_error', __( 'Error: could not update settings.', 'ppc' ) );
-        			}
-        		}
-                
-                break;
+            'user' => array(
+            )
+        );
+        
+        foreach( $new_settings['general'] as $setting => $value ) {
+            if( ! isset( $general_settings[$setting] ) )
+                $general_settings[$setting] = $value;
         }
+        
+        //Count private posts
+        if( ! isset( $general_settings['counting_allowed_post_statuses']['private'] ) )
+            $general_settings['counting_allowed_post_statuses']['private'] = 0;
+        
+        //Images & comments problems with counting systems - general and personalized settings update (v 2.1.2)
+        if( isset( $general_settings['counting_images_value'] ) OR isset( $general_settings['counting_comments_value'] ) ) {
+            $general_settings['counting_images_system_incremental_value'] = $general_settings['counting_images_value'];
+            $general_settings['counting_comments_system_incremental_value'] = $general_settings['counting_comments_value'];
+            unset( $general_settings['counting_images_value'], $general_settings['counting_comments_value'] );
+        }
+        
+        if( $general_settings != $general_settings_old ) {
+            if( ! update_option( $ppc_global_settings['option_name'], $general_settings ) ) {
+                $error = new PPC_Error( 'ppcp_update_settings_error', __( 'Error: could not update settings.', 'ppcp' ), array(
+                    'settings' => $general_settings,
+                    'settings_start' => $general_settings_old
+                ) );
+                return $error->return_error();
+            }
+        }
+        
+        //User settings updates
+        $args = array(
+			'meta_key' => $ppc_global_settings['option_name'],
+            'fields' => 'ids'
+        );
+		$personalized_users = get_users( $args );
+        
+		foreach( $personalized_users as $user ) {
+			$user_settings = PPC_general_functions::get_settings( $user );
+            $user_settings_old = $user_settings; 
+			
+			foreach( $new_settings['user'] as $setting => $value ) {
+            if( ! isset( $user_settings[$setting] ) )
+                $user_settings[$setting] = $value;
+            }
+            
+            //Count private posts
+            if( ! isset( $user_settings['counting_allowed_post_statuses']['private'] ) )
+                $user_settings['counting_allowed_post_statuses']['private'] = 0;
+            
+            //Images & comments problems with counting systems - general and personalized settings update (v 2.1.2)
+            if( isset( $user_settings['counting_images_value'] ) OR isset( $user_settings['counting_comments_value'] ) ) {
+                $user_settings['counting_images_system_incremental_value'] = $user_settings['counting_images_value'];
+                $user_settings['counting_comments_system_incremental_value'] = $user_settings['counting_comments_value'];
+                unset( $user_settings['counting_images_value'], $user_settings['counting_comments_value'] );
+    		}
+   
+            if( $user_settings != $user_settings_old ) {
+    			if( ! update_user_option( $user, $ppc_global_settings['option_name'], $user_settings ) ) {
+    				$error = new PPC_Error( 'ppc_update_user_settings_error', __( 'Error: could not update user\'s settings.', 'ppcp' ), array(
+                        'settings' => $user_settings,
+                        'settings_start' => $user_settings_old
+                    ) );
+                    $error->return_error();
+    			}
+            }
+		}
     		
-		$general_settings = PPC_general_functions::get_settings( 'general' );
+		//$general_settings = PPC_general_functions::get_settings( 'general' );
 		
 		PPC_general_functions::manage_cap_allowed_user_roles_plugin_pages( $general_settings['can_see_options_user_roles'], $general_settings['can_see_stats_user_roles'] );
 		
         update_option( 'ppc_current_version', $ppc_global_settings['newest_version'] );
         
         //PRO gets deactivated as soon as PPC is deactivated - if it was active before, reactivate if now
-        if( get_option( 'ppcp_active' ) == 1 ) {
+        if( get_option( 'ppcp_active' ) == 1 )
             activate_plugin( 'post-pay-counter-pro/post-pay-counter-pro.php' );
-        }
     }
 }
 

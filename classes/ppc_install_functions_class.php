@@ -142,7 +142,8 @@ class PPC_install_functions {
                 'counting_allowed_post_statuses' => array(
                     'publish' => 1,
                     'future' => 1,
-                    'pending' => 0
+                    'pending' => 0,
+                    'private' => 0
                 ),
                 'counting_exclude_quotations' => 1,
                 'can_see_others_general_stats' => 1,
@@ -249,7 +250,8 @@ class PPC_install_functions {
                 'counting_allowed_post_statuses' => array(
                     'publish' => 1,
                     'future' => 1,
-                    'pending' => 0
+                    'pending' => 0,
+                    'private' => 0
                 ),
                 'counting_exclude_quotations' => 1,
                 'can_see_others_general_stats' => 1,

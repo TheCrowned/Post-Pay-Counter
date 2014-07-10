@@ -18,7 +18,13 @@ class PPC_save_options {
     static function save_counting_settings( $settings ) {
 		$current_settings = PPC_general_functions::get_settings( $settings['userid'] );
         $new_settings = array(
-            'userid' => $settings['userid'], 'counting_allowed_post_statuses' => array( 'publish' => 1, 'future' => 0, 'pending' => 0 )
+            'userid' => $settings['userid'], 
+            'counting_allowed_post_statuses' => array( 
+                'publish' => 1, 
+                'future' => 0, 
+                'pending' => 0, 
+                'private' => 0 
+            )
         );
         
         //Counting types (checkbox fields)
@@ -36,6 +42,9 @@ class PPC_save_options {
         
 		if( @PPC_options_fields::get_checkbox_value( $settings['counting_count_future_scheduled_posts'] ) )
             $new_settings['counting_allowed_post_statuses']['future'] = 1;
+        
+        if( @PPC_options_fields::get_checkbox_value( $settings['counting_count_private_posts'] ) )
+            $new_settings['counting_allowed_post_statuses']['private'] = 1;
         
         //Counting methods/systems (Radio fields)
         $counting_words_system = PPC_options_fields::get_radio_value( $settings['counting_words_system'], 'counting_words_system_zonal', 'counting_words_system_incremental' );

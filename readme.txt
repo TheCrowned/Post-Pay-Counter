@@ -44,6 +44,11 @@ From this: *define( 'PPC_DEBUG_LOG', true );*
 It must become: *define( 'PPC_DEBUG_LOG', false );*
 
 == Changelog ==
+= 2.3.1 =
+* New: possible to include private posts in stats.
+* Tweak: improved update method.
+* Tweak: updated German translation.
+
 = 2.3 =
 * Fixed: some translastion would not show up (mainly stats cols header).
 * Tweak: minor performance enhancements due to tooltips for posts only being generated for detailed stats.

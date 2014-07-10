@@ -300,6 +300,7 @@ class PPC_meta_boxes {
         echo '<div class="main">';
         echo PPC_HTML_functions::echo_p_field( __( 'Count pending revision posts', 'ppc' ), $current_settings['counting_allowed_post_statuses']['pending'], 'checkbox', 'counting_count_pending_revision_posts', __( 'While published posts are automatically counted, you can decide to include pending revision ones or not.' , 'ppc') );
         echo PPC_HTML_functions::echo_p_field( __( 'Count future scheduled posts', 'ppc' ), $current_settings['counting_allowed_post_statuses']['future'], 'checkbox', 'counting_count_future_scheduled_posts', __( 'While published posts are automatically counted, you can decide to include future planned ones or not.' , 'ppc') );
+        echo PPC_HTML_functions::echo_p_field( __( 'Count private posts', 'ppc' ), $current_settings['counting_allowed_post_statuses']['private'], 'checkbox', 'counting_count_private_posts', __( 'While public published posts are automatically counted, you can decide to include private ones or not.' , 'ppc') );
         echo PPC_HTML_functions::echo_p_field( __( 'Exclude quoted content from word counting', 'ppc' ), $current_settings['counting_exclude_quotations'], 'checkbox', 'counting_exclude_quotations', sprintf( __( 'All the words contained into %1$sblockquote%2$s tags will not be taken into account when counting. Use this to prevent interviews and such stuff to be counted as normal words.' , 'ppc'), '<em>', '</em>' ) );
         echo '</div>';
         echo '</div>';
