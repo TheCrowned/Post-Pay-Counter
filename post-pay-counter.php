@@ -4,7 +4,7 @@ Plugin Name: Post Pay Counter
 Plugin URI: http://www.thecrowned.org/wordpress-plugins/post-pay-counter
 Description: Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
 Author: Stefano Ottolenghi
-Version: 2.3.1
+Version: 2.33
 Author URI: http://www.thecrowned.org/
 */
 
@@ -50,9 +50,10 @@ class post_pay_counter {
         global $ppc_global_settings;
         
         $ppc_global_settings['current_version'] = get_option( 'ppc_current_version' );
-        $ppc_global_settings['newest_version'] = '2.3.1';
+        $ppc_global_settings['newest_version'] = '2.33';
         $ppc_global_settings['option_name'] = 'ppc_settings';
         $ppc_global_settings['option_errors'] = 'ppc_errors';
+		$ppc_global_settings['transient_error_deletion'] = 'ppc_error_daily_deletion';
         $ppc_global_settings['folder_path'] = plugins_url( '/', __FILE__ );
         $ppc_global_settings['options_menu_link'] = 'admin.php?page=ppc-options';
         $ppc_global_settings['stats_menu_link'] = 'admin.php?page=ppc-stats';

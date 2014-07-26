@@ -20,7 +20,7 @@ class PPC_options_fields {
      * @return  string the html of the radio field
     */
     
-    function generate_radio_field( $setting, $name, $value, $id, $disabled ) {
+    static function generate_radio_field( $setting, $name, $value, $id, $disabled ) {
         $disabled_html = '';
 		if( $disabled ) {
 			$disabled_html = ' disabled="disabled"';
@@ -46,7 +46,7 @@ class PPC_options_fields {
      * @return  string the html of the checkbox field
     */
             
-    function generate_checkbox_field( $setting, $name, $value, $id, $disabled ) {
+    static function generate_checkbox_field( $setting, $name, $value, $id, $disabled ) {
         $disabled_html = '';
 		if( $disabled ) {
 			$disabled_html = ' disabled="disabled"';
@@ -70,7 +70,7 @@ class PPC_options_fields {
      * @return  string the html of the payment systems fields
     */
     
-    function echo_payment_systems( $counting_type, $counting_type_localized, $settings ) {
+    static function echo_payment_systems( $counting_type, $counting_type_localized, $settings ) {
     	global $ppc_global_settings; 
         
         /*if( $counting_type == 'words' ) {
@@ -131,7 +131,7 @@ class PPC_options_fields {
      * @return  bool checkbox status
     */
     
-    function get_checkbox_value( &$checkbox ) {
+    static function get_checkbox_value( &$checkbox ) {
         if( ! isset( $checkbox ) ) {
             $checkbox = NULL;
             return 0;
@@ -153,15 +153,14 @@ class PPC_options_fields {
      * @return  array the 2/3 possibilities along with their set values
     */
     
-    function get_radio_value( &$radio, $opt_1, $opt_2, $opt_3 = FALSE ) {
+    static function get_radio_value( &$radio, $opt_1, $opt_2, $opt_3 = FALSE ) {
         $return = array(
             $opt_1 => 0,
             $opt_2 => 0,
         );
         
-        if( $opt_3 ) {
+        if( $opt_3 )
             $return[$opt_3] = 0;
-        }
         
         switch( $radio ) {
             case $opt_1:

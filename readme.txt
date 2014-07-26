@@ -3,7 +3,7 @@ Contributors: Ste_95
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22
 Tags: counter, authors, payment, revenue sharing, stats, multi author, post management, post
 Tested up to: 3.9.1
-Stable tag: 2.3
+Stable tag: 2.33
 Requires at least: 3.7
 
 Easily handle authors' pay on a multi-author blog by computing posts' remuneration basing on admin defined rules with.
@@ -44,10 +44,18 @@ From this: *define( 'PPC_DEBUG_LOG', true );*
 It must become: *define( 'PPC_DEBUG_LOG', false );*
 
 == Changelog ==
-= 2.3.1 =
+= 2.33 =
+* New: plugin logged errors are automatically deleted after a month - the deletion happens once a day.
+* Fixed: *Strict Standards: Non-static method* errors in Options page.
+* Fixed: start time stats limit in datepicker would only consider posts instead of selected post types.
+
+= 2.32 =
 * New: possible to include private posts in stats.
 * Tweak: improved update method.
 * Tweak: updated German translation.
+
+= 2.31 =
+* Fixed: German and portoguese translation had not been committed, sorry.
 
 = 2.3 =
 * Fixed: some translastion would not show up (mainly stats cols header).
