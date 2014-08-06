@@ -71,6 +71,15 @@ class PPC_meta_boxes {
         
         echo '<form id="ppc_misc_settings_form" method="post">';
         
+		//Overall stats
+        echo '<div class="section">';
+        echo '<div class="title">'.__( 'Overall stats' , 'ppc').'</div>';
+        echo '<div class="main">';
+        echo PPC_HTML_functions::echo_p_field( __( 'Display overall stats' , 'ppc'), $current_settings['display_overall_stats'], 'checkbox', 'display_overall_stats', __( 'Overall stats are displayed at the bottom of regular stats. They show all-time overall stats, from the first published post ever to the latest one. Although they are quite interesting, their processing may slow down the page loading on big sites.', 'ppc'), NULL, 'display_overall_stats' );
+        echo '</div>';
+        echo '</div>';
+        do_action( 'ppc_cmisc_settings_after_overall_stats', $current_settings );
+		
         //Post types to be included in countings
         echo '<div class="section">';
         echo '<div class="title">'.__( 'Allowed post types' , 'ppc').'</div>';

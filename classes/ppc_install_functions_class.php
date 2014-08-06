@@ -16,8 +16,9 @@ class PPC_install_functions {
     */
     
     function ppc_install( $network_wide ) {
-        global $wpdb;
+        global $wpdb, $ppc_global_settings;
         
+		//Network activation
         if( $network_wide ) {
 			$blog_ids = $wpdb->get_col( "SELECT blog_id FROM ".$wpdb->blogs );
 			
@@ -28,8 +29,13 @@ class PPC_install_functions {
             
 			restore_current_blog();
 			return;
-		} 
-    	self::ppc_install_procedure();
+		}
+		
+		//Single blog activation
+		self::ppc_install_procedure();
+		
+		//Send to Welcome page
+		set_transient( $ppc_global_settings['transient_activation_redirect'], 'do it!', 3600 );
     }
     
     /**
@@ -46,10 +52,15 @@ class PPC_install_functions {
     */
     
     function ppc_new_blog_install( $blog_id, $user_id, $domain, $path, $site_id, $meta ) {
-    	if( is_plugin_active_for_network( basename( dirname( dirname( __FILE__ ) ).'/post-pay-counter.php' ) ) ) {
+    	global $ppc_global_settings;
+		
+		if( is_plugin_active_for_network( basename( dirname( dirname( __FILE__ ) ).'/post-pay-counter.php' ) ) ) {
     		switch_to_blog( $blog_id );
     		self::ppc_install_procedure();
     		restore_current_blog();
+			
+			//Send to Welcome page
+			set_transient( $ppc_global_settings['transient_activation_redirect'], 'do it!', 3600 );
     	}
     }
     
@@ -63,9 +74,8 @@ class PPC_install_functions {
     static function ppc_install_procedure() {
         global $ppc_global_settings, $current_user;
         
-        if( ! is_object( $current_user ) ) {
+        if( ! is_object( $current_user ) )
             get_currentuserinfo();
-        }
         
         $default_settings = array(
             'general' => array( 
@@ -149,6 +159,7 @@ class PPC_install_functions {
                 'can_see_others_general_stats' => 1,
     			'can_see_others_detailed_stats' => 1,
     			'can_see_countings_special_settings' => 0,
+				'display_overall_stats' => 1,
                 'can_see_options_user_roles' => array(
                     'administrator' => 'administrator'
                 ),

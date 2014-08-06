@@ -59,13 +59,15 @@ class PPC_generate_stats {
     static function get_requested_posts( $time_start, $time_end, $author = NULL ) {
         global $current_user;
         
+		$general_settings = PPC_general_functions::get_settings( 'general' );
+		
 		if( is_array( $author ) )
 			$settings = PPC_general_functions::get_settings( current( $author ), true );
 		else
-			$settings = PPC_general_functions::get_settings( 'general' );
+			$settings = $general_settings;
 		
         $args = array(
-            'post_type' => $settings['counting_allowed_post_types'],
+            'post_type' => $general_settings['counting_allowed_post_types'],
             'post_status' => array_keys( $settings['counting_allowed_post_statuses'], 1 ), //Only statuses with 1 as value are selected
             'date_query' => array(
                 'after' => date( 'Y-m-d H:m:s', $time_start ),

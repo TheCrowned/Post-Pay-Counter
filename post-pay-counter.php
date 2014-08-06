@@ -4,7 +4,7 @@ Plugin Name: Post Pay Counter
 Plugin URI: http://www.thecrowned.org/wordpress-plugins/post-pay-counter
 Description: Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
 Author: Stefano Ottolenghi
-Version: 2.33
+Version: 2.34
 Author URI: http://www.thecrowned.org/
 */
 
@@ -39,6 +39,7 @@ require_once( 'classes/ppc_permissions_class.php' );
 require_once( 'classes/ppc_meta_boxes_class.php' );
 require_once( 'classes/ppc_system_info_class.php' );
 require_once( 'classes/ppc_error_class.php' );
+require_once( 'classes/ppc_welcome_class.php' );
 
 define( 'PPC_DEBUG_SHOW', false );
 define( 'PPC_DEBUG_LOG', true );
@@ -50,11 +51,14 @@ class post_pay_counter {
         global $ppc_global_settings;
         
         $ppc_global_settings['current_version'] = get_option( 'ppc_current_version' );
-        $ppc_global_settings['newest_version'] = '2.33';
+        $ppc_global_settings['newest_version'] = '2.34';
         $ppc_global_settings['option_name'] = 'ppc_settings';
         $ppc_global_settings['option_errors'] = 'ppc_errors';
 		$ppc_global_settings['transient_error_deletion'] = 'ppc_error_daily_deletion';
+		$ppc_global_settings['transient_activation_redirect'] = '_ppc_activation_redirect';
+		$ppc_global_settings['transient_update_redirect'] = '_ppc_update_redirect';
         $ppc_global_settings['folder_path'] = plugins_url( '/', __FILE__ );
+		$ppc_global_settings['dir_path'] = plugin_dir_path( __FILE__ );
         $ppc_global_settings['options_menu_link'] = 'admin.php?page=ppc-options';
         $ppc_global_settings['stats_menu_link'] = 'admin.php?page=ppc-stats';
         $ppc_global_settings['cap_manage_options'] = 'post_pay_counter_manage_options';
@@ -84,6 +88,11 @@ class post_pay_counter {
         //Localization
         add_action( 'plugins_loaded', array( $this, 'load_localization' ) );
         
+		//Welcome screen
+		add_action( 'admin_menu', array( 'PPC_welcome', 'add_pages' ) );
+		add_action( 'admin_head', array( 'PPC_welcome', 'admin_head' ) );
+        add_action( 'admin_init', array( 'PPC_welcome', 'welcome' ) );
+		
         //Custom links besides the usual "Edit" and "Deactivate"
         add_filter( 'plugin_action_links', array( $this, 'ppc_settings_meta_link' ), 10, 2 );
         add_filter( 'plugin_row_meta', array( $this, 'ppc_donate_meta_link' ), 10, 2 );
@@ -146,9 +155,10 @@ class post_pay_counter {
             PPC_update_class::update();
             $ppc_global_settings['current_version'] = $ppc_global_settings['newest_version'];
             
-            echo '<div id="message" class="updated fade"><p>'.sprintf( __( 'Post Pay Counter was successfully updated to version %1$s. Want to have a look at the %2$sOptions page%3$s, or at the %4$schangelog%3$s?', 'ppc' ), $ppc_global_settings['newest_version'], '<a href="'.admin_url( $ppc_global_settings['options_menu_link'] ).'" title="'.__( 'Go to Options page', 'ppc' ).'">', '</a>', '<a href="http://wordpress.org/extend/plugins/post-pay-counter/changelog/" target="_blank" title="'.__( 'Go to changelog', 'ppc' ).'">' ).'</p></div>';
-            
             do_action( 'ppc_updated' );
+			
+			//Send to Welcome page
+			set_transient( $ppc_global_settings['transient_update_redirect'], 'do it!', 3600 );
         }
     }
     
@@ -520,10 +530,12 @@ class post_pay_counter {
 	<div class="ppc_table_divider"></div>
 		
 		<?php
-        $overall_stats = PPC_generate_stats::get_overall_stats( $stats['raw_stats'] );
-        echo PPC_HTML_functions::print_overall_stats( $overall_stats );
-        
-        do_action( 'ppc_html_stats_after_overall_stats' );
+        if( $general_settings['display_overall_stats'] ) {
+			$overall_stats = PPC_generate_stats::get_overall_stats( $stats['raw_stats'] );
+			echo PPC_HTML_functions::print_overall_stats( $overall_stats );
+			
+			do_action( 'ppc_html_stats_after_overall_stats' );
+		}
         ?>
 		
 </div>

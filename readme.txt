@@ -3,7 +3,7 @@ Contributors: Ste_95
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22
 Tags: counter, authors, payment, revenue sharing, stats, multi author, post management, post
 Tested up to: 3.9.1
-Stable tag: 2.33
+Stable tag: 2.34
 Requires at least: 3.7
 
 Easily handle authors' pay on a multi-author blog by computing posts' remuneration basing on admin defined rules with.
@@ -43,7 +43,28 @@ Set to *false* the constant *PPC_DEBUG_LOG* in *post-pay-counter.php*, it is loc
 From this: *define( 'PPC_DEBUG_LOG', true );*
 It must become: *define( 'PPC_DEBUG_LOG', false );*
 
+== Screenshots ==
+1. Post Pay Counter settings page
+2. Use the tooltips beside each field to know what you can do with them
+3. Post Pay Counter general stats (i.e. all author are shown). The provided datapicker allows to edit the time range and select the wished stats
+4. Post Pay Counter per author stats. Datapicker avaiable here, too
+5. The tooltip with all the counting details
+
+== Languages ==
+= Available languages =
+* English
+* German (Julian Beck)
+* Italian (Stefano Ottolenghi)
+* Portoguese (Marco Dantas)
+
+= What about my language? =
+If you want to translate it in your own language and get a discount on the PRO version, [contact us](http://www.thecrowned.org/contact-me)!
+
 == Changelog ==
+= 2.34 =
+* New: Welcome and Changelog pages.
+* New: possible to disable overall stats display - performance matters!
+
 = 2.33 =
 * New: plugin logged errors are automatically deleted after a month - the deletion happens once a day.
 * Fixed: *Strict Standards: Non-static method* errors in Options page.
@@ -61,7 +82,7 @@ It must become: *define( 'PPC_DEBUG_LOG', false );*
 * Fixed: some translastion would not show up (mainly stats cols header).
 * Tweak: minor performance enhancements due to tooltips for posts only being generated for detailed stats.
 * New: German translation (Julian Beck).
-* New: Spanish Portoguese (pt_PT, pt_BR) translation (Marco Dantas).
+* New: Portoguese (pt_PT, pt_BR) translation (Marco Dantas).
 * Fixed: if using names different from their their values for user roles, clicking on a user role in the Personalize settings box would always return an empty result.
 * Fixed: typo in custom default time range tooltip (*rime range* instead of *time range*).
 * Fixed: grammar mistake in personalize settings box (*payed* instead of *paid*).
@@ -325,19 +346,3 @@ These the changes from the old Monthly Post Counter:
 * Cool jQuery effects added to show/hide options.
 * Improvements in csv encoding shortcomings.
 * Uninstall file added instead of the deactivation method.
-
-== Screenshots ==
-1. Post Pay Counter settings page
-2. Use the tooltips beside each field to know what you can do with them
-3. Post Pay Counter general stats (i.e. all author are shown). The provided datapicker allows to edit the time range and select the wished stats
-4. Post Pay Counter per author stats. Datapicker avaiable here, too
-5. The tooltip with all the counting details
-
-== Languages ==
-= Available languages =
-* English
-* German (Julian Beck)
-* Italian (Stefano Ottolenghi)
-
-= What about my language? =
-If you want to translate it in your own language and get a discount on the PRO version, [contact us](http://www.thecrowned.org/contact-me)!

@@ -65,6 +65,7 @@ class PPC_update_class {
         
         $new_settings = array(  
             'general' => array(
+				'display_overall_stats' => 1
             ),
             
             'user' => array(
