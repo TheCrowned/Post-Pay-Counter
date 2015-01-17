@@ -1,0 +1,33 @@
+#ppc_logo {
+	float: right; 
+	width: 11%;
+	margin-top: 23px;
+	margin-right: -10%; 
+	margin-bottom: 3px; 
+	text-align: center;
+}
+#ppc_logo img {
+	width: 160px;
+}
+#ppc_logo_caption {
+	text-transform: uppercase; 
+	font-size: smaller; 
+	margin-top: -5px;
+	text-align: center;
+}
+#ppc_logo_caption a, #ppc_logo_caption a:link, #ppc_logo_caption a:visited {
+	color: inherit;
+}
+#ppc_header {
+	float: left; 
+	width: 85%;
+	margin-bottom: 5px;
+}
+#ppc_header_links {
+	float: right; 
+	color: #777;
+	margin-top: 5px;
+}
+#ppc_header_text {
+	float: left;
+}

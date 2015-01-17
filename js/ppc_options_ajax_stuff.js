@@ -5,6 +5,7 @@ jQuery(document).ready(function($) {
         e.preventDefault();
         $('#ppc_counting_settings_ajax_loader').css('display', 'inline');
         $('#ppc_counting_settings_error').css('display', 'none');
+		$('#ppc_counting_settings_success').css('display', 'none');
         
         var data = {
             action: "ppc_save_counting_settings",
@@ -30,6 +31,7 @@ jQuery(document).ready(function($) {
         e.preventDefault();
         $('#ppc_misc_settings_ajax_loader').css('display', 'inline');
         $('#ppc_misc_settings_error').css('display', 'none');
+		$('#ppc_misc_settings_success').css('display', 'none');
         
         var data = {
             action: "ppc_save_misc_settings",
@@ -55,6 +57,7 @@ jQuery(document).ready(function($) {
         e.preventDefault();
         $('#ppc_permissions_ajax_loader').css('display', 'inline');
         $('#ppc_permissions_error').css('display', 'none');
+		$('#ppc_permissions_success').css('display', 'none');
         
         var data = {
             action: "ppc_save_permissions",
@@ -129,6 +132,7 @@ jQuery(document).ready(function($) {
         e.preventDefault();
         $('#ppc_import_settings_ajax_loader').css('display', 'inline');
         $('#ppc_import_settings_error').css('display', 'none');
+		$('#ppc_import_settings_success').css('display', 'none');
         
         var data = {
             action: "ppc_import_settings",

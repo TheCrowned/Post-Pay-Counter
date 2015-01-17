@@ -65,14 +65,22 @@ class PPC_update_class {
         
         $new_settings = array(  
             'general' => array(
-				'display_overall_stats' => 1
+				'display_overall_stats' => 1,
+				'counting_visits_callbak_value' => ''
             ),
             
             'user' => array(
+				'counting_images_include_galleries' => 0,
+				'counting_visits_callback' => 0
             )
         );
         
         foreach( $new_settings['general'] as $setting => $value ) {
+            if( ! isset( $general_settings[$setting] ) )
+                $general_settings[$setting] = $value;
+        }
+		
+		foreach( $new_settings['user'] as $setting => $value ) {
             if( ! isset( $general_settings[$setting] ) )
                 $general_settings[$setting] = $value;
         }
@@ -145,6 +153,12 @@ class PPC_update_class {
         //PRO gets deactivated as soon as PPC is deactivated - if it was active before, reactivate if now
         if( get_option( 'ppcp_active' ) == 1 )
             activate_plugin( 'post-pay-counter-pro/post-pay-counter-pro.php' );
+		
+		if( get_option( 'ppcp_pb_active' ) == 1 )
+            activate_plugin( 'ppcp-publisher-bonus/ppcp-publisher-bonus.php' );
+		
+		if( get_option( 'ppcp_sw_active' ) == 1 )
+            activate_plugin( 'ppcp-stopwords/ppcp-stopwords.php' );
     }
 }
 

@@ -33,6 +33,7 @@ class PPC_save_options {
         $new_settings['counting_visits']  = @PPC_options_fields::get_checkbox_value( $settings['counting_visits'] );
         $new_settings['counting_images'] = @PPC_options_fields::get_checkbox_value( $settings['counting_images'] );
         $new_settings['counting_images_include_featured'] = @PPC_options_fields::get_checkbox_value( $settings['counting_images_include_featured'] );
+		$new_settings['counting_images_include_galleries'] = @PPC_options_fields::get_checkbox_value( $settings['counting_images_include_galleries'] );
         $new_settings['counting_comments'] = @PPC_options_fields::get_checkbox_value( $settings['counting_comments'] );
         $new_settings['counting_payment_only_when_total_threshold'] = @PPC_options_fields::get_checkbox_value( $settings['counting_payment_only_when_total_threshold'] );
         $new_settings['counting_exclude_quotations'] = @PPC_options_fields::get_checkbox_value( $settings['counting_exclude_quotations'] );
@@ -48,7 +49,7 @@ class PPC_save_options {
         
         //Counting methods/systems (Radio fields)
         $counting_words_system = PPC_options_fields::get_radio_value( $settings['counting_words_system'], 'counting_words_system_zonal', 'counting_words_system_incremental' );
-        $counting_visits_method = PPC_options_fields::get_radio_value( $settings['counting_visits_method'], 'counting_visits_google_analytics', 'counting_visits_postmeta' );
+        $counting_visits_method = PPC_options_fields::get_radio_value( $settings['counting_visits_method'], 'counting_visits_google_analytics', 'counting_visits_postmeta', 'counting_visits_callback' );
         $counting_visits_system = PPC_options_fields::get_radio_value( $settings['counting_visits_system'], 'counting_visits_system_zonal', 'counting_visits_system_incremental' );
         $counting_images_system = PPC_options_fields::get_radio_value( $settings['counting_images_system'], 'counting_images_system_zonal', 'counting_images_system_incremental' );
         $counting_comments_system = PPC_options_fields::get_radio_value( $settings['counting_comments_system'], 'counting_comments_system_zonal', 'counting_comments_system_incremental' ); 
@@ -58,8 +59,8 @@ class PPC_save_options {
         $new_settings['basic_payment_value'] = (float) str_replace( ',', '.', $settings['basic_payment_value'] );
         $new_settings['counting_words_system_incremental_value'] = (float) str_replace( ',', '.', $settings['counting_words_system_incremental_value'] );
         $new_settings['counting_words_threshold_max'] = (int) $settings['counting_words_threshold_max'];
-        $new_settings['counting_visits_postmeta_value'] = $settings['counting_visits_postmeta_value'];
-        $new_settings['counting_visits_system_incremental_value'] = (float) str_replace( ',', '.', $settings['counting_visits_system_incremental_value'] );
+        $new_settings['counting_visits_postmeta_value'] = trim( $settings['counting_visits_postmeta_value'] );
+		$new_settings['counting_visits_system_incremental_value'] = (float) str_replace( ',', '.', $settings['counting_visits_system_incremental_value'] );
         $new_settings['counting_visits_threshold_max'] = (int) $settings['counting_visits_threshold_max'];
         $new_settings['counting_images_threshold_min'] = (int) $settings['counting_images_threshold_min'];
         $new_settings['counting_images_threshold_max'] = (int) $settings['counting_images_threshold_max'];
@@ -69,6 +70,16 @@ class PPC_save_options {
         $new_settings['counting_comments_system_incremental_value'] = (float) str_replace( ',', '.', $settings['counting_comments_system_incremental_value'] );
         $new_settings['counting_payment_total_threshold'] = (float) str_replace( ',', '.', $settings['counting_payment_total_threshold'] );
         
+		if( $new_settings['counting_visits_callback'] AND isset( $settings['counting_visits_callback_value'] ) ) {
+			$settings['counting_visits_callback_value'] = trim( $settings['counting_visits_callback_value'] );
+			
+			//Check if callback is valid
+			if( @call_user_func( PPC_counting_types::get_visits_callback_function( $settings['counting_visits_callback_value'] ), get_posts( array( 'posts_per_page' => 1, 'orderby' => 'rand' ) ) ) === NULL )
+				return new WP_Error( 'ppc_invalid_visits_callback', __( 'The specified visits callback returned NULL for a random post - are you sure it is correct?', 'ppc' ), array( $settings['counting_visits_callback_value'] ) );
+			
+			$new_settings['counting_visits_callback_value'] = $settings['counting_visits_callback_value'];
+		}
+		
         foreach( $settings as $option => $value ) {
             
             //If option is a checkbox/radio already dealt with, skip it

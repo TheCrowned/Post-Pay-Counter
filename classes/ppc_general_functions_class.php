@@ -209,5 +209,18 @@ class PPC_general_functions {
         
         $ppc_global_settings['stats_tend'] = ( strtotime( '23:59:59' )+2 ); //seems to fix UTC-time zones delays
     }
+	
+	/**
+	 * Formats payments for output.
+	 *
+	 * @access	public
+	 * @since	2.40
+	 * @param	$payment string payment to be formatted
+	 * @return 	string formatted payment
+	 */
+	
+	static function format_payment( $payment ) {
+		return apply_filters( 'ppc_format_payment', $payment );
+	}
 }
 ?>

@@ -1,0 +1,21 @@
+#ppc_addons h2 { 
+	margin: 0 0 15px; 
+}
+#ppc_addons .ppc_addon { 
+	float: left; 
+	margin: 0 15px 15px 0; 
+	background: #f0f0f0; 
+	border: 1px solid #ccc; 
+	width: 320px; 
+	padding: 8px; 
+	height: 315px; 
+	position: relative; 
+}
+#ppc_addons .ppc_addon h3 { 
+	margin: 0 0 8px; 
+	font-size: 13px;  
+}
+#ppc_addons .ppc_addon .button-secondary { 
+	position: absolute; 
+	bottom: 8px;
+}

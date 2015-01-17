@@ -49,6 +49,33 @@ function post_pay_counter_checkbox_auto_toggle(toggle_click, toggle_click_conten
 	});
 }
 
+//Handles adding/removing of zones
+function ppc_zones_manager(counting_type, zones_count) {
+    jQuery("#counting_"+counting_type+"_more_zones").click(function(e) {
+        e.preventDefault();
+        
+        if(zones_count > 9){
+            alert(ppc_options_effects_vars.localized_too_many_zones);
+            return false;
+        }
+		zones_count++;
+    
+        jQuery('<tr><td><input type="text" name="'+counting_type+'_'+zones_count+'_zone_threshold" id="'+counting_type+'_'+zones_count+'_zone_threshold" /></td><td><input type="text" name="'+counting_type+'_'+zones_count+'_zone_payment" id="'+counting_type+'_'+zones_count+'_zone_payment" /></td></tr>').appendTo(jQuery("#counting_"+counting_type+"_system_zonal_content").find("#"+counting_type+"_0_zone_threshold").parent().parent().parent());
+     });
+ 
+     jQuery("#counting_"+counting_type+"_less_zones").click(function(e) {
+        e.preventDefault();
+        
+        if(zones_count == 1){
+            alert(ppc_options_effects_vars.localized_too_few_zones);
+            return false;
+        }
+        
+        jQuery("#"+counting_type+"_"+zones_count+"_zone_threshold").parent().parent().remove();
+        zones_count--;
+	});
+}
+
 jQuery(document).ready(function($) {
 	//Counting types
     post_pay_counter_checkbox_auto_toggle("#basic_payment", "#ppc_basic_payment_content");
@@ -56,6 +83,9 @@ jQuery(document).ready(function($) {
     post_pay_counter_checkbox_auto_toggle("#counting_visits", "#ppc_counting_visits_content");
     post_pay_counter_checkbox_auto_toggle("#counting_images", "#ppc_counting_images_content");
     post_pay_counter_checkbox_auto_toggle("#counting_comments", "#ppc_counting_comments_content");
+	
+	//Visits counting methods
+	post_pay_counter_radio_auto_toggle("#counting_visits_postmeta", "#counting_visits_postmeta_content", "#counting_visits_callback", "#counting_visits_callback_content");
     
     //Payments systems
 	post_pay_counter_radio_auto_toggle("#counting_words_system_zonal", "#counting_words_system_zonal_content", "#counting_words_system_incremental", "#counting_words_system_incremental_content");
@@ -87,105 +117,17 @@ jQuery(document).ready(function($) {
     //Handles adding/removing of zones
     //WORDS
     var words_zones_count = (ppc_options_effects_vars.counting_words_current_zones_count-1);
-    $("#counting_words_more_zones").click(function(e) {
-        e.preventDefault();
-        
-        if(words_zones_count > 9){
-            alert(ppc_options_effects_vars.localized_too_many_zones);
-            return false;
-        }
-		words_zones_count++;
-    
-        $('<tr><td><input type="text" name="words_'+words_zones_count+'_zone_threshold" id="words_'+words_zones_count+'_zone_threshold" /></td><td><input type="text" name="words_'+words_zones_count+'_zone_payment" id="words_'+words_zones_count+'_zone_payment" /></td></tr>').appendTo($("#counting_words_system_zonal_content").find("#words_0_zone_threshold").parent().parent().parent());
-     });
- 
-     $("#counting_words_less_zones").click(function(e) {
-        e.preventDefault();
-        
-        if(words_zones_count == 1){
-            alert(ppc_options_effects_vars.localized_too_few_zones);
-            return false;
-        }
-        
-        $("#words_"+words_zones_count+"_zone_threshold").parent().parent().remove();
-        words_zones_count--;
-	});
+	ppc_zones_manager('words', words_zones_count);
      
 	//VISITS
 	var visits_zones_count = (ppc_options_effects_vars.counting_visits_current_zones_count-1);
-    $("#counting_visits_more_zones").click(function(e) {
-		e.preventDefault();
-        
-        if(visits_zones_count > 9){
-            alert(ppc_options_effects_vars.localized_too_many_zones);
-            return false;
-        }
-		visits_zones_count++;
-    
-        $('<tr><td><input type="text" name="visits_'+visits_zones_count+'_zone_threshold" id="visits_'+visits_zones_count+'_zone_threshold" /></td><td><input type="text" name="visits_'+visits_zones_count+'_zone_payment" id="visits_'+visits_zones_count+'_zone_payment" /></td></tr>').appendTo($("#counting_visits_system_zonal_content").find("#visits_0_zone_threshold").parent().parent().parent());
-     });
- 
-     $("#counting_visits_less_zones").click(function(e) {
-        e.preventDefault();
-        
-        if(visits_zones_count == 1){
-            alert(ppc_options_effects_vars.localized_too_few_zones);
-            return false;
-        }
-        
-        $("#visits_"+visits_zones_count+"_zone_threshold").parent().parent().remove();
-        visits_zones_count--;
-	});
+    ppc_zones_manager('visits', visits_zones_count);
 	
 	//IMAGES
 	var images_zones_count = (ppc_options_effects_vars.counting_images_current_zones_count-1);
-    $("#counting_images_more_zones").click(function(e) {
-		e.preventDefault();
-        
-        if(images_zones_count > 9){
-            alert(ppc_options_effects_vars.localized_too_many_zones);
-            return false;
-        }
-		images_zones_count++;
-    
-        $('<tr><td><input type="text" name="images_'+images_zones_count+'_zone_threshold" id="images_'+images_zones_count+'_zone_threshold" /></td><td><input type="text" name="images_'+images_zones_count+'_zone_payment" id="images_'+images_zones_count+'_zone_payment" /></td></tr>').appendTo($("#counting_images_system_zonal_content").find("#images_0_zone_threshold").parent().parent().parent());
-     });
- 
-     $("#counting_images_less_zones").click(function(e) {
-        e.preventDefault();
-        
-        if(images_zones_count == 1){
-            alert(ppc_options_effects_vars.localized_too_few_zones);
-            return false;
-        }
-        
-        $("#images_"+images_zones_count+"_zone_threshold").parent().parent().remove();
-        images_zones_count--;
-	});
+    ppc_zones_manager('images', images_zones_count);
 	
 	//COMMENTS
 	var comments_zones_count = (ppc_options_effects_vars.counting_comments_current_zones_count-1);
-    $("#counting_comments_more_zones").click(function(e) {
-		e.preventDefault();
-        
-        if(comments_zones_count > 9){
-            alert(ppc_options_effects_vars.localized_too_many_zones);
-            return false;
-        }
-		comments_zones_count++;
-    
-        $('<tr><td><input type="text" name="comments_'+comments_zones_count+'_zone_threshold" id="comments_'+comments_zones_count+'_zone_threshold" /></td><td><input type="text" name="comments_'+comments_zones_count+'_zone_payment" id="comments_'+comments_zones_count+'_zone_payment" /></td></tr>').appendTo($("#counting_comments_system_zonal_content").find("#comments_0_zone_threshold").parent().parent().parent());
-     });
- 
-     $("#counting_comments_less_zones").click(function(e) {
-        e.preventDefault();
-        
-        if(comments_zones_count == 1){
-            alert(ppc_options_effects_vars.localized_too_few_zones);
-            return false;
-        }
-        
-        $("#comments_"+comments_zones_count+"_zone_threshold").parent().parent().remove();
-        comments_zones_count--;
-	});
+    ppc_zones_manager('comments', comments_zones_count);
 });

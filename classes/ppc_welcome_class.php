@@ -38,7 +38,7 @@ class PPC_welcome {
 	}
 
 	/**
-	 * Hide Welcome dashboard pages and inject custom css.
+	 * Hide Welcome dashboard pages.
 	 *
 	 * @access public
 	 * @since  2.34
@@ -47,22 +47,23 @@ class PPC_welcome {
 	public static function admin_head() {
 		remove_submenu_page( 'index.php', 'ppc-about' );
         remove_submenu_page( 'index.php', 'ppc-changelog' );
-		?>
-        
-		<style type="text/css" media="screen">
-		/*<![CDATA[*/
-		
-		.ppc-welcome-screenshots {
-			float: right;
-			margin-left: 10px!important;
-            width: 400px;
-		}
-		/*]]>*/
-		</style>
-        
-		<?php
 	}
 
+	/**
+	 * Injects custom page css.
+	 *
+	 * @access	public
+	 * @since	2.36
+	 */
+	
+	static function custom_css() {
+		global $ppc_global_settings;
+	
+		wp_enqueue_style( 'ppc_header_style', $ppc_global_settings['folder_path'].'style/ppc_header_style.css', array( 'wp-admin' ) );
+		wp_enqueue_style( 'ppc_about_style', $ppc_global_settings['folder_path'].'style/ppc_welcome_style.css', array( 'wp-admin' ) );
+	}
+	
+	
     /**
 	 * Display navigation tabs and select current one.
 	 *
@@ -96,12 +97,13 @@ class PPC_welcome {
 	 */
      
 	public static function about_screen() {
-        global $ppc_global_settings;        
+        global $ppc_global_settings;
 		?>
         
 		<div class="wrap about-wrap">
+			<?php PPC_HTML_functions::display_header_logo(); ?>
 			<h1><?php printf( __( 'Welcome to Post Pay Counter Version %s', 'ppc' ), $ppc_global_settings['newest_version'] ); ?></h1>
-			<div class="about-text"><?php _e( 'You got the latest release of Post Pay Counter, which is going to make handling authors\' payments much, much easier! The new menu on the left provides access to all the plugin features.', 'ppc' ) ?></div>
+			<div class="about-text"><?php _e( 'You got the latest release of Post Pay Counter, which is going to make handling authors\' payments much, much easier! The menu on the left provides access to all the plugin features.', 'ppc' ) ?></div>
             
             <?php echo self::print_tabs(); ?>
             
@@ -149,7 +151,7 @@ class PPC_welcome {
 					<img src="<?php echo $ppc_global_settings['folder_path'].'style/images/screenshots/misc_settings.png'; ?>" class="ppc-welcome-screenshots"/>
 
 					<h4><?php _e( 'Prevent users envy', 'ppc' );?></h4>
-					<p><?php _e( 'Want users to be able to see only their own stats and not other users\' ones. Yes you can! There\'s a whole set of permission settings to define what users should and shouldn\'t see.', 'ppc' );?></p>
+					<p><?php _e( 'Want users to be able to see only their own stats and not other users\' ones? Yes you can! There\'s a whole set of permission settings to define what users should and shouldn\'t see.', 'ppc' );?></p>
                     
                     <h4><?php _e( 'Personalize settings by user', 'ppc' );?></h4>
 					<p><?php _e( 'Some users may deserve more or less than others: they can have custom settings for what concerns payments and permissions.', 'ppc' );?></p>
@@ -180,8 +182,9 @@ class PPC_welcome {
 		?>
         
 		<div class="wrap about-wrap">
+			<?php PPC_HTML_functions::display_header_logo(); ?>
 			<h1><?php printf( __( 'Welcome to Post Pay Counter Version %s', 'ppc' ), $ppc_global_settings['newest_version'] ); ?></h1>
-			<div class="about-text"><?php _e( 'You got the latest release of Post Pay Counter, which is going to make handling authors\' payments much, much easier! The new menu on the left provides access to all the plugin features.', 'ppc' ) ?></div>
+			<div class="about-text"><?php _e( 'You got the latest release of Post Pay Counter, which is going to make handling authors\' payments much, much easier! The menu on the left provides access to all the plugin features.', 'ppc' ) ?></div>
             
             <?php echo self::print_tabs(); ?>
             
@@ -224,7 +227,7 @@ class PPC_welcome {
 					<p><?php _e( 'Pay your writers directly from the stats page with Adaptive Payments.' );?></p>
                     
                     <h4><?php _e( 'Tons of other features', 'ppc' );?></h4>
-					<p><?php printf( __( 'The %1$sPRO version%2$s includes a damn more lot of interesting features, among which but not only: payment manager and payment history to keep track of past transactions, award payment bonus to single posts, shortcode for stats, stats exporting... see? There\'s not enough space to list them all!', 'ppc' ), '<a href="http://www.thecrowned.org/post-pay-counter-pro" title="Post Pay Counter PRO">', '</a>' );?></p>
+					<p><?php printf( __( 'The %1$sPRO version%2$s includes a damn more lot of interesting features, among which but not only: payment manager and payment history to keep track of past transactions, award payment bonus to single posts, shortcode for stats, stats exporting... see? There\'s not enough space to list them all!', 'ppc' ), '<a href="http://www.thecrowned.org/post-pay-counter-pro?utm_source=users_site&utm_medium=welcome_page&utm_campaign=ppcp" title="Post Pay Counter PRO">', '</a>' );?></p>
 				</div>
 			</div>
 

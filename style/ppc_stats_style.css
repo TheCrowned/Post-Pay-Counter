@@ -1,3 +1,13 @@
+#ppc_logo {
+	margin-right: 0px;
+	margin-top: -5px;
+	width: 11%;
+	padding-left: 30px;
+}
+#ppc_logo img {
+	width: 100px;
+}
+
 .ppc_error {
 	display: none; 
 	color: red; 

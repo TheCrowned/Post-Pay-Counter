@@ -200,5 +200,23 @@ class PPC_ajax_functions {
         
         die( 'ok' );
     }
+	
+	/**
+     * Dismisses a notification
+     *
+     * @access  public
+     * @since   2.46
+    */
+    
+    static function dismiss_notification() {
+        global $ppc_global_settings;
+        self::ppc_check_ajax_referer( 'ppc_dismiss_notification' );
+        
+        $dismissed = get_option( 'ppc_dismissed_notifications', array() );
+        
+		$dismissed[$_REQUEST['id']] = $_REQUEST['id'];
+		if( ! update_option( 'ppc_dismissed_notifications', $dismissed ) )
+			new PPC_Error( 'ppc_dismiss_notification', 'Could not dismiss notification.', array( 'id' => $_REQUEST['id'] ) );
+    }
 }
 ?>

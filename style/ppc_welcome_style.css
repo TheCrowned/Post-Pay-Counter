@@ -1,0 +1,21 @@
+.ppc-welcome-screenshots {
+
+	float: right;
+	margin-left: 10px!important;
+
+	width: 400px;
+
+
+}
+
+#ppc_logo {
+	margin-right: 0px;
+	margin-top: 0px;
+	width: 200px;
+}
+#ppc_logo img {
+	width: 200px;
+}
+#ppc_logo_caption {
+	margin-top: 0px;
+}

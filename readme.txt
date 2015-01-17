@@ -2,26 +2,26 @@
 Contributors: Ste_95
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22
 Tags: counter, authors, payment, revenue sharing, stats, multi author, post management, post
-Tested up to: 3.9.1
-Stable tag: 2.34
+Tested up to: 4.1
+Stable tag: 2.482
 Requires at least: 3.7
 
-Easily handle authors' pay on a multi-author blog by computing posts' remuneration basing on admin defined rules with.
+Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
 
 == Description ==
 The Post Pay Counter plugin allows you to easily calculate and handle authors' pay on a multi-author blog by computing posts' remuneration basing on admin defined rules. The administrator can specify criteria upon which payments should be computed and the stats will immediately be viewable. Both a general view with all users and a specific one for a author are possible. It can easily help you implement a revenue sharing/paid to write model for your business.
 
-**IMPORTANT NOTICE: Version 2.0 or later needs to be reinstalled, if you had a previous version. Also, the following features are currently missing**: plugin's visits counting method, post payment bonus, trial settings, full multisite integration, word count in post list. Some of them will be added soon. If you need one specifically, let me know in order to make up a priority list.
-
-* Pay per post, word, visit, image and comment. They are not mutually exclusive.
+* Pay per post, word, visit ([tutorial](http://www.thecrowned.org/pay-writers-per-visit-wordpress)), image and comment. They are not mutually exclusive.
 * Pay with an incremental system (eg. each word is €0.01 => 100 words = €1) or with a zonal one (eg. from 200 to 300 words/visits it’s €2.00, up to 10 zones).
 * No account needed. Data is yours, no need to sign-up to anything really.
 * Old stats availability. View posts countings since the first written post, disregarding the plugin install date. A fancy date picker lets you shift between days and select the desired range.
 * Personalize user's settings, so that special settings only apply to a particular user. Different settings can be made viewable in the stats or hidden depending on your needs.
 * Customizable permissions to prevent your users to see stats and use functions they are not supposed to.
+* Extend with your own custom implementation through hooks, filters and special API features.
 * And... works with custom post types, narrow your payments only to chosen user groups, and more.
 
-**Also, we have a [PRO version](http://www.thecrowned.org/post-pay-counter-pro) with many more features!** (among which integration with Analytics, PayPal, and so much more)
+**Also, we have a [PRO version](http://www.thecrowned.org/post-pay-counter-pro?utm_source=wprep&utm_medium=link&utm_campaign=ppcp) with many more features!** (among which integration with Analytics, PayPal, and so much more)
+Browse [all extensions](http://www.thecrowned.org/post-pay-counter-extensions?utm_source=wprep&utm_medium=description&utm_campaign=ppc_addons)
 
 [youtube https://www.youtube.com/watch?v=mSFjvR-2zCI]
 
@@ -33,10 +33,15 @@ The Post Pay Counter plugin allows you to easily calculate and handle authors' p
 
 == Frequently Asked Questions ==
 = You said I could pay per visit. How do I do that? =
-The plugin does not keep track of visits, it can only keep it in mind when computing the payment. You either need to have a plugin who keeps track of visits, and put the post_meta name of the field in which it stores the visits (must be a number), or get the PRO version of Post Pay Counter and use your Google Analytics account to get visits data.
+There's an [apt tutorial here](http://www.thecrowned.org/pay-writers-per-visit-wordpress). However, note that Post Pay Counter does not keep track of visits, it can only keep it in mind when computing the payment. You either need to have a plugin who keeps track of visits, and put the post_meta name of the field in which it stores the visits (must be a number), or get the PRO version of Post Pay Counter and use your Google Analytics account to get visits data.
 
 = I installed the plugin but it does not show up in the menu. Also, if I go to the settings page, it says I am not authorized =
 That is probably due to a permissions manager plugin you have on your blog. Check that capabilities *post_pay_counter_access_stats* and *post_pay_counter_manage_options* are correctly assigned and working.
+
+= Can I pay for BBPress contents? =
+It is indeed possible to pay for BBPress topics and replies with Post Pay Counter.
+
+In *Post Pay Counter > Options > Miscellanea > Allowed post types*, make sure you have *Topic* and *Reply* ticked, and those types of contents will be included in countings.
 
 = I don't want errors to be logged =
 Set to *false* the constant *PPC_DEBUG_LOG* in *post-pay-counter.php*, it is located at line 44.
@@ -53,7 +58,7 @@ It must become: *define( 'PPC_DEBUG_LOG', false );*
 == Languages ==
 = Available languages =
 * English
-* German (Julian Beck)
+* German ([Julian Beck](http://inside11.de/))
 * Italian (Stefano Ottolenghi)
 * Portoguese (Marco Dantas)
 
@@ -61,13 +66,70 @@ It must become: *define( 'PPC_DEBUG_LOG', false );*
 If you want to translate it in your own language and get a discount on the PRO version, [contact us](http://www.thecrowned.org/contact-me)!
 
 == Changelog ==
+= 2.482 =
+Fixed: fatal error in PRO payment history windows.
+
+= 2.481 =
+* Fixed: last update would break PRO Analytics feature.
+
+= 2.48 =
+* Feature: possible to specify a callback function for visits counting, instead of a postmeta (grants compatibility with Post Views Counter and [more custom counting plugins](http://www.thecrowned.org/pay-writers-per-visit-wordpress)).
+* Fixed: word counting problems for non-latin characters.
+* Fixed: (this time for real) notifications would be displayed on all admin pages although they were not supposed to.
+
+= 2.47 =
+* Fixed: word count would sometimes miss a word (the last one).
+* Fixed: notifications would be displayed on all admin pages although they were not supposed to.
+* Tweak: updated Italian and German translations (thanks [Julian](http://inside11.de/)).
+
+= 2.46 =
+* Feature: now possible to include gallery images in images counting (disabled by default, go to Counting settings > Images payment to enable it).
+* Feature: introducing plugin notifications system.
+
+= 2.45 =
+* Fixed: misaligned stats columns if users had different counting types enabled.
+
+= 2.44 =
+* Fixed: datepicker would misbehave and not let select correct dates.
+
+= 2.43 =
+* Fixed: if a maximum payment threshold was set with payment only when the threshold was reached, and no posts across all authors reached the threhsold, some warnings would be shown with no explanation of the problem.
+* Fixed: PRO version payment bonus not showing in the stats (although was counted for payment).
+* Fixed: options page style showing messed up on some sites.
+* Tweak: dinamically generating overall stats (if some payment types are disabled, they are not displayed).
+* Tweak: stats generation is a bit less memory demanding.
+* Fixed: warning again for users with no counting types enabled.
+* Tweak: updated italian translation.
+
+= 2.42 =
+* Fixed: warnings in shortcoded (PRO) and maybe admin stats if current user didn't have any counting types enabled.
+
+= 2.41 =
+* Fixed: overall stats not displaying data.
+
+= 2.40 =
+* New: centralized control of counting types - makes code easier, hopefully faster, and simple to hook for who wants to integrate with the plugin.
+* Tweak: welcome page css not being loaded on all wp-admin pages.
+* New: Pengu-ins logo added on plugin pages.
+* New: addons page (new addons coming!)
+
+= 2.35 =
+* New: words included in any HTML tag with class *ppc_exclude_words* is automatically excluded from word counting. Doesn't handle nested tags, i.e. < div class="ppc_exclude_posts">some content < div class="nested">nested content</ div> this will already be counted</ div>.
+* Fixed: blockquotes exluding from words counting would not work correctly with more than one blockquote (would not count even words in the middle of blockquotes).
+* Fixed: furthest reaching stats display starting date would not keep in account selected custom post types, would only get first *post*.
+* Tweak: new js function ppc_zones_manager for options zones adding/removal (saves lines of code).
+* Tweak: $ppc_global_settings['current_page'] holds current page name.
+* Tweak: PPC_Error objects pass debug $data to WP_Error.
+* Tweak: updated italian and german (Thanks Julian!) translations.
+* Tweak: moved screenshots to /assets folder = smaller zip file!
+
 = 2.34 =
 * New: Welcome and Changelog pages.
 * New: possible to disable overall stats display - performance matters!
 
 = 2.33 =
 * New: plugin logged errors are automatically deleted after a month - the deletion happens once a day.
-* Fixed: *Strict Standards: Non-static method* errors in Options page.
+* Fixed: *ppc_options_fields_class* methods now declared *static*, avoiding PHP Strict notices of non-static methods being called statically blah blah blah.
 * Fixed: start time stats limit in datepicker would only consider posts instead of selected post types.
 
 = 2.32 =

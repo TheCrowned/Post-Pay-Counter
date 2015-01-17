@@ -72,17 +72,7 @@ class PPC_options_fields {
     
     static function echo_payment_systems( $counting_type, $counting_type_localized, $settings ) {
     	global $ppc_global_settings; 
-        
-        /*if( $counting_type == 'words' ) {
-            $counting_type_localized = __( 'words' , 'ppc');
-        } else if( $counting_type == 'visits' ) {
-            $counting_type_localized = __( 'visits' , 'ppc');
-        } else if( $counting_type == 'images' ) {
-            $counting_type_localized = __( 'images' , 'ppc');
-        } else if( $counting_type == 'comments' ) {
-            $counting_type_localized = __( 'comments' , 'ppc');
-        }*/
-            
+                    
         $html = '<div class="payment_systems">';
         $html .= PPC_HTML_functions::echo_p_field( __( 'Use the zonal system' , 'ppc'), $settings['counting_'.$counting_type.'_system_zonal'], 'radio', 'counting_'.$counting_type.'_system', sprintf( __( 'With this system you can define up to how many zones of retribution you would like, so that from X %1$s to Y %1$s the same pay will be applied (eg. from 200 %1$s to 300 %1$s pay 2.00). It does not matter how many %1$s a post has, but only in what zone it fits in.' , 'ppc'), $counting_type_localized ), 'counting_'.$counting_type.'_system_zonal', 'counting_'.$counting_type.'_system_zonal' );
         $html .= '<div id="counting_'.$counting_type.'_system_zonal_content" class="field_value">';
@@ -115,7 +105,7 @@ class PPC_options_fields {
                 
         $html .= PPC_HTML_functions::echo_p_field( __( 'Use the incremental payment system' , 'ppc'), $settings['counting_'.$counting_type.'_system_incremental'], 'radio', 'counting_'.$counting_type.'_system', sprintf( __( 'With this system, every %1$s has a value: more %1$s => higher pay. Just think that the %1$s number will be multiplied for the incremental payment value, so that is a post has 300 %1$s and you set the incremental payment value to 0.01, the writer will be credited with 3.' , 'ppc'), $counting_type_localized ), 'counting_'.$counting_type.'_system_incremental', 'counting_'.$counting_type.'_system_incremental' );
         $html .= '<div id="counting_'.$counting_type.'_system_incremental_content" class="field_value">';
-        $html .= '<label>'.__( 'Incremental payment value' , 'ppc').' <input type="text" name="counting_'.$counting_type.'_system_incremental_value" value="'.$settings['counting_'.$counting_type.'_system_incremental_value'].'" size="12" /></label>';
+        $html .= PPC_HTML_functions::echo_text_field( 'counting_'.$counting_type.'_system_incremental_value', $settings['counting_'.$counting_type.'_system_incremental_value'], __( 'Incremental payment value' , 'ppc'), 15 );
         $html .= '</div>';
         $html .= '</div>';
         
@@ -132,13 +122,12 @@ class PPC_options_fields {
     */
     
     static function get_checkbox_value( &$checkbox ) {
-        if( ! isset( $checkbox ) ) {
-            $checkbox = NULL;
+        if( ! isset( $checkbox ) )
             return 0;
-        } else {
-            $checkbox = NULL;
+        else
             return 1;
-        }
+		
+		$checkbox = NULL;
     }
     
     /**

@@ -14,49 +14,50 @@
 #post-body #normal-sortables {
 	width: 100%;
 }
-.ppc_section {
+.section {
     border-left-width: 1px;
     border-left-style: dashed;
     border-left-color: gray;
     padding-left: 10px;
     margin-bottom: 2.2em;
 }
-.ppc_section .ppc_title {
+.section .title {
 	font-weight: bold;
 	text-align: left;
 	margin-bottom: -5px;
 	margin-top: 20px;
 }
-.ppc_section .ppc_content {
+.section .content {
     margin-left: 1.5em;
 }
-.ppc_section .ppc_field_value {
+.section .field_value {
     margin-left: 1.5em;
 }
-.ppc_section input[type="text"] {
+.section input[type="text"] {
     float: right;
-	background-color: #eee;
-	margin-right: 2em;
 }
-.ppc_section td {
+.section td {
     width: 50%;
 }
+/*.checkable_input {
+	width: 20px;
+}*/
 .ppc_tooltip {
 	float: right;
 	width: 20px;
 	text-align: right;
 }
-.ppc_save_settings {
+.save_settings {
     float: right;
     width: 30%;
 }
-.ppc_save_settings input {
+.save_settings input {
     float: right;
 }
 .ppc_align_right {
 	float: right;
 }
-.ppc_ajax_loader {
+.ajax_loader {
     display: none;
     float: left;
     margin-right: 5px;

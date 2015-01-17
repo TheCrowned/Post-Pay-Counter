@@ -73,7 +73,7 @@ class PPC_Error {
             }
         }
         
-        $this->wp_error = new WP_Error( $error_details['code'], $error_details['output'] );
+        $this->wp_error = new WP_Error( $error_details['code'], $error_details['output'], $data );
     }
     
     /**

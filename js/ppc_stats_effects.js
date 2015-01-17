@@ -1,6 +1,6 @@
 jQuery(document).ready(function() {
     jQuery('#post_pay_counter_time_start').datepicker({
-        dateFormat : 'yy/mm/dd',
+        dateFormat : 'yy-mm-dd',
         minDate : ppc_stats_effects_vars.datepicker_mindate,
         maxDate: ppc_stats_effects_vars.datepicker_maxdate,
         changeMonth : true,
@@ -14,7 +14,7 @@ jQuery(document).ready(function() {
         }
     });
     jQuery('#post_pay_counter_time_end').datepicker({
-        dateFormat : 'yy/mm/dd',
+        dateFormat : 'yy-mm-dd',
         minDate : ppc_stats_effects_vars.datepicker_mindate,
         maxDate: ppc_stats_effects_vars.datepicker_maxdate,
         changeMonth : true,
