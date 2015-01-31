@@ -3,7 +3,7 @@ Contributors: Ste_95
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22
 Tags: counter, authors, payment, revenue sharing, stats, multi author, post management, post
 Tested up to: 4.1
-Stable tag: 2.482
+Stable tag: 2.490
 Requires at least: 3.7
 
 Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
@@ -22,6 +22,8 @@ The Post Pay Counter plugin allows you to easily calculate and handle authors' p
 
 **Also, we have a [PRO version](http://www.thecrowned.org/post-pay-counter-pro?utm_source=wprep&utm_medium=link&utm_campaign=ppcp) with many more features!** (among which integration with Analytics, PayPal, and so much more)
 Browse [all extensions](http://www.thecrowned.org/post-pay-counter-extensions?utm_source=wprep&utm_medium=description&utm_campaign=ppc_addons)
+
+[GitHub repository](https://github.com/TheCrowned/Post-Pay-Counter/) (wanna join us coding?)
 
 [youtube https://www.youtube.com/watch?v=mSFjvR-2zCI]
 
@@ -66,8 +68,13 @@ It must become: *define( 'PPC_DEBUG_LOG', false );*
 If you want to translate it in your own language and get a discount on the PRO version, [contact us](http://www.thecrowned.org/contact-me)!
 
 == Changelog ==
+= 2.490 =
+* Feature: possible to filter stats view by user role: select a user role and get stats only for users belonging to that one.
+* Fixed: prevent PHP warning if website can't contact developer server to check for notifications.
+* Tweak: ensuring logged plugin errors are automatically deleted after 20 days.
+
 = 2.482 =
-Fixed: fatal error in PRO payment history windows.
+* Fixed: fatal error in PRO payment history windows.
 
 = 2.481 =
 * Fixed: last update would break PRO Analytics feature.

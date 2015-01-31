@@ -491,12 +491,14 @@ class PPC_meta_boxes {
         global $ppc_global_settings;
         $current_settings = $current_settings['args'];
         
-        $errors = get_option( $ppc_global_settings['option_errors'] );
+        $errors = get_option( $ppc_global_settings['option_errors'], array() );
+        ?>
+		
+        <p><?php printf( __( 'Errors which may happen during the plugin execution are logged and showed here. If something is not working properly, please send this list along with your support request. The log is cleared every now and then, but you can empty it manually with the button below. If you do not want errors to be logged at all, see the %1$sFAQ%2$s.', 'ppc' ), '<a href="http://wordpress.org/plugins/post-pay-counter/faq/" title="'.__( 'Frequently asked questions' ).'">', '</a>' ); ?></p>
+        <textarea readonly="readonly" onclick="this.focus();this.select()" style="width: 100%; height: 150px;" name="ppc_error_log" title="<?php _e( 'To copy the error log, click below then press Ctrl + C (PC) or Cmd + C (Mac).', 'ppc' ); ?>"><?php
         
-        echo '<p>'.sprintf( __( 'Errors which may happen during the plugin execution are logged and showed here. If something is not working properly, please send this list along with your support request. The log is cleared every now and then, but you can empty it manually with the button below. If you do not want errors to be logged at all, see the %1$sFAQ%2$s.', 'ppc' ), '<a href="http://wordpress.org/plugins/post-pay-counter/faq/" title="'.__( 'Frequently asked questions' ).'">', '</a>' ).'</p>';
-        echo '<textarea readonly="readonly" onclick="this.focus();this.select()" style="width: 100%; height: 150px;" name="ppc_error_log" title="'.__( 'To copy the error log, click below then press Ctrl + C (PC) or Cmd + C (Mac).', 'ppc' ).'">';
-        
-        if( is_array( $errors ) AND count( $errors ) > 0 ) {
+		
+        if( count( $errors ) > 0 ) {
             foreach( $errors as $error ) {
                 echo date( 'Y-m-d H:m:s', $error['time'] )."\n";
                 echo $error['debug_message']."\n\n";
@@ -505,8 +507,7 @@ class PPC_meta_boxes {
             _e( 'That\'s great, nothing has gone wrong so far!', 'ppc' );
         }
         
-        echo '</textarea>';
-        ?>
+		?></textarea>
         
         <br />
         <input type="button" name="ppc_clear_error_log" id="ppc_clear_error_log" value="<?php _e( 'Clear error log', 'ppc' ); ?>" class="button-secondary" style="float: right;" />

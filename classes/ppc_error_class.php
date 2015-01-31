@@ -5,13 +5,13 @@
  *
  * Used to produce and maybe store errors. Relies on WP_Error object.
  *
- * @package     PPCP
+ * @package     PPC
  * @copyright   2014
  * @author 		Stefano Ottolenghi
  */
 
 //Time, in days, after which errors should be deleted
-define( 'PPCP_ERROR_PURGE_TIME', 30 );
+define( 'PPCP_ERROR_PURGE_TIME', 20 );
  
 class PPC_Error {
     
@@ -25,7 +25,7 @@ class PPC_Error {
      * 
      * @param   $code string Error code
      * @param   $message string Error message
-     * @param   $data mixed (optional) Error data
+     * @param   $data array (optional) Error data
      * @param   $log bool (optional) Whether error should be logged
     */
     
@@ -50,27 +50,21 @@ class PPC_Error {
         
         //If logging enabled, push error with others
         if( PPC_DEBUG_LOG AND $log ) {
-            $errors_already = get_option( $ppc_global_settings['option_errors'], array() );
-            $errors = $errors_already;
+            $errors = get_option( $ppc_global_settings['option_errors'], array() );
             $errors[] = $error_details;
             
 			//Get rid of old errors - only run once a day, ensure this through a transient
 			if( ! get_transient( $ppc_global_settings['transient_error_deletion'] ) ) {
-				foreach( $errors_already as $key => $single ) {
-					if( $single['time'] < ( current_time( 'timestamp' ) - PPCP_ERROR_PURGE_TIME ) )
-						unset( $errors_already[$key] );
+				foreach( $errors as $key => $single ) {
+					if( $single['time'] < ( current_time( 'timestamp' ) - PPCP_ERROR_PURGE_TIME*24*60*60 ) )
+						unset( $errors[$key] );
 				}
 				
 				set_transient( $ppc_global_settings['transient_error_deletion'], 'done', 86400 );
 			}
 			
-            if( ! $errors_already ) {
-                if( add_option( $ppc_global_settings['option_errors'], $errors, '', 'no' ) )
-                    $this->wp_error = new WP_Error( 'ppc_update_error_add', 'Could not update errors option.', 'ppc' );
-            } else {
-                if( update_option( $ppc_global_settings['option_errors'], $errors ) )
-                    $this->wp_error = new WP_Error( 'ppc_update_error_update', 'Could not update errors option.', 'ppc' );
-            }
+			if( update_option( $ppc_global_settings['option_errors'], $errors ) )
+				$this->wp_error = new WP_Error( 'ppc_update_error_update', 'Could not update errors option.', 'ppc' );
         }
         
         $this->wp_error = new WP_Error( $error_details['code'], $error_details['output'], $data );
@@ -83,10 +77,9 @@ class PPC_Error {
      * @access  public
      * 
      * @return  object WP_Error with current error details
-    */
+     */
     
     function return_error() {
         return $this->wp_error;
     }
-    
 }

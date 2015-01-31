@@ -307,7 +307,12 @@ class PPC_install_functions {
         if( $admin_settings['userid'] == 'general' ) {
             update_user_option( $current_user->ID, $ppc_global_settings['option_name'], $default_settings['admin'] );
         }
+		
+		//Add error log option
+		if( ! get_option( $ppc_global_settings['option_errors']  ) )
+			if( add_option( $ppc_global_settings['option_errors'], $errors, '', 'no' ) )
         
+		//Set default permissions for acessing plugin pages
         PPC_general_functions::manage_cap_allowed_user_roles_plugin_pages( $default_settings['general']['can_see_options_user_roles'], $default_settings['general']['can_see_stats_user_roles'] );
         
         update_option( 'ppc_current_version', $ppc_global_settings['newest_version'] );

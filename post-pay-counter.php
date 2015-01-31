@@ -4,7 +4,7 @@ Plugin Name: Post Pay Counter
 Plugin URI: http://www.thecrowned.org/wordpress-plugins/post-pay-counter
 Description: Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
 Author: Stefano Ottolenghi
-Version: 2.482
+Version: 2.490
 Author URI: http://www.thecrowned.org/
 */
 
@@ -54,7 +54,7 @@ class post_pay_counter {
         global $ppc_global_settings;
         
         $ppc_global_settings['current_version'] = get_option( 'ppc_current_version' );
-        $ppc_global_settings['newest_version'] = '2.482';
+        $ppc_global_settings['newest_version'] = '2.490';
         $ppc_global_settings['option_name'] = 'ppc_settings';
         $ppc_global_settings['option_errors'] = 'ppc_errors';
 		$ppc_global_settings['transient_error_deletion'] = 'ppc_error_daily_deletion';
@@ -129,7 +129,7 @@ class post_pay_counter {
      *
      * @access  public
      * @since   2.0
-    */
+     */
     
     function post_pay_counter_admin_menus() {
         global $ppc_global_settings;
@@ -155,7 +155,7 @@ class post_pay_counter {
      *
      * @access  public
      * @since   2.1.1
-    */
+     */
     
     function maybe_update() {
         global $ppc_global_settings;
@@ -166,6 +166,12 @@ class post_pay_counter {
             PPC_update_class::update();
             $ppc_global_settings['current_version'] = $ppc_global_settings['newest_version'];
             
+			/**
+			 * Fires after PPC has been updated to last version.
+			 * @mytag ACTION
+			 * @since 2.1.1
+			 */
+			
             do_action( 'ppc_updated' );
 			
 			//Send to Welcome page
@@ -178,7 +184,7 @@ class post_pay_counter {
      *
      * @access  public
      * @since   2.0
-    */
+     */
     
     function on_load_stats_page() {
         global $ppc_global_settings;
@@ -218,7 +224,7 @@ class post_pay_counter {
      *
      * @access  public
      * @since   2.0
-    */
+     */
     
     function on_load_options_page_enqueue() {
         global $ppc_global_settings;
@@ -265,6 +271,16 @@ class post_pay_counter {
             'localized_need_threshold' => __( 'A payment threshold must first be set.' , 'ppc')
         ) );
         
+		/**
+		 * Fires on PPC options page load.
+		 * 
+		 * Equivalent to load-post-pay-counter_page_ppc-options but recommended, as fires after all PPC matters have been dealt with. 
+		 * For example, if you hooked to load-post-pay-counter_page_ppc-options before PPC run its functions, the class variable $options_page_settings would not be set.
+		 * 
+		 * @since 	2.0
+		 * @param	$_GET['userid'] string userid (querystring param)
+		 */
+		
         do_action( 'ppc_on_load_options_page', @$_GET['userid'] );
     }
     
@@ -276,7 +292,7 @@ class post_pay_counter {
      *
      * @access  public
      * @since   2.0
-    */
+     */
    
     function on_load_options_page_get_settings() {
 		//Numeric userid
@@ -304,6 +320,16 @@ class post_pay_counter {
 				unset( $settings['default_stats_time_range_custom_value'] );
 			}
 			
+			/**
+			 * Filters general settings on new user's custom settings.
+			 * 
+			 * When a user's settings are customized for the first time, general settings are taken and stripped of the only general ones (i.e. non-customizable options, such as the Miscellanea box).
+			 * It's crucial that all non-personalizable settings indexes are unset before handling/saving the user's settings.
+			 *
+			 * @since	2.0
+			 * @param	$settings array PPC general settings
+			 */
+			
 			$settings = apply_filters( 'ppc_unset_only_general_settings_personalize_user', $settings );
 		
 		//General
@@ -311,8 +337,18 @@ class post_pay_counter {
 			$settings = PPC_general_functions::get_settings( 'general' );
 		}
 		
+		/**
+		 * Filters selected options page settings, final.
+		 *
+		 * They are stored in a class var and used throghout all the functions that need to know **what** settings we are displaying and using in the plugin options page.
+		 *
+		 * @since	2.0
+		 * @param	$settings PPC options settings
+		 */
+		
 		$settings = apply_filters( 'ppc_selected_options_settings', $settings );
-		self::$options_page_settings = $settings;
+		
+		self::$options_page_settings = $settings; //store in class var
     }
     
 	/**
@@ -328,7 +364,7 @@ class post_pay_counter {
         //Get notifications to be displayed
 		$notifications = PPC_notifications::notifications_get_list();
 		
-		if( empty( $notifications ) ) return;
+		if( empty( $notifications ) or is_wp_error( $notifications ) ) return;
 		
     	//Get array list of dismissed notifications for current user and convert it to array
     	$dismissed_notifications = get_option( 'ppc_dismissed_notifications', array() );
@@ -364,7 +400,7 @@ class post_pay_counter {
      *
      * @access  public
      * @since   2.0
-    */
+     */
     
     function load_localization() {
         load_plugin_textdomain( 'ppc', false, dirname( plugin_basename( __FILE__ ) ).'/lang/' );
@@ -377,7 +413,7 @@ class post_pay_counter {
      * @since   2.0
      * @param   $links array links already in place
      * @param   $file string current plugin-file
-    */
+     */
     
     function ppc_settings_meta_link( $links, $file ) {
         global $ppc_global_settings;
@@ -395,7 +431,7 @@ class post_pay_counter {
      * @since   2.0
      * @param   $links array links already in place
      * @param   $file string current plugin-file
-    */
+     */
     
     function ppc_donate_meta_link( $links, $file ) {
        if( $file == plugin_basename( __FILE__ ) ) {
@@ -444,7 +480,7 @@ class post_pay_counter {
      *
      * @access  public
      * @since   2.0
-    */
+     */
     
     function show_options() {
         global $ppc_global_settings;
@@ -457,7 +493,17 @@ class post_pay_counter {
 	<div id="ppc_header">
 		<div id="ppc_header_text">
 			<div id="ppc_header_links">
-			<?php echo apply_filters( 'ppc_options_installed_version', __( 'Installed version' , 'ppc' ).': '.$ppc_global_settings['current_version'].' - <a href="http://www.thecrowned.org/forums/forum/post-pay-counter" title="'.__( 'Support', 'ppc' ).'" target="_blank">'.__( 'Support', 'ppc' ).'</a> - <a href="http://www.thecrowned.org/post-pay-counter-cat" title="'.__( 'Tutorials', 'ppc' ).'" target="_blank">'.__( 'Tutorials', 'ppc' ).'</a>' ); ?>
+			<?php 
+			
+			/**
+			 * Filters installed version text displayed in upper-right section of the options page. 
+			 * 
+			 * @since	2.0
+			 * @param	string installed version text (whole).
+			 */
+			 
+			echo apply_filters( 'ppc_options_installed_version', __( 'Installed version' , 'ppc' ).': '.$ppc_global_settings['current_version'].' - <a href="http://www.thecrowned.org/forums/forum/post-pay-counter" title="'.__( 'Support', 'ppc' ).'" target="_blank">'.__( 'Support', 'ppc' ).'</a> - <a href="http://www.thecrowned.org/post-pay-counter-cat" title="'.__( 'Tutorials', 'ppc' ).'" target="_blank">'.__( 'Tutorials', 'ppc' ).'</a>' ); 
+			?>
 			</div>
 			<h2>Post Pay Counter - <?php _e( 'Options', 'ppc' ); ?></h2>
 			<p><?php _e( 'The Post Pay Counter plugin is ready to make handling authors\' payments much, much easier, starting from... now! From this page you can set the plugin up, customizing each possible feature to best suit your needs. Options are divided into groups, and for each of the following boxes you will find details of all the features of the plugin and, for most of them, additional details and examples are available by clicking on the info icon on the right of them.', 'ppc' ); ?></p>
@@ -479,6 +525,12 @@ class post_pay_counter {
 			<?php
 		}
         
+		/**
+		 * Fires before any metabox has been displayed in options page.
+		 *
+		 * @since	2.0
+		 */
+		
         do_action( 'ppc_html_options_before_boxes' );
         
         wp_nonce_field( 'closedpostboxes', 'closedpostboxesnonce', false );
@@ -513,10 +565,10 @@ class post_pay_counter {
      *
      * @access  public
      * @since   2.0
-    */
+     */
     
     function show_stats() {
-        global $current_user, $ppc_global_settings;
+        global $current_user, $ppc_global_settings, $wp_roles;
         $general_settings = PPC_general_functions::get_settings( 'general' );
         $perm = new PPC_permissions();
         
@@ -534,8 +586,26 @@ class post_pay_counter {
             $get_and_post['tstart'] = $ppc_global_settings['stats_tstart'];
             $get_and_post['tend']   = $ppc_global_settings['stats_tend'];
         }
-        $ppc_global_settings['stats_tstart'] = apply_filters( 'ppc_stats_defined_time_start', $get_and_post['tstart'] );
-        $ppc_global_settings['stats_tend'] = apply_filters( 'ppc_stats_defined_time_end', $get_and_post['tend'] );
+		
+		//If empty role, or any role, or invalud role => get rid of role param
+		if( isset( $get_and_post['role'] ) AND ( $get_and_post['role'] == 'ppc_any' OR $get_and_post['role'] == '' OR ! isset( $wp_roles->role_names[$get_and_post['role']] ) ) )
+			unset( $get_and_post['role'] );
+		
+		/**
+		 * Filters stats view parameters (time start, time end, role).
+		 *
+		 * @since 	2.0
+		 * @param	array $get_and_post merged GET and POST data
+		 */
+		
+        $get_and_post = apply_filters( 'ppc_stats_defined_parameters', $get_and_post );
+		
+		//Assign to global var
+		$ppc_global_settings['stats_tstart'] = $get_and_post['tstart'];
+        $ppc_global_settings['stats_tend'] = $get_and_post['tend'];
+		
+		if( isset( $get_and_post['role'] ) )
+			$ppc_global_settings['stats_role'] = $get_and_post['role'];
         
 		//If an author is given, put that in an array
         if( isset( $get_and_post['author'] ) AND is_numeric( $get_and_post['author'] ) AND $userdata = get_userdata( $get_and_post['author'] ) ) {
@@ -546,6 +616,13 @@ class post_pay_counter {
 			$author = NULL;
 		}
         
+		/**
+		 * Fires before any HTML has been output in the stats page.
+		 *
+		 * @since	2.0
+		 * @param	mixed $author author for which stats are displayed. If given, is the only index of an array, NULL means general stats are being requested.
+		 */
+		
         do_action( 'ppc_before_stats_html', $author );
         ?>
 		
@@ -566,6 +643,13 @@ class post_pay_counter {
                 return;
             }
             
+			/**
+			 * Fires before the *author* stats page form and table been output.
+			 *
+			 * @since	2.0
+			 * @param	array $stats a PPC_generate_stats::produce_stats() result - current stats.
+			 */
+			
             do_action( 'ppc_html_stats_author_before_stats_form', $stats );
             ?>
 			
@@ -574,11 +658,25 @@ class post_pay_counter {
 			<?php
 			echo PPC_HTML_functions::get_html_stats( $stats['formatted_stats'], $stats['raw_stats'], $author );
             
+			/**
+			 * Fires after the *author* stats page form and table been output.
+			 *
+			 * @since	2.0
+			 */
+			
             do_action( 'ppc_html_stats_author_after_stats_form' );
             
         //GENERAL STATS
         } else {
-            echo PPC_HTML_functions::show_stats_page_header( __( 'General' , 'ppc'), admin_url( $ppc_global_settings['stats_menu_link'].'&amp;tstart='.$ppc_global_settings['stats_tstart'].'&amp;tend='.$ppc_global_settings['stats_tend'] ) );
+			$page_permalink = $ppc_global_settings['stats_menu_link'].'&amp;tstart='.$ppc_global_settings['stats_tstart'].'&amp;tend='.$ppc_global_settings['stats_tend'];
+			
+			//If filtered by user role, add filter to stats generation args and complete page permalink
+			if( isset( $get_and_post['role'] ) ) {
+				$page_permalink .= '&amp;role='.$ppc_global_settings['stats_role'];
+				add_filter( 'ppc_get_requested_posts_args', array( 'PPC_generate_stats', 'filter_stats_by_user_role' ) );
+			}
+			
+            echo PPC_HTML_functions::show_stats_page_header( __( 'General' , 'ppc'), admin_url( $page_permalink ) );
             
             $stats = PPC_generate_stats::produce_stats( $ppc_global_settings['stats_tstart'], $ppc_global_settings['stats_tend'] );
             if( is_wp_error( $stats ) ) {
@@ -586,7 +684,14 @@ class post_pay_counter {
                 return;
             }
             
-            do_action( 'ppc_html_stats_general_before_stats_form' );
+			/**
+			 * Fires before the *general* stats page form and table been output.
+			 *
+			 * @since	2.0
+			 * @param	array $stats a PPC_generate_stats::produce_stats() result - current stats.
+			 */
+			
+            do_action( 'ppc_html_stats_general_before_stats_form', $stats );
             ?>
 			
 	<form action="#" method="post" id="ppc_stats">
@@ -594,6 +699,12 @@ class post_pay_counter {
 			<?php
 			echo PPC_HTML_functions::get_html_stats( $stats['formatted_stats'], $stats['raw_stats'] );
             
+			/**
+			 * Fires after the *general* stats page form and table been output.
+			 *
+			 * @since	2.0
+			 */
+			
             do_action( 'ppc_html_stats_general_after_stats_form' );
         }
         ?>
@@ -605,6 +716,12 @@ class post_pay_counter {
         if( $general_settings['display_overall_stats'] ) {
 			$overall_stats = PPC_generate_stats::get_overall_stats( $stats['raw_stats'] );
 			echo PPC_HTML_functions::print_overall_stats( $overall_stats );
+			
+			/**
+			 * Fires after the overall stats table been output.
+			 *
+			 * @since	2.0
+			 */
 			
 			do_action( 'ppc_html_stats_after_overall_stats' );
 		}

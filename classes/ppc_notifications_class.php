@@ -74,13 +74,12 @@ class PPC_notifications {
 				if ( isset( $feed['body'] ) && strlen( $feed['body'] ) > 0 ) {
 					$cache = maybe_unserialize( wp_remote_retrieve_body( $feed ) );
 					set_transient( 'ppc_notifications_list', $cache, 3600 );
+					return $cache;
 				}
 			} else {
-				$cache = '<div class="error"><p>' . __( 'There was an error retrieving the notifications list from the server. Please try again later.', 'ppc' ) . '</div>';
+				return $feed;
 			}
 		}
-		
-		return $cache;
 	}
 }
 ?>

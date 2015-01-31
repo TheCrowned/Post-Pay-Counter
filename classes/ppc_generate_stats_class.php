@@ -1,12 +1,23 @@
 <?php
 
 /**
- * @author Stefano Ottolenghi
- * @copyright 2013
+ * Stats generation.
+ *C:\Users\Stefano>phpdoc -d E:\htdocs\wordpress\wp-content\plugins\Post-Pay-Counter -t E:\phpdoc --ignore branches/
+ * @package		PPC
+ * @since		2.0
+ * @author 		Stefano Ottolenghi
+ * @copyright 	2013
  */
 
 class PPC_generate_stats {
     
+	/**
+	 * @var 	array $grp_args holds get_requested_posts WP_Query args.
+	 * @since	2.49
+	 */
+	
+	public static $grp_args;
+	
     /**
      * Produces stats by calling all needed methods. 
      * 
@@ -72,7 +83,7 @@ class PPC_generate_stats {
 		else
 			$settings = $general_settings;
 		
-        $args = array(
+        self::$grp_args = array(
             'post_type' => $general_settings['counting_allowed_post_types'],
             'post_status' => array_keys( $settings['counting_allowed_post_statuses'], 1 ), //Only statuses with 1 as value are selected
             'date_query' => array(
@@ -85,34 +96,31 @@ class PPC_generate_stats {
             'posts_per_page' => -1,
             'ignore_sticky_posts' => 1,
             'suppress_filters' => false,
-            'ppc_filter_user_roles' => 1
+            'ppc_filter_user_roles' => 1,
+			'ppc_allowed_user_roles' => $settings['counting_allowed_user_roles']
         );
         
         //If a user_id is provided, and is valid, posts only by that author are selected 
         if( is_array( $author ) )
-            $args['author__in'] = $author;
+            self::$grp_args['author__in'] = $author;
         
-        $args = apply_filters( 'ppc_get_requested_posts_args', $args );
+        self::$grp_args = apply_filters( 'ppc_get_requested_posts_args', self::$grp_args );
         
         //Filter for allowed user roles if needed
-        if( isset( $args['ppc_filter_user_roles'] ) AND $args['ppc_filter_user_roles'] ) 
+        if( isset( self::$grp_args['ppc_filter_user_roles'] ) AND self::$grp_args['ppc_filter_user_roles'] ) 
             add_filter( 'posts_join', array( 'PPC_generate_stats', 'grp_filter_user_roles' ) );
         
-        //Unset all custom params from WP_Query args
-		if( isset( $args['ppc_filter_user_roles'] ) )
-			unset( $args['ppc_filter_user_roles'] );
-        
-        $requested_posts = new WP_Query( $args );
+        $requested_posts = new WP_Query( self::$grp_args );
 		
         //Remove custom filters
         remove_filter( 'posts_join', array( 'PPC_generate_stats', 'grp_filter_user_roles' ) );
         
 		do_action( 'ppc_got_requested_posts', $requested_posts );
 		
-		//var_dump($requested_posts);
+		var_dump($requested_posts);
 		
         if( $requested_posts->found_posts == 0 ) {
-            $error = new PPC_Error( 'empty_selection', __( 'Error: no posts were selected' , 'ppc'), $args, false );
+            $error = new PPC_Error( 'empty_selection', __( 'Error: no posts were selected' , 'ppc' ), self::$grp_args, false );
             return $error->return_error();
         }
         
@@ -131,16 +139,33 @@ class PPC_generate_stats {
     static function grp_filter_user_roles( $join ) {
         global $wpdb;
         
-        $settings = PPC_general_functions::get_settings( 'general' );
-        
-        $join .= 'INNER JOIN '.$wpdb->usermeta.'
+		$join .= 'INNER JOIN '.$wpdb->usermeta.'
                     ON '.$wpdb->usermeta.'.user_id = '.$wpdb->posts.'.post_author
                     AND '.$wpdb->usermeta.'.meta_key = "'.$wpdb->get_blog_prefix().'capabilities" 
-                    AND '.$wpdb->usermeta.'.meta_value REGEXP ("'.implode( '|', $settings['counting_allowed_user_roles'] ).'")';
+                    AND '.$wpdb->usermeta.'.meta_value REGEXP ("'.implode( '|', self::$grp_args['ppc_allowed_user_roles'] ).'")';
         
         return $join;
     }
     
+	/**
+	 * Applies stats filter by user role.
+	 *
+	 * Hooks to ppc_get_requested_posts_args - PPC_generate_stats::get_requested_posts().
+	 *
+	 * @since	2.49
+	 * @param	array $grp_args get_requested_posts WP_Query args
+	 * @return	array get_requested_posts WP_Query args
+	 */
+	
+	static function filter_stats_by_user_role( $grp_args ) {
+		global $ppc_global_settings;
+		
+		if( isset( $grp_args['ppc_allowed_user_roles'] ) )
+			$grp_args['ppc_allowed_user_roles'] = array( $ppc_global_settings['stats_role'] );
+		
+		return $grp_args;
+	}
+	
     /**
      * Groups posts array by their authors and computes authors total (count+payment)
      *

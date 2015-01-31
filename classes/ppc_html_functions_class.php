@@ -38,15 +38,42 @@ class PPC_HTML_functions {
     */
     
     static function show_stats_page_header( $current_page, $page_permalink ) {
-        global $ppc_global_settings;
+        global $ppc_global_settings, $wp_roles;
 		?>
 		
 <form action="" method="post">
 	<div id="ppc_stats_header">
-
 		<div id="ppc_stats_header_datepicker">
 			<h3>
-        <?php echo sprintf( __( 'Showing stats from %1$s to %2$s' , 'ppc'), '<input type="text" name="tstart" id="post_pay_counter_time_start" class="mydatepicker" value="'.date( 'Y-m-d', $ppc_global_settings['stats_tstart'] ).'" accesskey="'.$ppc_global_settings['stats_tstart'].'" size="8" />', '<input type="text" name="tend" id="post_pay_counter_time_end" class="mydatepicker" value="'.date( 'Y-m-d', $ppc_global_settings['stats_tend'] ).'" accesskey="'.$ppc_global_settings['stats_tend'].'" size="8" />' ).' - "'.$current_page.'"'; ?>
+        <?php echo sprintf( __( 'Showing stats from %1$s to %2$s' , 'ppc'), '<input type="text" name="tstart" id="post_pay_counter_time_start" class="mydatepicker" value="'.date( 'Y-m-d', $ppc_global_settings['stats_tstart'] ).'" accesskey="'.$ppc_global_settings['stats_tstart'].'" size="8" />', '<input type="text" name="tend" id="post_pay_counter_time_end" class="mydatepicker" value="'.date( 'Y-m-d', $ppc_global_settings['stats_tend'] ).'" accesskey="'.$ppc_global_settings['stats_tend'].'" size="8" />' ).' - "'.$current_page.'"'; 
+		
+		//Display filter by user role field in general stats
+		if( $ppc_global_settings['current_page'] == 'stats_general' ) {
+			echo ' - '.__( 'Filter by user role', 'ppc' ). ' ';
+			echo '<select name="role" id="ppc_stats_role">';
+			echo '<option value="ppc_any" />'.__( 'Any', 'ppc' ).'</option>';
+			foreach( $wp_roles->role_names as $key => $value ) {
+				$checked = '';
+				
+				if( isset( $ppc_global_settings['stats_role'] ) AND $key == $ppc_global_settings['stats_role'] )
+					$checked = 'selected="selected"';
+				
+				echo '<option value="'.$key.'" '.$checked.' />'.$value.'</option>';
+			}
+			echo '</select>';
+		}
+		
+		/**
+		 * Fires after the HTML display of "Showing stats from ... to ... - "General|User" - Role" in stats page heading.
+		 *
+		 * @since	2.49
+		 * @param	string $current_page whether "General" or username of currently displayed author.
+		 * @param	string $page_permalink page URL
+		 */
+		
+		
+		do_action( 'ppc_stats_after_time_range_fields', $current_page, $page_permalink );
+		?>
 			</h3>
 		</div>
 
@@ -57,7 +84,7 @@ class PPC_HTML_functions {
         <?php do_action( 'ppc_stats_header_links', $page_permalink ); ?>
         
 			</span>
-			<input type="submit" class="button-secondary" name="post_pay_counter_submit" value="<?php echo __( 'Update time range' , 'ppc'); ?>" />
+			<input type="submit" class="button-secondary" name="post_pay_counter_submit" value="<?php echo __( 'Update view' , 'ppc'); ?>" />
 			<br />
 			<a href="<?php echo $page_permalink; ?>" title="<?php _e( 'Get current view permalink' , 'ppc'); ?>"><?php _e( 'Get current view permalink' , 'ppc'); ?></a>
 		</div>
@@ -296,11 +323,10 @@ class PPC_HTML_functions {
         $html .= '<label>';
         $html .= '<span class="checkable_input">';
          
-        if( $field == 'radio' ) { 
+        if( $field == 'radio' )
             $html .= PPC_options_fields::generate_radio_field( $setting, $name, $value, $id, $disabled ); 
-        } else if( $field == 'checkbox' ) { 
+        else if( $field == 'checkbox' )
             $html .= PPC_options_fields::generate_checkbox_field( $setting, $name, $value, $id, $disabled ); 
-        }
                 
         $html .= '</span>';
         $html .= $text;

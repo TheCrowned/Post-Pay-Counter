@@ -1,11 +1,15 @@
 <?php
 
-/**
- * @author Stefano Ottolenghi
- * @copyright 2013
- */
-
 require_once( 'ppc_save_options_class.php' );
+
+/**
+ * AJAX functions handler.
+ * 
+ * @package		PPC
+ * @since 		2.0
+ * @author 		Stefano Ottolenghi
+ * @copyright 	2013
+ */
 
 class PPC_ajax_functions {
     
@@ -102,6 +106,16 @@ class PPC_ajax_functions {
                 'display_name' 
             ) 
         );
+		
+		/**
+		 * Filters user fetching (by role) for Personalize settings box.
+		 * 
+		 * This fetches the users list that is shown in the Options Personalize settings box when a user role is clicked.
+		 *
+		 * @since	2.0
+		 * @param	array $args	WP_User_query args
+		 */
+		
         $args = apply_filters( 'ppc_personalize_fetch_users_args', $args );
         
         $users_to_show = new WP_User_Query( $args );
@@ -116,12 +130,22 @@ class PPC_ajax_functions {
             if( $n % 3 == 0 )
                 $html .= '<tr>';
             
-                $html .= '<td><a href="'.admin_url( $ppc_global_settings['options_menu_link'].'&amp;userid='.$single->ID ).'" title="'.$single->display_name.'">'.$single->display_name.'</a></td>';
+			$html .= '<td><a href="'.admin_url( $ppc_global_settings['options_menu_link'].'&amp;userid='.$single->ID ).'" title="'.$single->display_name.'">'.$single->display_name.'</a></td>';
             
 			if( $n % 3 == 2 )
                 $html .= '</tr>';
             
-            echo apply_filters( 'ppc_html_personalize_list_print_user', $html );
+			/**
+			 * Filters user display in Personalize settings box.
+			 * 
+			 * This fires for every user that is displayed for the selected role.
+			 *
+			 * @since	2.0
+			 * @param	string $html html code for the user list up to the current one
+			 * @param	object $single WP_User current user data
+			 */
+			
+            echo apply_filters( 'ppc_html_personalize_list_print_user', $html, $single );
             
             $html = '';
             $n++;
@@ -147,6 +171,13 @@ class PPC_ajax_functions {
         if( is_int( $user_id ) ) {
             delete_user_option( $user_id, $ppc_global_settings['option_name'] );
             
+			/**
+			 * Fires after a user's personalized settings have been deleted.
+			 *
+			 * @since 	2.0
+			 * @param	int $user_id user id whose settings have been deleted.
+			 */
+			
             do_action( 'ppc_deleted_user_settings', $user_id );
             
             die( 'ok' );
@@ -183,7 +214,9 @@ class PPC_ajax_functions {
     }
     
     /**
-     * Clears error log (deletes wp_option).
+     * Clears error log.
+	 *
+	 * Empties error log wp_option, if it exists (doesn't delete not to lose autload=no).
      *
      * @access  public
      * @since   2.22
@@ -194,7 +227,7 @@ class PPC_ajax_functions {
         self::ppc_check_ajax_referer( 'ppc_clear_error_log' );
         
         if( get_option( $ppc_global_settings['option_errors'] ) ) {
-            if( ! delete_option( $ppc_global_settings['option_errors'] ) )
+            if( ! update_option( $ppc_global_settings['option_errors'], array() ) )
                 die( __( 'Error: could not clear error log.', 'ppc' ) );
         }
         
@@ -202,7 +235,9 @@ class PPC_ajax_functions {
     }
 	
 	/**
-     * Dismisses a notification
+     * Dismisses a notification.
+	 *
+	 * Adds notification ID to wp_option list of dismissed ones.
      *
      * @access  public
      * @since   2.46
