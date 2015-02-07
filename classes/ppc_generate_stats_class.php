@@ -117,7 +117,7 @@ class PPC_generate_stats {
         
 		do_action( 'ppc_got_requested_posts', $requested_posts );
 		
-		var_dump($requested_posts);
+		//var_dump($requested_posts);
 		
         if( $requested_posts->found_posts == 0 ) {
             $error = new PPC_Error( 'empty_selection', __( 'Error: no posts were selected' , 'ppc' ), self::$grp_args, false );

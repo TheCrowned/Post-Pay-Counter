@@ -69,6 +69,8 @@ class PPC_counting_stuff {
             self::$settings = PPC_general_functions::get_settings( $single->post_author, TRUE );
             self::$being_processed_author = $single->post_author;
 			
+			do_action( 'ppc_data2cash_single_before', $single );
+			
             $post_countings = self::get_post_countings( $single );
             $post_payment = self::get_post_payment( $post_countings['normal_count'], $single->ID );
             

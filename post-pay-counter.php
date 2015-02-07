@@ -4,7 +4,7 @@ Plugin Name: Post Pay Counter
 Plugin URI: http://www.thecrowned.org/wordpress-plugins/post-pay-counter
 Description: Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
 Author: Stefano Ottolenghi
-Version: 2.490
+Version: 2.491
 Author URI: http://www.thecrowned.org/
 */
 
@@ -54,7 +54,7 @@ class post_pay_counter {
         global $ppc_global_settings;
         
         $ppc_global_settings['current_version'] = get_option( 'ppc_current_version' );
-        $ppc_global_settings['newest_version'] = '2.490';
+        $ppc_global_settings['newest_version'] = '2.491';
         $ppc_global_settings['option_name'] = 'ppc_settings';
         $ppc_global_settings['option_errors'] = 'ppc_errors';
 		$ppc_global_settings['transient_error_deletion'] = 'ppc_error_daily_deletion';
@@ -107,7 +107,7 @@ class post_pay_counter {
 		//add_filter( 'ppc_active_user_counting_types', array( 'PPC_counting_types', 'counting_type_visits_callback' ), 10, 2 );
 		
         //Notifications
-        add_action( 'init', array( $this, 'load_notifications' ) );
+        add_action( 'admin_init', array( $this, 'load_notifications' ) );
 		
         //Hook to show the posts' word count as a column in the posts list
         //add_filter( 'manage_posts_columns', array( $this, 'post_pay_counter_column_word_count' ) );
@@ -168,7 +168,6 @@ class post_pay_counter {
             
 			/**
 			 * Fires after PPC has been updated to last version.
-			 * @mytag ACTION
 			 * @since 2.1.1
 			 */
 			
@@ -299,13 +298,13 @@ class post_pay_counter {
 		if( isset( $_GET['userid'] ) AND is_numeric( $_GET['userid'] ) ) {
 			
 			if( ! get_userdata( (int) $_GET['userid'] ) ) {
-				echo '<strong>'.__( 'The requested user does not exist.' , 'ppc').'</strong>';
+				echo '<strong>'.__( 'The requested user does not exist.' , 'ppc' ).'</strong>';
 				return;
 			}
 			
 			$settings = PPC_general_functions::get_settings( (int) $_GET['userid'], true );
 			
-			//User who never had personalized settings is being set
+			//User who never had personalized settings is being set, get rid of only-general settings
 			if( $settings['userid'] == 'general' ) {
 				$settings['userid'] = (int) $_GET['userid'];
 				unset( $settings['multisite_settings_rule'] );
