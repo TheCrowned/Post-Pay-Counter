@@ -4,7 +4,7 @@ Plugin Name: Post Pay Counter
 Plugin URI: http://www.thecrowned.org/wordpress-plugins/post-pay-counter
 Description: Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
 Author: Stefano Ottolenghi
-Version: 2.491
+Version: 2.492
 Author URI: http://www.thecrowned.org/
 */
 
@@ -54,7 +54,7 @@ class post_pay_counter {
         global $ppc_global_settings;
         
         $ppc_global_settings['current_version'] = get_option( 'ppc_current_version' );
-        $ppc_global_settings['newest_version'] = '2.491';
+        $ppc_global_settings['newest_version'] = '2.492';
         $ppc_global_settings['option_name'] = 'ppc_settings';
         $ppc_global_settings['option_errors'] = 'ppc_errors';
 		$ppc_global_settings['transient_error_deletion'] = 'ppc_error_daily_deletion';
@@ -201,11 +201,24 @@ class post_pay_counter {
             'order' => 'ASC'
         );
         $first_available_post = new WP_Query( $args );
-
-        if( $first_available_post->found_posts == 0 )
+		
+		if( $first_available_post->found_posts == 0 )
             $first_available_post_time = current_time( 'timestamp' );
         else
             $first_available_post_time = strtotime( $first_available_post->posts[0]->post_date );
+		
+		$args = array(
+            'post_type' => $general_settings['counting_allowed_post_types'],
+			'posts_per_page' => 1,
+            'orderby' => 'post_date',
+            'order' => 'DESC'
+        );
+        $last_available_post = new WP_Query( $args );
+		
+		if( $last_available_post->found_posts == 0 )
+            $last_available_post = current_time( 'timestamp' );
+        else
+            $last_available_post = strtotime( $last_available_post->posts[0]->post_date );
         
         wp_enqueue_script( 'jquery-ui-datepicker' );
         wp_enqueue_style( 'jquery.ui.theme', $ppc_global_settings['folder_path'].'style/ui-lightness/jquery-ui-1.8.15.custom.css' );
@@ -214,7 +227,7 @@ class post_pay_counter {
         wp_enqueue_script( 'ppc_stats_effects', $ppc_global_settings['folder_path'].'js/ppc_stats_effects.js', array( 'jquery' ) );
         wp_localize_script( 'ppc_stats_effects', 'ppc_stats_effects_vars', array(
             'datepicker_mindate' => date( 'Y-m-d', $first_available_post_time ),
-            'datepicker_maxdate' => date( 'Y-m-d', current_time( 'timestamp' ) )
+            'datepicker_maxdate' => date( 'Y-m-d', $last_available_post )
         ) );
     } 
     
