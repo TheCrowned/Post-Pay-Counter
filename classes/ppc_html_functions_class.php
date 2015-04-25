@@ -224,7 +224,7 @@ class PPC_HTML_functions {
 						echo '<td class="'.$field_name.'">'.apply_filters( 'ppc_general_stats_html_each_field_value', $field_value, $field_name, $raw_stats[$author] ).'</td>';
 					
 					} else {
-						echo '<td class="'.$field_name.'">'.apply_filters( 'ppc_general_stats_html_each_field_empty_value', 0, $field_name, $raw_stats[$author] ).'</td>';
+						echo '<td class="'.$field_name.'">'.apply_filters( 'ppc_general_stats_html_each_field_empty_value', 'N.A.', $field_name, $raw_stats[$author] ).'</td>';
 					}
                 }
                 

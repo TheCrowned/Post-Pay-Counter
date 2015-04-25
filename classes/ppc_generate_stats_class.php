@@ -349,7 +349,7 @@ class PPC_generate_stats {
             }
             
         } else {
-			$cols_info = array(); //holds info about columns. We build cols list after stats taking the element with most elements. A user may have some counting types unabled, so we can't know before the end all the possible cols we may need
+			$cols_info = array(); //holds info about columns. We build cols list after stats taking all unique cnt types enabled across all users. A user may have some counting types unabled, so we can't know before the end all the possible cols we may need
 			
             foreach( $data as $author_id => $posts ) {
                 if( ! isset( $posts['total']['ppc_payment']['normal_payment'] ) OR empty ( $posts['total']['ppc_payment']['normal_payment'] ) ) continue; //user with no counting types enabled
@@ -382,18 +382,21 @@ class PPC_generate_stats {
 								//nothing to display here
 								break;
 						}
+						
+						if( ! isset( $cols['counting_types'][$id] ) )
+							$cols_info['counting_types'][$id] = $counting_types[$id];
 					}
 				}
 				
-				//Keep track of maximum cols count
-				$current_count = count( $formatted_stats['stats'][$author_id] );
+				//Keep track of maximum cols count - !! bugged !! if different cnt types are enabled, but in the same number, they are not all displayed
+				/*$current_count = count( $formatted_stats['stats'][$author_id] );
 				if( empty( $cols_info ) OR $cols_info['count'] < $current_count ) {
 					$cols_info['count'] = $current_count;
 					$cols_info['author_id'] = $author_id;
 					$cols_info['counting_types'] = $counting_types;
 				}
 				
-				unset( $current_count );
+				unset( $current_count );*/
 				
 				$formatted_stats['stats'][$author_id]['author_total_payment'] = PPC_general_functions::format_payment( sprintf( '%.2f', $posts['total']['ppc_payment']['normal_payment']['total'] ) );
                 
@@ -410,18 +413,16 @@ class PPC_generate_stats {
             $formatted_stats['cols']['author_name'] = __( 'Author Name' , 'ppc');
             $formatted_stats['cols']['author_written_posts'] = __( 'Written posts' , 'ppc');
             
-			foreach( $data[$cols_info['author_id']]['total']['ppc_payment']['normal_payment'] as $id => $value ) {
-				if( isset( $cols_info['counting_types'][$id] ) ) {
-					switch( $cols_info['counting_types'][$id]['display'] ) {
-						case 'none':
-							//nothing to display here
-							break;
-						
-						default:
-							$formatted_stats['cols']['author_'.$id] = $cols_info['counting_types'][$id]['label'];
-							break;
-					}
-				}	
+			foreach( $cols_info['counting_types'] as $id => $cnt_type ) {
+				switch( $cnt_type['display'] ) {
+					case 'none':
+						//nothing to display here
+						break;
+					
+					default:
+						$formatted_stats['cols']['author_'.$id] = $cnt_type['label'];
+						break;
+				}
 			}
 			
 			$formatted_stats['cols']['author_total_payment'] = __( 'Total payment' , 'ppc');

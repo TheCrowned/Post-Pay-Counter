@@ -247,11 +247,13 @@ class PPC_ajax_functions {
         global $ppc_global_settings;
         self::ppc_check_ajax_referer( 'ppc_dismiss_notification' );
         
-        $dismissed = get_option( 'ppc_dismissed_notifications', array() );
+        if( ! $dismissed = get_option( 'ppc_dismissed_notifications' ) )
+			$dismissed = array();
         
-		$dismissed[$_REQUEST['id']] = $_REQUEST['id'];
-		if( ! update_option( 'ppc_dismissed_notifications', $dismissed ) )
-			new PPC_Error( 'ppc_dismiss_notification', 'Could not dismiss notification.', array( 'id' => $_REQUEST['id'] ) );
+	$dismissed[$_REQUEST['id']] = $_REQUEST['id'];
+	update_option( 'ppc_dismissed_notifications', $dismissed );
+	
+	die( 'ok' );
     }
 }
 ?>
