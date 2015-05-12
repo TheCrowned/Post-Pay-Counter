@@ -188,7 +188,7 @@ class PPC_meta_boxes {
         <div class="ppc_save_success" id="ppc_misc_settings_success"><?php _e( 'Settings were successfully updated.' , 'ppc'); ?></div>
         <div class="ppc_save_error" id="ppc_misc_settings_error"></div>
         <div class="ppc_save_settings">
-            <img src="<?php echo $ppc_global_settings['folder_path'].'style/images/ajax-loader.gif'; ?>" title="<?php _e( 'Loading' , 'ppc'); ?>" alt="<?php _e( 'Loading' , 'ppc'); ?>" class="ajax_loader" id="ppc_misc_settings_ajax_loader" />
+            <img src="<?php echo $ppc_global_settings['folder_path'].'style/images/ajax-loader.gif'; ?>" title="<?php _e( 'Loading' , 'ppc'); ?>" alt="<?php _e( 'Loading' , 'ppc'); ?>" class="ppc_ajax_loader" id="ppc_misc_settings_ajax_loader" />
             <input type="submit" class="button-primary" name="ppc_save_misc_settings" id="ppc_save_misc_settings" value="<?php _e( 'Save options' , 'ppc') ?>" />
         </div>
         <div class="clear"></div>
@@ -322,7 +322,7 @@ class PPC_meta_boxes {
         echo '<div class="ppc_save_success" id="ppc_counting_settings_success">'.__( 'Settings were successfully updated.' , 'ppc').'</div>';
         echo '<div class="ppc_save_error" id="ppc_counting_settings_error"></div>';
         echo '<div class="ppc_save_settings">';
-        echo '<img src="'.$ppc_global_settings['folder_path'].'style/images/ajax-loader.gif'.'" title="'.__( 'Loading' , 'ppc').'" alt="'.__( 'Loading' , 'ppc').'" class="ajax_loader" id="ppc_counting_settings_ajax_loader" />';
+        echo '<img src="'.$ppc_global_settings['folder_path'].'style/images/ajax-loader.gif'.'" title="'.__( 'Loading' , 'ppc').'" alt="'.__( 'Loading' , 'ppc').'" class="ppc_ajax_loader" id="ppc_counting_settings_ajax_loader" />';
         echo '<input type="hidden" name="userid" value="'.$current_settings['userid'].'" />';
         echo '<input type="submit" class="button-primary" name="ppc_save_counting_settings" id="ppc_save_counting_settings" value="'.__( 'Save options' , 'ppc').'" />';
         echo '</div>';
@@ -355,7 +355,7 @@ class PPC_meta_boxes {
         <div class="ppc_save_success" id="ppc_permissions_success"><?php _e( 'Settings were successfully updated.' , 'ppc'); ?></div>
         <div class="ppc_save_error" id="ppc_permissions_error"></div>
         <div class="ppc_save_settings">
-            <img src="<?php echo $ppc_global_settings['folder_path'].'style/images/ajax-loader.gif'; ?>" title="<?php _e( 'Loading' , 'ppc'); ?>" alt="<?php _e( 'Loading' , 'ppc'); ?>" class="ajax_loader" id="ppc_permissions_ajax_loader" />
+            <img src="<?php echo $ppc_global_settings['folder_path'].'style/images/ajax-loader.gif'; ?>" title="<?php _e( 'Loading' , 'ppc'); ?>" alt="<?php _e( 'Loading' , 'ppc'); ?>" class="ppc_ajax_loader" id="ppc_permissions_ajax_loader" />
             <input type="hidden" name="userid" value="<?php echo $current_settings['userid']; ?>" />
             <input type="submit" class="button-primary" name="ppc_save_permissions" id="ppc_save_permissions" value="<?php _e( 'Save options' , 'ppc') ?>" />
         </div>
@@ -389,7 +389,7 @@ class PPC_meta_boxes {
         <div class="ppc_save_success" id="ppc_import_settings_success"><?php _e( 'Settings were successfully updated.' , 'ppc'); ?></div>
         <div class="ppc_save_error" id="ppc_import_settings_error"></div>
         <div class="ppc_save_settings">
-            <img src="<?php echo $ppc_global_settings['folder_path'].'style/images/ajax-loader.gif'; ?>" title="<?php _e( 'Loading' , 'ppc'); ?>" alt="<?php _e( 'Loading' , 'ppc'); ?>" class="ajax_loader" id="ppc_import_settings_ajax_loader" />
+            <img src="<?php echo $ppc_global_settings['folder_path'].'style/images/ajax-loader.gif'; ?>" title="<?php _e( 'Loading' , 'ppc'); ?>" alt="<?php _e( 'Loading' , 'ppc'); ?>" class="ppc_ajax_loader" id="ppc_import_settings_ajax_loader" />
             <input type="hidden" name="userid" value="<?php echo $current_settings['userid']; ?>" />
             <input type="submit" class="button-primary" name="ppc_import_settings" id="ppc_import_settings" value="<?php _e( 'Import settings' , 'ppc') ?>" />
         </div>
@@ -473,7 +473,7 @@ class PPC_meta_boxes {
         echo '</p>';
         echo '</div>';
         echo '<div class="ppc_save_settings">';
-        echo '<img src="'.$ppc_global_settings['folder_path'].'style/images/ajax-loader.gif'.'" title="'.__( 'Loading' , 'ppc').'" alt="'.__( 'Loading' , 'ppc').'" class="ajax_loader" id="ppc_personalize_settings_ajax_loader" />';
+        echo '<img src="'.$ppc_global_settings['folder_path'].'style/images/ajax-loader.gif'.'" title="'.__( 'Loading' , 'ppc').'" alt="'.__( 'Loading' , 'ppc').'" class="ppc_ajax_loader" id="ppc_personalize_settings_ajax_loader" />';
         echo '</div>';
         echo '<div class="clear"></div>';
     }
@@ -510,12 +510,12 @@ class PPC_meta_boxes {
 		?></textarea>
         
         <br />
-        <input type="button" name="ppc_clear_error_log" id="ppc_clear_error_log" value="<?php _e( 'Clear error log', 'ppc' ); ?>" class="button-secondary" style="float: right;" />
+        <input type="button" name="ppc_clear_error_log" id="ppc_clear_error_log" value="<?php _e( 'Clear error log', 'ppc' ); ?>" class="button-secondary" style="float: right; margin-top: 5px;" />
         
         <div class="ppc_save_success" id="ppc_error_log_success"><?php _e( 'Log was successfully cleared.' , 'ppc'); ?></div>
         <div class="ppc_save_error" id="ppc_error_log_error"></div>
         <div class="ppc_save_settings">
-        <img src="<?php echo $ppc_global_settings['folder_path'].'style/images/ajax-loader.gif'; ?>" title="<?php _e( 'Loading' , 'ppc'); ?>" alt="<?php _e( 'Loading' , 'ppc'); ?>" class="ajax_loader" id="ppc_error_log_ajax_loader" />
+        <img src="<?php echo $ppc_global_settings['folder_path'].'style/images/ajax-loader.gif'; ?>" title="<?php _e( 'Loading' , 'ppc'); ?>" alt="<?php _e( 'Loading' , 'ppc'); ?>" class="ppc_ajax_loader" id="ppc_error_log_ajax_loader" />
         </div>
         <div class="clear"></div>
         

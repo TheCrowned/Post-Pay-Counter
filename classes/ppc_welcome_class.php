@@ -71,7 +71,7 @@ class PPC_welcome {
 	 * @since  2.34
 	 */
     
-	public function print_tabs() {
+	public static function print_tabs() {
 		if( isset( $_GET['page'] ) )
             $selected =  (string) $_GET['page']; 
         else

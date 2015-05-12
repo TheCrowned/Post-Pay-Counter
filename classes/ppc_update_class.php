@@ -14,7 +14,7 @@ class PPC_update_class {
      * @since   2.0.5
     */
     
-    function update() {
+    static function update() {
         global $wpdb;
         
         if ( ! function_exists( 'is_plugin_active_for_network' ) )
@@ -45,7 +45,7 @@ class PPC_update_class {
      * @since   2.0.5
     */
     
-    function update_exec() {
+    static function update_exec() {
         global $ppc_global_settings;
         
         $general_settings = PPC_general_functions::get_settings( 'general' );

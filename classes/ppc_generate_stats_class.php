@@ -110,6 +110,8 @@ class PPC_generate_stats {
         if( isset( self::$grp_args['ppc_filter_user_roles'] ) AND self::$grp_args['ppc_filter_user_roles'] ) 
             add_filter( 'posts_join', array( 'PPC_generate_stats', 'grp_filter_user_roles' ) );
         
+        //add_filter( 'posts_join', array( 'PPC_generate_stats', 'grp_get_visits_postmeta' ) );
+        
         $requested_posts = new WP_Query( self::$grp_args );
 		
         //Remove custom filters
@@ -145,6 +147,24 @@ class PPC_generate_stats {
                     AND '.$wpdb->usermeta.'.meta_value REGEXP ("'.implode( '|', self::$grp_args['ppc_allowed_user_roles'] ).'")';
         
         return $join;
+    }
+    
+    /**
+     * Would allow to get all visits postmetas at once, but would need visits_postmeta not to be customizable per user.
+     * 
+     * @param unknown $join
+     * @return string
+     */
+    static function grp_get_visits_postmeta( $join ) {
+    	global $wpdb;
+    	
+    	$visits_postmeta = apply_filters( 'ppc_counting_visits_postmeta', self::$settings['counting_visits_postmeta_value'] );
+    	
+    	$join .= 'LEFT JOIN '.$wpdb->postmeta.'
+                    ON '.$wpdb->postmeta.'.post_id = '.$wpdb->posts.'.ID
+                    AND '.$wpdb->postmeta.'.meta_key = "'.$visits_postmeta.'"';
+    
+    	return $join;
     }
     
 	/**
@@ -325,11 +345,11 @@ class PPC_generate_stats {
 					if( isset( $counting_types[$id] ) ) {
 						switch( $counting_types[$id]['display'] ) {
 							case 'both':
-								$formatted_stats['stats'][$author_id][$post->ID]['post_'.$id] = $post->ppc_count['normal_count'][$id]['real'].' ('.PPC_general_functions::format_payment( sprintf( '%.2f', $value ) ).')';
+								$formatted_stats['stats'][$author_id][$post->ID]['post_'.$id] = $post->ppc_count['normal_count'][$id]['to_count'].' ('.PPC_general_functions::format_payment( sprintf( '%.2f', $value ) ).')';
 								break;
 							
 							case 'count':
-								$formatted_stats['stats'][$author_id][$post->ID]['post_'.$id] = $post->ppc_count['normal_count'][$id]['real'];
+								$formatted_stats['stats'][$author_id][$post->ID]['post_'.$id] = $post->ppc_count['normal_count'][$id]['to_count'];
 								break;
 							
 							case 'payment':
@@ -367,11 +387,11 @@ class PPC_generate_stats {
 					if( isset( $counting_types[$id] ) ) {
 						switch( $counting_types[$id]['display'] ) {
 							case 'both':
-								$formatted_stats['stats'][$author_id]['author_'.$id] = $posts['total']['ppc_count']['normal_count'][$id]['real'].' ('.PPC_general_functions::format_payment( sprintf( '%.2f', $value ) ).')';
+								$formatted_stats['stats'][$author_id]['author_'.$id] = $posts['total']['ppc_count']['normal_count'][$id]['to_count'].' ('.PPC_general_functions::format_payment( sprintf( '%.2f', $value ) ).')';
 								break;
 							
 							case 'count':
-								$formatted_stats['stats'][$author_id]['author_'.$id] = $posts['total']['ppc_count']['normal_count'][$id]['real'];
+								$formatted_stats['stats'][$author_id]['author_'.$id] = $posts['total']['ppc_count']['normal_count'][$id]['to_count'];
 								break;
 							
 							case 'payment':

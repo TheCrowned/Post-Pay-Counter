@@ -174,7 +174,8 @@ class PPC_HTML_functions {
                 echo '<tr'.$tr_opacity.'>';
                 
                 foreach( $post_stats as $field_name => $field_value ) {
-                    
+					$field_value = apply_filters( 'ppc_author_stats_html_each_field_value', $field_value, $field_name, $post );                    
+
 					switch( $field_name ) {
                         //Attach link to post title: if user can edit posts, attach edit link (faster), if not post permalink (slower)
 						case 'post_title':
@@ -183,15 +184,29 @@ class PPC_HTML_functions {
 								$post_link = get_permalink( $post->ID );
 								
                             $field_value = '<a href="'.$post_link.'" title="'.$post->post_title.'">'.$field_value.'</a>';
+                            echo '<td class="'.$field_name.'">'.$field_value.'</td>';
                             break;
                         
                         case 'post_total_payment':
                             $tooltip = PPC_counting_stuff::build_payment_details_tooltip( $post->ppc_count['normal_count'], $post->ppc_payment['normal_payment'] );
                             $field_value = '<abbr title="'.$tooltip.'" class="ppc_payment_column">'.$field_value.'</abbr>';
+                            echo '<td class="'.$field_name.'">'.$field_value.'</td>';
                             break;
+                            
+                        case 'post_words':
+                        case 'post_visits':
+                        case 'post_images':
+                        case 'post_comments':
+                        	$count_field_value = substr($field_name, 5, strlen($field_name));
+                        	if($post->ppc_count['normal_count'][$count_field_value]['real'] != $post->ppc_count['normal_count'][$count_field_value]['to_count'] )
+                        		$field_value = '<abbr title="Total is '.$post->ppc_count['normal_count'][$count_field_value]['real'].'&#13;Displayed is what you\'ll be paid for." class="ppc_count_column">'.$field_value.'</abbr>';
+                        	
+                        	echo '<td class="'.$field_name.'">'.$field_value.'</td>';
+                        	break;
+                            
+                        default:
+                    		echo '<td class="'.$field_name.'">'.$field_value.'</td>';
                     }
-                    
-                    echo '<td class="'.$field_name.'">'.apply_filters( 'ppc_author_stats_html_each_field_value', $field_value, $field_name, $post ).'</td>';
                 }
                 
                 do_action( 'ppc_author_stats_html_after_each_default', $author, $formatted_stats, $post );
@@ -207,6 +222,7 @@ class PPC_HTML_functions {
 				foreach( $formatted_stats['cols'] as $field_name => $label ) {
 					if( isset( $author_stats[$field_name] ) ) {
 						$field_value = $author_stats[$field_name];
+						$field_value = apply_filters( 'ppc_general_stats_html_each_field_value', $field_value, $field_name, $raw_stats[$author] );
 						
 						//Cases in which other stuff needs to be added to the output
 						switch( $field_name ) {
@@ -214,14 +230,28 @@ class PPC_HTML_functions {
 								if( $perm->can_see_others_detailed_stats() OR $author == $current_user->ID )
 									$field_value = '<a href="'.PPC_general_functions::get_the_author_link( $author ).'" title="'.__( 'Go to detailed view' , 'ppc').'">'.$field_value.'</a>';
 								
+								echo '<td class="'.$field_name.'">'.$field_value.'</td>';
 								break;
 							
 							case 'author_total_payment':
 								$field_value = '<abbr title="'.$raw_stats[$author]['total']['ppc_misc']['tooltip_normal_payment'].'" class="ppc_payment_column">'.$field_value.'</abbr>';
+								echo '<td class="'.$field_name.'">'.$field_value.'</td>';
 								break;
+							
+							case 'author_words':
+							case 'author_visits':
+							case 'author_images':
+							case 'author_comments':
+								$count_field_name = substr($field_name, 7, strlen($field_name));
+								if($raw_stats[$author]['total']['ppc_count']['normal_count'][$count_field_name]['real'] != $raw_stats[$author]['total']['ppc_count']['normal_count'][$count_field_name]['to_count'] )
+									$field_value = '<abbr title="Total is '.$raw_stats[$author]['total']['ppc_count']['normal_count'][$count_field_name]['real'].'&#13;Displayed is what you\'ll be paid for." class="ppc_count_column">'.$field_value.'</abbr>';
+								 
+								echo '<td class="'.$field_name.'">'.$field_value.'</td>';
+								break;
+									
+							default:
+								echo '<td class="'.$field_name.'">'.$field_value.'</td>';
 						}
-						
-						echo '<td class="'.$field_name.'">'.apply_filters( 'ppc_general_stats_html_each_field_value', $field_value, $field_name, $raw_stats[$author] ).'</td>';
 					
 					} else {
 						echo '<td class="'.$field_name.'">'.apply_filters( 'ppc_general_stats_html_each_field_empty_value', 'N.A.', $field_name, $raw_stats[$author] ).'</td>';

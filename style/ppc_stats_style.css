@@ -42,6 +42,9 @@
     border-bottom: 1px dotted; 
     color: #000000;
 }
+.ppc_count_column {
+    border-bottom: 1px dotted; 
+}
 #ppc_stats_header {
 	height: 50px;
 }
