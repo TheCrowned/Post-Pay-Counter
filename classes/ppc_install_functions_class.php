@@ -161,7 +161,7 @@ class PPC_install_functions {
                 'counting_exclude_quotations' => 1,
                 'can_see_others_general_stats' => 1,
     			'can_see_others_detailed_stats' => 1,
-    			'can_see_countings_special_settings' => 0,
+    			'can_see_countings_special_settings' => 1,
 				'display_overall_stats' => 1,
                 'can_see_options_user_roles' => array(
                     'administrator' => 'administrator'

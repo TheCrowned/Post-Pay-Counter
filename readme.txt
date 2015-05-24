@@ -74,6 +74,13 @@ It must become: *define( 'PPC_DEBUG_LOG', false );*
 If you want to translate it in your own language and get a discount on the PRO version, [contact us](http://www.thecrowned.org/contact-me)!
 
 == Changelog ==
+= 2.503 =
+* New: added pot file to let the plugin be translated in whatever language of your choice. (We give discounts on the PRO version to people willing to translate!)
+* 
+
+= 2.502 =
+* Fixed: after last updated PRO version Analytics visits wouldn't show up.
+
 = 2.501 =
 * New: stats countings now display amounts that should be paid (is a post has 300 words and the upper payment limit is 200, the counter will show 200). Clicking on the amount will display the real total amount.
 * Tweak: preventing (for 6 hours) notifications update if the request generated an error.

@@ -84,7 +84,7 @@ class PPC_options_fields {
         $html .= '</tr>';
         $html .= '</thead>';
         $html .= '<tbody>';
-                        
+              
         $n = 0;
         $zones_count = count( $settings['counting_'.$counting_type.'_system_zonal_value'] );
         while( $n < $zones_count ) {

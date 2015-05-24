@@ -197,9 +197,9 @@ class PPC_HTML_functions {
                         case 'post_visits':
                         case 'post_images':
                         case 'post_comments':
-                        	$count_field_value = substr($field_name, 5, strlen($field_name));
-                        	if($post->ppc_count['normal_count'][$count_field_value]['real'] != $post->ppc_count['normal_count'][$count_field_value]['to_count'] )
-                        		$field_value = '<abbr title="Total is '.$post->ppc_count['normal_count'][$count_field_value]['real'].'&#13;Displayed is what you\'ll be paid for." class="ppc_count_column">'.$field_value.'</abbr>';
+                        	$count_field_value = substr( $field_name, 5, strlen( $field_name ) );
+                        	if( $post->ppc_count['normal_count'][$count_field_value]['real'] != $post->ppc_count['normal_count'][$count_field_value]['to_count'] )
+                        		$field_value = '<abbr title="'.sprintf( __( 'Total is %1$s. %2$s Displayed is what you\'ll be paid for.', 'ppcp' ), $post->ppc_count['normal_count'][$count_field_value]['real'], '&#13;' ).'" class="ppc_count_column">'.$field_value.'</abbr>';
                         	
                         	echo '<td class="'.$field_name.'">'.$field_value.'</td>';
                         	break;
