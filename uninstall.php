@@ -22,6 +22,9 @@ function ppc_uninstall_procedure() {
 	foreach( $all_users as $user_id ) {
 		delete_user_option( $user_id, 'ppc_settings' );
 	}
+
+if( get_option( 'ppc_dismissed_notifications' ) )
+        delete_option( 'ppc_dismissed_notifications' );
 }
 
 //If working on a multisite blog, get all blog ids, foreach them and call the uninstall procedure on each of them

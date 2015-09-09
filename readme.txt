@@ -2,16 +2,19 @@
 Contributors: Ste_95
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22
 Tags: counter, authors, payment, revenue sharing, stats, multi author, post management, post
-Tested up to: 4.2
-Stable tag: 2.501
+Tested up to: 4.3
+Stable tag: 2.508
 Requires at least: 3.7
+Text Domain: post-pay-counter
 
 Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
 
 == Description ==
-The Post Pay Counter plugin allows you to easily calculate and handle authors' pay on a multi-author blog by computing posts' remuneration basing on admin defined rules. The administrator can specify criteria upon which payments should be computed and the stats will immediately be viewable. Both a general view with all users and a specific one for a author are possible. It can easily help you implement a revenue sharing/paid to write model for your business.
+Easily calculate and handle authors' pay on a multi-author blog by computing posts' remuneration basing on admin defined rules. The administrator can specify criteria upon which payments should be computed and the stats will immediately be viewable. Both a general view with all users and a specific one for a author are possible. It can easily help you implement a revenue sharing/paid to write model for your business.
 
-* Pay per post, word, visit ([tutorial](http://www.thecrowned.org/pay-writers-per-visit-wordpress)), image and comment. They are not mutually exclusive.
+Features include:
+
+* Pay per post, word, visit ([tutorial](http://www.thecrowned.org/pay-writers-per-visit-wordpress)), image and comment (not mutually exclusive).
 * Pay with an incremental system (eg. each word is €0.01 => 100 words = €1) or with a zonal one (eg. from 200 to 300 words/visits it’s €2.00, up to 10 zones).
 * No account needed. Data is yours, no need to sign-up to anything really.
 * Old stats availability. View posts countings since the first written post, disregarding the plugin install date. A fancy date picker lets you shift between days and select the desired range.
@@ -20,16 +23,26 @@ The Post Pay Counter plugin allows you to easily calculate and handle authors' p
 * Extend with your own custom implementation through hooks, filters and special API features.
 * And... works with custom post types, narrow your payments only to chosen user groups, and more.
 
-**Also, we have a [PRO version](http://www.thecrowned.org/post-pay-counter-pro?utm_source=wprep&utm_medium=link&utm_campaign=ppcp) with many more features!** (among which integration with Analytics, PayPal, and so much more)
-
-Browse [all extensions](http://www.thecrowned.org/post-pay-counter-extensions?utm_source=wprep&utm_medium=description&utm_campaign=ppc_addons), including:
-
-* [Google Analytics visits payment and PayPal transactions handler](http://www.thecrowned.org/post-pay-counter-pro?utm_source=wprep&utm_medium=link&utm_campaign=ppcp)
-* [Facebook shares, likes and comments payment](http://www.thecrowned.org/facebook-pay-per-social-interactions-shares-likes-and-comments?utm_source=wprep&utm_medium=link&utm_campaign=ppcp_fb)
-* [Publisher bonus (useful for copyholder/draft-checkers-based systems)](http://www.thecrowned.org/publisher-bonus-editor-rewarding-system?utm_source=wprep&utm_medium=link&utm_campaign=ppcp_pb)
-* [Exclude certain words from word counting](http://www.thecrowned.org/stop-words-exclude-certain-words?utm_source=wprep&utm_medium=link&utm_campaign=ppcp_sw)
-
 [GitHub repository](https://github.com/TheCrowned/Post-Pay-Counter/) (wanna join us coding?)
+
+= Integrate with Analytics/Adsense and pay with PayPal =
+The [PRO version](http://www.thecrowned.org/post-pay-counter-pro?utm_source=wprep&utm_medium=link&utm_campaign=ppcp) includes Analytics visits payment, Adsense Revenues sharing and PayPal payments. Among other stuff, it also allows to keep a convenient log of past payments and to display stats in public pages through a shortcode. 
+
+= Integrate with Facebook =
+The [Facebook addon](http://www.thecrowned.org/facebook-pay-per-social-interactions-shares-likes-and-comments?utm_source=wprep&utm_medium=link&utm_campaign=ppcp_fb) allows to pay posts for the Facebook shares and comments they receive.
+
+Browse [all extensions](http://www.thecrowned.org/post-pay-counter-extensions?utm_source=wprep&utm_medium=description&utm_campaign=ppc_addons).
+
+= Available languages =
+Post Pay Counter has been translated into these languages:
+
+* English
+* German ([Julian Beck](http://inside11.de/))
+* Dutch (Elza van Swieten)
+* Italian (Stefano Ottolenghi)
+* Portoguese (Marco Dantas)
+
+If you want to **translate it in your own language** and get a discount on the PRO version, [contact us](http://www.thecrowned.org/contact-me)!
 
 [youtube https://www.youtube.com/watch?v=mSFjvR-2zCI]
 
@@ -63,20 +76,33 @@ It must become: *define( 'PPC_DEBUG_LOG', false );*
 4. Post Pay Counter per author stats. Datapicker avaiable here, too
 5. The tooltip with all the counting details
 
-== Languages ==
-= Available languages =
-* English
-* German ([Julian Beck](http://inside11.de/))
-* Italian (Stefano Ottolenghi)
-* Portoguese (Marco Dantas)
-
-= What about my language? =
-If you want to translate it in your own language and get a discount on the PRO version, [contact us](http://www.thecrowned.org/contact-me)!
-
 == Changelog ==
+= 2.508 =
+* Fixed: PHP warnings when payments consisting of only Bonus would be done.
+* Fixed: (hopefully for real): possible fatal error due to too many redirects on update.
+* Fixed: when selecting a time range, the end time doesn't go to the day after the selected one any more.
+* Tweak: changed text domain to *post-pay-counter* to grant compatibility with WP Language Packs.
+
+= 2.506/2.507 =
+* Fixed: PRO shortcode wouldn't exclude selected columns in detailed stats.
+
+= 2.505 =
+* Fixed: problems in saving custom visits counter callback function.
+* Fixed: detailed stats generation not working in HHVM environments.
+
+= 2.504 =
+* Fixed: possible fatal error due to too many redirects on update.
+
 = 2.503 =
-* New: added pot file to let the plugin be translated in whatever language of your choice. (We give discounts on the PRO version to people willing to translate!)
-* 
+* Fixed: word counter wouldn't count one-char words.
+* Fixed: correctly handling of &nbsp; that wouldn't be counted as spaces as resulting from strange behavior of the editor.
+* New: install procedure now grants by default all permissions to administrator by personalizing their settings (the user id of the user who installs the plugin is taken).
+* Tweak: new PHP method that generates stats table tbody. That's a public one that can by used by any implementation (for example, is used several times in the PRO).
+* Fixed: layout broken in user settings page, with links at the top being smushed in the upper-right corner. 
+* New: added pot files to translate plugin in whatever language.
+* Tweak: hiding the *Filter by user role* feature in stats page if user doesn't have the permission to see other people's stats.
+* Tweak: on install, notifications issued before install date are all hidden in bulk.
+* New: added Dutch translation (Elza van Swieten).
 
 = 2.502 =
 * Fixed: after last updated PRO version Analytics visits wouldn't show up.

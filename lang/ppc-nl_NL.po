@@ -1,0 +1,1411 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Post Pay Counter\n"
+"POT-Creation-Date: 2015-06-01 11:09+0100\n"
+"PO-Revision-Date: 2015-06-03 14:51+0100\n"
+"Last-Translator: Stefano Ottolenghi <webmaster@thecrowned.org>\n"
+"Language-Team: Pengu-ins <webmaster@thecrowned.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-KeywordsList: _x;_e;__\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: Dutch\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: post-pay-counter.php:134 post-pay-counter.php:609
+msgid "Stats"
+msgstr "Statistieken"
+
+#: post-pay-counter.php:135 post-pay-counter.php:486
+msgid "Options"
+msgstr "Opties"
+
+#: post-pay-counter.php:136
+msgid "System Info"
+msgstr "Systeminformatie"
+
+#: post-pay-counter.php:137 post-pay-counter.php:450
+msgid "Addons"
+msgstr "Toevoegingen"
+
+#: post-pay-counter.php:241
+msgid "Counting Settings"
+msgstr "Teller Instellingen"
+
+#: post-pay-counter.php:242
+msgid "Permissions"
+msgstr "Toestemmingen"
+
+#: post-pay-counter.php:243
+msgid "Support the author"
+msgstr "Support de auteur"
+
+#: post-pay-counter.php:244
+msgid "Everything you're missing by not being PRO"
+msgstr "Alles dat je mist door geen PRO te hebben"
+
+#: post-pay-counter.php:247
+msgid "Personalize Settings"
+msgstr "Personaliseer Instellingen"
+
+#: post-pay-counter.php:248
+msgid "Miscellanea"
+msgstr "Varia"
+
+#: post-pay-counter.php:251
+msgid "Import/Export Settings"
+msgstr "Import / Export-instellingen"
+
+#: post-pay-counter.php:252
+msgid "Error log"
+msgstr "Fout log"
+
+#: post-pay-counter.php:268
+msgid ""
+"User's settings successfully deleted. You will be redirected to the general "
+"options page."
+msgstr ""
+"Gebruikers instellingen succesvol verwijderd. Je wordt doorverwezen naar de "
+"algemene instellingen pagina. "
+
+#: post-pay-counter.php:277
+msgid "No more than 10 zones are allowed."
+msgstr "Meer dan 10 zones zijn niet toegestaan."
+
+#: post-pay-counter.php:278
+msgid "No less than 2 zones are allowed."
+msgstr "Minder dan 2 zones zijn niet toegestaan."
+
+#: post-pay-counter.php:279
+msgid "A payment threshold must first be set."
+msgstr "Stel eerst een betalingsgrens in."
+
+#: post-pay-counter.php:310
+msgid "The requested user does not exist."
+msgstr "Deze gebruiker bestaat niet."
+
+#: post-pay-counter.php:432
+msgid "Settings"
+msgstr "Instellingen"
+
+#: post-pay-counter.php:448
+msgid "Donate"
+msgstr "Doneer"
+
+#: post-pay-counter.php:449 classes/ppc_meta_boxes_class.php:53
+msgid "Go PRO"
+msgstr "Ga Pro"
+
+#: post-pay-counter.php:483
+msgid "Installed version"
+msgstr "Geïnstalleerde versie"
+
+#: post-pay-counter.php:483
+msgid "Support"
+msgstr "Ondersteuning"
+
+#: post-pay-counter.php:483
+msgid "Tutorials"
+msgstr "Handleidingen"
+
+#: post-pay-counter.php:487
+msgid ""
+"The Post Pay Counter plugin is ready to make handling authors' payments "
+"much, much easier, starting from... now! From this page you can set the "
+"plugin up, customizing each possible feature to best suit your needs. "
+"Options are divided into groups, and for each of the following boxes you "
+"will find details of all the features of the plugin and, for most of them, "
+"additional details and examples are available by clicking on the info icon "
+"on the right of them."
+msgstr ""
+"De Post Pay Counter plugin is maakt het beheer van het betalen van auteurs  "
+"vanaf nu veel makkelijker! Vanaf deze pagina kun je de plugin instellen en "
+"elke optie naar wens instellen. Opties zijn onderverdeeld in groepen en voor "
+"elk van de volgende boxen vind je details van alle opties van de plugin. In "
+"de meeste gevallen zijn aanvullende details en voorbeelden beschikbaar. Klik "
+"hiervoor op de icoontjes rechts van de opties. "
+
+#: post-pay-counter.php:488
+#, php-format
+msgid ""
+"Don't forget to take our %1$sfeatures survey%2$s to let us know what "
+"functions you'd like to see in future releases of the plugin! Also, if you "
+"like this plugin, you may be interested in trying the shiny %3$sPRO version"
+"%2$s, containing a whole lot of useful features!"
+msgstr ""
+"Vergeet niet om onze %1$sfunctionaliteiten enquête%2$s in te vullen en ons "
+"te laten weten welke functionaliteiten je zou willen zien in toekomstige "
+"updates van de plugin. Als je blij bent met de plugin ben je wellicht ook "
+"geïnteresseerd in de %3$sPRO versie%2$s, die een heleboel extra opties heft! "
+
+#: post-pay-counter.php:488 classes/ppc_meta_boxes_class.php:38
+msgid "Features survey"
+msgstr "Functionaliteiten enquête "
+
+#: post-pay-counter.php:498
+msgid "Go back to general settings"
+msgstr "Terug naar algemene instellingen"
+
+#: post-pay-counter.php:498 classes/ppc_html_functions_class.php:82
+msgid "Back to general"
+msgstr "Terug naar algemeen"
+
+#: post-pay-counter.php:499
+msgid "Delete user's settings"
+msgstr "Verwijder deze gebruikers' instellingen"
+
+#: post-pay-counter.php:500
+msgid "Currently editing user:"
+msgstr "Je edit nu gebruiker:"
+
+#: post-pay-counter.php:616
+msgid "You do not have sufficient permissions to access this page"
+msgstr "Je hebt niet voldoende toestemming om deze pagina te openen"
+
+#: post-pay-counter.php:657
+msgid "General"
+msgstr "Algemeen"
+
+#: classes/ppc_update_class.php:101 classes/ppc_save_options_class.php:213
+#: classes/ppc_save_options_class.php:217
+msgid "Error: could not update settings."
+msgstr "Fout: kan instellingen niet vernieuwen."
+
+#: classes/ppc_update_class.php:138
+msgid "Error: could not update user's settings."
+msgstr "Fout: kan gebruikers instellingen niet vernieuwen."
+
+#: classes/ppc_notifications_class.php:33
+msgid "Dismiss"
+msgstr "Laat maar"
+
+#: classes/ppc_html_functions_class.php:25
+#, php-format
+msgid "A %1$spengu-ins%2$s production"
+msgstr "Een %1$spengu-ins%2$s productie"
+
+#: classes/ppc_html_functions_class.php:48
+#, php-format
+msgid "Showing stats from %1$s to %2$s"
+msgstr "Toon statistieken van %1$s tot %2$s"
+
+#: classes/ppc_html_functions_class.php:52
+msgid "Filter by user role"
+msgstr "Filter gebruiker op rol"
+
+#: classes/ppc_html_functions_class.php:54
+msgid "Any"
+msgstr "Elke"
+
+#: classes/ppc_html_functions_class.php:87
+msgid "Update view"
+msgstr "Verniew view"
+
+#: classes/ppc_html_functions_class.php:89
+msgid "Get current view permalink"
+msgstr "Verkrijg huidige view permalink"
+
+#: classes/ppc_html_functions_class.php:202
+#, php-format
+msgid "Total is %1$s. %2$s Displayed is what you'll be paid for."
+msgstr "Totaal is %1$s. %2$s Getoond is waar je voor betaald wordt."
+
+#: classes/ppc_html_functions_class.php:231
+msgid "Go to detailed view"
+msgstr "Ga naar gedetaileerde view"
+
+#: classes/ppc_html_functions_class.php:288
+msgid "Total displayed posts:"
+msgstr "Totaal getoonde berichten:"
+
+#: classes/ppc_html_functions_class.php:290
+msgid "Total displayed payment:"
+msgstr "Totaal getoonde betalingen:"
+
+#: classes/ppc_html_functions_class.php:299
+msgid "counts"
+msgstr "tellingen"
+
+#: classes/ppc_html_functions_class.php:309
+#, php-format
+msgid "Total %s count:"
+msgstr "Totaal %s tellingen:"
+
+#: classes/ppc_meta_boxes_class.php:21
+msgid "Google Analytics"
+msgstr "Google Analytics"
+
+#: classes/ppc_meta_boxes_class.php:21
+msgid ""
+"use your account on the world-leading website visits tracking system to pay "
+"writers per visit."
+msgstr ""
+"gebruik je account op 's werelds beste website bezoekers tracer systeem om "
+"schrijvers per bezoek te betalen"
+
+#: classes/ppc_meta_boxes_class.php:22
+msgid "PayPal"
+msgstr "PayPal"
+
+#: classes/ppc_meta_boxes_class.php:22
+msgid "pay your writers with PayPal directly through your blog."
+msgstr "betaal jouw schrijvers met PayPal rechtstreeks via jouw blog"
+
+#: classes/ppc_meta_boxes_class.php:23
+msgid "Mark as paid"
+msgstr "Gemarkeerd als betaald"
+
+#: classes/ppc_meta_boxes_class.php:23
+msgid ""
+"keep track of your writers' past payments by marking posts as paid and "
+"reviewing payments from a detailed history. Let the plugin keep track of how "
+"much each writer should be paid basing on past payments."
+msgstr ""
+"hou voorgaande betalingen aan schrijvers bij door berichten als betaald te "
+"markeren en betalingen na te kijken uit een gedetaileerd log. Laat de plugin "
+"bijhouden hoeveel elke schrijver betaald zou moeten krijgen gebaseerd op "
+"voorgaande betalingen. "
+
+#: classes/ppc_meta_boxes_class.php:24
+msgid "Csv export"
+msgstr "Csv export"
+
+#: classes/ppc_meta_boxes_class.php:24
+msgid "download stats for offline consulting or storing."
+msgstr "download statistieken voor offline boekhouding"
+
+#: classes/ppc_meta_boxes_class.php:25
+msgid "Shortcode"
+msgstr "Shortcode"
+
+#: classes/ppc_meta_boxes_class.php:25
+msgid "put stats in public static pages and wherever suits your needs."
+msgstr "plaats statistieken op openbare statische pagina's waar je wil. "
+
+#: classes/ppc_meta_boxes_class.php:26
+msgid "Stats in post editing page"
+msgstr "Statistieken in de edit mode van het bericht."
+
+#: classes/ppc_meta_boxes_class.php:26
+msgid "see post stats in edit page and exclude individual posts from stats."
+msgstr ""
+"bekijk berichten statistieken in edit mode en sluit individuele berichten "
+"uit de statistieken"
+
+#: classes/ppc_meta_boxes_class.php:29
+#, php-format
+msgid ""
+"There are so many things you are missing by not running the PRO version of "
+"the Post Pay Counter! Remember that PRO features are always %1$sone click "
+"away%2$s!"
+msgstr ""
+"Er zijn zoveel dingen die je mist door niet de PRO versie van de Post Pay "
+"Counter te gebruiken! Onthou dat PRO functionaliteiten altijd slechts %1$s1 "
+"klik verwijderd%2$s zijn!"
+
+#: classes/ppc_meta_boxes_class.php:38
+#, php-format
+msgid ""
+"Something you would like is missing? Complete the %1$sfeatures survey%2$s "
+"and let us know what our priorities should be!"
+msgstr ""
+"Mis je iets? Vul de %1$sfunctionaliteiten enquête%2$s in en laat ons weten "
+"wat onze prioriteiten zouden moeten zijn! "
+
+#: classes/ppc_meta_boxes_class.php:51
+msgid ""
+"If you like the Post Pay Counter, there are a couple of crucial things you "
+"can do to support its development"
+msgstr ""
+"Vind je de Post Pay Counter leuk? Dan zijn er een aantal belangrijke dingen "
+"die je kunt doen om ons werk te ondersteunen."
+
+#: classes/ppc_meta_boxes_class.php:53
+msgid "Try the PRO version: more functions, more stuff!"
+msgstr "Probeer de PRO versie: meer functionaliteiten, meer extra's!"
+
+#: classes/ppc_meta_boxes_class.php:54
+msgid "Donate money"
+msgstr "Doneer geld"
+
+#: classes/ppc_meta_boxes_class.php:54
+msgid ""
+"Plugins do not write themselves: they need time and effort, and I give all "
+"of that free of charge. Donations of every amount are absolutely welcome."
+msgstr ""
+"Plugins schrijven zich niet vanzelf: ze kosten tijd en moeite, en ik geef "
+"dat allemaal gratis weg. Donaties groot of klein zijn absoluut welkom. "
+
+#: classes/ppc_meta_boxes_class.php:55
+#, php-format
+msgid "Give me something from my %1$sAmazon Wishlist%2$s."
+msgstr "Geef me iets van mijn %1$sAmazon Wishlist%2$s."
+
+#: classes/ppc_meta_boxes_class.php:56
+#, php-format
+msgid ""
+"Rate it in the %1$sWordpress Directory%3$s and share the %2$sofficial page"
+"%3$s."
+msgstr ""
+"Waardeer deze plugin in de %1$sWordpress Directory%3$s en deel de "
+"%2$sofficiële pagina%3$s."
+
+#: classes/ppc_meta_boxes_class.php:57
+msgid ""
+"Have a blog or write on some website? Write about the plugin and email me "
+"the review!"
+msgstr ""
+"Heb je een blog of schrijf je op iemands website? Schrijf over de plugin en "
+"e-mail mij jouw ervaringen! "
+
+#: classes/ppc_meta_boxes_class.php:76 classes/ppc_welcome_class.php:142
+msgid "Overall stats"
+msgstr "Globale statistieken"
+
+#: classes/ppc_meta_boxes_class.php:78
+msgid "Display overall stats"
+msgstr "Toon globale statistieken"
+
+#: classes/ppc_meta_boxes_class.php:78
+msgid ""
+"Overall stats are displayed at the bottom of regular stats. They show all-"
+"time overall stats, from the first published post ever to the latest one. "
+"Although they are quite interesting, their processing may slow down the page "
+"loading on big sites."
+msgstr ""
+"Globale statistieken worden getoond aan het eind van de gewone statistieken. "
+"Ze tonen de complete statistieken vanaf het begin, vanaf het eerst "
+"gepubliceerde bericht tot aan de laatste. Ze zijn interessant maar vertragen "
+"mogelijk ook het laden van de pagina's op grotere websites."
+
+#: classes/ppc_meta_boxes_class.php:85
+msgid "Allowed post types"
+msgstr "Toegestane bericht soorten"
+
+#: classes/ppc_meta_boxes_class.php:87
+msgid "Choose the post types you would like to be included in countings."
+msgstr "Selecteer het soort bericht dat je aan de tellingen wil toevoegen. "
+
+#: classes/ppc_meta_boxes_class.php:110
+msgid "Allowed user roles"
+msgstr "Toegestane gebruikers rollen"
+
+#: classes/ppc_meta_boxes_class.php:112
+msgid ""
+"Choose the user roles whose posts you would like to be included in countings."
+msgstr ""
+"Selecteer welke gebruikers rollen wiens berichten je terug wil zien in de "
+"statistieken."
+
+#: classes/ppc_meta_boxes_class.php:131
+msgid "Options page permissions"
+msgstr "Opties pagina machtigingen"
+
+#: classes/ppc_meta_boxes_class.php:133
+msgid "Choose the user roles who are allowed to view and edit plugin settings."
+msgstr ""
+"Selecteer de gebruikers rollen die toestemmingen hebben om de plugin "
+"instellingen te bekijken en te wijzigen."
+
+#: classes/ppc_meta_boxes_class.php:153
+msgid "Stats page permissions"
+msgstr "Statistiek pagina machtigingen"
+
+#: classes/ppc_meta_boxes_class.php:155
+msgid "Choose the user roles who are allowed to view the stats page."
+msgstr ""
+"Selecteer de gebruikers rollen die toestemmingen hebben om de "
+"statistiekpagina te bekijken."
+
+#: classes/ppc_meta_boxes_class.php:173
+msgid "Default stats time range"
+msgstr "Standaard statistieken tijds instelling"
+
+#: classes/ppc_meta_boxes_class.php:175
+msgid ""
+"When you open up the stats page, the time range here selected will be shown. "
+"This will be the default setting: you will still be able to change the time "
+"range the way you want it time to time."
+msgstr ""
+"Wanneer je de statistiekepagina opent, wordt het tijdsbestek dat hier "
+"geselecteerd is, getoond. Dit is de standard instelling: je kunt het "
+"tijdsbestek naderhand nog wijzigen. "
+
+#: classes/ppc_meta_boxes_class.php:176
+msgid "Current week"
+msgstr "Huidige week"
+
+#: classes/ppc_meta_boxes_class.php:176
+msgid ""
+"Posts from the beginning of the week to the current day (week starts on "
+"Monday) will be displayed. You should select this if you usually pay your "
+"writers weekly."
+msgstr ""
+"Berichten vanaf het begin van de week tot vandaag (week begint op maandag) "
+"worden getoond. Selecteer dit als je jouw schrijvers wekelijks betaald. "
+
+#: classes/ppc_meta_boxes_class.php:177
+msgid "Current month"
+msgstr "Huidige maand"
+
+#: classes/ppc_meta_boxes_class.php:177
+msgid ""
+"Posts from the beginning of the month to the current day will be displayed. "
+"You should select this if you usually pay your writers monthly."
+msgstr ""
+"Berichten vanaf het begin van de maand tot de huidige dag worden getoond. "
+"Selecteer dit als je jouw schrijvers per maand betaald. "
+
+#: classes/ppc_meta_boxes_class.php:178
+msgid "This custom number of days"
+msgstr "Dit aangepast aantal dagen"
+
+#: classes/ppc_meta_boxes_class.php:178
+msgid ""
+"You can manually customize the time range for the posts that will be "
+"displayed. So, for example, if you set this to 365 days, in the stats page "
+"it will automatically be selected a time frame that goes from the current "
+"day to the previous 365 days."
+msgstr ""
+"Je kunt het tijdsbestek handmatig instellen voor de berichten die getoond "
+"worden. Bijvoorbeeld: als je dit op 365 dagen instelt, wordt in de "
+"statistieken pagina automatisch een tijdsbestek geselecteerd dat rekent "
+"vanaf vandaag tot de vorige 365 dagen. "
+
+#: classes/ppc_meta_boxes_class.php:180
+msgid "Time range (days)"
+msgstr "Tijdsbestek (in dagen)"
+
+#: classes/ppc_meta_boxes_class.php:188 classes/ppc_meta_boxes_class.php:322
+#: classes/ppc_meta_boxes_class.php:355 classes/ppc_meta_boxes_class.php:389
+msgid "Settings were successfully updated."
+msgstr "Instellingen zijn aangepast. "
+
+#: classes/ppc_meta_boxes_class.php:191 classes/ppc_meta_boxes_class.php:325
+#: classes/ppc_meta_boxes_class.php:358 classes/ppc_meta_boxes_class.php:392
+#: classes/ppc_meta_boxes_class.php:476 classes/ppc_meta_boxes_class.php:518
+msgid "Loading"
+msgstr "Laden"
+
+#: classes/ppc_meta_boxes_class.php:192 classes/ppc_meta_boxes_class.php:327
+#: classes/ppc_meta_boxes_class.php:360
+msgid "Save options"
+msgstr "Bewaar opties"
+
+#: classes/ppc_meta_boxes_class.php:211
+msgid ""
+"Here you can define the criteria which post payments will be computed with."
+msgstr ""
+"Hier kun je de criteria definiëren welke de berichten betalingen "
+"automatiseren. "
+
+#: classes/ppc_meta_boxes_class.php:216
+msgid "Basic payment"
+msgstr "Basis betaling"
+
+#: classes/ppc_meta_boxes_class.php:218
+msgid "Basic, assured payment"
+msgstr "Basis, minmale betaling"
+
+#: classes/ppc_meta_boxes_class.php:218
+msgid ""
+"You may define a starting value for post payment. This means that each post "
+"will earn at least this amount, to which all the other credits will be "
+"added. In this way you can be sure that no post will be paid less than a "
+"certain amount, but that only valuable posts will make it to higher points."
+msgstr ""
+"Je kunt een start waarde instellen voor het betalen van berichten. Dit "
+"betekent dat elk bericht op zijn minst dit bedrag oplevert, en waaraan alle "
+"andere betalingen aan worden toegevoegd. Op deze manier levert geen enkel "
+"bericht minder op dan een bepaald bedrag maar dat enkel waardevolle "
+"berichten groot gaan verdienen. "
+
+#: classes/ppc_meta_boxes_class.php:221
+msgid "Basic payment fixed value"
+msgstr "Basis betaling gefixeerde waarde"
+
+#: classes/ppc_meta_boxes_class.php:228
+msgid "Words Payment"
+msgstr "Betalen per woord"
+
+#: classes/ppc_meta_boxes_class.php:230
+msgid "Words contribute to payment computation"
+msgstr "Woorden tellen mee aan betalings calculatie"
+
+#: classes/ppc_meta_boxes_class.php:230
+msgid ""
+"You may define a post value basing on the number of words that make it up as "
+"well. The longer a post is, the more time is supposed to have taken the "
+"author to write it, the more it should be paid. You will be able to choose "
+"how much each word is worth."
+msgstr ""
+"Je kunt een bericht waarderen op basis van het aantal woorden. Hoe langer "
+"een bericht is, hoe meer het de schrijver moet hebben gekost om het te "
+"schrijven, hoe meer er betaald zou moeten worden. Je zult in staat zijn "
+"hoeveel elk woord waard is. "
+
+#: classes/ppc_meta_boxes_class.php:233 classes/ppc_meta_boxes_class.php:258
+#: classes/ppc_meta_boxes_class.php:273 classes/ppc_meta_boxes_class.php:291
+msgid "Counting system"
+msgstr "Calculatie systeem"
+
+#: classes/ppc_meta_boxes_class.php:234
+msgid "words"
+msgstr "woorden"
+
+#: classes/ppc_meta_boxes_class.php:235 classes/ppc_meta_boxes_class.php:260
+#: classes/ppc_meta_boxes_class.php:275 classes/ppc_meta_boxes_class.php:293
+msgid "Counting options"
+msgstr "Calculatie opties"
+
+#: classes/ppc_meta_boxes_class.php:236
+msgid "Stop counting words after word # (0 = infinite)"
+msgstr "Stop met woorden tellen na woord # (0 = oneindig)"
+
+#: classes/ppc_meta_boxes_class.php:243
+msgid "Visits Payment"
+msgstr "Bezoekers Betaling"
+
+#: classes/ppc_meta_boxes_class.php:245
+msgid "Visits contribute to payment computation"
+msgstr "Bezoekers tellen mee met betalings calculatie"
+
+#: classes/ppc_meta_boxes_class.php:245
+msgid ""
+"You may define a post value basing on the number of visits that it registers "
+"as well. The more people see a post, the more interesting the post is "
+"supposed to be, the more it should be paid. You will be able to choose how "
+"much each visit is worth."
+msgstr ""
+"Je kunt een bericht definiëren op basis van het aantal views dat het ook "
+"telt. Hoe meer mensen een bericht zien, hoe interessanter het bericht "
+"waarschijnlijk is, en hoe meer het zou moeten opleveren. Je kunt kiezen "
+"hoveel elke view waard is. "
+
+#: classes/ppc_meta_boxes_class.php:248
+msgid "Counting method"
+msgstr "Teller methode"
+
+#: classes/ppc_meta_boxes_class.php:249
+msgid "I have my own visit counter (postmeta)"
+msgstr "Ik heb mijn eigen bezoekers teller (postmeta)"
+
+#: classes/ppc_meta_boxes_class.php:249
+#, php-format
+msgid ""
+"If you already have some plugin counting visits, and you know the "
+"%1$spostmeta%2$s name it stores them into, you can use those data to compute "
+"payments. Activate this setting and put the postmeta in the field below."
+msgstr ""
+"Als je al een plugin hebt die views telt en je weet in welke %1$spostmeta"
+"%2$s het wordt opgeslagen, kun je die data gebruiken om betalingen te "
+"berekenen. Activeer de instellingen en vul de postmeta hieronder in. "
+
+#: classes/ppc_meta_boxes_class.php:251
+msgid "The postmeta holding the visits"
+msgstr "De postmeta die de bezoeken berekend"
+
+#: classes/ppc_meta_boxes_class.php:253
+msgid "I have my own visit counter (callback)"
+msgstr "Ik heb mijn eigen visit counter (callback)"
+
+#: classes/ppc_meta_boxes_class.php:253
+#, php-format
+msgid ""
+"If you already have some plugin counting visits, and it provides a PHP "
+"%1$scallback%2$s which accepts as input the $post WP object and outputs an "
+"integer number of visits, you can use those data to compute payments. If the "
+"callback is a class method, specify it in the form of %1$sclassname, "
+"methodname%2$s. This is NOT user-personalizable."
+msgstr ""
+"Als je al een plugin hebt die views telt en het biedt een PHP %1$scallback"
+"%2$s die het toestaat als input in het $post WP object en het geeft als "
+"output een integer aantal views, kun je deze data gebruiken om betalingen te "
+"automatiseren. Als de callback een class methode is, specifieer dat in het "
+"formulier van %1$sclassname, methodname%2$s. Dit is NIET op gebruikersniveau "
+"in te stellen. "
+
+#: classes/ppc_meta_boxes_class.php:255
+msgid "Callback name"
+msgstr "Callback name"
+
+#: classes/ppc_meta_boxes_class.php:259
+msgid "visits"
+msgstr "bezoeken"
+
+#: classes/ppc_meta_boxes_class.php:261
+msgid "Stop counting visits after visit # (0 = infinite)"
+msgstr "Stop met tellen van views na view # (0=oneindig)"
+
+#: classes/ppc_meta_boxes_class.php:268
+msgid "Images Payment"
+msgstr "Afbeeldingen Betaling"
+
+#: classes/ppc_meta_boxes_class.php:270
+msgid "Images contribute to payment computation"
+msgstr "Afbeeldingen tellen mee aan betalings berekening"
+
+#: classes/ppc_meta_boxes_class.php:270
+#, php-format
+msgid ""
+"You may define a post value basing on the number of images it contains. "
+"Maybe more images make a post cleaerer to the readers, and should thus be "
+"paid something more. You will be able to choose: when you want the image "
+"counting to come in, meaning how many images are free of charge and after "
+"which one they should be paid; how much each image is worth; how many images "
+"at maximum should be paid (0 = no maximum, infinite). E.g. we have a post "
+"with 5 images, and the fields below are set like this: %s. The image payment "
+"would be 1.0 bacause image #3 and image #4 are counted."
+msgstr ""
+"Je kunt de waarde van een bericht bepalen op basis van het aantal foto's. "
+"Meer foto's geven wellicht meer duidelijkheid aan de lezers en zou daarom "
+"meer betaald moeten worden. Je kunt kiezen wanneer en hoe je het tellen van "
+"afbeeldingen wil instellen, hoeveel afbeeldingen niet betaald worden en na "
+"hoeveel ze wel betaald worden en hoeveel iedere afbeelding waard is en het "
+"maximum aantal afbeeldingen dat betaald wordt (0 = geen maximum, oneindig). "
+"Bijvoorbeeld: als je een bericht hebt met 5 afbeeldingen en de velden "
+"hieronder zijn als volgt weergegeven: %s. Dan is de betaling van de "
+"afbeelding 1.0 omdat afbeelding #3 en #4 geteld zijn. "
+
+#: classes/ppc_meta_boxes_class.php:274
+msgid "images"
+msgstr "afbeeldingen"
+
+#: classes/ppc_meta_boxes_class.php:276
+msgid "Start paying per image after image #"
+msgstr "Begin met betalen per afbeelding na afbeelding #"
+
+#: classes/ppc_meta_boxes_class.php:277
+msgid "Stop paying per image after image #"
+msgstr "Stop met betalen per afbeelding na afbeelding #"
+
+#: classes/ppc_meta_boxes_class.php:278
+msgid ""
+"Determines whether the featured image will be included in image counting."
+msgstr ""
+"Bepaald of de uitgelichte afbeelding meetelt in de afbeeldingen telling."
+
+#: classes/ppc_meta_boxes_class.php:279
+msgid ""
+"Determines whether images in galleries should be included in image counting "
+"(may slow down stats page loading due to additional post content parsing)."
+msgstr ""
+"Bepaald of de afbeeldingen in galleries meetellen in de afbeeldingen telling "
+"(kan statstiekpagina vertragen door toegevoegde bericht content parsing)."
+
+#: classes/ppc_meta_boxes_class.php:286
+msgid "Comments Payment"
+msgstr "Reacties Betalingen"
+
+#: classes/ppc_meta_boxes_class.php:288
+msgid "Comments contribute to payment computation"
+msgstr "Reacties tellen mee aan betalings berekening"
+
+#: classes/ppc_meta_boxes_class.php:288
+#, php-format
+msgid ""
+"You may define a post value basing on the number of comments it receives. "
+"You will be able to choose: when you want the comment counting to come in, "
+"meaning how many comments are free of charge and after which one they should "
+"be paid; how much each comment is worth; how many comments at maximum should "
+"be paid (0 = no maximum, infinite). E.g. we have a post with 30 comments, "
+"and the fields below are set like this: %s. The comment payment would be 2.5 "
+"bacause comments from #11 included to #25 included are counted."
+msgstr ""
+"Je kunt de waarde van een bericht bepalen op basis van het aantal reacties. "
+"Je kunt kiezen wanneer en hoe je het tellen van reacties wilt instellen, "
+"hoeveel reacties niet betaald worden en na hoeveel ze wel betaald worden en "
+"hoeveel iedere reactie waard is en het maximum aantal reacties dat betaald "
+"wordt (0 = geen maximum, oneindig). Bijvoorbeeld: als je een bericht hebt "
+"met 30 reacties en de velden hieronder zijn als volgt weergegeven: %s. Dan "
+"is de betaling 2.5 omdat reacties #11 tot en met #25 meegeteld zijn. "
+
+#: classes/ppc_meta_boxes_class.php:292
+msgid "comments"
+msgstr "reacties"
+
+#: classes/ppc_meta_boxes_class.php:294
+msgid "Start paying per comment after comment #"
+msgstr "Begin met betalen per reactie na reactie #"
+
+#: classes/ppc_meta_boxes_class.php:295
+msgid "Stop paying per comment after comment #"
+msgstr "Stop met betalen per reactie na reactie #"
+
+#: classes/ppc_meta_boxes_class.php:302
+#: classes/ppc_generate_stats_class.php:448
+msgid "Total payment"
+msgstr "Totaal betalingen"
+
+#: classes/ppc_meta_boxes_class.php:304
+msgid "Set payment maximum (0 = infinite)"
+msgstr "Stel betalings minimum in (0 = oneindig)"
+
+#: classes/ppc_meta_boxes_class.php:305
+msgid "Pay only when the total payment threshold is reached"
+msgstr "Betaal pas wanneer de totaal grens van betalingen is bereikt"
+
+#: classes/ppc_meta_boxes_class.php:305
+msgid ""
+"Check this if you want to pay items only when they reach the max payment "
+"threshold. Other items will appear grayed out."
+msgstr ""
+"Vink dit aan als je pas wil betalen als er de betalingsgrens is bereikt. "
+"Andere onderdelen worden dan grijs gemaakt. "
+
+#: classes/ppc_meta_boxes_class.php:312
+msgid "Miscellanea counting settings"
+msgstr "Diverse teller instellingen "
+
+#: classes/ppc_meta_boxes_class.php:314
+msgid "Count pending revision posts"
+msgstr "Tel lopende moderatie berichten"
+
+#: classes/ppc_meta_boxes_class.php:314
+msgid ""
+"While published posts are automatically counted, you can decide to include "
+"pending revision ones or not."
+msgstr ""
+"Terwijl gepubliceerde berichten automatisch geteld worden, kun je bepalen om "
+"berichten die wachten op moderatie, mee te tellen of niet. "
+
+#: classes/ppc_meta_boxes_class.php:315
+msgid "Count future scheduled posts"
+msgstr "Tel toekomstig geplande berichten"
+
+#: classes/ppc_meta_boxes_class.php:315
+msgid ""
+"While published posts are automatically counted, you can decide to include "
+"future planned ones or not."
+msgstr ""
+"Terwijl gepubliceerde berichten automatisch geteld worden, kun je bepalen om "
+"geplande berichten mee te tellen of niet"
+
+#: classes/ppc_meta_boxes_class.php:316
+msgid "Count private posts"
+msgstr "Tel privé berichten"
+
+#: classes/ppc_meta_boxes_class.php:316
+msgid ""
+"While public published posts are automatically counted, you can decide to "
+"include private ones or not."
+msgstr ""
+"Terwijl publieke gepubliceerde berichten automatisch geteld worden, kun je "
+"bepalen om privé berichten wel of niet mee te tellen. "
+
+#: classes/ppc_meta_boxes_class.php:317
+msgid "Exclude quoted content from word counting"
+msgstr "Sluit geciteerde inhoud uit van de woord-telling"
+
+#: classes/ppc_meta_boxes_class.php:317
+#, php-format
+msgid ""
+"All the words contained into %1$sblockquote%2$s tags will not be taken into "
+"account when counting. Use this to prevent interviews and such stuff to be "
+"counted as normal words. Notice that words included in any HTML tag with "
+"class %1$sppc_exclude_words%2$s are automatically excluded from word "
+"counting (doesn't handle nested tags); see FAQ for more information."
+msgstr ""
+"Alle woorden in de %1$sblockquote%2$s tags worden niet meegeteld. Gebruik "
+"dit om te voorkomen dat interviews en dergelijke meegeteld worden als "
+"normale woorden. Let op dat woorden in HTML tags met class "
+"%1$sppc_exclude_words%2$s automatisch buitengesloten worden van woorden "
+"tellen (het gaat niet om geneste tags); zie ook FAQ voor meer informatie. "
+
+#: classes/ppc_meta_boxes_class.php:347
+msgid ""
+"Just a few fields to help you preventing users from seeing things they "
+"should not see. Administrators are subject to the same permissions; if you "
+"wish they did not, personalize their user settings."
+msgstr ""
+"Slechts een aantal velden om te voorkomen dat gebruikers dingen zien die ze "
+"niet zouden moeten zien. Administrators zijn ook gebonden aan deze "
+"permissies; als je dat niet wil, wijzig dan de gebruikers instellingen. "
+
+#: classes/ppc_meta_boxes_class.php:348
+msgid "Users can see other users' general stats"
+msgstr "Gebruikers kunnen de algemene statistieken van anderen zien"
+
+#: classes/ppc_meta_boxes_class.php:348
+msgid ""
+"If unchecked, users will only be able to see their stats in the general "
+"page. Other users' names, posts and pay counts will not be displayed."
+msgstr ""
+"Bij uitvinken zijn gebruikers alleen in staat om hun eigen algemene "
+"statistieken te zien. Andere gebruikersnamen, berichten en betalingen zullen "
+"niet getoond worden. "
+
+#: classes/ppc_meta_boxes_class.php:349
+msgid "Users can see other users' detailed stats"
+msgstr ""
+"Gebruikers kunnen gedetailleerde statistieken van andere gebruikers zien "
+
+#: classes/ppc_meta_boxes_class.php:349
+msgid ""
+"If unchecked, users will not be able to see other users' detailed stats but "
+"will still able to see general ones. "
+msgstr ""
+"Bij uitvinken zijn gebruikers alleen in staat om hun eigen gedetailleerde "
+"statistieken te zien maar niet die van anderen behalve de algemene "
+"statistieken. "
+
+#: classes/ppc_meta_boxes_class.php:350
+msgid "Let users know if other users have personalized settings"
+msgstr ""
+"Laat gebruikers weten of andere gebruikers hun instellingen hebben aangepast"
+
+#: classes/ppc_meta_boxes_class.php:350
+msgid ""
+"If you personalize settings by user, do not overlook this. If unchecked, "
+"users will not see personalized settings in countings, they will believe "
+"everybody is using their settings (or general settings). Anyway, users will "
+"see their own personalized settings, if they have them."
+msgstr ""
+"Als je instellingen door gebruikers laat aanpassen, let dan ook hier op. Bij "
+"uitvinken zijn gebruikers niet in staat om hun eigen instellingen te "
+"personaliseren bij de tellingen, en zullen denken dat iedereen hun "
+"instellingen (of algemene instellingen) gebruikt. Hoe dan ook, gebruikers "
+"zullen hun eigen gepersonaliseerde instellingen zien, als ze dat willen. "
+
+#: classes/ppc_meta_boxes_class.php:380
+#, php-format
+msgid ""
+"Have more than website but use the same settings? You can transfer settings "
+"from one installation of the plugin to another. If you are also running the "
+"PRO version, its settings will be taken as well. It works both for general "
+"and for user personalized settings, depending on what page you are. If you "
+"want to export this website's settings, copy the code below. If you want to "
+"import another website's settings, paste its settings code in the field "
+"below and click %s. Once you import settings, it will not be possible to go "
+"back to the previous settings. Do not edit settings code unless you know "
+"what base64 and serialization are and are sure of what you are doing!"
+msgstr ""
+"Heb je meerdere websites met dezelfde instellingen? Je kunt de instellingen "
+"van de plugin migreren van de ene naar de andere websites. Als je ook de PRO "
+"versie gebruikt, worden die instellingen ook meegenomen. Het werkt zowel "
+"voor de algemene als ook de persoonlijke instellingen, afhankelijk van de "
+"pagina die je ziet. Als je de website instellingen wil exporteren, kopiëer "
+"dan de code hieronder. Als je ook andere website instellingen wil "
+"importeren, plak dan de instellingen code in het veld hieronder en klik op "
+"%s. Heb je eenmaal de instellingen geïmporteerd dan kun je niet terug naar "
+"de vorige instellingen. Bewerk de code niet tenzij je weet wat base64 is en "
+"wat serelizations zijn en je zeker weet wat je doet! "
+
+#: classes/ppc_meta_boxes_class.php:380 classes/ppc_meta_boxes_class.php:394
+msgid "Import settings"
+msgstr "Importeer instellingen. "
+
+#: classes/ppc_meta_boxes_class.php:425
+msgid "The following users have different settings, click to edit them."
+msgstr ""
+"De volgende gebruikers hebben verschillende instellingen, klik om te "
+"bewerken. "
+
+#: classes/ppc_meta_boxes_class.php:435
+msgid "View and edit special settings for user"
+msgstr "Bekijk en bewerk speciale instellingen voor gebruiker"
+
+#: classes/ppc_meta_boxes_class.php:445
+msgid ""
+"No users have different settings. Learn how to personalize settings from the "
+"section below."
+msgstr ""
+"Geen van de gebruikers hebben verschillende instellingen. Leer hoe je "
+"instellingen kunt personaliseren met onderstaande sectie. "
+
+#: classes/ppc_meta_boxes_class.php:448
+msgid "Personalize single user settings"
+msgstr "Personaliseer enkelvoudige gebruikers instellingen"
+
+#: classes/ppc_meta_boxes_class.php:449
+msgid ""
+"Some people's posts are better than somebody others'? You can adjust "
+"settings for each user, so that they will have different permissions and "
+"their posts will be paid differently."
+msgstr ""
+"Zijn van sommige schrijvers de berichten beter dan die van een ander? Je "
+"kunt voor elke gebruiker de instellingen aanpassen zodat zij ook "
+"verschillende rechten hebben en hun berichten verschillend betaald worden. "
+
+#: classes/ppc_meta_boxes_class.php:450
+msgid ""
+"First, select a user role. You will see all users from that role: clicking "
+"on one you will be headed to the settings page for that specific user."
+msgstr ""
+"Selecteer eerst een gebruikers rol. Je ziet dan alle gebruikers in die rol: "
+"klik op 1 en je wordt doorgestuurd naar de instellingen pagina voor die "
+"specifieke gebruiker. "
+
+#: classes/ppc_meta_boxes_class.php:452
+msgid "User roles"
+msgstr "Gebruikers rollen "
+
+#: classes/ppc_meta_boxes_class.php:471
+msgid "Available users"
+msgstr "Beschikbare gebruikers"
+
+#: classes/ppc_meta_boxes_class.php:497
+#, php-format
+msgid ""
+"Errors which may happen during the plugin execution are logged and showed "
+"here. If something is not working properly, please send this list along with "
+"your support request. The log is cleared every now and then, but you can "
+"empty it manually with the button below. If you do not want errors to be "
+"logged at all, see the %1$sFAQ%2$s."
+msgstr ""
+"Fouten die voorkomen tijdens het installeren van de plugin worden gelogd en "
+"hier getoond. Als iets niet goed werkt, stuur dan deze lijst op samen met je "
+"support verzoek. Het log wordt af en toe geleegd maar je kunt het ook "
+"handmatig legen met onderstaande button. Als je niet wil dat fouten gelogd "
+"worden; zie %1$sFAQ%2$s."
+
+#: classes/ppc_meta_boxes_class.php:497
+msgid "Frequently asked questions"
+msgstr "Veelgestelde vragen"
+
+#: classes/ppc_meta_boxes_class.php:498
+msgid ""
+"To copy the error log, click below then press Ctrl + C (PC) or Cmd + C (Mac)."
+msgstr ""
+"Om het error logbestand te copiëren, klik hieronder en toets Ctrl + C (PC) "
+"of Cmd + C (Mac)."
+
+#: classes/ppc_meta_boxes_class.php:507
+msgid "That's great, nothing has gone wrong so far!"
+msgstr "Geweldig! Het is helemaal goed gegaan! "
+
+#: classes/ppc_meta_boxes_class.php:513
+msgid "Clear error log"
+msgstr "Schoon error log op"
+
+#: classes/ppc_meta_boxes_class.php:515
+msgid "Log was successfully cleared."
+msgstr "Log legen geslaagd."
+
+#: classes/ppc_ajax_functions_class.php:26
+msgid ""
+"Error: Seems like AJAX request was not recognised as coming from the right "
+"page. Maybe hacking around..?"
+msgstr ""
+"Fout: Het lijkt of AJAX verzoeken niet herkend worden als komende van de "
+"juiste pagina. Misschien wat rond aan het hacken?"
+
+#: classes/ppc_ajax_functions_class.php:123
+msgid "No users found."
+msgstr "Geen gebruikers gevonden."
+
+#: classes/ppc_ajax_functions_class.php:210
+msgid "What are you importing, cows?"
+msgstr "Wat importeer je, koeien?"
+
+#: classes/ppc_ajax_functions_class.php:231
+msgid "Error: could not clear error log."
+msgstr "Fout: kan error logbestand niet legen."
+
+#: classes/ppc_addons_class.php:38
+msgid "Addons for Post Pay Counter"
+msgstr "Toevoegingen voor Post Pay Counter"
+
+#: classes/ppc_addons_class.php:39
+msgid "Browse All Extensions"
+msgstr "Bekijk alle Extensies"
+
+#: classes/ppc_addons_class.php:41
+msgid "These addons add more features to Post Pay Counter."
+msgstr "Deze extra's voegen meer  eigenschappen toe aan de Post Pay Counter."
+
+#: classes/ppc_addons_class.php:65
+msgid ""
+"There was an error retrieving the extensions list from the server. Please "
+"try again later."
+msgstr ""
+"Er was een fout in het ophalen van de extensie lijst van de server. Probeer "
+"het later nog eens. "
+
+#: classes/ppc_system_info_class.php:34
+msgid "System Information"
+msgstr "Systeem Informatie"
+
+#: classes/ppc_system_info_class.php:36
+msgid ""
+"To copy the system info, click below then press Ctrl + C (PC) or Cmd + C "
+"(Mac)."
+msgstr ""
+"Om systeem informatie te copiëren, klik hieronder en toets Ctrl + C (PC) of "
+"Cmd + C (Mac)."
+
+#: classes/ppc_system_info_class.php:123
+msgid "Download System Info File"
+msgstr "Download het Systeem Informatie Bestand"
+
+#: classes/ppc_options_fields_class.php:77
+msgid "Use the zonal system"
+msgstr "Gebruik het zone systeem"
+
+#: classes/ppc_options_fields_class.php:77
+#, php-format
+msgid ""
+"With this system you can define up to how many zones of retribution you "
+"would like, so that from X %1$s to Y %1$s the same pay will be applied (eg. "
+"from 200 %1$s to 300 %1$s pay 2.00). It does not matter how many %1$s a post "
+"has, but only in what zone it fits in."
+msgstr ""
+"Met dit systeem kun je definiëren hoeveel zones van uitbetaling je wil, "
+"zodat van  X %1$s naar Y %1$s dezelfde betaling plaatsvind (bijvoorbeeld van "
+"200 %1$s naar 300 %1$s betaald 2.00). Het maakt niet uit hoeveel %1$s een "
+"bericht heeft, maar alleen in welke zone het past. "
+
+#: classes/ppc_options_fields_class.php:83
+msgid "Payment"
+msgstr "Betaling"
+
+#: classes/ppc_options_fields_class.php:101
+msgid "Add one more zone"
+msgstr "Voeg een zone toe"
+
+#: classes/ppc_options_fields_class.php:102
+msgid "Delete last zone"
+msgstr "Verwijder laatste zone"
+
+#: classes/ppc_options_fields_class.php:106
+msgid "Use the incremental payment system"
+msgstr "Gebruik het progressieve betalings systeem"
+
+#: classes/ppc_options_fields_class.php:106
+#, php-format
+msgid ""
+"With this system, every %1$s has a value: more %1$s => higher pay. Just "
+"think that the %1$s number will be multiplied for the incremental payment "
+"value, so that is a post has 300 %1$s and you set the incremental payment "
+"value to 0.01, the writer will be credited with 3."
+msgstr ""
+"Met dit systeem heeft elke %1$s een waarde: meer %1$s => hogere betalingen. "
+"Bedenk dat het aantal %1$s wordt vermenigvuldigd voor de progressieve "
+"betalingswaarde zodat als een bericht 300 %1$s heeft, en je stelt de "
+"progressieve betalingswaarde in op 0.01, dan wordt de schrijver beloond met "
+"3. "
+
+#: classes/ppc_options_fields_class.php:108
+msgid "Incremental payment value"
+msgstr "Progressieve betalings waarde"
+
+#: classes/ppc_generate_stats_class.php:51
+#: classes/ppc_generate_stats_class.php:125
+msgid "Error: no posts were selected"
+msgstr "Fout: geen berichten geselecteerd"
+
+#: classes/ppc_generate_stats_class.php:307
+msgid "ID"
+msgstr "ID"
+
+#: classes/ppc_generate_stats_class.php:308
+msgid "Title"
+msgstr "Titel"
+
+#: classes/ppc_generate_stats_class.php:309
+msgid "Type"
+msgstr "Soort"
+
+#: classes/ppc_generate_stats_class.php:310
+msgid "Status"
+msgstr "Status"
+
+#: classes/ppc_generate_stats_class.php:311
+msgid "Pub. Date"
+msgstr "Pub. datum"
+
+#: classes/ppc_generate_stats_class.php:329
+msgid "Total Pay"
+msgstr "Totaal Betaling"
+
+#: classes/ppc_generate_stats_class.php:432
+msgid "Author ID"
+msgstr "Schrijver ID"
+
+#: classes/ppc_generate_stats_class.php:433
+msgid "Author Name"
+msgstr "Schrijver Naam"
+
+#: classes/ppc_generate_stats_class.php:434
+msgid "Written posts"
+msgstr "Geschreven berichten"
+
+#: classes/ppc_save_options_class.php:78
+msgid ""
+"The specified visits callback returned NULL for a random post - are you sure "
+"it is correct?"
+msgstr ""
+"De gespecificeerde bezoeken callback gaf NULL terug voor een willekeurig "
+"bericht - weet je zeker dat dit klopt?"
+
+#: classes/ppc_welcome_class.php:23 classes/ppc_welcome_class.php:24
+msgid "Welcome to Post Pay Counter"
+msgstr "Welkom bij Post Pay Counter"
+
+#: classes/ppc_welcome_class.php:32 classes/ppc_welcome_class.php:33
+msgid "Post Pay Counter Changelog"
+msgstr "Post Pay Counter Changelog"
+
+#: classes/ppc_welcome_class.php:83
+msgid "Features"
+msgstr "Eigenschappen"
+
+#: classes/ppc_welcome_class.php:86
+msgid "Changelog"
+msgstr "Changelog"
+
+#: classes/ppc_welcome_class.php:105 classes/ppc_welcome_class.php:186
+#, php-format
+msgid "Welcome to Post Pay Counter Version %s"
+msgstr "Welkom bij Post Pay Counter Versie %s"
+
+#: classes/ppc_welcome_class.php:106 classes/ppc_welcome_class.php:187
+msgid ""
+"You got the latest release of Post Pay Counter, which is going to make "
+"handling authors' payments much, much easier! The menu on the left provides "
+"access to all the plugin features."
+msgstr ""
+"Je hebt de laatste uitgave van de Post Pay Counter, die het beheer van het "
+"betalen van schrijvers veel en veel makkelijker maakt! Het menu aan de "
+"linkerkant geeft toegang tot alle plugin eigenschappen. "
+
+#: classes/ppc_welcome_class.php:111
+msgid "A powerful payment manager"
+msgstr "Een krachtige betalings manager"
+
+#: classes/ppc_welcome_class.php:116
+msgid "Pay per post, word, visit, image and comment"
+msgstr "Betaal per bericht, woord, view, afbeelding en reactie"
+
+#: classes/ppc_welcome_class.php:117
+msgid ""
+"Basically everything in a post can define its overall value. You can pay a "
+"fixed fee, add something depending on the number of words, maybe some more "
+"for visits, and then take care of images and comments as well. You can set a "
+"limit on the maximum number of each counting category and a total payment "
+"one too."
+msgstr ""
+"Eigenlijk kan alles in een bericht de waarde ervan bepalen. Je kunt een vast "
+"bedrag betalen, iets daarbij optellen afhankelijk van het aantal woorden, "
+"nog iets meer voor het aantal views en zelfs de afbeeldingen en de reacties. "
+"Je kunt een limiet instellen op het maximum aantal van elke tellings "
+"categorie en ook een totale betaling doen. "
+
+#: classes/ppc_welcome_class.php:119
+msgid "A zonal system, or an incremental one"
+msgstr "Een zone systeem of een progressieve "
+
+#: classes/ppc_welcome_class.php:120
+msgid ""
+"Every time there is a number of something to be paid (a number of words, a "
+"number of visits...) you can choose whether you want to use an incremental "
+"system (e.g. each word is worth $0.01 => 100 words are worth $1.00) or a "
+"zonal one (e.g. between 100 and 200 words pay $1.20 => 190 words are worth "
+"$1.20) with as many zones you want."
+msgstr ""
+"Elke keer als er een er een aantal betaald wordt (aantal woorden, aantal "
+"views...) kun je kiezen of je het progressieve systeem wil gebruiken "
+"(bijvoorbeeld als elk woord $0.01 waard is dan zijn 100 woorden $1.00 waard) "
+"of een zone systeem (bijvoorbeeld tussen de 100 en 200 woorden betaald $1.20 "
+"=> 190 woorden betaald $1.20) met zoveel zones als je wil  "
+
+#: classes/ppc_welcome_class.php:122
+msgid "Define what is paid and what is not"
+msgstr "Bepaal wat betaald is en wat niet"
+
+#: classes/ppc_welcome_class.php:123
+msgid ""
+"Include or exclude posts from stats depending on their post type (the plugin "
+"works with custom post types, yeah!), the user's role who wrote the it and "
+"its post status."
+msgstr ""
+"Betrek of sluit berichten uit van de statsitieken, afhankelijk van het "
+"bericht type (de plugin werkt met aangepaste bericht types, woohoo!), de "
+"gebruikers rol van de schrijver en de status van het bericht. "
+
+#: classes/ppc_welcome_class.php:128
+msgid "Stats page with calculations"
+msgstr "Statistieken pagina met berekeningen"
+
+#: classes/ppc_welcome_class.php:133
+msgid "The general view"
+msgstr "Algemeen overzicht"
+
+#: classes/ppc_welcome_class.php:134
+msgid ""
+"General stats display all users in the same page, showing how much each of "
+"them should be paid basing on the number and value of their posts."
+msgstr ""
+"Algemene statistieken laten alle gebruikers in dezelfde pagina zien en tonen "
+"hoeveel elk van hem betaald zou moeten worden op basis van het aantal en "
+"waarde van hun berichten. "
+
+#: classes/ppc_welcome_class.php:136
+msgid "The detailed view"
+msgstr "Gedetailleerd overzicht"
+
+#: classes/ppc_welcome_class.php:137
+msgid ""
+"Detailed stats display an in-depth view for an author. You'll see how the "
+"total amount has been calculated, with details for each post (number of "
+"words, visits, images and comments)."
+msgstr ""
+"Gedetailleerde statistieken tonen een grondig overzicht voor de schrijver. "
+"Je zult zien hoe het aantal berekend is, met details voor elk bericht "
+"(aantal woorden, views, afbeeldingen en reacties). "
+
+#: classes/ppc_welcome_class.php:139
+msgid "Get old stats too"
+msgstr "Bekijk de oude statistieken ook "
+
+#: classes/ppc_welcome_class.php:140
+msgid ""
+"View posts calculations since the first written post, regardless of the "
+"plugin install date. A fancy date picker lets you shift between days and "
+"select the desired time range."
+msgstr ""
+"Bekijk de berekeningen vanaf het eerste bericht, ongeacht de installatie "
+"datum van de plugin. Een datum prikker laat je tussen dagen springen en het "
+"gewenste tijdsbestek selecteren. "
+
+#: classes/ppc_welcome_class.php:143
+msgid ""
+"Fond of stats and numbers? At the bottom of regular stats an overall stats "
+"box displays your all-time overall stats, from the first post ever to the "
+"latest one."
+msgstr ""
+"Ben je gek op statistieken en getallen? Aan het eind van de gebruikelijke "
+"statistieken is een veld dat alle statistieken toont vanaf het begin, vanaf "
+"de eerste tot het laatste bericht. "
+
+#: classes/ppc_welcome_class.php:148
+msgid "Juicy additions"
+msgstr "Aantrekkelijke extra's"
+
+#: classes/ppc_welcome_class.php:153
+msgid "Prevent users envy"
+msgstr "Voorkom jaloezie onder gebuikers"
+
+#: classes/ppc_welcome_class.php:154
+msgid ""
+"Want users to be able to see only their own stats and not other users' ones? "
+"Yes you can! There's a whole set of permission settings to define what users "
+"should and shouldn't see."
+msgstr ""
+"Wil je gebruikers in staat stellen om hun eigen statistieken te zien en niet "
+"die van anderen? Dat kan! Er is een hele set met instellingen van rechten om "
+"te bepalen welke gebruiker wat mag zien. "
+
+#: classes/ppc_welcome_class.php:156
+msgid "Personalize settings by user"
+msgstr "Personaliseer instellingen door gebuiker"
+
+#: classes/ppc_welcome_class.php:157
+msgid ""
+"Some users may deserve more or less than others: they can have custom "
+"settings for what concerns payments and permissions."
+msgstr ""
+"Sommige gebruikers verdienen meer of minder dan anderen: ze kunnen "
+"persoonlijke instellingen hebben voor betalingen en rechten."
+
+#: classes/ppc_welcome_class.php:159
+msgid "Import/Export settings"
+msgstr "Import/Export instellingen "
+
+#: classes/ppc_welcome_class.php:160
+msgid ""
+"Exporting and importing settings makes duplicating settings easy! You can "
+"copy them from a user to another or even from different websites."
+msgstr ""
+"Ex- en import instellingen maakt het dupliceren van instellingen "
+"eenvoudiger. Je kunt ze copiëren van de ene gebruiker naar de andere of "
+"zelfs naar andere websites. "
+
+#: classes/ppc_welcome_class.php:167 classes/ppc_welcome_class.php:200
+msgid "Go to Post Pay Counter Settings"
+msgstr "Ga naar Post Pay Counter Instellingen"
+
+#: classes/ppc_welcome_class.php:192
+msgid "Version changes"
+msgstr "Versie wijzigingen"
+
+#: classes/ppc_welcome_class.php:218
+msgid "The springboard for the PRO"
+msgstr "De springplank voor de PRO"
+
+#: classes/ppc_welcome_class.php:223
+msgid "Analytics as visits source"
+msgstr "Analiytics as bezoekers bron "
+
+#: classes/ppc_welcome_class.php:224
+msgid ""
+"Use your account on the world-leading website visits tracking system to pay "
+"writers basing on reliable visits data. Use pageviews or unique pageviews as "
+"you like and stop the counting after a certain number of days."
+msgstr ""
+"Gebruik jouw account op 's werelds beste website traceer systeem om "
+"schrijvers te belonen op basis van betrouwbare bezoekers data. Gebruik "
+"pageviews of unieke pageviews en stop het tellen na een vooraf ingesteld "
+"aantal dagen. "
+
+#: classes/ppc_welcome_class.php:226
+msgid "Pay with Paypal"
+msgstr "Betaal met Paypal"
+
+#: classes/ppc_welcome_class.php:227
+msgid "Pay your writers directly from the stats page with Adaptive Payments."
+msgstr ""
+"Betaal jouw schrijvers direct vanuit de statistieken pagina met Adaptive "
+"Payments"
+
+#: classes/ppc_welcome_class.php:229
+msgid "Tons of other features"
+msgstr "Heel veel andere extra's"
+
+#: classes/ppc_welcome_class.php:230
+#, php-format
+msgid ""
+"The %1$sPRO version%2$s includes a damn more lot of interesting features, "
+"among which but not only: payment manager and payment history to keep track "
+"of past transactions, award payment bonus to single posts, shortcode for "
+"stats, stats exporting... see? There's not enough space to list them all!"
+msgstr ""
+"De %1$sPRO versie%2$s bevat veel meer interessante extra's, zoals een "
+"betalings manager en betalingslog dat voorafgaande betalingen bijhoudt, een "
+"bonus betaling per bericht, shortcodes voor statistieken, export van "
+"statistieken en meer.... Teveel om op te noemen!"
+
+#: classes/ppc_welcome_class.php:252
+msgid "No valid changelog was found."
+msgstr "Geen geldige changelog gevonden"
+
+#: classes/ppc_counting_types_class.php:203
+msgid "Basic"
+msgstr "Basis"
+
+#: classes/ppc_counting_types_class.php:213
+msgid "Words"
+msgstr "Woorden"
+
+#: classes/ppc_counting_types_class.php:223
+msgid "Visits"
+msgstr "Bezoeken"
+
+#: classes/ppc_counting_types_class.php:233
+msgid "Images"
+msgstr "Afbeeldingen"
+
+#: classes/ppc_counting_types_class.php:243
+msgid "Comments"
+msgstr "Berichten"
+
+#: classes/ppc_install_functions_class.php:286
+msgid "Could not add general settings option."
+msgstr "Kan de optie niet toevoegen aan de algemene instellingen."
+
+#: classes/ppc_install_functions_class.php:295
+msgid "Could not update general settings option."
+msgstr "Kan de algemene instellingen niet wijzigen. "

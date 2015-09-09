@@ -22,11 +22,10 @@ class PPC_permissions {
     function __call( $permission, $args ) {
         global $current_user;
 		
-		if( isset( $args[0] ) ) {
+		if( isset( $args[0] ) )
 			$user = $args[0];
-		} else {
+		else
 			$user = $current_user->ID;
-		}
         
 		//High-level users override permissions.
         /*if( current_user_can( 'manage_options' ) ) {
@@ -34,11 +33,10 @@ class PPC_permissions {
         }*/
         
         $settings = PPC_general_functions::get_settings( $user );
-        if( $settings[$permission] == 1 ) {
+        if( $settings[$permission] == 1 )
             return true;
-        } else {
+        else
             return false;
-        }
     }
 }
 ?>

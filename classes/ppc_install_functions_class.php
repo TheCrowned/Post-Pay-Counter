@@ -1,8 +1,11 @@
 <?php
 
 /**
+ * Install
+ * 
  * @author Stefano Ottolenghi
  * @copyright 2013
+ * @package	PPC
  */
 
 class PPC_install_functions {
@@ -283,7 +286,7 @@ class PPC_install_functions {
 			//Add option if not available, update it otherwise
             if( get_option( $ppc_global_settings['option_name'] ) === false ) {
                 if( ! add_option( $ppc_global_settings['option_name'], $default_settings['general'], '', 'no' ) ) {
-					$error = new PPC_Error( 'ppc_add_option_general_error', __( 'Could not add general settings option.', 'ppc' ), array( 
+					$error = new PPC_Error( 'ppc_add_option_general_error', __( 'Could not add general settings option.', 'post-pay-counter' ), array( 
 						'option_name' => $ppc_global_settings['option_name'], 
 						'old_settings' => $general_settings,
 						'default_settings' => $default_settings['general'] 
@@ -292,7 +295,7 @@ class PPC_install_functions {
 				}
             } else {
                 if( ! update_option( $ppc_global_settings['option_name'], $default_settings['general'] ) ) {
-					$error = new PPC_Error( 'ppc_update_option_general_error', __( 'Could not update general settings option.', 'ppc' ), array( 
+					$error = new PPC_Error( 'ppc_update_option_general_error', __( 'Could not update general settings option.', 'post-pay-counter' ), array( 
 						'option_name' => $ppc_global_settings['option_name'], 
 						'old_settings' => $general_settings,
 						'default_settings' => $default_settings['general'] 
@@ -304,13 +307,21 @@ class PPC_install_functions {
         
         //Grant current user all permissions by personalizing his user (if not already)
         $admin_settings = PPC_general_functions::get_settings( $current_user->ID );
-        if( $admin_settings['userid'] == 'general' ) {
-            update_user_option( $current_user->ID, $ppc_global_settings['option_name'], $default_settings['admin'] );
-        }
+        if( $admin_settings['userid'] == 'general' )
+            update_user_option( $current_user->ID, $ppc_global_settings['option_name'], $default_settings['admin'], true );
 		
 		//Add error log option
-		if( ! get_option( $ppc_global_settings['option_errors']  ) )
-			if( add_option( $ppc_global_settings['option_errors'], $errors, '', 'no' ) )
+		if( ! get_option( $ppc_global_settings['option_errors'] ) )
+			add_option( $ppc_global_settings['option_errors'], $errors, '', 'no' );
+		
+		//Add dismissed notification option
+		$dismissed = array(
+			"ppcp_publisher_bonus_available", 
+			"ppcp_facebook_available", 
+			"ppcp_stopwords_available"
+		);
+		if( ! get_option( "ppc_dismissed_notifications" ) )
+			add_option( "ppc_dismissed_notifications", $dismissed, '', 'no' );
         
 		//Set default permissions for acessing plugin pages
         PPC_general_functions::manage_cap_allowed_user_roles_plugin_pages( $default_settings['general']['can_see_options_user_roles'], $default_settings['general']['can_see_stats_user_roles'] );

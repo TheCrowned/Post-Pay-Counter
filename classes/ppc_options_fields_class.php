@@ -48,14 +48,12 @@ class PPC_options_fields {
             
     static function generate_checkbox_field( $setting, $name, $value, $id, $disabled ) {
         $disabled_html = '';
-		if( $disabled ) {
+		if( $disabled )
 			$disabled_html = ' disabled="disabled"';
-		}
 		
 		$checked_html = '';
-		if( $setting ) {
+		if( $setting )
             $checked_html = ' checked="checked"';
-        }
 		
 		return '<input type="checkbox" name="'.$name.'" value="'.$value.'" id="'.$id.'" '.$checked_html.$disabled_html.'/>';
     }
@@ -74,13 +72,13 @@ class PPC_options_fields {
     	global $ppc_global_settings; 
                     
         $html = '<div class="payment_systems">';
-        $html .= PPC_HTML_functions::echo_p_field( __( 'Use the zonal system' , 'ppc'), $settings['counting_'.$counting_type.'_system_zonal'], 'radio', 'counting_'.$counting_type.'_system', sprintf( __( 'With this system you can define up to how many zones of retribution you would like, so that from X %1$s to Y %1$s the same pay will be applied (eg. from 200 %1$s to 300 %1$s pay 2.00). It does not matter how many %1$s a post has, but only in what zone it fits in.' , 'ppc'), $counting_type_localized ), 'counting_'.$counting_type.'_system_zonal', 'counting_'.$counting_type.'_system_zonal' );
+        $html .= PPC_HTML_functions::echo_p_field( __( 'Use the zonal system' , 'post-pay-counter'), $settings['counting_'.$counting_type.'_system_zonal'], 'radio', 'counting_'.$counting_type.'_system', sprintf( __( 'With this system you can define up to how many zones of retribution you would like, so that from X %1$s to Y %1$s the same pay will be applied (eg. from 200 %1$s to 300 %1$s pay 2.00). It does not matter how many %1$s a post has, but only in what zone it fits in.' , 'post-pay-counter'), $counting_type_localized ), 'counting_'.$counting_type.'_system_zonal', 'counting_'.$counting_type.'_system_zonal' );
         $html .= '<div id="counting_'.$counting_type.'_system_zonal_content" class="field_value">';
         $html .= '<table style="border: none;">';
         $html .= '<thead>';
         $html .= '<tr>';
         $html .= '<th width="50%" align="left">'.ucfirst( $counting_type_localized ).'</th>';
-        $html .= '<th width="50%" align="left">'.__( 'Payment' , 'ppc').'</th>';
+        $html .= '<th width="50%" align="left">'.__( 'Payment' , 'post-pay-counter').'</th>';
         $html .= '</tr>';
         $html .= '</thead>';
         $html .= '<tbody>';
@@ -98,14 +96,14 @@ class PPC_options_fields {
         $html .= '</tbody>';
     	$html .= '</table>';
         $html .= '<div style="margin-left: 110px;">';
-        $html .= '<button id="counting_'.$counting_type.'_more_zones"><img src="'.$ppc_global_settings['folder_path'].'style/images/plus.png'.'" title="'.__( 'Add one more zone' , 'ppc').'" alt="'.__( 'Add one more zone' , 'ppc').'" width="10" /></button>';
-        $html .= '<button id="counting_'.$counting_type.'_less_zones"><img src="'.$ppc_global_settings['folder_path'].'style/images/minus.png'.'" title="'.__( 'Delete last zone' , 'ppc').'" alt="'.__( 'Delete last zone' , 'ppc').'" width="10" /></button>';
+        $html .= '<button id="counting_'.$counting_type.'_more_zones"><img src="'.$ppc_global_settings['folder_path'].'style/images/plus.png'.'" title="'.__( 'Add one more zone' , 'post-pay-counter').'" alt="'.__( 'Add one more zone' , 'post-pay-counter').'" width="10" /></button>';
+        $html .= '<button id="counting_'.$counting_type.'_less_zones"><img src="'.$ppc_global_settings['folder_path'].'style/images/minus.png'.'" title="'.__( 'Delete last zone' , 'post-pay-counter').'" alt="'.__( 'Delete last zone' , 'post-pay-counter').'" width="10" /></button>';
         $html .= '</div>';
         $html .= '</div>';
                 
-        $html .= PPC_HTML_functions::echo_p_field( __( 'Use the incremental payment system' , 'ppc'), $settings['counting_'.$counting_type.'_system_incremental'], 'radio', 'counting_'.$counting_type.'_system', sprintf( __( 'With this system, every %1$s has a value: more %1$s => higher pay. Just think that the %1$s number will be multiplied for the incremental payment value, so that is a post has 300 %1$s and you set the incremental payment value to 0.01, the writer will be credited with 3.' , 'ppc'), $counting_type_localized ), 'counting_'.$counting_type.'_system_incremental', 'counting_'.$counting_type.'_system_incremental' );
+        $html .= PPC_HTML_functions::echo_p_field( __( 'Use the incremental payment system' , 'post-pay-counter'), $settings['counting_'.$counting_type.'_system_incremental'], 'radio', 'counting_'.$counting_type.'_system', sprintf( __( 'With this system, every %1$s has a value: more %1$s => higher pay. Just think that the %1$s number will be multiplied for the incremental payment value, so that is a post has 300 %1$s and you set the incremental payment value to 0.01, the writer will be credited with 3.' , 'post-pay-counter'), $counting_type_localized ), 'counting_'.$counting_type.'_system_incremental', 'counting_'.$counting_type.'_system_incremental' );
         $html .= '<div id="counting_'.$counting_type.'_system_incremental_content" class="field_value">';
-        $html .= PPC_HTML_functions::echo_text_field( 'counting_'.$counting_type.'_system_incremental_value', $settings['counting_'.$counting_type.'_system_incremental_value'], __( 'Incremental payment value' , 'ppc'), 15 );
+        $html .= PPC_HTML_functions::echo_text_field( 'counting_'.$counting_type.'_system_incremental_value', $settings['counting_'.$counting_type.'_system_incremental_value'], __( 'Incremental payment value' , 'post-pay-counter'), 15 );
         $html .= '</div>';
         $html .= '</div>';
         

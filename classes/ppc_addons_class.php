@@ -35,10 +35,10 @@ class PPC_addons {
 		?>
 		<div class="wrap" id="ppc_addons">
 			<h2>
-				<?php _e( 'Addons for Post Pay Counter', 'ppc' ); ?>
-				&nbsp;&mdash;&nbsp;<a href="http://www.thecrowned.org/post-pay-counter-extensions?utm_source=users_site&utm_medium=addons_list&utm_campaign=ppc_addons" class="button-primary" title="<?php _e( 'Browse All Extensions', 'ppc' ); ?>" target="_blank"><?php _e( 'Browse All Extensions', 'ppc' ); ?></a>
+				<?php _e( 'Addons for Post Pay Counter', 'post-pay-counter' ); ?>
+				&nbsp;&mdash;&nbsp;<a href="http://www.thecrowned.org/post-pay-counter-extensions?utm_source=users_site&utm_medium=addons_list&utm_campaign=ppc_addons" class="button-primary" title="<?php _e( 'Browse All Extensions', 'post-pay-counter' ); ?>" target="_blank"><?php _e( 'Browse All Extensions', 'post-pay-counter' ); ?></a>
 			</h2>
-			<p><?php _e( 'These addons add more features to Post Pay Counter.', 'ppc' ); ?></p>
+			<p><?php _e( 'These addons add more features to Post Pay Counter.', 'post-pay-counter' ); ?></p>
 			<?php echo self::addons_get_list(); ?>
 		</div>
 		<?php
@@ -62,7 +62,7 @@ class PPC_addons {
 					set_transient( 'ppc_addons_list', $cache, 3600 );
 				}
 			} else {
-				$cache = '<div class="error"><p>' . __( 'There was an error retrieving the extensions list from the server. Please try again later.', 'ppc' ) . '</div>';
+				$cache = '<div class="error"><p>' . __( 'There was an error retrieving the extensions list from the server. Please try again later.', 'post-pay-counter' ) . '</div>';
 			}
 		}
 		return $cache;

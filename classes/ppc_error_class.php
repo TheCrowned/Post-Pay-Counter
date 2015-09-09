@@ -64,7 +64,7 @@ class PPC_Error {
 			}
 			
 			if( update_option( $ppc_global_settings['option_errors'], $errors ) )
-				$this->wp_error = new WP_Error( 'ppc_update_error_update', 'Could not update errors option.', 'ppc' );
+				$this->wp_error = new WP_Error( 'ppc_update_error_update', 'Could not update errors option.', 'post-pay-counter' );
         }
         
         $this->wp_error = new WP_Error( $error_details['code'], $error_details['output'], $data );

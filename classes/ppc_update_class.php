@@ -66,7 +66,7 @@ class PPC_update_class {
         $new_settings = array(  
             'general' => array(
 				'display_overall_stats' => 1,
-				'counting_visits_callbak_value' => ''
+				'counting_visits_callback_value' => ''
             ),
             
             'user' => array(
@@ -98,7 +98,7 @@ class PPC_update_class {
         
         if( $general_settings != $general_settings_old ) {
             if( ! update_option( $ppc_global_settings['option_name'], $general_settings ) ) {
-                $error = new PPC_Error( 'ppcp_update_settings_error', __( 'Error: could not update settings.', 'ppcp' ), array(
+                $error = new PPC_Error( 'ppcp_update_settings_error', __( 'Error: could not update settings.', 'post-pay-counter' ), array(
                     'settings' => $general_settings,
                     'settings_start' => $general_settings_old
                 ) );
@@ -135,7 +135,7 @@ class PPC_update_class {
    
             if( $user_settings != $user_settings_old ) {
     			if( ! update_user_option( $user, $ppc_global_settings['option_name'], $user_settings ) ) {
-    				$error = new PPC_Error( 'ppc_update_user_settings_error', __( 'Error: could not update user\'s settings.', 'ppcp' ), array(
+    				$error = new PPC_Error( 'ppc_update_user_settings_error', __( 'Error: could not update user\'s settings.', 'post-pay-counter' ), array(
                         'settings' => $user_settings,
                         'settings_start' => $user_settings_old
                     ) );

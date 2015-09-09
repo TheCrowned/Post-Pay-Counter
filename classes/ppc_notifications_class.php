@@ -30,7 +30,7 @@ class PPC_notifications {
     	?>
     
 <div id="<?php echo $this->current_notification['id']; ?>" class="updated fade ppc_notification">
-	<p><?php echo $this->current_notification['text']; ?> <a href="" class="ppc_dismiss_notification" accesskey="<?php echo $this->current_notification['id']; ?>" title="<?php _e( 'Dismiss', 'ppc' ); ?>"><?php _e( 'Dismiss', 'ppc' ); ?></a></p>
+	<p><?php echo $this->current_notification['text']; ?> <a href="" class="ppc_dismiss_notification" accesskey="<?php echo $this->current_notification['id']; ?>" title="<?php _e( 'Dismiss', 'post-pay-counter' ); ?>"><?php _e( 'Dismiss', 'post-pay-counter' ); ?></a></p>
 </div>
 	
 <script type="text/javascript">
@@ -78,7 +78,7 @@ jQuery(document).ready( function($) {
 				new PPC_Error( "ppc_notifications_get_remote_error", $feed->get_error_message(), $feed->get_error_code() ); //log error
 			}
 			
-			set_transient( 'ppc_notifications_list', $notifications, 3600*6 ); //log even if error to avoid making too mani requests
+			set_transient( 'ppc_notifications_list', $notifications, 3600*6 ); //log even if error to avoid making too many requests
 		}
 		
 		return apply_filters( 'ppc_notifications_get_list', $notifications );

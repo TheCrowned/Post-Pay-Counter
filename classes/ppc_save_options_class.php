@@ -70,12 +70,13 @@ class PPC_save_options {
         $new_settings['counting_comments_system_incremental_value'] = (float) str_replace( ',', '.', $settings['counting_comments_system_incremental_value'] );
         $new_settings['counting_payment_total_threshold'] = (float) str_replace( ',', '.', $settings['counting_payment_total_threshold'] );
         
-		if( $new_settings['counting_visits_callback'] AND isset( $settings['counting_visits_callback_value'] ) ) {
+		if( isset( $settings['counting_visits_callback_value'] ) AND $settings['counting_visits_callback_value'] != "" ) {
 			$settings['counting_visits_callback_value'] = trim( $settings['counting_visits_callback_value'] );
 			
 			//Check if callback is valid
-			if( @call_user_func( PPC_counting_types::get_visits_callback_function( $settings['counting_visits_callback_value'] ), get_posts( array( 'posts_per_page' => 1, 'orderby' => 'rand' ) ) ) === NULL )
-				return new WP_Error( 'ppc_invalid_visits_callback', __( 'The specified visits callback returned NULL for a random post - are you sure it is correct?', 'ppc' ), array( $settings['counting_visits_callback_value'] ) );
+			$rand_post = get_posts( array( 'posts_per_page' => 1, 'orderby' => 'rand' ) );
+			if( call_user_func( PPC_counting_types::get_visits_callback_function( $settings['counting_visits_callback_value'] ), current( $rand_post ) ) === NULL )
+				return new WP_Error( 'ppc_invalid_visits_callback', __( 'The specified visits callback returned NULL for a random post - are you sure it is correct?', 'post-pay-counter' ), array( $settings['counting_visits_callback_value'] ) );
 			
 			$new_settings['counting_visits_callback_value'] = $settings['counting_visits_callback_value'];
 		}
@@ -210,11 +211,11 @@ class PPC_save_options {
         if( is_numeric( $userid ) ) {
             $settings['userid'] = (int) $settings['userid'];
             if( ! $update = update_user_option( $userid, $ppc_global_settings['option_name'], $settings ) ) {
-                return new WP_Error( 'save_user_settings_error', __( 'Error: could not update settings.' , 'ppc') );
+                return new WP_Error( 'save_user_settings_error', __( 'Error: could not update settings.' , 'post-pay-counter') );
             }
         } else if( $userid == 'general' ) {
             if( ! $update = update_option( $ppc_global_settings['option_name'], $settings ) ) {
-                return new WP_Error( 'save_general_settings_error', __( 'Error: could not update settings.' , 'ppc') );
+                return new WP_Error( 'save_general_settings_error', __( 'Error: could not update settings.' , 'post-pay-counter') );
             }
             $ppc_global_settings['general_settings'] = $settings;
         }

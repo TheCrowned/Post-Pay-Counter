@@ -23,7 +23,7 @@ class PPC_ajax_functions {
     
     static function ppc_check_ajax_referer( $nonce ) {
         if( ! check_ajax_referer( $nonce, false, false ) )
-            die( __( 'Error: Seems like AJAX request was not recognised as coming from the right page. Maybe hacking around..?' , 'ppc') );
+            die( __( 'Error: Seems like AJAX request was not recognised as coming from the right page. Maybe hacking around..?' , 'post-pay-counter') );
     }
     
     /**
@@ -120,7 +120,7 @@ class PPC_ajax_functions {
         
         $users_to_show = new WP_User_Query( $args );
 		if( $users_to_show->get_total() == 0 )
-            die( __( 'No users found.' , 'ppc') );
+            die( __( 'No users found.' , 'post-pay-counter') );
         
         $n = 0;
         $html = '';
@@ -207,7 +207,7 @@ class PPC_ajax_functions {
                 echo 'ok';
         
         } else {
-            _e( 'What are you importing, cows?', 'ppc' );
+            _e( 'What are you importing, cows?', 'post-pay-counter' );
         }
         
         exit;
@@ -228,7 +228,7 @@ class PPC_ajax_functions {
         
         if( get_option( $ppc_global_settings['option_errors'] ) ) {
             if( ! update_option( $ppc_global_settings['option_errors'], array() ) )
-                die( __( 'Error: could not clear error log.', 'ppc' ) );
+                die( __( 'Error: could not clear error log.', 'post-pay-counter' ) );
         }
         
         die( 'ok' );
@@ -250,10 +250,10 @@ class PPC_ajax_functions {
         if( ! $dismissed = get_option( 'ppc_dismissed_notifications' ) )
 			$dismissed = array();
         
-	$dismissed[$_REQUEST['id']] = $_REQUEST['id'];
-	update_option( 'ppc_dismissed_notifications', $dismissed );
-	
-	die( 'ok' );
+		$dismissed[$_REQUEST['id']] = $_REQUEST['id'];
+		update_option( 'ppc_dismissed_notifications', $dismissed );
+		
+		die( 'ok' );
     }
 }
 ?>

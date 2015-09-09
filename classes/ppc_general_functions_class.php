@@ -3,6 +3,7 @@
 /**
  * @author Stefano Ottolenghi
  * @copyright 2013
+ * @package	PPC
  */
 
 require_once( 'ppc_permissions_class.php' );
@@ -207,7 +208,7 @@ class PPC_general_functions {
         else if( $settings['default_stats_time_range_custom'] == 1 )
             $ppc_global_settings['stats_tstart'] = strtotime( '00:00:00' ) - ( $settings['default_stats_time_range_custom_value']*24*60*60 );
         
-        $ppc_global_settings['stats_tend'] = ( strtotime( '23:59:59' )+2 ); //seems to fix UTC-time zones delays
+        $ppc_global_settings['stats_tend'] = ( strtotime( '23:59:59' ) ); 
     }
 	
 	/**

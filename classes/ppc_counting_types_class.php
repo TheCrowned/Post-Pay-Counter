@@ -200,7 +200,7 @@ class PPC_counting_types {
         
         $built_in_counting_types[] = array(
             'id' => 'basic',
-            'label' => __( 'Basic', 'ppc' ),
+            'label' => __( 'Basic', 'post-pay-counter' ),
             'apply_to' => 'post',
             'settings_status_index' => 'basic_payment',
             'display' => 'none',
@@ -210,7 +210,7 @@ class PPC_counting_types {
     
         $built_in_counting_types[] = array(
             'id' => 'words',
-            'label' => __( 'Words', 'ppc' ),
+            'label' => __( 'Words', 'post-pay-counter' ),
             'apply_to' => 'post',
             'settings_status_index' => 'counting_words',
             'display' => 'count',
@@ -220,7 +220,7 @@ class PPC_counting_types {
     
         $built_in_counting_types[] = array(
             'id' => 'visits',
-            'label' => __( 'Visits', 'ppc' ),
+            'label' => __( 'Visits', 'post-pay-counter' ),
             'apply_to' => 'post',
             'settings_status_index' => 'counting_visits',
             'display' => 'count',
@@ -230,7 +230,7 @@ class PPC_counting_types {
     
         $built_in_counting_types[] = array(
             'id' => 'images',
-            'label' => __( 'Images', 'ppc' ),
+            'label' => __( 'Images', 'post-pay-counter' ),
             'apply_to' => 'post',
             'settings_status_index' => 'counting_images',
             'display' => 'count',
@@ -240,7 +240,7 @@ class PPC_counting_types {
     
         $built_in_counting_types[] = array(
             'id' => 'comments',
-            'label' => __( 'Comments', 'ppc' ),
+            'label' => __( 'Comments', 'post-pay-counter' ),
             'apply_to' => 'post',
             'settings_status_index' => 'counting_comments',
             'display' => 'count',
