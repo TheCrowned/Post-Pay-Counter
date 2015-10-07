@@ -424,7 +424,7 @@ A paid addon to Post Pay Counter, PRO, will be released soon, adding more new fe
 * The exported CSV files now have a little introduction with the site name and address and also report the total counting at the bottom (total payment and total posts).
 
 = 1.1.9 =
-* Changes to counting routine grant wider compatibility: Greek charachters are now supported.
+* Changes to counting routine grant wider compatibility: Greek characters are now supported.
 
 = 1.1.8 =
 * Bug from previous release made impossible to update settings because of two MySQL columns missing. Should be fixed now.
