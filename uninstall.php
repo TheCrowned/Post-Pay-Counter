@@ -23,8 +23,13 @@ function ppc_uninstall_procedure() {
 		delete_user_option( $user_id, 'ppc_settings' );
 	}
 
-if( get_option( 'ppc_dismissed_notifications' ) )
+	if( get_option( 'ppc_dismissed_notifications' ) )
         delete_option( 'ppc_dismissed_notifications' );
+		
+	//Deletes cron job for license validity check
+	if( wp_next_scheduled( 'ppcp_cron_check_activation' ) )
+		wp_clear_scheduled_hook( 'ppcp_cron_check_activation' );
+	
 }
 
 //If working on a multisite blog, get all blog ids, foreach them and call the uninstall procedure on each of them

@@ -104,7 +104,7 @@ class PPC_counting_stuff {
         
         foreach( $ppc_global_settings['counting_types_object']->get_active_counting_types( 'post', $post->post_author ) as $id => $single_counting ) {
             if( ! isset( $single_counting['payment_only'] ) OR $single_counting['payment_only'] == false ) {
-				$counting_type_count = call_user_func( $single_counting['count_callback'], $post );
+            	$counting_type_count = call_user_func( $single_counting['count_callback'], $post );
 				$ppc_count['normal_count'][$id] = $counting_type_count;
 			}
         }
@@ -225,17 +225,19 @@ class PPC_counting_stuff {
             'to_count' => 0 
         );
         
-	//Strip tags & content with class="ppc_exclude_words" (doesn't handle nested tags, ie <div class="ppc_exclude_posts">some content <div class="nested">nested content</div> this will already be counted</div>
-	$post->post_content = preg_replace( '/<([^>]*) [^>]*class=("|\')ppc_exclude_words("|\')[^>]*>(.*?)<\/\1>/s', '', $post->post_content );
+		$post->post_content = apply_filters( 'ppc_count_post_words_post_content_start', $post->post_content );
+
+		//Strip tags & content with class="ppc_exclude_words" (doesn't handle nested tags, ie <div class="ppc_exclude_posts">some content <div class="nested">nested content</div> this will already be counted</div>
+		$post->post_content = preg_replace( '/<([^>]*) [^>]*class=("|\')ppc_exclude_words("|\')[^>]*>(.*?)<\/\1>/s', '', $post->post_content );
 		
         if( self::$settings['counting_exclude_quotations'] )
             $post->post_content = preg_replace( '/<(blockquote|q)>(.*?)<\/(blockquote|q)>/s', '', $post->post_content );
 
-	$purged_content = apply_filters( 'ppc_clean_post_content_word_count', preg_replace( '/[.(),;:!?%#$"_+=\\/-]+/', '', trim( preg_replace( '/\'|&nbsp;|&#160;|\r|\n|\r\n|\s+/', ' ',  strip_tags( $post->post_content ) ) ) ) ); //need to trim to remove final new lines
+		$purged_content = apply_filters( 'ppc_clean_post_content_word_count', preg_replace( '/[.(),;:!?%#$"_+=\\/-]+/', '', trim( preg_replace( '/\'|&nbsp;|&#160;|\r|\n|\r\n|\s+/', ' ',  strip_tags( $post->post_content ) ) ) ) ); //need to trim to remove final new lines
 
-	$post_words['real'] = count( preg_split( '/\s+/', $purged_content, -1, PREG_SPLIT_NO_EMPTY ) );
+		$post_words['real'] = count( preg_split( '/\s+/', $purged_content, -1, PREG_SPLIT_NO_EMPTY ) );
 		
-	if( self::$settings['counting_words_threshold_max'] > 0 AND $post_words['real'] > self::$settings['counting_words_threshold_max'] )
+		if( self::$settings['counting_words_threshold_max'] > 0 AND $post_words['real'] > self::$settings['counting_words_threshold_max'] )
             $post_words['to_count'] = self::$settings['counting_words_threshold_max'];
         else
             $post_words['to_count'] = $post_words['real'];
@@ -346,7 +348,8 @@ class PPC_counting_stuff {
 		
         foreach( $countings as $id => $value ) {
             if( isset( $counting_types[$id] ) ) {
-				if( isset( $counting_types[$id]['payment_only'] ) AND $counting_types[$id]['payment_only'] == true ) continue;
+				if( isset( $counting_types[$id]['payment_only'] ) AND $counting_types[$id]['payment_only'] == true ) continue; //these are dealt with in get_post_payment
+				if( isset( $counting_types[$id]['other_params']['not_to_pay'] ) AND $counting_types[$id]['other_params']['not_to_pay'] ) continue;
 				
                 $counting_type_payment = call_user_func( $counting_types[$id]['payment_callback'], $value );
                 $ppc_payment[$id] = $counting_type_payment;
@@ -373,22 +376,14 @@ class PPC_counting_stuff {
         
         $tooltip = '';
         
-		$post_counting_types = $ppc_global_settings['counting_types_object']->get_active_counting_types( 'post', self::$being_processed_author );
-		$author_counting_types = $ppc_global_settings['counting_types_object']->get_active_counting_types( 'author', self::$being_processed_author );
-		$counting_types = array_merge( $post_counting_types, $author_counting_types);
-		
         if( ! empty( $payment ) ) {
 			foreach( $payment as $id => $value ) { 
-				if( isset( $counting_types[$id] ) ) {
-					if( ! isset( $counting_types[$id]['payment_only'] ) OR $counting_types[$id]['payment_only'] == false ) {
-						if( is_numeric( $countings[$id]['to_count'] ) )
-							$countings[$id]['to_count'] = round( $countings[$id]['to_count'], 3 );
-					
-						$tooltip .= $counting_types[$id]['label'].': '.$countings[$id]['to_count'].' => '.PPC_general_functions::format_payment( sprintf( '%.2f', $value ) ).'&#13;';
-					} else {
-						$tooltip .= $counting_types[$id]['label'].': '.PPC_general_functions::format_payment( sprintf( '%.2f', $payment[$id] ) ).'&#13;';
-					}
-				}
+				if( $id == 'total' ) continue;
+				
+				if( is_numeric( $countings[$id]['to_count'] ) )
+					$countings[$id]['to_count'] = round( $countings[$id]['to_count'], 3 );
+			
+				$tooltip .= ucfirst( $id ).': '.$countings[$id]['to_count'].' => '.PPC_general_functions::format_payment( sprintf( '%.2f', $value ) ).'&#13;';
 			}
 		}
 		

@@ -177,5 +177,72 @@ jQuery(document).ready(function($) {
         });
     });
     /* </ERROR LOG> */
+	
+	/* <LICENSE BOX CALLS> */
+    $('.ppcp_license_deactivate').on('click', function(e) {
+        e.preventDefault();
+		
+		var agree = confirm(ppc_options_ajax_stuff_vars.localized_license_deactivate_warning);
+		if(!agree) { return false; }
+		
+		var clicked = $(this);
+		
+        $('#ppcp_license_ajax_loader').css('display', 'inline');
+        clicked.attr('disabled', 'disabled');
+		$('#ppcp_license_error').css('display', 'none');
+		
+        var data = {
+            action: "ppcp_license_deactivate",
+			plugin_slug: clicked.attr('accesskey'),
+            _ajax_nonce: ppc_options_ajax_stuff_vars.nonce_ppc_license_key_deactivate
+        };
+        
+        $.post(ajaxurl, data, function(response) {
+            $('#ppcp_license_ajax_loader').css('display', 'none');
+            
+            if(response.indexOf('ok') < 0) {
+				clicked.removeAttr('disabled');
+				$('#ppcp_license_error').css('display', 'inline');
+                $('#ppcp_license_error').html(response);
+            } else {
+                clicked.closest('tr').fadeOut();
+            }
+        });
+    });
+    
+    $('#ppcp_license_key').bind('input', function() {
+        if($('#ppcp_license_key').val() != '') {
+            $('#ppcp_license_key_submit').removeAttr('disabled');
+        } else {
+            $('#ppcp_license_key_submit').attr('disabled', 'disabled');
+        }
+    });
+    
+    $('#ppcp_license_key_submit').on('click', function(e) {
+        e.preventDefault();
+        $('#ppcp_license_ajax_loader').css('display', 'inline');
+		$('#ppcp_license_error').css('display', 'none');
+        $('#ppcp_license_key').attr('disabled', 'disabled');
+        $('#ppcp_license_key_submit').attr('disabled', 'disabled');
+        
+        var data = {
+            action: "ppcp_license_activate",
+            _ajax_nonce: ppc_options_ajax_stuff_vars.nonce_ppc_license_key_activate,
+            license_key: $('#ppcp_license_key').val()
+        };
+        
+        $.post(ajaxurl, data, function(response) {
+			$('#ppcp_license_ajax_loader').css('display', 'none');
+			
+            if(response.indexOf('ok') < 0) {
+                $('#ppcp_license_key_submit').removeAttr('disabled');
+                $('#ppcp_license_key').removeAttr('disabled');
+				$('#ppcp_license_error').css('display', 'inline');
+                $('#ppcp_license_error').html(response);
+            } else {
+				$('#ppcp_license_success').css('display', 'inline');
+            }
+        });
+    });
 
 });

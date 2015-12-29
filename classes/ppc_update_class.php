@@ -146,6 +146,10 @@ class PPC_update_class {
     		
 		//$general_settings = PPC_general_functions::get_settings( 'general' );
 		
+		//License cron check
+        if( ! wp_next_scheduled( 'ppcp_cron_check_activation' ) )
+			wp_schedule_event( time(), 'weekly2', 'ppcp_cron_check_activation' );
+		
 		PPC_general_functions::manage_cap_allowed_user_roles_plugin_pages( $general_settings['can_see_options_user_roles'], $general_settings['can_see_stats_user_roles'] );
 		
         update_option( 'ppc_current_version', $ppc_global_settings['newest_version'] );

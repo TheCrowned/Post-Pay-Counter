@@ -2,10 +2,9 @@
 Contributors: Ste_95
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22
 Tags: counter, authors, payment, revenue sharing, stats, multi author, post management, post
-Tested up to: 4.3
-Stable tag: 2.508
+Tested up to: 4.4
+Stable tag: 2.512
 Requires at least: 3.7
-Text Domain: post-pay-counter
 
 Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
 
@@ -20,27 +19,29 @@ Features include:
 * Old stats availability. View posts countings since the first written post, disregarding the plugin install date. A fancy date picker lets you shift between days and select the desired range.
 * Personalize user's settings, so that special settings only apply to a particular user. Different settings can be made viewable in the stats or hidden depending on your needs.
 * Customizable permissions to prevent your users to see stats and use functions they are not supposed to.
-* Extend with your own custom implementation through hooks, filters and special API features.
+* Extend with your own custom implementation through hooks, filters and special API features ([learn more](http://postpaycounter.com/add-custom-payment-types-post-pay-counter-stats)).
 * And... works with custom post types, narrow your payments only to chosen user groups, and more.
 
 [GitHub repository](https://github.com/TheCrowned/Post-Pay-Counter/) (wanna join us coding?)
 
 = Integrate with Analytics/Adsense and pay with PayPal =
-The [PRO version](http://www.thecrowned.org/post-pay-counter-pro?utm_source=wprep&utm_medium=link&utm_campaign=ppcp) includes Analytics visits payment, Adsense Revenues sharing and PayPal payments. Among other stuff, it also allows to keep a convenient log of past payments and to display stats in public pages through a shortcode. 
+The [PRO version](http://postpaycounter.com/post-pay-counter-pro?utm_source=wprep&utm_medium=link&utm_campaign=ppcp) includes Analytics visits payment, Adsense Revenues sharing and PayPal payments. Among other stuff, it also allows to keep a convenient log of past payments and to display stats in public pages through a shortcode. 
 
 = Integrate with Facebook =
-The [Facebook addon](http://www.thecrowned.org/facebook-pay-per-social-interactions-shares-likes-and-comments?utm_source=wprep&utm_medium=link&utm_campaign=ppcp_fb) allows to pay posts for the Facebook shares and comments they receive.
+The [Facebook addon](http://postpaycounter.com/facebook-pay-per-social-interactions-shares-likes-and-comments?utm_source=wprep&utm_medium=link&utm_campaign=ppcp_fb) allows to pay posts for the Facebook shares and comments they receive.
 
-Browse [all extensions](http://www.thecrowned.org/post-pay-counter-extensions?utm_source=wprep&utm_medium=description&utm_campaign=ppc_addons).
+Browse [all extensions](http://postpaycounter.com/addons?utm_source=wprep&utm_medium=description&utm_campaign=ppc_addons).
 
 = Available languages =
-Post Pay Counter has been translated into these languages:
+Post Pay Counter has been translated into the following languages:
 
 * English
 * German ([Julian Beck](http://inside11.de/))
 * Dutch (Elza van Swieten)
 * Italian (Stefano Ottolenghi)
 * Portoguese (Marco Dantas)
+* Turkish (Kamer DINC)
+* Czech (Jiří Kučera)
 
 If you want to **translate it in your own language** and get a discount on the PRO version, [contact us](http://www.thecrowned.org/contact-me)!
 
@@ -54,7 +55,7 @@ If you want to **translate it in your own language** and get a discount on the P
 
 == Frequently Asked Questions ==
 = You said I could pay per visit. How do I do that? =
-There's an [apt tutorial here](http://www.thecrowned.org/pay-writers-per-visit-wordpress). However, note that Post Pay Counter does not keep track of visits, it can only keep it in mind when computing the payment. You either need to have a plugin who keeps track of visits, and put the post_meta name of the field in which it stores the visits (must be a number), or get the PRO version of Post Pay Counter and use your Google Analytics account to get visits data.
+There's an [apt tutorial here](http://postpaycounter.com/pay-writers-per-visit-wordpress). However, note that Post Pay Counter does not keep track of visits, it can only keep it in mind when computing the payment. You either need to have a plugin who keeps track of visits, and put the post_meta name of the field in which it stores the visits (must be a number), or get the PRO version of Post Pay Counter and use your Google Analytics account to get visits data.
 
 = I installed the plugin but it does not show up in the menu. Also, if I go to the settings page, it says I am not authorized =
 That is probably due to a permissions manager plugin you have on your blog. Check that capabilities *post_pay_counter_access_stats* and *post_pay_counter_manage_options* are correctly assigned and working.
@@ -77,6 +78,24 @@ It must become: *define( 'PPC_DEBUG_LOG', false );*
 5. The tooltip with all the counting details
 
 == Changelog ==
+= 2.512 =
+* Fixed: notification dismissing not fading out immediately but only at subsequent page load.
+* Fixed: notifications being displayed on all admin pages instead of just on plugin pages.
+* Fixed: new notification not being displayed.
+
+= 2.511 =
+* New: all addons are now compatible with the free version alone, no need to get the PRO if you just need features from another addon (we moved to a [new site](http://postpaycounter.com)).
+* Tweak: sped up tooltip generation.
+* Tweak: removed penguins logo in stats/options page.
+
+= 2.510 =
+* New: added Turkish translation (Kamer DINC).
+* New: added Czech translation (Jiří Kučera).
+* Tweak: backend improvements (new filters/actions/stuff like that).
+
+= 2.509 =
+* Fixed: last update broke localization.
+
 = 2.508 =
 * Fixed: PHP warnings when payments consisting of only Bonus would be done.
 * Fixed: (hopefully for real): possible fatal error due to too many redirects on update.

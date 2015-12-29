@@ -128,6 +128,10 @@ class PPC_HTML_functions {
 			<th scope="col"><?php echo $value; ?></th>
 			
 			<?php
+			if( is_array( $author ) )
+				do_action( 'ppc_general_stats_html_cols_after_'.$col_id );
+			else
+				do_action( 'ppc_author_stats_html_cols_after_default'.$col_id );
         }
         
         if( is_array( $author ) )
@@ -149,6 +153,10 @@ class PPC_HTML_functions {
 			<th scope="col"><?php echo $value; ?></th>
 			
 			<?php
+			if( is_array( $author ) )
+				do_action( 'ppc_general_stats_html_cols_after_'.$col_id );
+			else
+				do_action( 'ppc_author_stats_html_cols_after_default'.$col_id );
         }
         
         if( is_array( $author ) )
@@ -242,6 +250,7 @@ class PPC_HTML_functions {
 					}
 					
 					$html .= '<td class="'.$field_name.'">'.$field_value.'</td>';
+					$html = apply_filters( 'ppc_author_stats_'.$filter_name.'_after_'.$field_name, $html, $author, $formatted_stats, $post );
 				}
 		
 				$html = apply_filters( 'ppc_author_stats_'.$filter_name.'_after_each_default_filter', $html, $author, $formatted_stats, $post );
@@ -294,6 +303,7 @@ class PPC_HTML_functions {
 						}
 						
 						$html .= '<td class="'.$field_name.'">'.$field_value.'</td>';
+						$html = apply_filters( 'ppc_general_stats_'.$filter_name.'_after_'.$field_name, $html, $author, $formatted_stats, $raw_stats );
 							
 					} else {
 						$html .= '<td class="'.$field_name.'">'.apply_filters( 'ppc_general_stats_each_field_empty_value', 'N.A.', $field_name, $raw_stats[$author] ).'</td>';

@@ -19,7 +19,7 @@ class PPC_meta_boxes {
     static function meta_box_pro_features() { 
         $pro_features = array(
             __( 'Google Analytics' , 'post-pay-counter') => __( 'use your account on the world-leading website visits tracking system to pay writers per visit.' , 'post-pay-counter' ),
-		__( 'Google Adsense' , 'post-pay-counter') => __( 'share a percentage of your ads revenues with writers, depending on how much their posts earn.' , 'post-pay-counter' ),
+            __( 'Google Adsense' , 'post-pay-counter') => __( 'share a percentage of your ads revenues with writers, depending on how much their posts earn.' , 'post-pay-counter' ),
 			__( 'PayPal', 'post-pay-counter') => __( 'pay your writers with PayPal directly through your blog.' , 'post-pay-counter' ),
             __( 'Mark as paid' , 'post-pay-counter') => __( 'keep track of your writers\' past payments by marking posts as paid and reviewing payments from a detailed history. Let the plugin keep track of how much each writer should be paid basing on past payments.' , 'post-pay-counter' ),
             __( 'Csv export', 'post-pay-counter') => __( 'download stats for offline consulting or storing.' , 'post-pay-counter' ),
@@ -27,7 +27,7 @@ class PPC_meta_boxes {
 			__( 'Stats in post editing page', 'post-pay-counter' ) => __( 'see post stats in edit page and exclude individual posts from stats.', 'post-pay-counter' )
         );
         
-        printf( '<p>'.__( 'There are so many things you are missing by not running the PRO version of the Post Pay Counter! Remember that PRO features are always %1$sone click away%2$s!' , 'post-pay-counter'), '<a target="_blank" href="http://www.thecrowned.org/post-pay-counter-pro" title="Post Pay Counter PRO">', '</a>' ).':</p>';
+        printf( '<p>'.__( 'There are so many things you are missing by not running the PRO version of the Post Pay Counter! Remember that PRO features are always %1$sone click away%2$s!' , 'post-pay-counter'), '<a target="_blank" href="http://postpaycounter.com/post-pay-counter-pro" title="Post Pay Counter PRO">', '</a>' ).':</p>';
         
         echo '<ul style="margin: 0 0 15px 2em;">';
         
@@ -36,7 +36,7 @@ class PPC_meta_boxes {
 			
         echo '</ul>';
         
-        printf( '<p>'.__( 'Something you would like is missing? Complete the %1$sfeatures survey%2$s and let us know what our priorities should be!', 'post-pay-counter'), '<a target="_blank" href="http://www.thecrowned.org/post-pay-counter-pro-features-survey" title="Post Pay Counter PRO - '.__( 'Features survey', 'post-pay-counter' ).'">', '</a>' ).'</p>';
+        printf( '<p>'.__( 'Something you would like is missing? Complete the %1$sfeatures survey%2$s and let us know what our priorities should be!', 'post-pay-counter'), '<a target="_blank" href="http://postpaycounter.com/post-pay-counter-pro/post-pay-counter-pro-features-survey" title="Post Pay Counter PRO - '.__( 'Features survey', 'post-pay-counter' ).'">', '</a>' ).'</p>';
     }
     
     /**
@@ -51,10 +51,10 @@ class PPC_meta_boxes {
         
         echo '<p>'.__( 'If you like the Post Pay Counter, there are a couple of crucial things you can do to support its development' , 'post-pay-counter').':</p>';
         echo '<ul style="margin: 0 0 15px 2em; padding: 0">';
-        echo '<li style="list-style-image: url(\''.$ppc_global_settings['folder_path'].'style/images/pro.png\');"><a target="_blank" href="http://www.thecrowned.org/post-pay-counter-pro?utm_source=users_site&utm_medium=options_support_author&utm_campaign=ppcp" title="'.__( 'Go PRO' , 'post-pay-counter').'"><strong>'.__( 'Go PRO' , 'post-pay-counter').'</strong></a>. '.__( 'Try the PRO version: more functions, more stuff!' , 'post-pay-counter').'</li>';
+        echo '<li style="list-style-image: url(\''.$ppc_global_settings['folder_path'].'style/images/pro.png\');"><a target="_blank" href="http://postpaycounter.com/post-pay-counter-pro?utm_source=users_site&utm_medium=options_support_author&utm_campaign=ppcp" title="'.__( 'Go PRO' , 'post-pay-counter').'"><strong>'.__( 'Go PRO' , 'post-pay-counter').'</strong></a>. '.__( 'Try the PRO version: more functions, more stuff!' , 'post-pay-counter').'</li>';
         echo '<li style="list-style-image: url(\''.$ppc_global_settings['folder_path'].'style/images/paypal.png\');"><a target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22" title="'.__( 'Donate money' , 'post-pay-counter').'"><strong>'.__( 'Donate money' , 'post-pay-counter').'</strong></a>. '.__( 'Plugins do not write themselves: they need time and effort, and I give all of that free of charge. Donations of every amount are absolutely welcome.' , 'post-pay-counter').'</li>';
         echo '<li style="list-style-image: url(\''.$ppc_global_settings['folder_path'].'style/images/amazon.png\');">'.sprintf( __( 'Give me something from my %1$sAmazon Wishlist%2$s.' , 'post-pay-counter'), '<a target="_blank" href="http://www.amazon.it/registry/wishlist/1JWAS1MWTLROQ" title="Amazon Wishlist">', '</a>' ).'</li>';
-        echo '<li style="list-style-image: url(\''.$ppc_global_settings['folder_path'].'style/images/star.png\');">'.sprintf( __( 'Rate it in the %1$sWordpress Directory%3$s and share the %2$sofficial page%3$s.' , 'post-pay-counter'), '<a target="_blank" href="http://wordpress.org/extend/plugins/post-pay-counter/" title="Wordpress directory">', '<a target="_blank" href="http://www.thecrowned.org/wordpress-plugins/post-pay-counter" title="Official plugin page">', '</a>' ).'</li>';
+        echo '<li style="list-style-image: url(\''.$ppc_global_settings['folder_path'].'style/images/star.png\');">'.sprintf( __( 'Rate it in the %1$sWordpress Directory%3$s and share the %2$sofficial page%3$s.' , 'post-pay-counter'), '<a target="_blank" href="http://wordpress.org/extend/plugins/post-pay-counter/" title="Wordpress directory">', '<a target="_blank" href="http://postpaycounter.com" title="Official plugin page">', '</a>' ).'</li>';
         echo '<li style="list-style-image: url(\''.$ppc_global_settings['folder_path'].'style/images/write.png\');">'.__( 'Have a blog or write on some website? Write about the plugin and email me the review!' , 'post-pay-counter').'</li>';
         echo '</ul>';
     }
@@ -522,5 +522,97 @@ class PPC_meta_boxes {
         
         <?php
     }
-}
-?>
+	
+	/**
+     * Displays the metabox "License" in the Options page
+     *
+     * @access  public
+     * @since   2.511
+     * @param   $post object WP post object
+	 * @param	$current_settings plugin settings
+     */
+	
+    static function meta_box_license( $post, $current_settings ) {
+        global $ppc_global_settings;
+        $current_settings = $current_settings['args'];
+        
+        //License cron check
+        if( ! wp_next_scheduled( 'ppcp_cron_check_activation' ) )
+			wp_schedule_event( time(), 'weekly2', 'ppcp_cron_check_activation' );
+        ?>
+        
+        <p><?php printf( __( 'Whatever of our %1$splenty of addons%2$s you may have bought, this is the place to activate your license. Make sure you have already uploaded the addon files, activated it, and paste the license key you have received by email in the field below.', 'ppc' ), '<a target="_blank" href="'.admin_url( add_query_arg( array( 'page' => 'ppc-addons' ), 'admin.php' ) ).'" title="Post Pay Counter Addons">', '</a>' ); ?></p>
+		<p><em><?php _e( 'To activate your license key, the following data will be sent to the activation page: license key, website URL, blog language, plugin version. Twice a month the plugin will call home to check that your license is genuine and valid without asking for permission.', 'ppc'); ?></em></p>
+        <p>
+        <input type="text" name="ppcp_license_key" id="ppcp_license_key" size="40" />
+        <input type="button" name="ppcp_license_key_submit" id="ppcp_license_key_submit" value="<?php _e('Submit', 'ppc'); ?>" disabled="disabled" class="button-secondary" />
+        </p>
+        
+        <div class="ppc_section">
+        <div class="ppc_title"><?php _e( 'Your licenses' , 'ppc' ); ?></div>
+        
+        <?php
+        $licenses = array();
+        $licenses = apply_filters( 'ppcp_license_display_options_page', $licenses );
+        
+        if( count( $licenses ) == 0 ) {
+        ?>
+        
+        <p><?php _e( 'No licenses to display.', 'ppc'); ?></p>
+        
+        <?php } else { ?>
+        
+        <p><?php _e( 'Your licenses status is listed below, along with their details. You may want to deactivate one to use it on other websites (but you won\'t be able to use its features on this site anymore).', 'ppc'); ?></p>
+        <table class="widefat fixed">
+        	<thead>
+        		<tr>
+        			<th style="width: 30%"><?php _e( 'Addon', 'ppc' ); ?></th>
+        			<th><?php _e( 'Status', 'ppc' ); ?></th>
+        			<th style="width: 15%;"><?php _ex( 'Exp. time', '(license) Expiration time', 'ppc' ); ?></th>
+                    <th><?php _e( 'Deactivate', 'ppc' ); ?></th>
+        		</tr>
+        	</thead>
+        	<tbody>
+        
+            <?php
+            foreach( $licenses as $single ) {
+                if( ! isset( $single['expiration'] ) )
+					$status = '<span style="color: gray;">'.__( 'Unknown', 'ppc' ).'</span>';
+				else if( $single['expiration'] - current_time( 'timestamp' ) < 0 )
+                    $status = '<span style="color: red;">'.sprintf( __( 'Awfully sad - Expired | %1$sRenew%2$s', 'ppc' ), '<a target="_blank" href="'.$single['renewal_url'].'" title="'.__( 'Renew!', 'ppc' ).'">', '</a>' ).'</span>';
+                else if( $single['expiration'] - current_time( 'timestamp' ) < 3888000 ) //1.5 months
+                    $status = '<span style="color: orange;">'.sprintf( __( 'Anxious - In expiration | %1$sRenew%2$s', 'ppc' ), '<a target="_blank" href="'.$single['renewal_url'].'" title="'.__( 'Renew!', 'ppc' ).'">', '</a>' ).'</span>';
+                else if( $single['expiration'] - current_time( 'timestamp' ) > 3888000 )
+                    $status = '<span style="color: green;">'.__( 'Astonishingly happy', 'ppc' ).'</span>';
+                
+                if( ! $single['expiration'] )
+                    $expiration = 'N.A.';
+                else 
+                    $expiration = date( 'Y-m-d', $single['expiration'] );
+                ?>
+                
+                <tr>
+                    <td><?php echo $single['name']; ?></td>
+                    <td><?php echo $status ?></td>
+                    <td><?php echo $expiration ?></td>
+                    <td><input type="button" name="ppcp_license_deactivate" accesskey="<?php echo $single['slug']; ?>" class="button-secondary ppcp_license_deactivate" id="ppcp_license_deactivate" value="<?php _e( 'Deactivate license', 'ppc'); ?>" /></td>
+                </tr>
+                
+            <?php } ?>
+        
+            </tbody>
+        </table>
+        
+        <?php } ?>
+        
+        </div>
+        <div class="ppc_save_success" id="ppcp_license_success"><?php _e( 'Your license was successfully activated. Reload this page and enjoy!', 'ppc'); ?></div>
+        <div class="ppc_save_error" id="ppcp_license_error"></div>
+        <div class="ppc_save_settings">
+        <img src="<?php echo $ppc_global_settings['folder_path'].'style/images/ajax-loader.gif'; ?>" title="<?php _e( 'Loading', 'ppc'); ?>" alt="<?php _e( 'Loading', 'ppc'); ?>" class="ppc_ajax_loader" id="ppcp_license_ajax_loader" />
+        </div>
+        <div class="clear"></div>
+        
+        <?php
+    }
+}?>

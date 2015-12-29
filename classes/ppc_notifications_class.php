@@ -30,13 +30,13 @@ class PPC_notifications {
     	?>
     
 <div id="<?php echo $this->current_notification['id']; ?>" class="updated fade ppc_notification">
-	<p><?php echo $this->current_notification['text']; ?> <a href="" class="ppc_dismiss_notification" accesskey="<?php echo $this->current_notification['id']; ?>" title="<?php _e( 'Dismiss', 'post-pay-counter' ); ?>"><?php _e( 'Dismiss', 'post-pay-counter' ); ?></a></p>
+	<p><?php echo $this->current_notification['text']; ?> <a href="" class="ppc_dismiss_notification" id="ppc_dismiss_<?php echo $this->current_notification['id']; ?>" accesskey="<?php echo $this->current_notification['id']; ?>" title="<?php _e( 'Dismiss', 'post-pay-counter' ); ?>"><?php _e( 'Dismiss', 'post-pay-counter' ); ?></a></p>
 </div>
 	
 <script type="text/javascript">
 //<![CDATA[
 jQuery(document).ready( function($) {
-	$('.ppc_dismiss_notification').on('click', function(e) {
+	$('#ppc_dismiss_<?php echo $this->current_notification['id']; ?>').on('click', function(e) {
 		e.preventDefault();
 		
 		var clicked = $(this);
@@ -47,7 +47,7 @@ jQuery(document).ready( function($) {
 		};
 		
 		$.post(ajaxurl, data, function(response) {
-			if(response.indexOf('ok') < 0) {
+			if(response.indexOf('ok') >= 0) {
 				clicked.closest('div').fadeOut();
 			}
 		});
@@ -68,7 +68,7 @@ jQuery(document).ready( function($) {
 	 
 	static function notifications_get_list() {
 		if ( false === ( $notifications = get_transient( 'ppc_notifications_list' ) ) ) {
-			$feed = wp_remote_get( 'http://thecrowned.org/ppcp/features/ppcp_spit_html.php?notifications_list', array( 'timeout' => 3 ) );
+			$feed = wp_remote_get( 'http://postpaycounter.com/ppcp/features/ppcp_spit_html.php?notifications_list', array( 'timeout' => 3 ) );
             
 			if ( ! is_wp_error( $feed ) ) {
 				if ( isset( $feed['body'] ) && strlen( $feed['body'] ) > 0 )

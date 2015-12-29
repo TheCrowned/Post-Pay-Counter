@@ -50,7 +50,6 @@ PPC Version:              <?php echo $ppc_global_settings['current_version'] . "
 WordPress Version:        <?php echo get_bloginfo( 'version' ) . "\n"; ?>
 
 PHP Version:              <?php echo PHP_VERSION . "\n"; ?>
-MySQL Version:            <?php echo mysql_get_server_info() . "\n"; ?>
 Web Server Info:          <?php echo $_SERVER['SERVER_SOFTWARE'] . "\n"; ?>
 
 PHP Safe Mode:            <?php echo ini_get( 'safe_mode' ) ? "Yes" . "\n" : "No" . "\n"; ?>
@@ -66,7 +65,7 @@ WP Table Prefix:          <?php echo "Length: ". strlen( $wpdb->prefix ); echo "
 		'body' => ''
 	);
 	
-	$response = wp_remote_post( 'http://www.thecrowned.org', $params );
+	$response = wp_remote_post( 'http://postpaycounter.com', $params );
 	
 	if ( ! is_wp_error( $response ) && $response['response']['code'] >= 200 && $response['response']['code'] < 300 ) {
 		$WP_REMOTE_POST =  'wp_remote_post() works' . "\n";

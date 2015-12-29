@@ -36,7 +36,7 @@ class PPC_addons {
 		<div class="wrap" id="ppc_addons">
 			<h2>
 				<?php _e( 'Addons for Post Pay Counter', 'post-pay-counter' ); ?>
-				&nbsp;&mdash;&nbsp;<a href="http://www.thecrowned.org/post-pay-counter-extensions?utm_source=users_site&utm_medium=addons_list&utm_campaign=ppc_addons" class="button-primary" title="<?php _e( 'Browse All Extensions', 'post-pay-counter' ); ?>" target="_blank"><?php _e( 'Browse All Extensions', 'post-pay-counter' ); ?></a>
+				&nbsp;&mdash;&nbsp;<a href="http://postpaycounter.com/addons?utm_source=users_site&utm_medium=addons_list&utm_campaign=ppc_addons" class="button-primary" title="<?php _e( 'Browse All Extensions', 'post-pay-counter' ); ?>" target="_blank"><?php _e( 'Browse All Extensions', 'post-pay-counter' ); ?></a>
 			</h2>
 			<p><?php _e( 'These addons add more features to Post Pay Counter.', 'post-pay-counter' ); ?></p>
 			<?php echo self::addons_get_list(); ?>
@@ -53,8 +53,9 @@ class PPC_addons {
 	 */
 	 
 	static function addons_get_list() {
+	   delete_transient("ppc_addons_list");
 		if ( false === ( $cache = get_transient( 'ppc_addons_list' ) ) ) {
-			$feed = wp_remote_get( 'http://thecrowned.org/ppcp/features/ppcp_spit_html.php?addons_list', array( 'timeout' => 10 ) );
+			$feed = wp_remote_get( 'http://postpaycounter.com/ppcp/features/ppcp_spit_html.php?addons_list', array( 'timeout' => 10 ) );
 			
 			if ( ! is_wp_error( $feed ) ) {
 				if ( isset( $feed['body'] ) && strlen( $feed['body'] ) > 0 ) {

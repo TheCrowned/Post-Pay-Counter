@@ -255,5 +255,49 @@ class PPC_ajax_functions {
 		
 		die( 'ok' );
     }
+	
+	/**
+     * Cares about AJAX license activation
+     *
+     * @access  public
+     * @since   2.511
+     */
+	
+    static function license_activate() {
+        PPC_ajax_functions::ppc_check_ajax_referer( 'ppc_license_key_activate' );
+        
+        $license = '';
+        $license = apply_filters( 'ppcp_license_activate_object', $license, $_REQUEST['license_key'] );
+        
+        if( ! ( is_a( $license, 'PPC_license' ) OR is_a( $license, 'PPCP_license' ) ) )
+            die( 'License object is not a PPCP_license instance.' );
+        
+        $license_activate = $license->activate( $_REQUEST['license_key'] );
+        if( is_wp_error( $license_activate ) ) die( $license_activate->get_error_message() );
+		
+        die( 'ok' );
+    }
+    
+	/**
+     * Cares about AJAX license deactivation
+     *
+     * @access  public
+     * @since   2.511
+     */
+	
+    static function license_deactivate() {
+        PPC_ajax_functions::ppc_check_ajax_referer( 'ppc_license_key_deactivate' );
+        
+        $license = '';
+        $license = apply_filters( 'ppcp_license_deactivate_object', $license, $_REQUEST['plugin_slug'] );
+        
+        if( ! ( is_a( $license, 'PPC_license' ) OR is_a( $license, 'PPCP_license' ) ) )
+            die( 'License object is not a PPCP_license instance.' );
+        
+        $license_deactivate = $license->deactivate();
+        if( is_wp_error( $license_deactivate ) ) die( $license_deactivate->get_error_message() );
+		
+        die( 'ok' );
+    }
 }
 ?>

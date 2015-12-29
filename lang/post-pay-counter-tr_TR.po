@@ -1,0 +1,1374 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Post Pay Counter\n"
+"POT-Creation-Date: 2015-09-14 11:45+0100\n"
+"PO-Revision-Date: 2015-09-14 11:48+0100\n"
+"Last-Translator: Stefano Ottolenghi <webmaster@thecrowned.org>\n"
+"Language-Team: Pengu-ins <webmaster@thecrowned.org>\n"
+"Language: tr_TR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-KeywordsList: _x;_e;__\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: post-pay-counter.php:134 post-pay-counter.php:610
+msgid "Stats"
+msgstr "İstatistikler"
+
+#: post-pay-counter.php:135 post-pay-counter.php:487
+msgid "Options"
+msgstr "Seçenekler"
+
+#: post-pay-counter.php:136
+msgid "System Info"
+msgstr "Sistem Bilgisi"
+
+#: post-pay-counter.php:137 post-pay-counter.php:451
+msgid "Addons"
+msgstr "Eklentiler"
+
+#: post-pay-counter.php:242
+msgid "Counting Settings"
+msgstr "Sayaç ayarları"
+
+#: post-pay-counter.php:243
+msgid "Permissions"
+msgstr "İzinler"
+
+#: post-pay-counter.php:244
+msgid "Support the author"
+msgstr "Yazarı desteklemek"
+
+#: post-pay-counter.php:245
+msgid "Everything you're missing by not being PRO"
+msgstr "PRO özelliklerinden kaçırdıklarınız"
+
+#: post-pay-counter.php:248
+msgid "Personalize Settings"
+msgstr "Ayarlar kişiselleştirin"
+
+#: post-pay-counter.php:249
+msgid "Miscellanea"
+msgstr "Derleme"
+
+#: post-pay-counter.php:252
+msgid "Import/Export Settings"
+msgstr "İçe/Dışa aktar ayarları"
+
+#: post-pay-counter.php:253
+msgid "Error log"
+msgstr "Hata raporu"
+
+#: post-pay-counter.php:269
+msgid ""
+"User's settings successfully deleted. You will be redirected to the general "
+"options page."
+msgstr ""
+"Kişisel ayarlar başarıyla silindi. Genel ayarlar sayfasına "
+"yönlendiriliyorsunuz."
+
+#: post-pay-counter.php:278
+msgid "No more than 10 zones are allowed."
+msgstr "En fazla 10 alan izinlidir."
+
+#: post-pay-counter.php:279
+msgid "No less than 2 zones are allowed."
+msgstr "En az 2 alan izinlidir."
+
+#: post-pay-counter.php:280
+msgid "A payment threshold must first be set."
+msgstr "Ödeme eşiği belirtilmelidir."
+
+#: post-pay-counter.php:311
+msgid "The requested user does not exist."
+msgstr "Aranılan kullanıcı bulunmuyor."
+
+#: post-pay-counter.php:433
+msgid "Settings"
+msgstr "Ayarlar"
+
+#: post-pay-counter.php:449
+msgid "Donate"
+msgstr "Bağış"
+
+#: post-pay-counter.php:450 classes/ppc_meta_boxes_class.php:54
+msgid "Go PRO"
+msgstr "PRO olun"
+
+#: post-pay-counter.php:484
+msgid "Installed version"
+msgstr "Yüklenmiş versiyon"
+
+#: post-pay-counter.php:484
+msgid "Support"
+msgstr "Destek"
+
+#: post-pay-counter.php:484
+msgid "Tutorials"
+msgstr "Öğreticiler"
+
+#: post-pay-counter.php:488
+msgid ""
+"The Post Pay Counter plugin is ready to make handling authors' payments "
+"much, much easier, starting from... now! From this page you can set the "
+"plugin up, customizing each possible feature to best suit your needs. "
+"Options are divided into groups, and for each of the following boxes you "
+"will find details of all the features of the plugin and, for most of them, "
+"additional details and examples are available by clicking on the info icon "
+"on the right of them."
+msgstr ""
+"Post Pay Counter eklentisi yazarlarınıza ödeme yapmanızı oldukça "
+"kolaylaştırır. İhtiyacınız olan en iyi ayarları bu sayfadan yapabilirsiniz. "
+"Ayarlar gruplara ayrılmıştır. Her ayar grubunda, bilgi ikonuna "
+"tıkladığınızda extra detay ve örnekler görebilirsiniz."
+
+#: post-pay-counter.php:489
+#, php-format
+msgid ""
+"Don't forget to take our %1$sfeatures survey%2$s to let us know what "
+"functions you'd like to see in future releases of the plugin! Also, if you "
+"like this plugin, you may be interested in trying the shiny %3$sPRO version"
+"%2$s, containing a whole lot of useful features!"
+msgstr ""
+"%1$sbir sonraki sürümlerde görmek istediğiniz özellikler nedir?%2$s "
+"anketimize katılmayı unutmayın! Eğer bu eklentiyi beğendiyseniz, daha bir "
+"çok farklı özelliğe sahip %3$sPRO versiyonu%2$s deneyebilirsiniz!"
+
+#: post-pay-counter.php:489 classes/ppc_meta_boxes_class.php:39
+msgid "Features survey"
+msgstr "Özellikler anketi"
+
+#: post-pay-counter.php:499
+msgid "Go back to general settings"
+msgstr "Genel ayarlara geri dön"
+
+#: post-pay-counter.php:499 classes/ppc_html_functions_class.php:87
+msgid "Back to general"
+msgstr "Genele geri dön"
+
+#: post-pay-counter.php:500
+msgid "Delete user's settings"
+msgstr "Kullanıcı ayarlarını sil"
+
+#: post-pay-counter.php:501
+msgid "Currently editing user:"
+msgstr "Şuanda kullanıcı düzenleniyor:"
+
+#: post-pay-counter.php:617
+msgid "You do not have sufficient permissions to access this page"
+msgstr "Bu sayfaya erişmek için gerekli izinleriniz yok"
+
+#: post-pay-counter.php:658
+msgid "General"
+msgstr "Genel"
+
+#: classes/ppc_update_class.php:101 classes/ppc_save_options_class.php:214
+#: classes/ppc_save_options_class.php:218
+msgid "Error: could not update settings."
+msgstr "Hata: ayarlar güncellenemedi."
+
+#: classes/ppc_update_class.php:138
+msgid "Error: could not update user's settings."
+msgstr "Hata: kullanıcı ayarları güncellenemedi."
+
+#: classes/ppc_notifications_class.php:33
+msgid "Dismiss"
+msgstr "İptal"
+
+#: classes/ppc_html_functions_class.php:26
+#, php-format
+msgid "A %1$spengu-ins%2$s production"
+msgstr "%1$spengu-ins%2$s ürünüdür"
+
+#: classes/ppc_html_functions_class.php:50
+#, php-format
+msgid "Showing stats from %1$s to %2$s"
+msgstr "%1$s ile %2$s arası istatistikler gösteriliyor"
+
+#: classes/ppc_html_functions_class.php:54
+msgid "Filter by user role"
+msgstr "Kullanıcı rölüne göre filtre"
+
+#: classes/ppc_html_functions_class.php:56
+msgid "Any"
+msgstr "Herhangi"
+
+#: classes/ppc_html_functions_class.php:94
+msgid "Update view"
+msgstr "Görüntüyü güncelle"
+
+#: classes/ppc_html_functions_class.php:96
+msgid "Get current view permalink"
+msgstr "Şimdiki görünüm için link al"
+
+#: classes/ppc_html_functions_class.php:239
+#, php-format
+msgid "Total is %1$s. %2$s Displayed is what you'll be paid for."
+msgstr "Toplam %1$s. %2$s için ne kadar ödediğiniz gösteriliyor."
+
+#: classes/ppc_html_functions_class.php:276
+msgid "Go to detailed view"
+msgstr "Detaylı görünüme git"
+
+#: classes/ppc_html_functions_class.php:292
+#, fuzzy
+msgid "Displayed is what you'll be paid for."
+msgstr "Toplam %1$s. %2$s için ne kadar ödediğiniz gösteriliyor."
+
+#: classes/ppc_html_functions_class.php:333
+msgid "Total displayed posts:"
+msgstr "Toplam yazı gösterimleri:"
+
+#: classes/ppc_html_functions_class.php:335
+msgid "Total displayed payment:"
+msgstr "Toplam gösterim ödemeleri:"
+
+#: classes/ppc_html_functions_class.php:344
+msgid "counts"
+msgstr "Sayaçlar"
+
+#: classes/ppc_html_functions_class.php:354
+#, php-format
+msgid "Total %s count:"
+msgstr "Toplam %s sayacı"
+
+#: classes/ppc_meta_boxes_class.php:21
+msgid "Google Analytics"
+msgstr "Google Analytics"
+
+#: classes/ppc_meta_boxes_class.php:21
+msgid ""
+"use your account on the world-leading website visits tracking system to pay "
+"writers per visit."
+msgstr ""
+"Yazarlara ziyaret başı ücret ödemek için dünyanın en iyi sayaç sistemindeki "
+"hesabını kullan."
+
+#: classes/ppc_meta_boxes_class.php:22
+msgid "Google Adsense"
+msgstr "Google Adsense"
+
+#: classes/ppc_meta_boxes_class.php:22
+msgid ""
+"share a percentage of your ads revenues with writers, depending on how much "
+"their posts earn."
+msgstr ""
+
+#: classes/ppc_meta_boxes_class.php:23
+msgid "PayPal"
+msgstr "PayPal"
+
+#: classes/ppc_meta_boxes_class.php:23
+msgid "pay your writers with PayPal directly through your blog."
+msgstr "Yazarlarına direkt olarak blogundan PayPal aracılığı ile ödeme yap."
+
+#: classes/ppc_meta_boxes_class.php:24
+msgid "Mark as paid"
+msgstr "Ödendi olarak işaretle"
+
+#: classes/ppc_meta_boxes_class.php:24
+msgid ""
+"keep track of your writers' past payments by marking posts as paid and "
+"reviewing payments from a detailed history. Let the plugin keep track of how "
+"much each writer should be paid basing on past payments."
+msgstr ""
+"Yazarlara yaptığınız geçmiş ödemelerinizi takip edin ve inceleyin. "
+"Eklentinin geçmiş ödemelere göre şuan ne kadar ödemeniz gerektiğini "
+"bildirmesine izin verin."
+
+#: classes/ppc_meta_boxes_class.php:25
+msgid "Csv export"
+msgstr "CSV dışa aktar"
+
+#: classes/ppc_meta_boxes_class.php:25
+msgid "download stats for offline consulting or storing."
+msgstr "İstatistikleri indir (çevrimdışı kullanım yada arşivleme)"
+
+#: classes/ppc_meta_boxes_class.php:26
+msgid "Shortcode"
+msgstr "Shortcode"
+
+#: classes/ppc_meta_boxes_class.php:26
+msgid "put stats in public static pages and wherever suits your needs."
+msgstr "İstatistikleri ihtiyacınız olan tüm sabit sayfaların içine gömün."
+
+#: classes/ppc_meta_boxes_class.php:27
+msgid "Stats in post editing page"
+msgstr "İstatistikler yazı düzenleme sayfasında"
+
+#: classes/ppc_meta_boxes_class.php:27
+msgid "see post stats in edit page and exclude individual posts from stats."
+msgstr ""
+"Yazı istatistiklerini düzenleme sayfasında gör ve bazı yazıları harici bırak."
+
+#: classes/ppc_meta_boxes_class.php:30
+#, php-format
+msgid ""
+"There are so many things you are missing by not running the PRO version of "
+"the Post Pay Counter! Remember that PRO features are always %1$sone click "
+"away%2$s!"
+msgstr ""
+"Kaçırdığınız bir çok güzel özellik Post Pay Counter PRO versiyonda "
+"bulunmakta. PRO versiyon %1$s1 tık ötenizde%2$s!"
+
+#: classes/ppc_meta_boxes_class.php:39
+#, php-format
+msgid ""
+"Something you would like is missing? Complete the %1$sfeatures survey%2$s "
+"and let us know what our priorities should be!"
+msgstr ""
+"İstediğin herhangi bir özelliği bulamıyor musun? %1$sistediğiniz özellikler "
+"anketini%2$s doldurun ve bir sonraki sürüm için önceliğimizin ne olması "
+"gerektiğini bize bildirin!"
+
+#: classes/ppc_meta_boxes_class.php:52
+msgid ""
+"If you like the Post Pay Counter, there are a couple of crucial things you "
+"can do to support its development"
+msgstr ""
+"Post Pay Counter eklentisini beğendiyseniz, gelişimi desteklemek için "
+"yapabileceğiniz bazı şeyler vardır."
+
+#: classes/ppc_meta_boxes_class.php:54
+msgid "Try the PRO version: more functions, more stuff!"
+msgstr "PRO versiyonu deneyin: daha fazla fonksiyon, daha fazla işlev!"
+
+#: classes/ppc_meta_boxes_class.php:55
+msgid "Donate money"
+msgstr "Para bağışlayın"
+
+#: classes/ppc_meta_boxes_class.php:55
+msgid ""
+"Plugins do not write themselves: they need time and effort, and I give all "
+"of that free of charge. Donations of every amount are absolutely welcome."
+msgstr ""
+"Eklentiler kendi kendilerine olmaz: Bu geliştirme süreci zaman ve efor "
+"istemektedir ve bu eklenti size tamamen ücretsiz sunulmuştur. Bağışlar için "
+"her zaman minnettarız."
+
+#: classes/ppc_meta_boxes_class.php:56
+#, php-format
+msgid "Give me something from my %1$sAmazon Wishlist%2$s."
+msgstr "%1$sAmazon istek listemden%2$s bana hediye gönderin."
+
+#: classes/ppc_meta_boxes_class.php:57
+#, php-format
+msgid ""
+"Rate it in the %1$sWordpress Directory%3$s and share the %2$sofficial page"
+"%3$s."
+msgstr ""
+"%1$sWordpress Dizininde%3$s oylayın ve %2$sresmi sitemizi%3$s paylaşın."
+
+#: classes/ppc_meta_boxes_class.php:58
+msgid ""
+"Have a blog or write on some website? Write about the plugin and email me "
+"the review!"
+msgstr ""
+"Blogunuz var yada bir blogda editör müsünüz? Eklenti hakkında bir makale "
+"yazarak bize yardım edin!"
+
+#: classes/ppc_meta_boxes_class.php:77 classes/ppc_welcome_class.php:142
+msgid "Overall stats"
+msgstr "Toplam istatistikler"
+
+#: classes/ppc_meta_boxes_class.php:79
+msgid "Display overall stats"
+msgstr "Toplam istatistikleri göster"
+
+#: classes/ppc_meta_boxes_class.php:79
+msgid ""
+"Overall stats are displayed at the bottom of regular stats. They show all-"
+"time overall stats, from the first published post ever to the latest one. "
+"Although they are quite interesting, their processing may slow down the page "
+"loading on big sites."
+msgstr ""
+"Tüm istatistikler, basit istatistiklerin altında yer almaktadır. Tüm "
+"istatistikler, yayınlanan ilk yazıdan itibaren tüm detayları gösterir. "
+"İlginç bilgiler içerir ve bu raporun hazırlanması sunucunuzu bir miktar "
+"yorabilir."
+
+#: classes/ppc_meta_boxes_class.php:86
+msgid "Allowed post types"
+msgstr "İzin verilen yazı tipleri"
+
+#: classes/ppc_meta_boxes_class.php:88
+msgid "Choose the post types you would like to be included in countings."
+msgstr "Sayıma dahil edilmesini istediğiniz yazı tipleri."
+
+#: classes/ppc_meta_boxes_class.php:111
+msgid "Allowed user roles"
+msgstr "İzin verilmiş kullanıcı rolleri"
+
+#: classes/ppc_meta_boxes_class.php:113
+msgid ""
+"Choose the user roles whose posts you would like to be included in countings."
+msgstr "Hangi kullanıcı rollerinin sayıma dahil edilmesini istediğinizi seçin."
+
+#: classes/ppc_meta_boxes_class.php:132
+msgid "Options page permissions"
+msgstr "Ayarlar sayfası izinleri"
+
+#: classes/ppc_meta_boxes_class.php:134
+msgid "Choose the user roles who are allowed to view and edit plugin settings."
+msgstr "Hangi kullanıcı rollerinin eklenti erişimine sahip olacağını seçin."
+
+#: classes/ppc_meta_boxes_class.php:154
+msgid "Stats page permissions"
+msgstr "İstatistik sayfa izinleri"
+
+#: classes/ppc_meta_boxes_class.php:156
+msgid "Choose the user roles who are allowed to view the stats page."
+msgstr "Hangi kullanıcı rollerinin istatistik sayfasını görebileceğini seçin."
+
+#: classes/ppc_meta_boxes_class.php:174
+msgid "Default stats time range"
+msgstr "Varsayılan istatistik zaman aralığı"
+
+#: classes/ppc_meta_boxes_class.php:176
+msgid ""
+"When you open up the stats page, the time range here selected will be shown. "
+"This will be the default setting: you will still be able to change the time "
+"range the way you want it time to time."
+msgstr ""
+"İstatistik sayfasını açtığınızda, varsayılan olarak seçili zaman aralığı "
+"gözükecektir. İstediğiniz herhangi bir zaman aralığını istediğiniz an "
+"seçebilirsiniz."
+
+#: classes/ppc_meta_boxes_class.php:177
+msgid "Current week"
+msgstr "Bu hafta"
+
+#: classes/ppc_meta_boxes_class.php:177
+msgid ""
+"Posts from the beginning of the week to the current day (week starts on "
+"Monday) will be displayed. You should select this if you usually pay your "
+"writers weekly."
+msgstr ""
+"Hafta başından bugüne kadar olan yazılar gösterilecek. Eğer haftalık ödeme "
+"yapıyorsanız bu seçeneği seçmelisiniz."
+
+#: classes/ppc_meta_boxes_class.php:178
+msgid "Current month"
+msgstr "Bu ay"
+
+#: classes/ppc_meta_boxes_class.php:178
+msgid ""
+"Posts from the beginning of the month to the current day will be displayed. "
+"You should select this if you usually pay your writers monthly."
+msgstr ""
+"Ay başından bugüne kadar olan yazılar gösterilecek. Eğer aylık ödeme "
+"yapıyorsanız bunu seçmelisiniz."
+
+#: classes/ppc_meta_boxes_class.php:179
+msgid "This custom number of days"
+msgstr "Bu özel gün sayısı"
+
+#: classes/ppc_meta_boxes_class.php:179
+msgid ""
+"You can manually customize the time range for the posts that will be "
+"displayed. So, for example, if you set this to 365 days, in the stats page "
+"it will automatically be selected a time frame that goes from the current "
+"day to the previous 365 days."
+msgstr ""
+"Zaman aralığı için görüntülenecek mesaj el ile özelleştirebilirsiniz. Bunun "
+"ayarlarsanız, örneğin, 365 gün, istatistikler sayfasında otomatik olarak "
+"geçerli günden önceki 365 gün gider bir zaman dilimi seçilmiş."
+
+#: classes/ppc_meta_boxes_class.php:181
+msgid "Time range (days)"
+msgstr "Zaman aralığı (gün)"
+
+#: classes/ppc_meta_boxes_class.php:189 classes/ppc_meta_boxes_class.php:323
+#: classes/ppc_meta_boxes_class.php:356 classes/ppc_meta_boxes_class.php:390
+msgid "Settings were successfully updated."
+msgstr "Ayarlar başarıyla güncellendi."
+
+#: classes/ppc_meta_boxes_class.php:192 classes/ppc_meta_boxes_class.php:326
+#: classes/ppc_meta_boxes_class.php:359 classes/ppc_meta_boxes_class.php:393
+#: classes/ppc_meta_boxes_class.php:477 classes/ppc_meta_boxes_class.php:519
+msgid "Loading"
+msgstr "Yükleniyor"
+
+#: classes/ppc_meta_boxes_class.php:193 classes/ppc_meta_boxes_class.php:328
+#: classes/ppc_meta_boxes_class.php:361
+msgid "Save options"
+msgstr "Kaydet"
+
+#: classes/ppc_meta_boxes_class.php:212
+msgid ""
+"Here you can define the criteria which post payments will be computed with."
+msgstr ""
+"Burada hangi yazı ödemeler ile Hesaplanan ölçütler tanımlayabilirsiniz."
+
+#: classes/ppc_meta_boxes_class.php:217
+msgid "Basic payment"
+msgstr "Toplam gösterim ödemeleri"
+
+#: classes/ppc_meta_boxes_class.php:219
+msgid "Basic, assured payment"
+msgstr "Toplam gösterim ödemeleri"
+
+#: classes/ppc_meta_boxes_class.php:219
+msgid ""
+"You may define a starting value for post payment. This means that each post "
+"will earn at least this amount, to which all the other credits will be "
+"added. In this way you can be sure that no post will be paid less than a "
+"certain amount, but that only valuable posts will make it to higher points."
+msgstr ""
+"Her bir yazı için bir başlangıç ücreti belirleyebilirsiniz. Bunun anlamı, "
+"her yazı en az bu kadar ücret kazanıcak ve diğer bonuslar üstüne eklenicek "
+"demektir. Bu sayede her yazı için min. bir ücret belirleyebilir ve sadece "
+"daha değerli olanlarına extra bonus ücret ödeyebilirsiniz."
+
+#: classes/ppc_meta_boxes_class.php:222
+msgid "Basic payment fixed value"
+msgstr "Temel ödeme"
+
+#: classes/ppc_meta_boxes_class.php:229
+msgid "Words Payment"
+msgstr "Kelime ödemesi"
+
+#: classes/ppc_meta_boxes_class.php:231
+msgid "Words contribute to payment computation"
+msgstr "Ödeme hesabına kelime katkısı"
+
+#: classes/ppc_meta_boxes_class.php:231
+msgid ""
+"You may define a post value basing on the number of words that make it up as "
+"well. The longer a post is, the more time is supposed to have taken the "
+"author to write it, the more it should be paid. You will be able to choose "
+"how much each word is worth."
+msgstr ""
+"Bir yazının para kazanması için en az içermesi gereken kelime sayısını "
+"belirtebilirsiniz. Belirlenen limitten uzun yazılar daha fazla kazanacaktır."
+
+#: classes/ppc_meta_boxes_class.php:234 classes/ppc_meta_boxes_class.php:259
+#: classes/ppc_meta_boxes_class.php:274 classes/ppc_meta_boxes_class.php:292
+msgid "Counting system"
+msgstr "Sayaç sistemi"
+
+#: classes/ppc_meta_boxes_class.php:235
+msgid "words"
+msgstr "kelimeler"
+
+#: classes/ppc_meta_boxes_class.php:236 classes/ppc_meta_boxes_class.php:261
+#: classes/ppc_meta_boxes_class.php:276 classes/ppc_meta_boxes_class.php:294
+msgid "Counting options"
+msgstr "Sayaç ayarları"
+
+#: classes/ppc_meta_boxes_class.php:237
+msgid "Stop counting words after word # (0 = infinite)"
+msgstr "Şu kadar kelimeden sonra saymayı bırak # (0 = sınırsız)"
+
+#: classes/ppc_meta_boxes_class.php:244
+msgid "Visits Payment"
+msgstr "Ziyaret ödemeleri"
+
+#: classes/ppc_meta_boxes_class.php:246
+msgid "Visits contribute to payment computation"
+msgstr "Ödeme hesabına ziyaret katkısı"
+
+#: classes/ppc_meta_boxes_class.php:246
+msgid ""
+"You may define a post value basing on the number of visits that it registers "
+"as well. The more people see a post, the more interesting the post is "
+"supposed to be, the more it should be paid. You will be able to choose how "
+"much each visit is worth."
+msgstr ""
+"Bir yazının para kazanması için en az sahip olması gereken ziyaret sayısını "
+"belirtebilirsiniz. Belirlenen limitten daha fazla ziyaret alan yazılar daha "
+"fazla kazanacaktır."
+
+#: classes/ppc_meta_boxes_class.php:249
+msgid "Counting method"
+msgstr "Sayaç metodu"
+
+#: classes/ppc_meta_boxes_class.php:250
+msgid "I have my own visit counter (postmeta)"
+msgstr "Kendi sayacım var (postmeta)"
+
+#: classes/ppc_meta_boxes_class.php:250
+#, php-format
+msgid ""
+"If you already have some plugin counting visits, and you know the "
+"%1$spostmeta%2$s name it stores them into, you can use those data to compute "
+"payments. Activate this setting and put the postmeta in the field below."
+msgstr ""
+"Eğer ziyaretleri sayan bir eklentiniz varsa, sayaç bilgilerinin saklandığı "
+"özel alanı (%1$spostmeta%2$s) biliyorsanız bunu hesaplama için "
+"kullanabilirsiniz."
+
+#: classes/ppc_meta_boxes_class.php:252
+msgid "The postmeta holding the visits"
+msgstr "Özel alan ziyaretleri sayıyor"
+
+#: classes/ppc_meta_boxes_class.php:254
+msgid "I have my own visit counter (callback)"
+msgstr "Kendi sayacım var (callback)"
+
+#: classes/ppc_meta_boxes_class.php:254
+#, php-format
+msgid ""
+"If you already have some plugin counting visits, and it provides a PHP "
+"%1$scallback%2$s which accepts as input the $post WP object and outputs an "
+"integer number of visits, you can use those data to compute payments. If the "
+"callback is a class method, specify it in the form of %1$sclassname, "
+"methodname%2$s. This is NOT user-personalizable."
+msgstr ""
+"Eğer ziyaretleri sayan bir eklentiniz varsa ve $post WP object ile girişleri "
+"ziyaret sayısı olarak dışa veren bir PHP %1$scallback%2$s destekliyorsa bunu "
+"ziyaret sayacı olarak kullanabilirsiniz. Eğer callback bir sınıf metodu ise "
+"%1$sclassname, methodname%2$s belirtin."
+
+#: classes/ppc_meta_boxes_class.php:256
+msgid "Callback name"
+msgstr "Callback adı"
+
+#: classes/ppc_meta_boxes_class.php:260
+msgid "visits"
+msgstr "ziyaretler"
+
+#: classes/ppc_meta_boxes_class.php:262
+msgid "Stop counting visits after visit # (0 = infinite)"
+msgstr "Şu kadar ziyaretten sonra saymayı durdur # (0 = sınırsız)"
+
+#: classes/ppc_meta_boxes_class.php:269
+msgid "Images Payment"
+msgstr "İmaj ödemesi"
+
+#: classes/ppc_meta_boxes_class.php:271
+msgid "Images contribute to payment computation"
+msgstr "Ödeme hesabına imaj katkısı"
+
+#: classes/ppc_meta_boxes_class.php:271
+#, php-format
+msgid ""
+"You may define a post value basing on the number of images it contains. "
+"Maybe more images make a post cleaerer to the readers, and should thus be "
+"paid something more. You will be able to choose: when you want the image "
+"counting to come in, meaning how many images are free of charge and after "
+"which one they should be paid; how much each image is worth; how many images "
+"at maximum should be paid (0 = no maximum, infinite). E.g. we have a post "
+"with 5 images, and the fields below are set like this: %s. The image payment "
+"would be 1.0 bacause image #3 and image #4 are counted."
+msgstr ""
+"Bir yazının içerdiği resim sayısına göre fazladan ödeme yapabilirsiniz. En "
+"çok kaç tane resime ödeme yapılacağını yada en az kaç resimden sonra ödeme "
+"yapılacağını belirtebilirsiniz. Örneğin 5 resmimiz var ve şu şekilde hazır : "
+"%s\n"
+"Resim ödemesi 1.0 olur çünkü sadece #3 ve #4 resim sayılır."
+
+#: classes/ppc_meta_boxes_class.php:275
+msgid "images"
+msgstr "imajlar"
+
+#: classes/ppc_meta_boxes_class.php:277
+msgid "Start paying per image after image #"
+msgstr "Şu kadar resimden sonra ödemeler başlasın #"
+
+#: classes/ppc_meta_boxes_class.php:278
+msgid "Stop paying per image after image #"
+msgstr "Şu kadar resimden sonra ödemeler dursun #"
+
+#: classes/ppc_meta_boxes_class.php:279
+msgid ""
+"Determines whether the featured image will be included in image counting."
+msgstr "Öne çıkarılan resim extra olarak sayılsın."
+
+#: classes/ppc_meta_boxes_class.php:280
+msgid ""
+"Determines whether images in galleries should be included in image counting "
+"(may slow down stats page loading due to additional post content parsing)."
+msgstr ""
+"Galerilere ait resimler sayılsın. (Bazen istatistiklerde yavaşlıklar söz "
+"konusu olabilir)"
+
+#: classes/ppc_meta_boxes_class.php:287
+msgid "Comments Payment"
+msgstr "Yorum ödemeleri"
+
+#: classes/ppc_meta_boxes_class.php:289
+msgid "Comments contribute to payment computation"
+msgstr "Ödeme hesabına yorum katkısı"
+
+#: classes/ppc_meta_boxes_class.php:289
+#, php-format
+msgid ""
+"You may define a post value basing on the number of comments it receives. "
+"You will be able to choose: when you want the comment counting to come in, "
+"meaning how many comments are free of charge and after which one they should "
+"be paid; how much each comment is worth; how many comments at maximum should "
+"be paid (0 = no maximum, infinite). E.g. we have a post with 30 comments, "
+"and the fields below are set like this: %s. The comment payment would be 2.5 "
+"bacause comments from #11 included to #25 included are counted."
+msgstr ""
+"Bir yazının içerdiği yorum sayısına göre fazladan ödeme yapabilirsiniz. En "
+"çok kaç tane yoruma ödeme yapılacağını yada en az kaç yorumdan sonra ödeme "
+"yapılacağını belirtebilirsiniz. Örneğin 30 yorum var ve şu şekilde hazır : "
+"%s\n"
+"Resim ödemesi 2.5 olur çünkü sadece #11 ve #25 arası yorumlar sayılır."
+
+#: classes/ppc_meta_boxes_class.php:293
+msgid "comments"
+msgstr "yorumlar"
+
+#: classes/ppc_meta_boxes_class.php:295
+msgid "Start paying per comment after comment #"
+msgstr "Şu kadar yorumdan sonra ödemeler başlasın #"
+
+#: classes/ppc_meta_boxes_class.php:296
+msgid "Stop paying per comment after comment #"
+msgstr "Şu kadar yorumdan sonra ödemeler dursun #"
+
+#: classes/ppc_meta_boxes_class.php:303
+#: classes/ppc_generate_stats_class.php:451
+msgid "Total payment"
+msgstr "Toplam ödeme"
+
+#: classes/ppc_meta_boxes_class.php:305
+msgid "Set payment maximum (0 = infinite)"
+msgstr "Max. ödeme belirle (0 = sınırsız)"
+
+#: classes/ppc_meta_boxes_class.php:306
+msgid "Pay only when the total payment threshold is reached"
+msgstr "Sadece ödeme eşiği geçildikten sonra ödeme yap"
+
+#: classes/ppc_meta_boxes_class.php:306
+msgid ""
+"Check this if you want to pay items only when they reach the max payment "
+"threshold. Other items will appear grayed out."
+msgstr ""
+"Sadece ödeme eşiğini geçen yazılara ödeme yapmak için bunu seçin. Diğerleri "
+"gri renkli gözükücektir."
+
+#: classes/ppc_meta_boxes_class.php:313
+msgid "Miscellanea counting settings"
+msgstr "Diğer sayaç ayarları"
+
+#: classes/ppc_meta_boxes_class.php:315
+msgid "Count pending revision posts"
+msgstr "İnceleme bekleyen yazıları dahil et"
+
+#: classes/ppc_meta_boxes_class.php:315
+msgid ""
+"While published posts are automatically counted, you can decide to include "
+"pending revision ones or not."
+msgstr ""
+"Yayınlanan yazılar sayılmaktadır. Ancak incelemede olanlara siz karar "
+"verebilirsiniz."
+
+#: classes/ppc_meta_boxes_class.php:316
+msgid "Count future scheduled posts"
+msgstr "İleriye zamanlanmış yazıları sayıma dahil et"
+
+#: classes/ppc_meta_boxes_class.php:316
+msgid ""
+"While published posts are automatically counted, you can decide to include "
+"future planned ones or not."
+msgstr ""
+"Yayınlanan yazılar sayılmaktadır. Ancak ilerideki bir tarihe zamanlanmış "
+"olanlara siz karar verebilirsiniz."
+
+#: classes/ppc_meta_boxes_class.php:317
+msgid "Count private posts"
+msgstr "Gizli yazıları sayıma dahil et"
+
+#: classes/ppc_meta_boxes_class.php:317
+msgid ""
+"While public published posts are automatically counted, you can decide to "
+"include private ones or not."
+msgstr ""
+"Yayınlanan yazılar sayılmaktadır. Ancak gizli olanlara siz karar "
+"verebilirsiniz."
+
+#: classes/ppc_meta_boxes_class.php:318
+msgid "Exclude quoted content from word counting"
+msgstr "Yazıdaki alıntı alanlarını kelime olarak sayma"
+
+#: classes/ppc_meta_boxes_class.php:318
+#, php-format
+msgid ""
+"All the words contained into %1$sblockquote%2$s tags will not be taken into "
+"account when counting. Use this to prevent interviews and such stuff to be "
+"counted as normal words. Notice that words included in any HTML tag with "
+"class %1$sppc_exclude_words%2$s are automatically excluded from word "
+"counting (doesn't handle nested tags); see FAQ for more information."
+msgstr ""
+"%1$sblockquote%2$s etiketi içindeki tüm kelimeleri kelime sayacından hariç "
+"tutabilirsiniz. Bu class (%1$sppc_exclude_words%2$s) ile belirlenen tüm "
+"kelimeler hariç tutulur. Daha fazla bilgi için SSS sayfasına bakınız."
+
+#: classes/ppc_meta_boxes_class.php:348
+msgid ""
+"Just a few fields to help you preventing users from seeing things they "
+"should not see. Administrators are subject to the same permissions; if you "
+"wish they did not, personalize their user settings."
+msgstr ""
+"Kullanıcıların görmemesi gereken alanları belirlemeniz için bir kaç alan. "
+"Adminlerinde aynı izinleri vardır. Eğer bunu istemiyorsanız kullanıcı "
+"ayarlarını gözden geçirin."
+
+#: classes/ppc_meta_boxes_class.php:349
+msgid "Users can see other users' general stats"
+msgstr "Kullanıcılar diğer kullanıcıların istatistiklerini görebilirler"
+
+#: classes/ppc_meta_boxes_class.php:349
+msgid ""
+"If unchecked, users will only be able to see their stats in the general "
+"page. Other users' names, posts and pay counts will not be displayed."
+msgstr ""
+"Eğer seçili değilse, kullanıcılar sadece kendi istatistiklerini "
+"görebilirler. Diğer yazarlar gizlidir."
+
+#: classes/ppc_meta_boxes_class.php:350
+msgid "Users can see other users' detailed stats"
+msgstr ""
+"Kullanıcılar diğer kullanıcıların detaylı istatistiklerini görebilirler"
+
+#: classes/ppc_meta_boxes_class.php:350
+msgid ""
+"If unchecked, users will not be able to see other users' detailed stats but "
+"will still able to see general ones. "
+msgstr ""
+"Eğer seçili değilse, kullanıcılar diğer kullanıcıların detaylı "
+"istatistiklerini göremezler ama genel istatistikleri görebilirler."
+
+#: classes/ppc_meta_boxes_class.php:351
+msgid "Let users know if other users have personalized settings"
+msgstr "Kullanıcıların bazı diğer kullanıcıların özel ayarları olduğunu bilsin"
+
+#: classes/ppc_meta_boxes_class.php:351
+msgid ""
+"If you personalize settings by user, do not overlook this. If unchecked, "
+"users will not see personalized settings in countings, they will believe "
+"everybody is using their settings (or general settings). Anyway, users will "
+"see their own personalized settings, if they have them."
+msgstr ""
+"Eğer bir kullanıcı için kişiselleştirilmiş özel ayarlar kullanıyorsanız, ve "
+"bunu seçmediyseniz tüm kullanıcılar herkesin kendi ayarları ile ödeme "
+"aldığını sanırlar."
+
+#: classes/ppc_meta_boxes_class.php:381
+#, php-format
+msgid ""
+"Have more than website but use the same settings? You can transfer settings "
+"from one installation of the plugin to another. If you are also running the "
+"PRO version, its settings will be taken as well. It works both for general "
+"and for user personalized settings, depending on what page you are. If you "
+"want to export this website's settings, copy the code below. If you want to "
+"import another website's settings, paste its settings code in the field "
+"below and click %s. Once you import settings, it will not be possible to go "
+"back to the previous settings. Do not edit settings code unless you know "
+"what base64 and serialization are and are sure of what you are doing!"
+msgstr ""
+"Birden fazla websiteniz mi var? Ayarlarınızı diğer sitelerinize kolaylıkla "
+"aktarabilirsiniz. PRO versiyon içinde geçerlidir. Başka bir websitesi "
+"ayarlarını içe aktarmak istiyorsanız, kodu yapıştırın ve %s butonuna "
+"tıklayın. Base64 nedir bilmiyorsanız kodu düzenlemeyin."
+
+#: classes/ppc_meta_boxes_class.php:381 classes/ppc_meta_boxes_class.php:395
+msgid "Import settings"
+msgstr "Ayarları içe aktar"
+
+#: classes/ppc_meta_boxes_class.php:426
+msgid "The following users have different settings, click to edit them."
+msgstr ""
+"Aşağıdaki kullanıcılar farklı ayarlara sahip, düzenlemek için tıklayın."
+
+#: classes/ppc_meta_boxes_class.php:436
+msgid "View and edit special settings for user"
+msgstr "Kullanıcı için özel ayarları gör ve düzenle"
+
+#: classes/ppc_meta_boxes_class.php:446
+msgid ""
+"No users have different settings. Learn how to personalize settings from the "
+"section below."
+msgstr ""
+"Hiç bir kullanıcı farklı ayarlara sahip değil. Nasıl kişiye özel ayarlama "
+"yapacağınızı öğrenin."
+
+#: classes/ppc_meta_boxes_class.php:449
+msgid "Personalize single user settings"
+msgstr "Tekil kullanıcı ayarlarını kişiselleştirin"
+
+#: classes/ppc_meta_boxes_class.php:450
+msgid ""
+"Some people's posts are better than somebody others'? You can adjust "
+"settings for each user, so that they will have different permissions and "
+"their posts will be paid differently."
+msgstr ""
+"Bazı yazarların yazısı diğerlerinden daha mı iyi? O yazara diğerlerinden "
+"farklı ayarlar tanımlayarak daha fazla kazanmasını sağlayabilirsiniz."
+
+#: classes/ppc_meta_boxes_class.php:451
+msgid ""
+"First, select a user role. You will see all users from that role: clicking "
+"on one you will be headed to the settings page for that specific user."
+msgstr ""
+"Öncelikle kullanıcı rolü seçin. Ardından bu roldeki tüm kullanıcıları "
+"görebilir ve bir kullanıcıya tıkladığınızda o kullanıcıya özel ayarlar "
+"sayfasına gidebilirsiniz."
+
+#: classes/ppc_meta_boxes_class.php:453
+msgid "User roles"
+msgstr "Kullanıcı rolleri"
+
+#: classes/ppc_meta_boxes_class.php:472
+msgid "Available users"
+msgstr "Mevcut kullanıcılar"
+
+#: classes/ppc_meta_boxes_class.php:498
+#, php-format
+msgid ""
+"Errors which may happen during the plugin execution are logged and showed "
+"here. If something is not working properly, please send this list along with "
+"your support request. The log is cleared every now and then, but you can "
+"empty it manually with the button below. If you do not want errors to be "
+"logged at all, see the %1$sFAQ%2$s."
+msgstr ""
+"Eklentinin çalışma esnasında karşılaştığı hatalar burada gösterilir. Eğer "
+"birşeylerin tam olarak çalışmadığını düşünüyorsanız lütfen destek talebinde "
+"bulunun. Kayıt dosyası düzenli aralıklarla temizlenir ama aşağıdaki butonu "
+"kullanarak sizde hemen temizleme yapabilirsiniz. Eğer hata kayıtları "
+"tutulmasını istemiyorsanız %1$sSSS%2$s sayfasını ziyaret edin."
+
+#: classes/ppc_meta_boxes_class.php:498
+msgid "Frequently asked questions"
+msgstr "Sıkça sorulan sorular"
+
+#: classes/ppc_meta_boxes_class.php:499
+msgid ""
+"To copy the error log, click below then press Ctrl + C (PC) or Cmd + C (Mac)."
+msgstr ""
+"Sistem bilgisini kopyalamak için CTRL + C (PC) yada CMD + C (Mac) kullanın."
+
+#: classes/ppc_meta_boxes_class.php:508
+msgid "That's great, nothing has gone wrong so far!"
+msgstr "Harika, herşey yolunda!"
+
+#: classes/ppc_meta_boxes_class.php:514
+msgid "Clear error log"
+msgstr "error log dosyasını temizle"
+
+#: classes/ppc_meta_boxes_class.php:516
+msgid "Log was successfully cleared."
+msgstr "Log başarıyla temizlendi."
+
+#: classes/ppc_ajax_functions_class.php:26
+msgid ""
+"Error: Seems like AJAX request was not recognised as coming from the right "
+"page. Maybe hacking around..?"
+msgstr ""
+"Hata: AJAX isteği tam olarak doğru sayfadan tanımlanamadı. Belkide bir hack "
+"vardır?"
+
+#: classes/ppc_ajax_functions_class.php:123
+msgid "No users found."
+msgstr "Kullanıcılar bulunamadı."
+
+#: classes/ppc_ajax_functions_class.php:210
+msgid "What are you importing, cows?"
+msgstr "Ne içeri aktarıyorsunuz?"
+
+#: classes/ppc_ajax_functions_class.php:231
+msgid "Error: could not clear error log."
+msgstr "Hata: error log temizlenemedi."
+
+#: classes/ppc_addons_class.php:38
+msgid "Addons for Post Pay Counter"
+msgstr "Post Pay Counter için eklentiler"
+
+#: classes/ppc_addons_class.php:39
+msgid "Browse All Extensions"
+msgstr "Tüm eklentilere göz at"
+
+#: classes/ppc_addons_class.php:41
+msgid "These addons add more features to Post Pay Counter."
+msgstr "Bu eklentiler Post Pay Counter’a daha fazla özellik kazandırır."
+
+#: classes/ppc_addons_class.php:65
+msgid ""
+"There was an error retrieving the extensions list from the server. Please "
+"try again later."
+msgstr "Eklentileri alırken bir hata oluştu. Daha sonra tekrar deneyin."
+
+#: classes/ppc_system_info_class.php:34
+msgid "System Information"
+msgstr "Sistem Bilgisi"
+
+#: classes/ppc_system_info_class.php:36
+msgid ""
+"To copy the system info, click below then press Ctrl + C (PC) or Cmd + C "
+"(Mac)."
+msgstr ""
+"Sistem bilgisini kopyalamak için CTRL + C (PC) yada CMD + C (Mac) kullanın."
+
+#: classes/ppc_system_info_class.php:123
+msgid "Download System Info File"
+msgstr "Sistem bilgisini indir"
+
+#: classes/ppc_options_fields_class.php:75
+msgid "Use the zonal system"
+msgstr "Bölgesel ayarları kullan"
+
+#: classes/ppc_options_fields_class.php:75
+#, php-format
+msgid ""
+"With this system you can define up to how many zones of retribution you "
+"would like, so that from X %1$s to Y %1$s the same pay will be applied (eg. "
+"from 200 %1$s to 300 %1$s pay 2.00). It does not matter how many %1$s a post "
+"has, but only in what zone it fits in."
+msgstr ""
+"Bu sistem ile hangi bölgenin ne kadar kazanacağını belirtebilirsiniz. "
+"Örneğin: 200 %1$s den 300 $1$s e 2.00 öde. Bir yazının kaç tane %1$s olduğu "
+"önemli değildir, sadece hangi bölgeye denk geldiği önemlidir."
+
+#: classes/ppc_options_fields_class.php:81
+msgid "Payment"
+msgstr "Ödeme"
+
+#: classes/ppc_options_fields_class.php:99
+msgid "Add one more zone"
+msgstr "1 bölge daha ekle"
+
+#: classes/ppc_options_fields_class.php:100
+msgid "Delete last zone"
+msgstr "Son bölgeyi sil"
+
+#: classes/ppc_options_fields_class.php:104
+msgid "Use the incremental payment system"
+msgstr "Artan ödeme sistemi kullan"
+
+#: classes/ppc_options_fields_class.php:104
+#, php-format
+msgid ""
+"With this system, every %1$s has a value: more %1$s => higher pay. Just "
+"think that the %1$s number will be multiplied for the incremental payment "
+"value, so that is a post has 300 %1$s and you set the incremental payment "
+"value to 0.01, the writer will be credited with 3."
+msgstr ""
+"Bu sistem ile her %1$s değeri vardır. Daha fazla %1$s daha fazla ödeme. "
+"Örneğin: ödemeleriniz %1$s sayısına göre, her %1$s 0.01 kazanç ve yazının "
+"300 tane %1$s olsun. Bu durumda yazar 3 kazanır."
+
+#: classes/ppc_options_fields_class.php:106
+msgid "Incremental payment value"
+msgstr "Artan ödeme değeri"
+
+#: classes/ppc_generate_stats_class.php:51
+#: classes/ppc_generate_stats_class.php:125
+msgid "Error: no posts were selected"
+msgstr "Hata : hiç bir yazı seçilmedi"
+
+#: classes/ppc_generate_stats_class.php:310
+msgid "ID"
+msgstr "ID"
+
+#: classes/ppc_generate_stats_class.php:311
+msgid "Title"
+msgstr "Başlık"
+
+#: classes/ppc_generate_stats_class.php:312
+msgid "Type"
+msgstr "Tip"
+
+#: classes/ppc_generate_stats_class.php:313
+msgid "Status"
+msgstr "Durum"
+
+#: classes/ppc_generate_stats_class.php:314
+msgid "Pub. Date"
+msgstr "Yayınlanma tarihi"
+
+#: classes/ppc_generate_stats_class.php:332
+msgid "Total Pay"
+msgstr "Toplam ödeme"
+
+#: classes/ppc_generate_stats_class.php:435
+msgid "Author ID"
+msgstr "Yazar ID"
+
+#: classes/ppc_generate_stats_class.php:436
+msgid "Author Name"
+msgstr "Yazar adı"
+
+#: classes/ppc_generate_stats_class.php:437
+msgid "Written posts"
+msgstr "Yazılı yazılar"
+
+#: classes/ppc_save_options_class.php:79
+msgid ""
+"The specified visits callback returned NULL for a random post - are you sure "
+"it is correct?"
+msgstr ""
+"Rastgele bir yazı için tanımlanan ziyaretler NULL olarak geri dönüyor - bu "
+"doğru mu?"
+
+#: classes/ppc_welcome_class.php:23 classes/ppc_welcome_class.php:24
+msgid "Welcome to Post Pay Counter"
+msgstr "Post Pay Counter hoşgeldiniz"
+
+#: classes/ppc_welcome_class.php:32 classes/ppc_welcome_class.php:33
+msgid "Post Pay Counter Changelog"
+msgstr "Post Pay Counter değişiklik kayıtları"
+
+#: classes/ppc_welcome_class.php:83
+msgid "Features"
+msgstr "Özellikler"
+
+#: classes/ppc_welcome_class.php:86
+msgid "Changelog"
+msgstr "Değişiklik kayıtları"
+
+#: classes/ppc_welcome_class.php:105 classes/ppc_welcome_class.php:186
+#, php-format
+msgid "Welcome to Post Pay Counter Version %s"
+msgstr "Post Pay Counter %s versiyonuna hoşgeldiniz"
+
+#: classes/ppc_welcome_class.php:106 classes/ppc_welcome_class.php:187
+msgid ""
+"You got the latest release of Post Pay Counter, which is going to make "
+"handling authors' payments much, much easier! The menu on the left provides "
+"access to all the plugin features."
+msgstr ""
+"Post Pay Counter eklentisinin, tüm ödemelerinizi ve yazarlarınızı kolayca "
+"yönetebileceğiniz son versiyonunu kullanıyorsunuz. Sol menüden tüm eklenti "
+"özelliklerine erişebilirsiniz."
+
+#: classes/ppc_welcome_class.php:111
+msgid "A powerful payment manager"
+msgstr "Güçlü bir ödeme yöneticisi"
+
+#: classes/ppc_welcome_class.php:116
+msgid "Pay per post, word, visit, image and comment"
+msgstr "Yazılar, kelimeler, ziyaretler, imajlar yada yorumlar için ödeme yapın"
+
+#: classes/ppc_welcome_class.php:117
+msgid ""
+"Basically everything in a post can define its overall value. You can pay a "
+"fixed fee, add something depending on the number of words, maybe some more "
+"for visits, and then take care of images and comments as well. You can set a "
+"limit on the maximum number of each counting category and a total payment "
+"one too."
+msgstr ""
+"Temel olarak bir yazının içindeki herşey o yazıya değer katar. Sadece sabit "
+"bir ücret ödeyebilir yada içerdiği kelime sayısı, ziyaretler, resimler ve "
+"yorumlar için daha fazla ödeyebilirsiniz. Ayrıca bir yazıya maksimum "
+"ödenebilir tutar belirleyebilirsiniz."
+
+#: classes/ppc_welcome_class.php:119
+msgid "A zonal system, or an incremental one"
+msgstr "Bölgesel yada artan sistem"
+
+#: classes/ppc_welcome_class.php:120
+msgid ""
+"Every time there is a number of something to be paid (a number of words, a "
+"number of visits...) you can choose whether you want to use an incremental "
+"system (e.g. each word is worth $0.01 => 100 words are worth $1.00) or a "
+"zonal one (e.g. between 100 and 200 words pay $1.20 => 190 words are worth "
+"$1.20) with as many zones you want."
+msgstr ""
+"Artan ödeme sistemlerini kendiniz belirleyebilirsiniz. Her kelime 0.01 => "
+"100 kelime 1 ödeme. Yada bölgesel ayarları kullanabilirsiniz. Örneğin : 100 "
+"ile 200 kelime arası 1.20 öde gibi. 190 kelimelik bir yazı için 1.20 "
+"ödersiniz."
+
+#: classes/ppc_welcome_class.php:122
+msgid "Define what is paid and what is not"
+msgstr "Neyin ödenmiş neyin ödenmemiş olduğunu tanımlayın"
+
+#: classes/ppc_welcome_class.php:123
+msgid ""
+"Include or exclude posts from stats depending on their post type (the plugin "
+"works with custom post types, yeah!), the user's role who wrote the it and "
+"its post status."
+msgstr ""
+"Yazıları tiplerine, yazarına veya yazı duruma göre istatistik sayfasından "
+"dahil yada hariç tutabilirsiniz. (Custom post type)"
+
+#: classes/ppc_welcome_class.php:128
+msgid "Stats page with calculations"
+msgstr "Hesaplamalarla istatistik sayfası"
+
+#: classes/ppc_welcome_class.php:133
+msgid "The general view"
+msgstr "Genel görünüm"
+
+#: classes/ppc_welcome_class.php:134
+msgid ""
+"General stats display all users in the same page, showing how much each of "
+"them should be paid basing on the number and value of their posts."
+msgstr ""
+"Genel istatistikler ve kimin kaç hangi yazıdan kaç para kazanacağı her "
+"kullanıcıya aynı sayfada gösterilir."
+
+#: classes/ppc_welcome_class.php:136
+msgid "The detailed view"
+msgstr "Detaylı görünüm"
+
+#: classes/ppc_welcome_class.php:137
+msgid ""
+"Detailed stats display an in-depth view for an author. You'll see how the "
+"total amount has been calculated, with details for each post (number of "
+"words, visits, images and comments)."
+msgstr ""
+"Detaylı istatistikler derinlemesine yazarlara gösterilir. Her bir yazının "
+"kaç para kazandığını ve detayları görebilirsiniz. (kelime sayısı, "
+"ziyaretler, resimler ve yorumlar)"
+
+#: classes/ppc_welcome_class.php:139
+msgid "Get old stats too"
+msgstr "Eski istatistikleride al"
+
+#: classes/ppc_welcome_class.php:140
+msgid ""
+"View posts calculations since the first written post, regardless of the "
+"plugin install date. A fancy date picker lets you shift between days and "
+"select the desired time range."
+msgstr ""
+"Eklenti kurulduktan sonraki ilk yazıdan itibaren yazıların hesaplarını gör. "
+"Diğer tarihler, tarih seçici aracılığı ile seçilebilir."
+
+#: classes/ppc_welcome_class.php:143
+msgid ""
+"Fond of stats and numbers? At the bottom of regular stats an overall stats "
+"box displays your all-time overall stats, from the first post ever to the "
+"latest one."
+msgstr ""
+"İstatistikler ve sayılar mı buldunuz? Düzenli istatistiklerin alt kısmında "
+"tüm zamanların istatistikleri, tüm istatistikler ile ilk yazıdan itibaren "
+"mevcuttur."
+
+#: classes/ppc_welcome_class.php:148
+msgid "Juicy additions"
+msgstr "Hareketli eklentiler"
+
+#: classes/ppc_welcome_class.php:153
+msgid "Prevent users envy"
+msgstr "Kullanıcı rekabetini engelle"
+
+#: classes/ppc_welcome_class.php:154
+msgid ""
+"Want users to be able to see only their own stats and not other users' ones? "
+"Yes you can! There's a whole set of permission settings to define what users "
+"should and shouldn't see."
+msgstr ""
+"Yazarların sadece kendi istatistiklerini görmesini mi istiyorsunuz. Ever "
+"bunu yapabilirsiniz. Yazarların neleri görüp neleri göremeceğini "
+"ayarlayabilmeniz için, izin ayarları sayfası mevcuttur."
+
+#: classes/ppc_welcome_class.php:156
+msgid "Personalize settings by user"
+msgstr "Ayarları kullanıcıya göre kişiselleştir"
+
+#: classes/ppc_welcome_class.php:157
+msgid ""
+"Some users may deserve more or less than others: they can have custom "
+"settings for what concerns payments and permissions."
+msgstr ""
+"Bazı yazarlar daha fazlasını bazı yazarlar daha azını hakeder. İzinler ve "
+"ödemeler için, yazarlarınızın para kazanç ayarlarını düzenleyebilirsiniz."
+
+#: classes/ppc_welcome_class.php:159
+msgid "Import/Export settings"
+msgstr "İçe al / dışarı aktar ayarları"
+
+#: classes/ppc_welcome_class.php:160
+msgid ""
+"Exporting and importing settings makes duplicating settings easy! You can "
+"copy them from a user to another or even from different websites."
+msgstr ""
+"Ayarları dışa ve içe aktarmak, ayarları çoğaltmanın kolay yoludur. Ayarları "
+"bir kullancıdan diğerine kopyalayabilir hatta farklı bir sitede "
+"kullanabilirsiniz."
+
+#: classes/ppc_welcome_class.php:167 classes/ppc_welcome_class.php:200
+msgid "Go to Post Pay Counter Settings"
+msgstr "Post Pay Counter ayarlar sayfasına git"
+
+#: classes/ppc_welcome_class.php:192
+msgid "Version changes"
+msgstr "Version değişiklikleri"
+
+#: classes/ppc_welcome_class.php:218
+msgid "The springboard for the PRO"
+msgstr "PRO olun"
+
+#: classes/ppc_welcome_class.php:223
+msgid "Analytics and Adsense integration"
+msgstr ""
+
+#: classes/ppc_welcome_class.php:224
+#, fuzzy
+msgid ""
+"Use your account on the world-leading website visits tracking system to pay "
+"writers basing on reliable visits data, and/or share Adsense revenues with "
+"your writers. Use pageviews or unique pageviews as you like and stop the "
+"counting after a certain number of days."
+msgstr ""
+"Dünyanın en iyi sayaç sistemlerini, yazarlarınızın yazılarına gelen "
+"ziyaretleri saymak için kullanın. Sayfa gösterimi yada tekil ziyaretçi "
+"bazında ölçüm yapın. Ayrıca belli bir günden sonra saymayı durdurun."
+
+#: classes/ppc_welcome_class.php:226
+msgid "Pay with Paypal"
+msgstr "Paypal ile öde"
+
+#: classes/ppc_welcome_class.php:227
+msgid "Pay your writers directly from the stats page with Adaptive Payments."
+msgstr "Adaptive ödeme seçeneği ile istatistik sayfasından direk ödeme"
+
+#: classes/ppc_welcome_class.php:229
+msgid "Tons of other features"
+msgstr "Tonlarca diğer özellik"
+
+#: classes/ppc_welcome_class.php:230
+#, php-format
+msgid ""
+"The %1$sPRO version%2$s includes a damn more lot of interesting features, "
+"among which but not only: payment manager and payment history to keep track "
+"of past transactions, award payment bonus to single posts, shortcode for "
+"stats, stats exporting... see? There's not enough space to list them all!"
+msgstr ""
+"%1$sPRO version%2$s bir çok yeni özelliği içerir. Ödeme yöneticisi, ödeme "
+"geçmişleri, bonus ödemeler, istatistikler için shortcode’lar ve daha fazla. "
+"Gördün mü, özellikler buraya bile sığmıyor."
+
+#: classes/ppc_welcome_class.php:252
+msgid "No valid changelog was found."
+msgstr "Geçerli değişiklik kayıt dosyası bulunamadı"
+
+#: classes/ppc_counting_types_class.php:203
+msgid "Basic"
+msgstr "Temel"
+
+#: classes/ppc_counting_types_class.php:213
+msgid "Words"
+msgstr "Kelimeler"
+
+#: classes/ppc_counting_types_class.php:223
+msgid "Visits"
+msgstr "Ziyaretler"
+
+#: classes/ppc_counting_types_class.php:233
+msgid "Images"
+msgstr "İmajlar"
+
+#: classes/ppc_counting_types_class.php:243
+msgid "Comments"
+msgstr "Yorumlar"
+
+#: classes/ppc_install_functions_class.php:291
+msgid "Could not add general settings option."
+msgstr "Genel ayarlara eklenemedi."
+
+#: classes/ppc_install_functions_class.php:300
+msgid "Could not update general settings option."
+msgstr "Genel ayarlar güncellenemedi."
+
+#~ msgid "Analytics as visits source"
+#~ msgstr "Ziyaret kaynağına göre analyticsler"

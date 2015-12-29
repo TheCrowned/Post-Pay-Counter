@@ -119,8 +119,6 @@ class PPC_generate_stats {
         
 		do_action( 'ppc_got_requested_posts', $requested_posts );
 		
-		//var_dump($requested_posts);
-		
         if( $requested_posts->found_posts == 0 ) {
             $error = new PPC_Error( 'empty_selection', __( 'Error: no posts were selected' , 'post-pay-counter' ), self::$grp_args, false );
             return $error->return_error();
@@ -312,10 +310,11 @@ class PPC_generate_stats {
             $formatted_stats['cols']['post_type'] = __( 'Type', 'post-pay-counter');
             $formatted_stats['cols']['post_status'] = __( 'Status', 'post-pay-counter');
             $formatted_stats['cols']['post_publication_date'] = __( 'Pub. Date', 'post-pay-counter');
-			
-			foreach( $post_stats->ppc_payment['normal_payment'] as $id => $value ) {
-				if( $id == 'total' ) continue;
-				
+            
+            $data_merge = array_merge( $post_stats->ppc_count['normal_count'], $post_stats->ppc_payment['normal_payment'] );
+			unset( $data_merge['total'] );
+            
+			foreach( $data_merge as $id => $value ) {
 				if( isset( $counting_types[$id] ) ) {
 					switch( $counting_types[$id]['display'] ) {
 						case 'none':
@@ -344,11 +343,11 @@ class PPC_generate_stats {
                 $formatted_stats['stats'][$author_id][$post->ID]['post_status'] = $post->post_status;
                 $formatted_stats['stats'][$author_id][$post->ID]['post_publication_date'] = $post_date[0];
                 
-				foreach( $post->ppc_payment['normal_payment'] as $id => $value ) {
+				foreach( $data_merge as $id => $value ) {
 					if( isset( $counting_types[$id] ) ) {
 						switch( $counting_types[$id]['display'] ) {
 							case 'both':
-								$formatted_stats['stats'][$author_id][$post->ID]['post_'.$id] = $post->ppc_count['normal_count'][$id]['to_count'].' ('.PPC_general_functions::format_payment( sprintf( '%.2f', $value ) ).')';
+								$formatted_stats['stats'][$author_id][$post->ID]['post_'.$id] = $post->ppc_count['normal_count'][$id]['to_count'].' ('.PPC_general_functions::format_payment( sprintf( '%.2f', $post->ppc_payment['normal_payment'][$id] ) ).')';
 								break;
 							
 							case 'count':
@@ -356,7 +355,7 @@ class PPC_generate_stats {
 								break;
 							
 							case 'payment':
-								$formatted_stats['stats'][$author_id][$post->ID]['post_'.$id] = PPC_general_functions::format_payment( sprintf( '%.2f', $value ) );
+								$formatted_stats['stats'][$author_id][$post->ID]['post_'.$id] = PPC_general_functions::format_payment( sprintf( '%.2f', $post->ppc_payment['normal_payment'][$id] ) );
 								break;
 							
 							case 'none':
@@ -386,11 +385,13 @@ class PPC_generate_stats {
                 $formatted_stats['stats'][$author_id]['author_name'] = $author_data->display_name;
                 $formatted_stats['stats'][$author_id]['author_written_posts'] = (int) $posts['total']['ppc_misc']['posts'];
                 
-				foreach( $posts['total']['ppc_payment']['normal_payment'] as $id => $value ) {
+                $data_merge = array_merge( $posts['total']['ppc_count']['normal_count'], $posts['total']['ppc_payment']['normal_payment'] );
+                
+				foreach( $data_merge as $id => $value ) {
 					if( isset( $counting_types[$id] ) ) {
 						switch( $counting_types[$id]['display'] ) {
 							case 'both':
-								$formatted_stats['stats'][$author_id]['author_'.$id] = $posts['total']['ppc_count']['normal_count'][$id]['to_count'].' ('.PPC_general_functions::format_payment( sprintf( '%.2f', $value ) ).')';
+								$formatted_stats['stats'][$author_id]['author_'.$id] = $posts['total']['ppc_count']['normal_count'][$id]['to_count'].' ('.PPC_general_functions::format_payment( sprintf( '%.2f', $posts['total']['ppc_payment']['normal_payment'][$id] ) ).')';
 								break;
 							
 							case 'count':
@@ -398,7 +399,7 @@ class PPC_generate_stats {
 								break;
 							
 							case 'payment':
-								$formatted_stats['stats'][$author_id]['author_'.$id] = PPC_general_functions::format_payment( sprintf( '%.2f', $value ) );
+								$formatted_stats['stats'][$author_id]['author_'.$id] = PPC_general_functions::format_payment( sprintf( '%.2f', $posts['total']['ppc_payment']['normal_payment'][$id] ) );
 								break;
 							
 							case 'none':
@@ -410,16 +411,6 @@ class PPC_generate_stats {
 							$cols_info['counting_types'][$id] = $counting_types[$id];
 					}
 				}
-				
-				//Keep track of maximum cols count - !! bugged !! if different cnt types are enabled, but in the same number, they are not all displayed
-				/*$current_count = count( $formatted_stats['stats'][$author_id] );
-				if( empty( $cols_info ) OR $cols_info['count'] < $current_count ) {
-					$cols_info['count'] = $current_count;
-					$cols_info['author_id'] = $author_id;
-					$cols_info['counting_types'] = $counting_types;
-				}
-				
-				unset( $current_count );*/
 				
 				$formatted_stats['stats'][$author_id]['author_total_payment'] = sprintf( '%.2f', $posts['total']['ppc_payment']['normal_payment']['total'] );
                 

@@ -67,18 +67,23 @@ class PPC_counting_types {
      *                               If no count_callback is given, a dummy method will assign 1 as value of the count.
      *              display - (optional) what you want to be displayed in the stats, possible values are 'count', 'payment', 'both', 'none'. Default to 'both'. 
      *              payment_callback - method to compute payment of the counted "how many". Will receive the counting output array as parameter.
+     *              other_params - (optional) can contain whatever you want. Maybe you want to add custom checks to a counting type: then you can use this to register it with custom args and then hook to actions in the method and use this parameter.
+     *              				# not_to_pay (bool) exclude counting from payments.
      */ 
     
     function register_counting_type( $parameters ) {
         //Check everything needed has been given
         if( ! isset( $parameters['id'] ) OR ! isset( $parameters['label'] ) OR ! isset( $parameters['apply_to'] ) OR ! isset( $parameters['payment_callback'] ) ) {
-            trigger_error( 'ID, label, apply_to (post|author), settings_status_index, payment_callback parameters must be provided when registering a counting type.', E_USER_WARNING );
+            trigger_error( 'ID, label, apply_to (post|author), payment_callback parameters must be provided when registering a counting type.', E_USER_WARNING );
             return;
         }
 
         $counting_type_arr = array(
+        	'id' => $parameters['id'],
             'label' => $parameters['label'],
-            'payment_callback' => $parameters['payment_callback']
+            'payment_callback' => $parameters['payment_callback'],
+        	'apply_to' => $parameters['apply_to'],
+        	'other_params' => array()
         );
         
         if( isset( $parameters['payment_only'] ) )
@@ -87,15 +92,19 @@ class PPC_counting_types {
         if( isset( $parameters['settings_status_index'] ) )
             $counting_type_arr['settings_status_index'] = $parameters['settings_status_index'];
         
-        //If no count method is given, fallback to the dummy one which outputs one for everything
         if( isset( $parameters['count_callback'] ) )
             $counting_type_arr['count_callback'] = $parameters['count_callback'];
-            
+        
+        if( isset( $parameters['other_params'] ) )
+        	$counting_type_arr['other_params'] = $parameters['other_params'];
+        
         //If no display choice is made, assign 'both'
         if( ! isset( $parameters['display'] ) )
             $counting_type_arr['display'] = 'both';
         else
             $counting_type_arr['display'] = $parameters['display'];
+        
+        do_action( 'ppc_registering_counting_type', $counting_type_arr );
         
         //Counting types are stored in the global var 
         if( $parameters['apply_to'] == 'both' ) {
@@ -147,6 +156,7 @@ class PPC_counting_types {
         $this->active_counting_types[$userid][$what] = $active_user_counting_types; //Cache
         
         $return = $this->get_user_counting_types( $userid );
+        
         return $return[$what];
     }
     
