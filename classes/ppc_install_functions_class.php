@@ -188,7 +188,8 @@ class PPC_install_functions {
                 'default_stats_time_range_month' => 1,
                 'default_stats_time_range_week' => 0,
                 'default_stats_time_range_custom' => 0,
-                'default_stats_time_range_custom_value' => 100
+                'default_stats_time_range_custom_value' => 100,
+                'admins_override_permissions' => 1
             ),
             
             'admin' => array( 

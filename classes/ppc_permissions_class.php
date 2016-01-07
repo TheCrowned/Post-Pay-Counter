@@ -27,12 +27,12 @@ class PPC_permissions {
 		else
 			$user = $current_user->ID;
         
-		//High-level users override permissions.
-        /*if( current_user_can( 'manage_options' ) ) {
-            return true;
-        }*/
-        
         $settings = PPC_general_functions::get_settings( $user );
+        
+		//High-level users override permissions, if they don't have any specific settings.
+        if( $settings['admins_override_permissions'] AND $settings['userid'] == 'general' AND current_user_can( 'manage_options' ) )
+            return true;
+        
         if( $settings[$permission] == 1 )
             return true;
         else

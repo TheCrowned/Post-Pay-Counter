@@ -9,7 +9,6 @@ Author URI: http://www.thecrowned.org/
 Text Domain: post-pay-counter
 */
 
-
 /** Copyright Stefano Ottolenghi 2013
  * 
  * This program is free software: you can redistribute it and/or modify

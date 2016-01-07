@@ -66,7 +66,8 @@ class PPC_update_class {
         $new_settings = array(  
             'general' => array(
 				'display_overall_stats' => 1,
-				'counting_visits_callback_value' => ''
+				'counting_visits_callback_value' => '',
+				'admins_override_permissions' => 0
             ),
             
             'user' => array(

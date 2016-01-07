@@ -80,6 +80,15 @@ class PPC_meta_boxes {
         echo '</div>';
         echo '</div>';
         do_action( 'ppc_misc_settings_after_overall_stats', $current_settings );
+        
+        //Admin permissions
+        echo '<div class="ppc_section">';
+        echo '<div class="ppc_title">'.__( 'Admin permissions' , 'post-pay-counter').'</div>';
+        echo '<div class="main">';
+        echo PPC_HTML_functions::echo_p_field( __( 'Admins override all permissions' , 'post-pay-counter'), $current_settings['admins_override_permissions'], 'checkbox', 'admins_override_permissions', __( 'By default, admins are subject to the same permissions as normal users. Checking this will make admins capable of anything, unless you give them special permissions through the Personalize settings box.', 'post-pay-counter'), NULL, 'admins_override_permissions' );
+        echo '</div>';
+        echo '</div>';
+        do_action( 'ppc_misc_settings_after_admin_permissions', $current_settings );
 		
         //Post types to be included in countings
         echo '<div class="ppc_section">';

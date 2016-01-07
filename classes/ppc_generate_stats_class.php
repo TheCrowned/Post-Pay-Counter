@@ -97,7 +97,7 @@ class PPC_generate_stats {
             'ignore_sticky_posts' => 1,
             'suppress_filters' => false,
             'ppc_filter_user_roles' => 1,
-			'ppc_allowed_user_roles' => $settings['counting_allowed_user_roles']
+			'ppc_allowed_user_roles' => $general_settings['counting_allowed_user_roles']
         );
         
         //If a user_id is provided, and is valid, posts only by that author are selected 
@@ -108,9 +108,7 @@ class PPC_generate_stats {
         
         //Filter for allowed user roles if needed
         if( isset( self::$grp_args['ppc_filter_user_roles'] ) AND self::$grp_args['ppc_filter_user_roles'] ) 
-            add_filter( 'posts_join', array( 'PPC_generate_stats', 'grp_filter_user_roles' ) );
-        
-        //add_filter( 'posts_join', array( 'PPC_generate_stats', 'grp_get_visits_postmeta' ) );
+            add_filter( 'posts_join', array( 'PPC_generate_stats', 'grp_filter_user_roles' ), 10, 2 );
         
         $requested_posts = new WP_Query( self::$grp_args );
 		
@@ -145,24 +143,6 @@ class PPC_generate_stats {
                     AND '.$wpdb->usermeta.'.meta_value REGEXP ("'.implode( '|', self::$grp_args['ppc_allowed_user_roles'] ).'")';
         
         return $join;
-    }
-    
-    /**
-     * Would allow to get all visits postmetas at once, but would need visits_postmeta not to be customizable per user.
-     * 
-     * @param unknown $join
-     * @return string
-     */
-    static function grp_get_visits_postmeta( $join ) {
-    	global $wpdb;
-    	
-    	$visits_postmeta = apply_filters( 'ppc_counting_visits_postmeta', self::$settings['counting_visits_postmeta_value'] );
-    	
-    	$join .= 'LEFT JOIN '.$wpdb->postmeta.'
-                    ON '.$wpdb->postmeta.'.post_id = '.$wpdb->posts.'.ID
-                    AND '.$wpdb->postmeta.'.meta_key = "'.$visits_postmeta.'"';
-    
-    	return $join;
     }
     
 	/**

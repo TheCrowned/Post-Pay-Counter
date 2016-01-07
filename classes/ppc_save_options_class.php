@@ -136,6 +136,7 @@ class PPC_save_options {
         $new_settings = array_merge( $new_settings, $default_stats_time_range );
         $new_settings['default_stats_time_range_custom_value'] = (int) $settings['default_stats_time_range_custom_value'];
 		$new_settings['display_overall_stats'] = @PPC_options_fields::get_checkbox_value( $settings['display_overall_stats'] );
+		$new_settings['admins_override_permissions'] = @PPC_options_fields::get_checkbox_value( $settings['admins_override_permissions'] );
         
         foreach( $settings as $option => $value ) {
             
