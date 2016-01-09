@@ -16,7 +16,7 @@ class PPC_save_options {
     */
     
     static function save_counting_settings( $settings ) {
-		$current_settings = PPC_general_functions::get_settings( $settings['userid'] );
+		//$current_settings = PPC_general_functions::get_settings( $settings['userid'] );
         $new_settings = array(
             'userid' => $settings['userid'], 
             'counting_allowed_post_statuses' => array( 
@@ -119,9 +119,8 @@ class PPC_save_options {
         }
         
         $new_settings = apply_filters( 'ppc_save_counting_settings', $new_settings, $settings );
-        $new = array_merge( $current_settings, $new_settings );
         
-        $update = self::update_settings( $settings['userid'], $new );
+        $update = self::update_settings( $settings['userid'], $new_settings );
         if( is_wp_error( $update ) ) return $update;
     }
     
@@ -131,10 +130,10 @@ class PPC_save_options {
      * @access  public
      * @since   2.0
      * @param   $settings array new settings
-    */
+     */
     
     static function save_misc_settings( $settings ) {
-		$current_settings = PPC_general_functions::get_settings( 'general' );
+		//$current_settings = PPC_general_functions::get_settings( 'general' );
         $new_settings = array( 'counting_allowed_post_types' => array(), 'counting_allowed_user_roles' => array(), 'can_see_options_user_roles' => array(), 'can_see_stats_user_roles' => array() );
         
         $default_stats_time_range = PPC_options_fields::get_radio_value( $settings['default_stats_time_range'], 'default_stats_time_range_month', 'default_stats_time_range_week', 'default_stats_time_range_custom' ); 
@@ -168,9 +167,8 @@ class PPC_save_options {
         }
         
         $new_settings = apply_filters( 'ppc_save_misc_settings', $new_settings, $settings );
-        $new = array_merge( $current_settings, $new_settings );
         
-        $update = self::update_settings( 'general', $new );
+        $update = self::update_settings( 'general', $new_settings );
         if( is_wp_error( $update ) ) return $update;
         
         //Update permissions
@@ -186,7 +184,6 @@ class PPC_save_options {
     */
     
     static function save_permissions( $settings ) {
-        $current_settings = PPC_general_functions::get_settings( $settings['userid'] );
         $new_settings = array( 'userid' => $settings['userid'] );
         
         $new_settings['can_see_others_general_stats'] = @PPC_options_fields::get_checkbox_value( $settings['can_see_others_general_stats'] );
@@ -194,9 +191,8 @@ class PPC_save_options {
         $new_settings['can_see_countings_special_settings'] = @PPC_options_fields::get_checkbox_value( $settings['can_see_countings_special_settings'] );
         
         $new_settings = apply_filters( 'ppc_save_permissions_settings', $new_settings, $settings );
-        $new = array_merge( $current_settings, $new_settings );
         
-        $update = self::update_settings( $settings['userid'], $new );
+        $update = self::update_settings( $settings['userid'], $new_settings );
         if( is_wp_error( $update ) ) return $update;
     }
     
@@ -209,21 +205,36 @@ class PPC_save_options {
      * @param   $settings array the new settings
     */
     
-    static function update_settings( $userid, $settings ) {
+    static function update_settings( $userid, $new_settings ) {
         global $ppc_global_settings;
-		
-        if( $settings == PPC_general_functions::get_settings( $settings['userid'] ) ) return; //avoid updating with same data, which would result in an error
+        $current_general_settings = PPC_general_functions::get_settings( $settings['userid'] );
         
         if( is_numeric( $userid ) ) {
             $settings['userid'] = (int) $settings['userid'];
-            if( ! $update = update_user_option( $userid, $ppc_global_settings['option_name'], $settings ) ) {
+            
+            //Only adds a setting index in the array of the to-be-updated if it differs from general settings.
+            foreach( $new_settings as $key => &$single ) {
+				if( $single == $current_general_settings[$key] )
+					unset( $new_settings[$key] );
+			}
+			
+            $current_user_settings = get_user_option( $ppc_global_settings['option_name'], $userid );
+            if( ! is_array( $current_user_settings ) )	$current_user_settings = array();
+            
+            $new_settings = array_merge( $current_user_settings, $new_settings );
+            if( $new_settings == $current_user_settings ) return; //avoid updating with same data, which would result in an error
+            
+            if( ! $update = update_user_option( $userid, $ppc_global_settings['option_name'], $new_settings ) )
                 return new WP_Error( 'save_user_settings_error', __( 'Error: could not update settings.' , 'post-pay-counter') );
-            }
+                
         } else if( $userid == 'general' ) {
-            if( ! $update = update_option( $ppc_global_settings['option_name'], $settings ) ) {
+			$new_settings = array_merge( $current_general_settings, $new_settings );
+			if( $new_settings == $current_general_settings ) return; //avoid updating with same data, which would result in an error
+			
+            if( ! $update = update_option( $ppc_global_settings['option_name'], $new_settings ) )
                 return new WP_Error( 'save_general_settings_error', __( 'Error: could not update settings.' , 'post-pay-counter') );
-            }
-            $ppc_global_settings['general_settings'] = $settings;
+            
+            $ppc_global_settings['general_settings'] = $new_settings;
         }
         
         do_action( 'ppc_settings_updated' );

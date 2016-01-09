@@ -80,6 +80,8 @@ It must become: *define( 'PPC_DEBUG_LOG', false );*
 == Changelog ==
 = 2.514 =
 * New: it's now possible to control what is displayed in the stats page. You can hide a column but still have the payment criteria active, and you can even personalize this per-user!
+* New: when personalizing a user settings, only settings that have a different value from general settings are stored in the database. This allows for less data to be stored; moreover, when general settings are updated, users don't retain outdated settings, but all settings that have not been specifically changed for them, follow the general ones.
+* Tweak: hidden license box when personalizing user settings, and moved it under the Personalize settings box in the general options.
 
 = 2.513 =
 * New: added option to allow admins to override all permissions. This applies only if they don't have specific personalized settings.
