@@ -65,7 +65,8 @@ class PPC_counting_types {
      *                               Can (should) be a class method, in which case an array is needed (eg array( 'classname', 'static_method' ) or array( $object, 'method' ) ).
      *                               Will receive the $post WP_Post_Object as parameter if apply_to = post, will receive author stats and author id if apply_to = author.
      *                               If no count_callback is given, a dummy method will assign 1 as value of the count.
-     *              display - (optional) what you want to be displayed in the stats, possible values are 'count', 'payment', 'both', 'none'. Default to 'both'. 
+     *              display - (optional) what you want to be displayed in the stats, possible values are 'count', 'payment', 'both', 'tooltip', 'none'. Default to 'both'. 
+     * 				display_status_index - (optional) the name of the settings index of the plugin settings containing a display value. This is used to provide different display values to different users. If not given, the above 'display' will be used.
      *              payment_callback - method to compute payment of the counted "how many". Will receive the counting output array as parameter.
      *              other_params - (optional) can contain whatever you want. Maybe you want to add custom checks to a counting type: then you can use this to register it with custom args and then hook to actions in the method and use this parameter.
      *              				# not_to_pay (bool) exclude counting from payments.
@@ -91,6 +92,9 @@ class PPC_counting_types {
         
         if( isset( $parameters['settings_status_index'] ) )
             $counting_type_arr['settings_status_index'] = $parameters['settings_status_index'];
+        
+        if( isset( $parameters['display_status_index'] ) )
+            $counting_type_arr['display_status_index'] = $parameters['display_status_index'];
         
         if( isset( $parameters['count_callback'] ) )
             $counting_type_arr['count_callback'] = $parameters['count_callback'];
@@ -139,6 +143,7 @@ class PPC_counting_types {
         
         //See which ones are active
         $active_user_counting_types = array();
+        
         foreach( $this->counting_types[$what] as $id => $single ) {
             $counting_status = 0;
             if( isset( $single['settings_status_index'] ) AND $settings[$single['settings_status_index']] )
@@ -149,8 +154,6 @@ class PPC_counting_types {
             
             if( $counting_status == 1 )
                 $active_user_counting_types[] = $id;
-            
-            unset( $counting_status );
         }
         
         $this->active_counting_types[$userid][$what] = $active_user_counting_types; //Cache
@@ -172,12 +175,19 @@ class PPC_counting_types {
      */ 
     
     function get_user_counting_types( $userid ) {
+		$user_settings = PPC_general_functions::get_settings( $userid );
+		
         $active_user_counting_types = array(); 
         foreach( $this->active_counting_types[$userid] as $what => $data ) { //'post' and 'author'
             $active_user_counting_types[$what] = array();
             
             foreach( $data as $single ) { //counting types
                 $current_counting_type = $this->counting_types[$what][$single];
+                
+                //Change 'display' param depending on user settings, if any
+                if( isset( $current_counting_type['display_status_index'] ) AND isset( $user_settings[$current_counting_type['display_status_index']] ) AND $user_settings[$current_counting_type['display_status_index']] )
+					$current_counting_type['display'] = $user_settings[$current_counting_type['display_status_index']];
+                
                 $active_user_counting_types[$what][$single] = $current_counting_type;
             }
         }
@@ -213,7 +223,8 @@ class PPC_counting_types {
             'label' => __( 'Basic', 'post-pay-counter' ),
             'apply_to' => 'post',
             'settings_status_index' => 'basic_payment',
-            'display' => 'none',
+            'display' => 'tooltip',
+            'display_status_index' => 'basic_payment_display_status',
             'count_callback' => array( 'PPC_counting_stuff', 'dummy_counter' ),
             'payment_callback' => array( 'PPC_counting_stuff', 'basic_payment' )
         );
@@ -224,9 +235,11 @@ class PPC_counting_types {
             'apply_to' => 'post',
             'settings_status_index' => 'counting_words',
             'display' => 'count',
+            'display_status_index' => 'counting_words_display_status',
             'count_callback' => array( 'PPC_counting_stuff', 'count_post_words' ),
             'payment_callback' => array( 'PPC_counting_stuff', 'words_payment' )
         );
+        
     
         $built_in_counting_types[] = array(
             'id' => 'visits',
@@ -234,6 +247,7 @@ class PPC_counting_types {
             'apply_to' => 'post',
             'settings_status_index' => 'counting_visits',
             'display' => 'count',
+            'display_status_index' => 'counting_visits_display_status',
             'count_callback' => array( 'PPC_counting_stuff', 'count_post_visits' ),
             'payment_callback' => array( 'PPC_counting_stuff', 'visits_payment' )
         );
@@ -244,6 +258,7 @@ class PPC_counting_types {
             'apply_to' => 'post',
             'settings_status_index' => 'counting_images',
             'display' => 'count',
+            'display_status_index' => 'counting_images_display_status',
             'count_callback' => array( 'PPC_counting_stuff', 'count_post_images' ),
             'payment_callback' => array( 'PPC_counting_stuff', 'images_payment' )
         );
@@ -254,6 +269,7 @@ class PPC_counting_types {
             'apply_to' => 'post',
             'settings_status_index' => 'counting_comments',
             'display' => 'count',
+            'display_status_index' => 'counting_comments_display_status',
             'count_callback' => array( 'PPC_counting_stuff', 'count_post_comments' ),
             'payment_callback' => array( 'PPC_counting_stuff', 'comments_payment' )
         );

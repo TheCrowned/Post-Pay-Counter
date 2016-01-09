@@ -38,6 +38,11 @@
 	background-color: #eee;
 	margin-right: 2em;
 }
+.ppc_section select {
+    float: right;
+	background-color: #eee;
+	margin-right: 0.5em;
+}
 .ppc_section td {
     width: 50%;
 }

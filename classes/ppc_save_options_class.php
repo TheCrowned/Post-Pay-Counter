@@ -57,17 +57,22 @@ class PPC_save_options {
         
         //Fields that need special attention (text)
         $new_settings['basic_payment_value'] = (float) str_replace( ',', '.', $settings['basic_payment_value'] );
+        $new_settings['basic_payment_display_status'] = $settings['basic_payment_display_status'];
         $new_settings['counting_words_system_incremental_value'] = (float) str_replace( ',', '.', $settings['counting_words_system_incremental_value'] );
         $new_settings['counting_words_threshold_max'] = (int) $settings['counting_words_threshold_max'];
+        $new_settings['counting_words_display_status'] = $settings['counting_words_display_status'];
         $new_settings['counting_visits_postmeta_value'] = trim( $settings['counting_visits_postmeta_value'] );
 		$new_settings['counting_visits_system_incremental_value'] = (float) str_replace( ',', '.', $settings['counting_visits_system_incremental_value'] );
         $new_settings['counting_visits_threshold_max'] = (int) $settings['counting_visits_threshold_max'];
+        $new_settings['counting_visits_display_status'] = $settings['counting_visits_display_status'];
         $new_settings['counting_images_threshold_min'] = (int) $settings['counting_images_threshold_min'];
         $new_settings['counting_images_threshold_max'] = (int) $settings['counting_images_threshold_max'];
         $new_settings['counting_images_system_incremental_value'] = (float) str_replace( ',', '.', $settings['counting_images_system_incremental_value'] );
+        $new_settings['counting_images_display_status'] = $settings['counting_images_display_status'];
         $new_settings['counting_comments_threshold_min'] = (int) $settings['counting_comments_threshold_min'];
         $new_settings['counting_comments_threshold_max'] = (int) $settings['counting_comments_threshold_max'];
         $new_settings['counting_comments_system_incremental_value'] = (float) str_replace( ',', '.', $settings['counting_comments_system_incremental_value'] );
+        $new_settings['counting_comments_display_status'] = $settings['counting_comments_display_status'];
         $new_settings['counting_payment_total_threshold'] = (float) str_replace( ',', '.', $settings['counting_payment_total_threshold'] );
         
 		if( isset( $settings['counting_visits_callback_value'] ) AND $settings['counting_visits_callback_value'] != "" ) {

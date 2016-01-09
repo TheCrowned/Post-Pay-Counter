@@ -2,8 +2,8 @@
 Contributors: Ste_95
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22
 Tags: counter, authors, payment, revenue sharing, stats, multi author, post management, post
-Tested up to: 4.4
-Stable tag: 2.512
+Tested up to: 4.4.1
+Stable tag: 2.514
 Requires at least: 3.7
 
 Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
@@ -78,6 +78,12 @@ It must become: *define( 'PPC_DEBUG_LOG', false );*
 5. The tooltip with all the counting details
 
 == Changelog ==
+= 2.514 =
+* New: it's now possible to control what is displayed in the stats page. You can hide a column but still have the payment criteria active, and you can even personalize this per-user!
+
+= 2.513 =
+* New: added option to allow admins to override all permissions. This applies only if they don't have specific personalized settings.
+
 = 2.512 =
 * Fixed: notification dismissing not fading out immediately but only at subsequent page load.
 * Fixed: notifications being displayed on all admin pages instead of just on plugin pages.

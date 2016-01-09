@@ -85,6 +85,7 @@ class PPC_install_functions {
                 'userid' => 'general',
                 'basic_payment' => 1,
                 'basic_payment_value' => 1.5,
+                'basic_payment_display_status' => 'tooltip',
                 'counting_words' => 1,
                 'counting_words_system_zonal' => 0,
                 'counting_words_system_zonal_value' => array(
@@ -100,6 +101,7 @@ class PPC_install_functions {
                 'counting_words_system_incremental' => 1,
                 'counting_words_system_incremental_value' => 0.01,
                 'counting_words_threshold_max' => 0,
+                'counting_words_display_status' => 'count',
                 'counting_visits' => 0,
                 'counting_visits_postmeta' => 1,
                 'counting_visits_postmeta_value' => '',
@@ -119,6 +121,7 @@ class PPC_install_functions {
                 'counting_visits_system_incremental' => 1,
                 'counting_visits_system_incremental_value' => 0.01,
                 'counting_visits_threshold_max' => 0,
+                'counting_visits_display_status' => 'count',
                 'counting_images' => 1,
                 'counting_images_system_zonal' => 0,
                 'counting_images_system_zonal_value' => array(
@@ -137,6 +140,7 @@ class PPC_install_functions {
                 'counting_images_threshold_max' => 10,
                 'counting_images_include_featured' => 1,
 				'counting_images_include_galleries' => 1,
+				'counting_images_display_status' => 'count',
                 'counting_comments' => 1,
                 'counting_comments_system_zonal' => 0,
                 'counting_comments_system_zonal_value' => array(
@@ -153,6 +157,7 @@ class PPC_install_functions {
                 'counting_comments_system_incremental_value' => 0.2,
                 'counting_comments_threshold_min' => 2,
                 'counting_comments_threshold_max' => 10,
+                'counting_comments_display_status' => 'count',
                 'counting_payment_total_threshold' => 0,
                 'counting_payment_only_when_total_threshold' => 0,
                 'counting_allowed_post_statuses' => array(

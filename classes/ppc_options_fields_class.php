@@ -22,14 +22,12 @@ class PPC_options_fields {
     
     static function generate_radio_field( $setting, $name, $value, $id, $disabled ) {
         $disabled_html = '';
-		if( $disabled ) {
+		if( $disabled )
 			$disabled_html = ' disabled="disabled"';
-		}
 		
 		$checked_html = '';
-		if( $setting ) {
+		if( $setting )
             $checked_html = ' checked="checked"';
-        }
 		
 		return '<input type="radio" name="'.$name.'" value="'.$value.'" id="'.$id.'" '.$checked_html.$disabled_html.'/>';
     }
@@ -66,7 +64,7 @@ class PPC_options_fields {
      * @param   $counting_type string what counting are we talking about (words, visits, images, comments)
      * @param   $settings array current settings
      * @return  string the html of the payment systems fields
-    */
+     */
     
     static function echo_payment_systems( $counting_type, $counting_type_localized, $settings ) {
     	global $ppc_global_settings; 
@@ -111,13 +109,57 @@ class PPC_options_fields {
     }
     
     /**
+     * Generates counting type display options select menu,
+     *
+     * @access  public
+     * @since   2.514
+     * @param   $counting_type string what counting are we talking about (words, visits, images, comments, ...)
+     * @param   $current_value string current setting for given counting type
+     * @return  string the html of the select menu
+     */
+    
+    static function echo_counting_type_display_dropdown( $counting_type, $current_value ) {
+		global $ppc_global_settings;
+		
+		$html = '<p style="height: 11px;">';
+		$html .= '<span class="ppc_tooltip">';
+		$html .= '<img src="'.$ppc_global_settings['folder_path'].'style/images/info.png'.'" title="'.__( 'This controls what is displayed in the stats page for this payment criteria. \'Count\' will only display the counting value, \'Payment\' only the payment value, \'Both\' will display them both side to side, \'Tooltip\' will hide the whole column in stats and only display data in the tooltip of the payment, \'None\' will hide everything of the payment altogether, preserving the payment value just as part of the total payment value.', 'post-pay-counter' ).'" class="ppc_tooltip_container" />';
+		$html .= '</span>';
+		$html .= 'Payment display status';
+		$html .= '<select name="'.$counting_type.'_display_status">';
+		$html .= '<option value="both" '.self::echo_counting_type_display_dropdown_check_current( $current_value, 'both' ).'>'.__( 'Both', 'post-pay-counter' ).'</option>';
+		$html .= '<option value="count" '.self::echo_counting_type_display_dropdown_check_current( $current_value, 'count' ).'>'.__( 'Count', 'post-pay-counter' ).'</option>';
+		$html .= '<option value="payment" '.self::echo_counting_type_display_dropdown_check_current( $current_value, 'payment' ).'>'.__( 'Payment', 'post-pay-counter' ).'</option>';
+		$html .= '<option value="tooltip" '.self::echo_counting_type_display_dropdown_check_current( $current_value, 'tooltip' ).'>'.__( 'Tooltip', 'post-pay-counter' ).'</option>';
+		$html .= '<option value="none" '.self::echo_counting_type_display_dropdown_check_current( $current_value, 'none' ).'>'.__( 'None', 'post-pay-counter' ).'</option>';
+		$html .= '</select>';
+		
+		return $html;
+	}
+    
+    /**
+     * Marks as selected the currently-active option of the display options.
+     *
+     * @access  public
+     * @since   2.514
+     * @param   $current_value string current setting for given counting type
+     * @param   $maybe_check string option to check against
+     * @return  string selected html
+     */
+    
+    static function echo_counting_type_display_dropdown_check_current( $current_value, $maybe_check ) {
+		if( $maybe_check == $current_value )
+			return ' selected="selected"';
+	}
+    
+    /**
      * Checks whether the given value is set or not. Sets $checkbox to NULL so we'll later know what vars are still to be dealt with
      *
      * @access  public
      * @since   2.0
      * @param   $checkbox int checkbox value
      * @return  bool checkbox status
-    */
+     */
     
     static function get_checkbox_value( &$checkbox ) {
         if( ! isset( $checkbox ) )
@@ -138,7 +180,7 @@ class PPC_options_fields {
      * @param   $opt_2 string the value of the second option
      * @param   $opt_3 string optional the value of the third option
      * @return  array the 2/3 possibilities along with their set values
-    */
+     */
     
     static function get_radio_value( &$radio, $opt_1, $opt_2, $opt_3 = FALSE ) {
         $return = array(

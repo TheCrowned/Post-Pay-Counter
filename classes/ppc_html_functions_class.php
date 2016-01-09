@@ -195,7 +195,7 @@ class PPC_HTML_functions {
      */
     
     static function get_html_stats_tbody( $formatted_stats, $raw_stats, $author = NULL, $filter_name = "html", $format_payment = true, $echo_or_return = "return" ) {
-		global $current_user;
+		global $current_user, $ppc_global_settings;
 		$perm = new PPC_permissions();
 		$html = "";
 		
@@ -231,7 +231,7 @@ class PPC_HTML_functions {
 							break;
 							
 						case 'post_total_payment':
-							$tooltip = PPC_counting_stuff::build_payment_details_tooltip( $post->ppc_count['normal_count'], $post->ppc_payment['normal_payment'] );
+							$tooltip = PPC_counting_stuff::build_payment_details_tooltip( $post->ppc_count['normal_count'], $post->ppc_payment['normal_payment'], $ppc_global_settings['counting_types_object']->get_active_counting_types( 'post', $post->post_author ) );
 							if( $format_payment )
 								$field_value = '<abbr title="'.$tooltip.'" class="ppc_payment_column">'.PPC_general_functions::format_payment( $field_value ).'</abbr>';
 							else

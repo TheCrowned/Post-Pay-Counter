@@ -247,7 +247,8 @@ class PPC_generate_stats {
 		
 		//Build payment tooltip
 		foreach( $sorted_array as $author => &$stats ) {
-			$stats['total']['ppc_misc']['tooltip_normal_payment'] = PPC_counting_stuff::build_payment_details_tooltip( $stats['total']['ppc_count']['normal_count'], $stats['total']['ppc_payment']['normal_payment'] );
+			$active_counting_types_merge = array_merge( $ppc_global_settings['counting_types_object']->get_active_counting_types( 'author', $author ), $ppc_global_settings['counting_types_object']->get_active_counting_types( 'post', $author ) );
+			$stats['total']['ppc_misc']['tooltip_normal_payment'] = PPC_counting_stuff::build_payment_details_tooltip( $stats['total']['ppc_count']['normal_count'], $stats['total']['ppc_payment']['normal_payment'], $active_counting_types_merge );
 			$stats['total']['ppc_misc'] = apply_filters( 'ppc_stats_author_misc', $stats['total']['ppc_misc'], $author, $stats );
 		}
         
@@ -298,6 +299,7 @@ class PPC_generate_stats {
 				if( isset( $counting_types[$id] ) ) {
 					switch( $counting_types[$id]['display'] ) {
 						case 'none':
+						case 'tooltip':
 							//nothing to display here
 							break;
 						
@@ -339,6 +341,7 @@ class PPC_generate_stats {
 								break;
 							
 							case 'none':
+							case 'tooltip':
 								//nothing to display here
 								break;
 						}
@@ -383,6 +386,7 @@ class PPC_generate_stats {
 								break;
 							
 							case 'none':
+							case 'tooltip':
 								//nothing to display here
 								break;
 						}
@@ -410,6 +414,7 @@ class PPC_generate_stats {
 			foreach( $cols_info['counting_types'] as $id => $cnt_type ) {
 				switch( $cnt_type['display'] ) {
 					case 'none':
+					case 'tooltip':
 						//nothing to display here
 						break;
 					

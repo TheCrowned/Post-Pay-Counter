@@ -67,7 +67,12 @@ class PPC_update_class {
             'general' => array(
 				'display_overall_stats' => 1,
 				'counting_visits_callback_value' => '',
-				'admins_override_permissions' => 0
+				'admins_override_permissions' => 0,
+				'basic_payment_display_status' => 'tooltip',
+				'counting_words_display_status' => 'count',
+				'counting_visits_display_status' => 'count',
+				'counting_images_display_status' => 'count',
+				'counting_comments_display_status' => 'count'
             ),
             
             'user' => array(

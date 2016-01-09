@@ -371,7 +371,7 @@ class PPC_counting_stuff {
      * @return  string tooltip
     */
     
-    static function build_payment_details_tooltip( $countings, $payment ) {
+    static function build_payment_details_tooltip( $countings, $payment, $active_counting_types = array() ) {
         global $ppc_global_settings;
         
         $tooltip = '';
@@ -379,6 +379,7 @@ class PPC_counting_stuff {
         if( ! empty( $payment ) ) {
 			foreach( $payment as $id => $value ) { 
 				if( $id == 'total' ) continue;
+				if( isset( $active_counting_types[$id] ) AND $active_counting_types[$id]['display'] == 'none' ) continue; //hides to-be-hidden counting types
 				
 				if( is_numeric( $countings[$id]['to_count'] ) )
 					$countings[$id]['to_count'] = round( $countings[$id]['to_count'], 3 );
