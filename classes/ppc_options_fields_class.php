@@ -123,7 +123,7 @@ class PPC_options_fields {
 		
 		$html = '<p style="height: 11px;">';
 		$html .= '<span class="ppc_tooltip">';
-		$html .= '<img src="'.$ppc_global_settings['folder_path'].'style/images/info.png'.'" title="'.__( 'This controls what is displayed in the stats page for this payment criteria. \'Count\' will only display the counting value, \'Payment\' only the payment value, \'Both\' will display them both side to side, \'Tooltip\' will hide the whole column in stats and only display data in the tooltip of the payment, \'None\' will hide everything of the payment altogether, preserving the payment value just as part of the total payment value.', 'post-pay-counter' ).'" class="ppc_tooltip_container" />';
+		$html .= '<img src="'.$ppc_global_settings['folder_path'].'style/images/info.png'.'" title="'.sprintf( __( 'This controls what is displayed in the stats page for this payment criteria. %1$s will only display the counting value (es. 50 words), %2$s only the payment value (es. $0.50), %3$s will display them both side to side (es. $0.50 (50)), %4$s will hide the whole column in stats and only display data in the tooltip of the payment, %5$s will hide everything of the payment altogether, preserving the payment value just as part of the total payment value.', 'post-pay-counter' ), '\''.__( 'Count', 'post-pay-counter' ).'\'', '\''.__( 'Payment', 'post-pay-counter' ).'\'', '\''.__( 'Both', 'post-pay-counter' ).'\'', '\''.__( 'Tooltip', 'post-pay-counter' ).'\'', '\''.__( 'None', 'post-pay-counter' ).'\'' ).'" class="ppc_tooltip_container" />';
 		$html .= '</span>';
 		$html .= 'Payment display status';
 		$html .= '<select name="'.$counting_type.'_display_status">';

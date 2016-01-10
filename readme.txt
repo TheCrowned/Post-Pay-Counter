@@ -78,20 +78,21 @@ It must become: *define( 'PPC_DEBUG_LOG', false );*
 5. The tooltip with all the counting details
 
 == Changelog ==
-= 2.514 =
+= 2.514 (2016/01/10) =
 * New: it's now possible to control what is displayed in the stats page. You can hide a column but still have the payment criteria active, and you can even personalize this per-user!
 * New: when personalizing a user settings, only settings that have a different value from general settings are stored in the database. This allows for less data to be stored; moreover, when general settings are updated, users don't retain outdated settings, but all settings that have not been specifically changed for them, follow the general ones.
 * Tweak: hidden license box when personalizing user settings, and moved it under the Personalize settings box in the general options.
+* Tweak: updated italian translation.
 
-= 2.513 =
+= 2.513 (2016/01/07) =
 * New: added option to allow admins to override all permissions. This applies only if they don't have specific personalized settings.
 
-= 2.512 =
+= 2.512 (2015/12/18) =
 * Fixed: notification dismissing not fading out immediately but only at subsequent page load.
 * Fixed: notifications being displayed on all admin pages instead of just on plugin pages.
 * Fixed: new notification not being displayed.
 
-= 2.511 =
+= 2.511 (2015/10/10) =
 * New: all addons are now compatible with the free version alone, no need to get the PRO if you just need features from another addon (we moved to a [new site](http://postpaycounter.com)).
 * Tweak: sped up tooltip generation.
 * Tweak: removed penguins logo in stats/options page.
