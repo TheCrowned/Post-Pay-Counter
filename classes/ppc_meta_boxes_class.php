@@ -559,8 +559,8 @@ class PPC_meta_boxes {
         <p><?php printf( __( 'Whatever of our %1$splenty of addons%2$s you may have bought, this is the place to activate your license. Make sure you have already uploaded the addon files, activated it, and paste the license key you have received by email in the field below.', 'ppc' ), '<a target="_blank" href="'.admin_url( add_query_arg( array( 'page' => 'ppc-addons' ), 'admin.php' ) ).'" title="Post Pay Counter Addons">', '</a>' ); ?></p>
 		<p><em><?php _e( 'To activate your license key, the following data will be sent to the activation page: license key, website URL, blog language, plugin version. Twice a month the plugin will call home to check that your license is genuine and valid without asking for permission.', 'ppc'); ?></em></p>
         <p>
-        <input type="text" name="ppcp_license_key" id="ppcp_license_key" size="40" />
-        <input type="button" name="ppcp_license_key_submit" id="ppcp_license_key_submit" value="<?php _e('Submit', 'ppc'); ?>" disabled="disabled" class="button-secondary" />
+        <input type="text" name="ppc_license_key" id="ppc_license_key" size="40" />
+        <input type="button" name="ppc_license_key_submit" id="ppc_license_key_submit" value="<?php _e('Submit', 'ppc'); ?>" disabled="disabled" class="button-secondary" />
         </p>
         
         <div class="ppc_section">
@@ -610,7 +610,7 @@ class PPC_meta_boxes {
                     <td><?php echo $single['name']; ?></td>
                     <td><?php echo $status ?></td>
                     <td><?php echo $expiration ?></td>
-                    <td><input type="button" name="ppcp_license_deactivate" accesskey="<?php echo $single['slug']; ?>" class="button-secondary ppcp_license_deactivate" id="ppcp_license_deactivate" value="<?php _e( 'Deactivate license', 'ppc'); ?>" /></td>
+                    <td><input type="button" name="ppc_license_deactivate" accesskey="<?php echo $single['slug']; ?>" class="button-secondary ppc_license_deactivate" id="ppc_license_deactivate" value="<?php _e( 'Deactivate license', 'ppc'); ?>" /></td>
                 </tr>
                 
             <?php } ?>
@@ -621,10 +621,10 @@ class PPC_meta_boxes {
         <?php } ?>
         
         </div>
-        <div class="ppc_save_success" id="ppcp_license_success"><?php _e( 'Your license was successfully activated. Reload this page and enjoy!', 'ppc'); ?></div>
-        <div class="ppc_save_error" id="ppcp_license_error"></div>
+        <div class="ppc_save_success" id="ppc_license_success"><?php _e( 'Your license was successfully activated. Reload this page and enjoy!', 'ppc'); ?></div>
+        <div class="ppc_save_error" id="ppc_license_error"></div>
         <div class="ppc_save_settings">
-        <img src="<?php echo $ppc_global_settings['folder_path'].'style/images/ajax-loader.gif'; ?>" title="<?php _e( 'Loading', 'ppc'); ?>" alt="<?php _e( 'Loading', 'ppc'); ?>" class="ppc_ajax_loader" id="ppcp_license_ajax_loader" />
+        <img src="<?php echo $ppc_global_settings['folder_path'].'style/images/ajax-loader.gif'; ?>" title="<?php _e( 'Loading', 'ppc'); ?>" alt="<?php _e( 'Loading', 'ppc'); ?>" class="ppc_ajax_loader" id="ppc_license_ajax_loader" />
         </div>
         <div class="clear"></div>
         

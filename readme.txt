@@ -78,9 +78,13 @@ It must become: *define( 'PPC_DEBUG_LOG', false );*
 5. The tooltip with all the counting details
 
 == Changelog ==
+= 2.515 (2016/01/18) =
+* Fixed: people with PRO version prior to 1.5.9.1 had problems in activating/deactivating their addons license.
+* Tweak: moved promotional boxes in the Options page down below all important boxes.
+
 = 2.514 (2016/01/10) =
-* New: it's now possible to control what is displayed in the stats page. You can hide a column but still have the payment criteria active, and you can even personalize this per-user!
-* New: when personalizing a user settings, only settings that have a different value from general settings are stored in the database. This allows for less data to be stored; moreover, when general settings are updated, users don't retain outdated settings, but all settings that have not been specifically changed for them, follow the general ones.
+* New: it's now possible to control what is displayed in the stats page for each payment criteria. You can display just the counting number, just the payment value, both or completely hide a column but still have the payment criteria active, and you can even personalize this per-user!
+* New: when personalizing a user settings, only settings that have a different value from general settings are stored in the database. This allows for less data to be stored; moreover, when general settings are updated, users don't retain outdated settings, but all settings that have not been specifically changed for them, follow the general ones. This only applies to newly-personalized user's settings.
 * Tweak: hidden license box when personalizing user settings, and moved it under the Personalize settings box in the general options.
 * Tweak: updated italian translation.
 

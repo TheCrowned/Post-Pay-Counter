@@ -4,7 +4,7 @@ Plugin Name: Post Pay Counter
 Plugin URI: http://postpaycounter.com
 Description: Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
 Author: Stefano Ottolenghi
-Version: 2.514
+Version: 2.515
 Author URI: http://www.thecrowned.org/
 Text Domain: post-pay-counter
 */
@@ -57,7 +57,7 @@ class post_pay_counter {
         global $ppc_global_settings;
         
         $ppc_global_settings['current_version'] = get_option( 'ppc_current_version' );
-        $ppc_global_settings['newest_version'] = '2.514';
+        $ppc_global_settings['newest_version'] = '2.515';
         $ppc_global_settings['option_name'] = 'ppc_settings';
         $ppc_global_settings['option_errors'] = 'ppc_errors';
 		$ppc_global_settings['transient_error_deletion'] = 'ppc_error_daily_deletion';
@@ -126,8 +126,8 @@ class post_pay_counter {
 		add_action( 'wp_ajax_ppc_dismiss_notification', array( 'PPC_ajax_functions', 'dismiss_notification' ) );
 		
 		//License hooks
-		add_action( 'wp_ajax_ppcp_license_activate', array( 'PPC_ajax_functions', 'license_activate' ) );
-        add_action( 'wp_ajax_ppcp_license_deactivate', array( 'PPC_ajax_functions', 'license_deactivate' ) );
+		add_action( 'wp_ajax_ppc_license_activate', array( 'PPC_ajax_functions', 'license_activate' ) );
+        add_action( 'wp_ajax_ppc_license_deactivate', array( 'PPC_ajax_functions', 'license_deactivate' ) );
     }
 	
 	/**
@@ -269,8 +269,6 @@ class post_pay_counter {
 		
         add_meta_box( 'ppc_counting_settings', __( 'Counting Settings', 'post-pay-counter' ), array( 'PPC_meta_boxes', 'meta_box_counting_settings' ), $ppc_global_settings['options_menu_slug'], 'normal', 'default', self::$options_page_settings );
         add_meta_box( 'ppc_permissions', __( 'Permissions', 'post-pay-counter' ), array( 'PPC_meta_boxes', 'meta_box_permissions' ), $ppc_global_settings['options_menu_slug'], 'normal', 'default', self::$options_page_settings );
-        add_meta_box( 'ppc_support_the_fucking_author', __( 'Support the author', 'post-pay-counter' ), array( 'PPC_meta_boxes', 'meta_box_support_the_fucking_author' ), $ppc_global_settings['options_menu_slug'], 'side' );
-        add_meta_box( 'ppc_pro_features', __( 'Everything you\'re missing by not being PRO', 'post-pay-counter' ), array( 'PPC_meta_boxes', 'meta_box_pro_features' ), $ppc_global_settings['options_menu_slug'], 'side' );
         
         if( ! isset( $_GET['userid'] ) OR ( isset( $_GET['userid'] ) AND ! is_numeric( $_GET['userid'] ) ) ) {
             add_meta_box( 'ppc_personalize_settings', __( 'Personalize Settings', 'post-pay-counter' ), array( 'PPC_meta_boxes', 'meta_box_personalize_settings' ), $ppc_global_settings['options_menu_slug'], 'side', 'default', self::$options_page_settings );
@@ -279,6 +277,8 @@ class post_pay_counter {
         }
         
         add_meta_box( 'ppc_import_export_settings', __( 'Import/Export Settings', 'post-pay-counter' ), array( 'PPC_meta_boxes', 'meta_box_import_export_settings' ), $ppc_global_settings['options_menu_slug'], 'side', 'default', self::$options_page_settings );
+        add_meta_box( 'ppc_support_the_fucking_author', __( 'Support the author', 'post-pay-counter' ), array( 'PPC_meta_boxes', 'meta_box_support_the_fucking_author' ), $ppc_global_settings['options_menu_slug'], 'side' );
+        add_meta_box( 'ppc_pro_features', __( 'Everything you\'re missing by not being PRO', 'post-pay-counter' ), array( 'PPC_meta_boxes', 'meta_box_pro_features' ), $ppc_global_settings['options_menu_slug'], 'side' );
         add_meta_box( 'ppc_error_log', __( 'Error log', 'post-pay-counter' ), array( 'PPC_meta_boxes', 'meta_box_error_log' ), $ppc_global_settings['options_menu_slug'], 'side', 'default', self::$options_page_settings );
         
         wp_enqueue_style( 'jquery.tooltip.theme', $ppc_global_settings['folder_path'].'style/tipTip.css' );
@@ -297,7 +297,7 @@ class post_pay_counter {
             'nonce_ppc_clear_error_log' => wp_create_nonce( 'ppc_clear_error_log' ),
 			'nonce_ppc_license_key_activate' => wp_create_nonce( 'ppc_license_key_activate' ),
             'nonce_ppc_license_key_deactivate' => wp_create_nonce( 'ppc_license_key_deactivate' ),
-            'localized_ppcp_license_deactivated' => __( 'Your license was successfully deactivated, you can now use it on other websites.', 'ppc'),
+            'localized_ppc_license_deactivated' => __( 'Your license was successfully deactivated, you can now use it on other websites.', 'ppc'),
             'localized_license_deactivate_warning' => __( 'Are you sure you want to deactivate your license on this website? You will be able to unlock the addon features on another website, but you will not be able to use them on this one anymore.', 'ppc'),
             'localized_vaporize_user_success' => __( 'User\'s settings successfully deleted. You will be redirected to the general options page.' , 'ppc'),
             'ppc_options_url' => $ppc_global_settings['options_menu_link']
