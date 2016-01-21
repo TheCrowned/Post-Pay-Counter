@@ -3,7 +3,7 @@ Contributors: Ste_95
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22
 Tags: counter, authors, payment, revenue sharing, stats, multi author, post management, post
 Tested up to: 4.4.1
-Stable tag: 2.514
+Stable tag: 2.516
 Requires at least: 3.7
 
 Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
@@ -78,9 +78,13 @@ It must become: *define( 'PPC_DEBUG_LOG', false );*
 5. The tooltip with all the counting details
 
 == Changelog ==
+= 2.516 (2016/01/22) =
+* Fixed: issue with user settings not saving in certain circumstances.
+
 = 2.515 (2016/01/18) =
 * Fixed: people with PRO version prior to 1.5.9.1 had problems in activating/deactivating their addons license.
 * Tweak: moved promotional boxes in the Options page down below all important boxes.
+* Tweak: deleted old lang files.
 
 = 2.514 (2016/01/10) =
 * New: it's now possible to control what is displayed in the stats page for each payment criteria. You can display just the counting number, just the payment value, both or completely hide a column but still have the payment criteria active, and you can even personalize this per-user!

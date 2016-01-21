@@ -212,16 +212,17 @@ class PPC_save_options {
         if( is_numeric( $userid ) ) {
             $settings['userid'] = (int) $settings['userid'];
             
+            $current_user_settings = get_user_option( $ppc_global_settings['option_name'], $userid );
+            if( ! is_array( $current_user_settings ) )	$current_user_settings = array();
+            
+            $new_settings = array_merge( $current_user_settings, $new_settings );
+            
             //Only adds a setting index in the array of the to-be-updated if it differs from general settings.
             foreach( $new_settings as $key => &$single ) {
 				if( $single == $current_general_settings[$key] )
 					unset( $new_settings[$key] );
 			}
-			
-            $current_user_settings = get_user_option( $ppc_global_settings['option_name'], $userid );
-            if( ! is_array( $current_user_settings ) )	$current_user_settings = array();
             
-            $new_settings = array_merge( $current_user_settings, $new_settings );
             if( $new_settings == $current_user_settings ) return; //avoid updating with same data, which would result in an error
             
             if( ! $update = update_user_option( $userid, $ppc_global_settings['option_name'], $new_settings ) )
