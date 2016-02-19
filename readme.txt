@@ -2,8 +2,8 @@
 Contributors: Ste_95
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22
 Tags: counter, authors, payment, revenue sharing, stats, multi author, post management, post
-Tested up to: 4.4.1
-Stable tag: 2.516
+Tested up to: 4.4.2
+Stable tag: 2.517
 Requires at least: 3.7
 
 Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
@@ -78,7 +78,11 @@ It must become: *define( 'PPC_DEBUG_LOG', false );*
 5. The tooltip with all the counting details
 
 == Changelog ==
-= 2.516 (2016/01/22) =
+= 2.517 (2016/02/) =
+* Fixed: hour:minute:second date format wrongly displayed.
+* Tweak: addons list is now displayed even if network requests are not working, and anyway is only updated every two days.
+
+= 2.516 (2016/01/23) =
 * Fixed: issue with user settings not saving in certain circumstances.
 
 = 2.515 (2016/01/18) =

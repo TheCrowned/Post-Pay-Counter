@@ -516,7 +516,7 @@ class PPC_meta_boxes {
 		
         if( is_array( $errors) AND count( $errors ) > 0 ) {
             foreach( $errors as $error ) {
-                echo date( 'Y-m-d H:m:s', $error['time'] )."\n";
+                echo date( 'Y-m-d H:i:s', $error['time'] )."\n";
                 echo $error['debug_message']."\n\n";
             }
         } else {

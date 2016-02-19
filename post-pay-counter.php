@@ -4,7 +4,7 @@ Plugin Name: Post Pay Counter
 Plugin URI: http://postpaycounter.com
 Description: Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
 Author: Stefano Ottolenghi
-Version: 2.516
+Version: 2.517
 Author URI: http://www.thecrowned.org/
 Text Domain: post-pay-counter
 */
@@ -57,7 +57,7 @@ class post_pay_counter {
         global $ppc_global_settings;
         
         $ppc_global_settings['current_version'] = get_option( 'ppc_current_version' );
-        $ppc_global_settings['newest_version'] = '2.516';
+        $ppc_global_settings['newest_version'] = '2.517';
         $ppc_global_settings['option_name'] = 'ppc_settings';
         $ppc_global_settings['option_errors'] = 'ppc_errors';
 		$ppc_global_settings['transient_error_deletion'] = 'ppc_error_daily_deletion';
@@ -350,16 +350,6 @@ class post_pay_counter {
 			//User who never had personalized settings is being set, get rid of only-general settings
 			if( $settings['userid'] == 'general' ) {
 				$settings['userid'] = (int) $_GET['userid'];
-				unset( $settings['multisite_settings_rule'] );
-				unset( $settings['can_see_options_user_roles'] );
-				unset( $settings['can_see_stats_user_roles'] );
-				unset( $settings['counting_visits_callback_value'] );
-				unset( $settings['counting_allowed_user_roles'] );
-				unset( $settings['counting_allowed_post_types'] );
-				unset( $settings['default_stats_time_range_month'] );
-				unset( $settings['default_stats_time_range_week'] );
-				unset( $settings['default_stats_time_range_custom'] );
-				unset( $settings['default_stats_time_range_custom_value'] );
 			}
 			
 			/**
@@ -367,12 +357,14 @@ class post_pay_counter {
 			 * 
 			 * When a user's settings are customized for the first time, general settings are taken and stripped of the only general ones (i.e. non-customizable options, such as the Miscellanea box).
 			 * It's crucial that all non-personalizable settings indexes are unset before handling/saving the user's settings.
+			 * 
+			 *  ~ This was changed in 2.516, with only user settings different from general ones are stored. ~
 			 *
 			 * @since	2.0
 			 * @param	$settings array PPC general settings
 			 */
 			
-			$settings = apply_filters( 'ppc_unset_only_general_settings_personalize_user', $settings );
+			//$settings = apply_filters( 'ppc_unset_only_general_settings_personalize_user', $settings );
 		
 		//General
 		} else {

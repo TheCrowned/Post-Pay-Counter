@@ -53,19 +53,25 @@ class PPC_addons {
 	 */
 	 
 	static function addons_get_list() {
-	   delete_transient("ppc_addons_list");
-		if ( false === ( $cache = get_transient( 'ppc_addons_list' ) ) ) {
+	   $cache = get_option( 'ppc_addons_list' );
+	   
+		if ( $cache === false OR $cache['time'] < current_time() ) {
 			$feed = wp_remote_get( 'http://postpaycounter.com/ppcp/features/ppcp_spit_html.php?addons_list', array( 'timeout' => 10 ) );
 			
 			if ( ! is_wp_error( $feed ) ) {
 				if ( isset( $feed['body'] ) && strlen( $feed['body'] ) > 0 ) {
-					$cache = wp_remote_retrieve_body( $feed );
-					set_transient( 'ppc_addons_list', $cache, 3600 );
+					$cache = array();
+					$cache['data'] = wp_remote_retrieve_body( $feed );
+					$cache['time'] = current_time() + 3600*48;
+					
+					update_option( 'ppc_addons_list', $cache );
 				}
 			} else {
-				$cache = '<div class="error"><p>' . __( 'There was an error retrieving the extensions list from the server. Please try again later.', 'post-pay-counter' ) . '</div>';
+				if( ! isset( $cache['data'] ) OR ! is_array( $cache['data'] ) )
+					$cache['data'] = '<div class="error"><p>' . __( 'There was an error retrieving the extensions list from the server. Please try again later.', 'post-pay-counter' ) . '</div>';
 			}
 		}
-		return $cache;
+		
+		return $cache['data'];
 	}
 }

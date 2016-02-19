@@ -158,6 +158,43 @@ class PPC_update_class {
 		
 		PPC_general_functions::manage_cap_allowed_user_roles_plugin_pages( $general_settings['can_see_options_user_roles'], $general_settings['can_see_stats_user_roles'] );
 		
+		//Insert default addons list
+        $addons = array(
+			'data' => array(
+				'Post Pay Counter PRO' => array(
+					'description' => 'Keep track of past payments, integrate with PayPal, Analytics and Adsense, and much more!',
+					'image' => 'http://postpaycounter.com/ppcp/features/images/ppcp.png',
+					'link' => 'http://postpaycounter.com/post-pay-counter-pro',
+					'campaign' => 'ppcp'
+				),
+				'Facebook' => array(
+					'description' => 'Pay writers basing on the number of Facebook shares, likes and comments their articles receive.',
+					'image' => 'http://postpaycounter.com/ppcp_fb/features/images/stats.png',
+					'link' => 'http://postpaycounter.com/facebook-pay-per-social-interactions-shares-likes-and-comments',
+					'campaign' => 'ppcp_fb'
+				),
+				'Publisher bonus' => array(
+					'description' => 'Set up an author rewarding system in which users (proof-readers) earn bonus by publishing posts.',
+					'image' => 'http://postpaycounter.com/ppcp_pb/features/images/metabox.png',
+					'link' => 'http://postpaycounter.com/publisher-bonus-editor-rewarding-system',
+					'campaign' => 'ppcp_pb'
+				),
+				'Stop Words' => array(
+					'description' => 'Allows to specify a list of stop words that should not be counted when computing posts word count.',
+					'image' => 'http://postpaycounter.com/ppcp_sw/features/images/stopwords.png',
+					'link' => 'http://postpaycounter.com/stop-words-exclude-certain-words',
+					'campaign' => 'ppcp_sw'
+				)
+			),
+			'time' => current_time()
+		);
+		
+		foreach( $addons['data'] as $title => &$info ) 
+			$info['link'] .= '?utm_source=users_site&utm_medium=addons_list&utm_campaign='.$info['campaign']; //referral
+
+		if( ! get_option( 'ppc_addons_list' ) )
+			add_option( 'ppc_addons_list', $addons, '', 'no' );
+		
         update_option( 'ppc_current_version', $ppc_global_settings['newest_version'] );
         
         //PRO gets deactivated as soon as PPC is deactivated - if it was active before, reactivate if now

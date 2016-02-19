@@ -204,7 +204,7 @@ class PPC_license {
 		$request = $this->license_request( array( 
 			'activation_key' => get_option( $this->activation_key_name )
 		) );
-		
+		var_dump($request);
         if( is_wp_error( $request ) AND $request->get_error_code() == 'ppcp_license_request_activation_error' )
 			delete_option( $this->activation_key_name );
         else
