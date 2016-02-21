@@ -93,7 +93,7 @@ class PPC_license {
         ) );
         
         if( is_wp_error( $request ) ) {
-            $error = new PPC_Error( 'ppcp_license_request_connection_error', __( 'Error', 'ppcp').': '.$request->get_error_message(), array(
+            $error = new PPC_Error( 'ppcp_license_request_connection_error', sprintf( __( 'Error', 'ppcp').': '.$request->get_error_message().'. '.__( '%1$sWhy does this happen?%2$s', 'ppcp' ), '<a href="http://postpaycounter.com/license-activation-fails-with-timeout/">', '</a>'), array(
                 'request_url' => $this->remote_URL,
                 'parameters' => $parameters 
             ) );
@@ -204,7 +204,7 @@ class PPC_license {
 		$request = $this->license_request( array( 
 			'activation_key' => get_option( $this->activation_key_name )
 		) );
-		var_dump($request);
+		
         if( is_wp_error( $request ) AND $request->get_error_code() == 'ppcp_license_request_activation_error' )
 			delete_option( $this->activation_key_name );
         else

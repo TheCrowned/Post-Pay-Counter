@@ -69,7 +69,7 @@
 .ppc_save_success {
     display: none;
     float: left;
-    width: 50%;
+    width: 70%;
     padding: 5px;
     background: #BCED91;
     border-style: solid;
@@ -79,7 +79,7 @@
 .ppc_save_error {
     display: none;
     float: left;
-    width: 50%;
+    width: 70%;
     padding: 5px;
     background: #FF6060;
     border-style: solid;
