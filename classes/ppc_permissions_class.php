@@ -29,8 +29,8 @@ class PPC_permissions {
         
         $settings = PPC_general_functions::get_settings( $user );
         
-		//High-level users override permissions, if they don't have any specific settings.
-        if( $settings['admins_override_permissions'] AND $settings['userid'] == 'general' AND current_user_can( 'manage_options' ) )
+		//Admins override permissions, if they don't have any specific settings.
+		if( $settings['admins_override_permissions'] AND $settings['userid'] == 'general' AND in_array( 'administrator', (array) $current_user->roles ) )
             return true;
         
         if( $settings[$permission] == 1 )
