@@ -461,6 +461,14 @@ class PPC_meta_boxes {
             echo '<p>'.__( 'No users have different settings. Learn how to personalize settings from the section below.' , 'post-pay-counter').'</p>';
         }
         
+        /**
+		 * Fires after the list of users who already have personalized settings.
+		 *
+		 * @since	2.518
+		 */
+        
+        do_action( 'ppc_personalize_settings_box_after_already_personalized_users' );
+        
         echo '<p><strong>'.__( 'Personalize single user settings' , 'post-pay-counter').'</strong><br />';
         echo __( 'Some people\'s posts are better than somebody others\'? You can adjust settings for each user, so that they will have different permissions and their posts will be paid differently.' , 'post-pay-counter').'</p>';
         echo '<p>'.__( 'First, select a user role. You will see all users from that role: clicking on one you will be headed to the settings page for that specific user.' , 'post-pay-counter').'</p>';
@@ -484,7 +492,7 @@ class PPC_meta_boxes {
         echo '<div class="clear"></div>';
         echo '</div>';
         echo '<div style="height: 8em; overflow: auto; display: none;" id="ppc_personalize_users">';
-        echo '<p><strong>'.__( 'Available users' , 'post-pay-counter').'</strong><br />';
+        echo '<p style="margin-top: 0px;"><strong>'.__( 'Available users' , 'post-pay-counter').'</strong><br />';
         echo '<span id="ppc_users"></span>';
         echo '</p>';
         echo '</div>';

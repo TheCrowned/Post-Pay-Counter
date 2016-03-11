@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Post Pay Counter\n"
-"POT-Creation-Date: 2016-01-10 21:21+0100\n"
-"PO-Revision-Date: 2016-01-10 21:21+0100\n"
+"POT-Creation-Date: 2016-02-26 18:56+0100\n"
+"PO-Revision-Date: 2016-02-26 18:56+0100\n"
 "Last-Translator: Stefano Ottolenghi <webmaster@thecrowned.org>\n"
 "Language-Team: Stefano Ottolenghi <webmaster@thecrowned.org>\n"
 "Language: it_IT\n"
@@ -27,7 +27,7 @@ msgstr "Guarda tutte le estensioni"
 msgid "These addons add more features to Post Pay Counter."
 msgstr "Queste estensioni espandono le funzioni di Post Pay Counter."
 
-#: classes/ppc_addons_class.php:66
+#: classes/ppc_addons_class.php:71
 msgid ""
 "There was an error retrieving the extensions list from the server. Please "
 "try again later."
@@ -140,7 +140,7 @@ msgstr "Filtra per ruolo utente"
 msgid "Any"
 msgstr "Qualunque"
 
-#: classes/ppc_html_functions_class.php:87 post-pay-counter.php:529
+#: classes/ppc_html_functions_class.php:87 post-pay-counter.php:521
 msgid "Back to general"
 msgstr "Indietro a generale"
 
@@ -195,6 +195,11 @@ msgstr ""
 #: classes/ppc_license_class.php:96 classes/ppc_license_class.php:103
 msgid "Error"
 msgstr "Errore"
+
+#: classes/ppc_license_class.php:96
+#, php-format
+msgid "%1$sWhy does this happen?%2$s"
+msgstr "%1$sPerché succede?%2$s"
 
 #: classes/ppc_license_class.php:110
 msgid ""
@@ -308,7 +313,7 @@ msgstr ""
 "Manca qualcosa che vorresti? Completa il %1$ssondaggio sulle funzionalità"
 "%2$s e facci sapere quali dovrebbero essere le nostre priorità!"
 
-#: classes/ppc_meta_boxes_class.php:39 post-pay-counter.php:519
+#: classes/ppc_meta_boxes_class.php:39 post-pay-counter.php:511
 msgid "Features survey"
 msgstr "Sondaggio delle funzionalità"
 
@@ -320,7 +325,7 @@ msgstr ""
 "Se ti piace Post Pay Counter, ci sono un paio di cose cruciali che puoi fare "
 "per supportare il suo sviluppo"
 
-#: classes/ppc_meta_boxes_class.php:54 post-pay-counter.php:483
+#: classes/ppc_meta_boxes_class.php:54 post-pay-counter.php:475
 msgid "Go PRO"
 msgstr "Diventa PRO"
 
@@ -1194,8 +1199,8 @@ msgstr ""
 "Il callback inserito ha ritornato NULL per un post a caso - sei sicuro sia "
 "corretto?"
 
-#: classes/ppc_save_options_class.php:228
-#: classes/ppc_save_options_class.php:235 classes/ppc_update_class.php:107
+#: classes/ppc_save_options_class.php:229
+#: classes/ppc_save_options_class.php:236 classes/ppc_update_class.php:107
 msgid "Error: could not update settings."
 msgstr "Errore: non è stato possibile aggiornare le impostazioni."
 
@@ -1467,11 +1472,11 @@ msgstr "Non è stato trovato un changelog valido."
 msgid "Once every two weeks"
 msgstr "Una volta ogni due settimane"
 
-#: post-pay-counter.php:162 post-pay-counter.php:639
+#: post-pay-counter.php:162 post-pay-counter.php:631
 msgid "Stats"
 msgstr "Statistiche"
 
-#: post-pay-counter.php:163 post-pay-counter.php:517
+#: post-pay-counter.php:163 post-pay-counter.php:509
 msgid "Options"
 msgstr "Opzioni"
 
@@ -1479,7 +1484,7 @@ msgstr "Opzioni"
 msgid "System Info"
 msgstr "Informazioni di sistema"
 
-#: post-pay-counter.php:165 post-pay-counter.php:484
+#: post-pay-counter.php:165 post-pay-counter.php:476
 msgid "Addons"
 msgstr "Estensioni"
 
@@ -1491,29 +1496,29 @@ msgstr "Opzione di conteggio"
 msgid "Permissions"
 msgstr "Permessi"
 
-#: post-pay-counter.php:272
-msgid "Support the author"
-msgstr "Supporta l'autore"
-
-#: post-pay-counter.php:273
-msgid "Everything you're missing by not being PRO"
-msgstr "Tutto quello che ti stai perdendo non essendo PRO"
-
-#: post-pay-counter.php:276
+#: post-pay-counter.php:274
 msgid "Personalize Settings"
 msgstr "Personalizza impostazioni"
 
-#: post-pay-counter.php:277
+#: post-pay-counter.php:275
 msgid "License status"
 msgstr "Stato della licenza"
 
-#: post-pay-counter.php:278
+#: post-pay-counter.php:276
 msgid "Miscellanea"
 msgstr "Varie"
 
-#: post-pay-counter.php:281
+#: post-pay-counter.php:279
 msgid "Import/Export Settings"
 msgstr "Importa/Esporta impostazioni"
+
+#: post-pay-counter.php:280
+msgid "Support the author"
+msgstr "Supporta l'autore"
+
+#: post-pay-counter.php:281
+msgid "Everything you're missing by not being PRO"
+msgstr "Tutto quello che ti stai perdendo non essendo PRO"
 
 #: post-pay-counter.php:282
 msgid "Error log"
@@ -1560,27 +1565,27 @@ msgstr "Deve prima essere impostata una soglia di pagamento."
 msgid "The requested user does not exist."
 msgstr "L'utente richiesto non esiste."
 
-#: post-pay-counter.php:466
+#: post-pay-counter.php:458
 msgid "Settings"
 msgstr "Impostazioni"
 
-#: post-pay-counter.php:482
+#: post-pay-counter.php:474
 msgid "Donate"
 msgstr "Donazione"
 
-#: post-pay-counter.php:514
+#: post-pay-counter.php:506
 msgid "Installed version"
 msgstr "Versione installata"
 
-#: post-pay-counter.php:514
+#: post-pay-counter.php:506
 msgid "Support"
 msgstr "Assistenza"
 
-#: post-pay-counter.php:514
+#: post-pay-counter.php:506
 msgid "Tutorials"
 msgstr "Guide"
 
-#: post-pay-counter.php:518
+#: post-pay-counter.php:510
 msgid ""
 "The Post Pay Counter plugin is ready to make handling authors' payments "
 "much, much easier, starting from... now! From this page you can set the "
@@ -1598,7 +1603,7 @@ msgstr ""
 "plugin e, per la maggior parte di esse, maggiori dettagli ed esempi sono "
 "disponibili cliccando sull'icona info sulla destra."
 
-#: post-pay-counter.php:519
+#: post-pay-counter.php:511
 #, php-format
 msgid ""
 "Don't forget to take our %1$sfeatures survey%2$s to let us know what "
@@ -1611,23 +1616,23 @@ msgstr ""
 "Inoltre, se ti piace questo plugin, potresti essere interessato alla "
 "%3$sversione PRO%2$s, contenente una gran quantità di utili caratteristiche."
 
-#: post-pay-counter.php:529
+#: post-pay-counter.php:521
 msgid "Go back to general settings"
 msgstr "Torna alle impostazioni generali"
 
-#: post-pay-counter.php:530
+#: post-pay-counter.php:522
 msgid "Delete user's settings"
 msgstr "Rimuovi impostazioni utente"
 
-#: post-pay-counter.php:531
+#: post-pay-counter.php:523
 msgid "Currently editing user:"
 msgstr "Modificando l'utente:"
 
-#: post-pay-counter.php:646
+#: post-pay-counter.php:638
 msgid "You do not have sufficient permissions to access this page"
 msgstr "Non hai sufficienti permessi per accedere a questa pagina"
 
-#: post-pay-counter.php:687
+#: post-pay-counter.php:679
 msgid "General"
 msgstr "Generale"
 

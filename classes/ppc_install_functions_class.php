@@ -358,9 +358,15 @@ class PPC_install_functions {
 					'image' => 'http://postpaycounter.com/ppcp_sw/features/images/stopwords.png',
 					'link' => 'http://postpaycounter.com/stop-words-exclude-certain-words',
 					'campaign' => 'ppcp_sw'
+				),
+				'Shortcode Stripper' => array(
+					'description' => 'Allows to exclude text enclosed by shortcodes from words payment.',
+					'image' => 'http://postpaycounter.com/ppc/addons/shortcode.jpg',
+					'link' => 'http://postpaycounter.com/shortcode-stripper-exclude-shortcodes-from-words-payment/',
+					'campaign' => 'ppcp_shortcode_stripper'
 				)
 			),
-			'time' => current_time()
+			'time' => current_time( 'timestamp' ) + 3600*48
 		);
 		
 		foreach( $addons['data'] as $title => &$info )

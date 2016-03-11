@@ -53,9 +53,9 @@ class PPC_addons {
 	 */
 	 
 	static function addons_get_list() {
-	   $cache = get_option( 'ppc_addons_list' );
+	   $cache = maybe_unserialize( get_option( 'ppc_addons_list' ) );
 	   
-		if ( $cache === false OR $cache['time'] < current_time() ) {
+		/*if ( $cache === false OR $cache['time'] < current_time( 'timestamp' ) ) {
 			$feed = wp_remote_get( 'http://postpaycounter.com/ppcp/features/ppcp_spit_html.php?addons_list', array( 'timeout' => 10 ) );
 			
 			if ( ! is_wp_error( $feed ) ) {
@@ -70,8 +70,25 @@ class PPC_addons {
 				if( ! isset( $cache['data'] ) OR ! is_array( $cache['data'] ) )
 					$cache['data'] = '<div class="error"><p>' . __( 'There was an error retrieving the extensions list from the server. Please try again later.', 'post-pay-counter' ) . '</div>';
 			}
-		}
+		}*/
 		
-		return $cache['data'];
+		
+		if( is_string( $cache['data'] ) ) {
+			return $cache['data'];
+		} else if( is_array( $cache['data'] ) ) {
+			$return = '';
+			
+			foreach( $cache['data'] as $title => $info ) {
+				$return .= '<div class="ppc_addon">
+				<h3 class="ppc_addon_title">'.$title.'</h3>
+				<a href="'.$info['link'].'" title="'.$title.'" target="_blank"><img width="320" height="200" src="'.$info['image'].'" class="attachment-showcase wp-post-image" alt="" title="'.$title.'" /></a>
+				<p>'.$info['description'].'</p>
+				<a target="_blank" href="'.$info['link'].'" title="'.$title.'" class="button-secondary">Get this Add On</a>
+				</div>';
+			}
+			
+			return $return;
+		}
+			
 	}
 }

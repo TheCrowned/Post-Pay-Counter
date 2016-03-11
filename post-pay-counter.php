@@ -513,6 +513,15 @@ class post_pay_counter {
 	</div>
 	
 		<?php
+		
+		/**
+		 * Fires after options page header intro.
+		 * 
+		 * @since	2.518
+		 */
+		
+		do_action( 'ppc_options_page_after_intro' );
+		
         if( is_numeric( self::$options_page_settings['userid'] ) ) {
             $userdata = get_userdata( self::$options_page_settings['userid'] );
 			?>

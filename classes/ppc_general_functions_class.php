@@ -96,7 +96,15 @@ class PPC_general_functions {
             $return = self::get_settings( 'general' );
         }
         
-        return apply_filters( 'ppc_settings', $return );
+        /**
+		 * Filters retrieved settings before returning them.
+		 *
+		 * @since	2.518
+		 * @param	$return array to be returned settings array
+		 * @param	$userid string user id whose settings are being requested
+		 */
+        
+        return apply_filters( 'ppc_get_settings', $return, $userid );
     }
     
     /**

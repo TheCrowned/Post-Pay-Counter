@@ -78,10 +78,13 @@ It must become: *define( 'PPC_DEBUG_LOG', false );*
 5. The tooltip with all the counting details
 
 == Changelog ==
-= 2.518 =
+= 2.518 (2016/03/) =
 * Fixed: admins override permissions feature didn't check the user role, but manage_options capability (so non-admins who could manage_options would override permissions).
+* Fixed: PHP warning due to missing argument.
+* Fixed: addons page would display "Array" and no addons in some sites.
+* Tweak: new actions and filters.
 
-= 2.517 (2016/02/) =
+= 2.517 (2016/02/21) =
 * Fixed: hour:minute:second date format wrongly displayed.
 * Tweak: addons list is now displayed even if network requests are not working, and anyway is only updated every two days.
 

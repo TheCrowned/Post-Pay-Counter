@@ -82,3 +82,9 @@
     border-width: 1px;
     border-color: #C12B45;
 }
+#ppc_personalize_users {
+	height: 10em; 
+	overflow: auto; 
+	display: none;
+	margin-top: 10px;
+}

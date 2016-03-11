@@ -238,7 +238,15 @@ class PPC_save_options {
             $ppc_global_settings['general_settings'] = $new_settings;
         }
         
-        do_action( 'ppc_settings_updated' );
+        /**
+		 * Fires after settings have been updated.
+		 *
+		 * @since	2.518
+		 * @param	$userid string user id updated
+		 * @param	$new_settings array new values for settings
+		 */
+        
+        do_action( 'ppc_settings_updated', $userid, $new_settings );
     }
 }
 ?>

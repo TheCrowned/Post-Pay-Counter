@@ -95,11 +95,12 @@ class PPC_ajax_functions {
         self::ppc_check_ajax_referer( 'ppc_personalize_fetch_users_by_roles' );
         
         echo 'ok';
+        $user_role = trim( $_REQUEST['user_role'] );
         
         $args = array( 
             'orderby' => 'display_name', 
             'order' => 'ASC', 
-            'role' => $_REQUEST['user_role'], 
+            'role' => $user_role,
             'count_total' => true, 
             'fields' => array( 
                 'ID', 
@@ -152,6 +153,16 @@ class PPC_ajax_functions {
         }
         
         echo '</table>';
+        
+        /**
+		 * Allows to display html after the list of users from a user-role in the personalize settings box.
+		 *
+		 * @since	2.518
+		 * @param	string $user_role user role selected
+		 */
+        
+        do_action( 'ppc_personalize_users_role_list_end', $user_role );
+        
         exit;
     }
     
@@ -160,7 +171,7 @@ class PPC_ajax_functions {
      *
      * @access  public
      * @since   2.0  
-    */
+     */
     
     static function vaporize_user_settings() {
         global $ppc_global_settings;
