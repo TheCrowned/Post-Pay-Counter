@@ -82,6 +82,11 @@ It must become: *define( 'PPC_DEBUG_LOG', false );*
 * Fixed: admins override permissions feature didn't check the user role, but manage_options capability (so non-admins who could manage_options would override permissions).
 * Fixed: PHP warning due to missing argument.
 * Fixed: addons page would display "Array" and no addons in some sites.
+* Fixed: saving user settings could overwrite past settings.
+* Fixed: settings import/export did not work cross-user.
+* Tweak: settings import/export only considers settings which are different from general.
+* Tweak: personalize users list can take up more space, so more users fit in it without scrolling.
+* Tweak: allowing for faster settings retrieval.
 * Tweak: new actions and filters.
 
 = 2.517 (2016/02/21) =

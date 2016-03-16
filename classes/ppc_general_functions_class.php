@@ -22,10 +22,11 @@ class PPC_general_functions {
      * @since   2.0
      * @param   int the desired user id
 	 * @param 	bool whether can-see-other-users-personalized-settings permission should be checked
+	 * @param	bool whether user specific settings should be completed with general ones for options which are not cusomized for that user
      * @return  array the requested settings
     */
 
-    static function get_settings( $userid, $check_current_user_cap_special = FALSE ) {
+    static function get_settings( $userid, $check_current_user_cap_special = FALSE, $complete_with_general = TRUE ) {
         global $ppc_global_settings;
         
 		//GENERAL SETTINGS
@@ -66,17 +67,17 @@ class PPC_general_functions {
                 $userid = $current_user->ID;
 			
 			//Retrieve cached settings if available or from database if not
-            if( isset( $ppc_global_settings['temp']['settings'][$userid] ) AND is_array( $ppc_global_settings['temp']['settings'][$userid] ) ) {
+            /*if( isset( $ppc_global_settings['temp']['settings'][$userid] ) AND is_array( $ppc_global_settings['temp']['settings'][$userid] ) ) {
                 $user_settings = $ppc_global_settings['temp']['settings'][$userid];
-            } else {
+            } else {*/
 				$user_settings = get_user_option( $ppc_global_settings['option_name'], $userid );
 				
 				//If no special settings for this user are available, get general ones
                 if( $user_settings == false ) {
                     $user_settings = self::get_settings( 'general' );
                 
-				//If user has special settings, complete user settings with general ones (i.e. add only-general settings to the return array of special user's settings)
-				} else {
+				//If user has special settings, complete user settings with general ones if needed (i.e. add only-general settings to the return array of special user's settings)
+				} else if( $complete_with_general ) {
 					$general_settings = self::get_settings( 'general' );
 					foreach( $general_settings as $key => &$value ) {
 						if( isset( $user_settings[$key] ) ) {
@@ -85,10 +86,10 @@ class PPC_general_functions {
 					}
 					$user_settings = $general_settings;
 				}
-			}
+			//}
 			
 			//Cache processed settings
-			$ppc_global_settings['temp']['settings'][$user_settings['userid']] = $user_settings;
+			//$ppc_global_settings['temp']['settings'][$user_settings['userid']] = $user_settings;
 			
 			$return = $user_settings;
 			
@@ -102,9 +103,11 @@ class PPC_general_functions {
 		 * @since	2.518
 		 * @param	$return array to be returned settings array
 		 * @param	$userid string user id whose settings are being requested
+		 * @param 	bool whether can-see-other-users-personalized-settings permission should be checked
+		 * @param	bool whether user specific settings should be completed with general ones for options which are not cusomized for that user
 		 */
         
-        return apply_filters( 'ppc_get_settings', $return, $userid );
+        return apply_filters( 'ppc_get_settings', $return, $userid, $check_current_user_cap_special, $complete_with_general );
     }
     
     /**

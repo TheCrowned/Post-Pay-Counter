@@ -72,7 +72,7 @@ class PPC_addons {
 			}
 		}*/
 		
-		
+		//We stopped pulling addons list from remote server since version 2.518
 		if( is_string( $cache['data'] ) ) {
 			return $cache['data'];
 		} else if( is_array( $cache['data'] ) ) {

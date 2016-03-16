@@ -528,7 +528,7 @@ class post_pay_counter {
 			
 	<p style="clear: both; text-transform: uppercase; font-size: x-small; margin-bottom: -3px; text-align: center;">
 		<a href="<?php echo $ppc_global_settings['options_menu_link']; ?>" title="<?php _e( 'Go back to general settings' , 'post-pay-counter'); ?>" style="float: left; color: black; "><?php _e( 'Back to general' , 'post-pay-counter'); ?></a>
-		<a href="#" id="vaporize_user_settings" accesskey="<?php echo self::$options_page_settings['userid']; ?>" title="<?php _e( 'Delete user\'s settings' , 'post-pay-counter'); ?>" style="float: right; color: red; "><?php _e( 'Delete user\'s settings' , 'post-pay-counter'); ?>'</a>
+		<a href="#" id="vaporize_user_settings" accesskey="<?php echo self::$options_page_settings['userid']; ?>" title="<?php _e( 'Delete user\'s settings' , 'post-pay-counter'); ?>" style="float: right; color: red; "><?php _e( 'Delete user\'s settings' , 'post-pay-counter'); ?></a>
 		<?php echo __( 'Currently editing user:' , 'post-pay-counter').' "'.$userdata->display_name.'"'; ?>
 	</p>
 			

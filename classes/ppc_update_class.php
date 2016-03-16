@@ -179,6 +179,12 @@ class PPC_update_class {
 					'link' => 'http://postpaycounter.com/publisher-bonus-editor-rewarding-system',
 					'campaign' => 'ppcp_pb'
 				),
+				'User Roles Custom Settings' => array(
+					'description' => 'Allows to set custom settings for each user role that apply to all users belonging to it.',
+					'image' => 'http://postpaycounter.com/ppc_urcs/images/personalize_settings_box.jpg',
+					'link' => 'http://postpaycounter.com/user-roles-custom-settings',
+					'campaign' => 'ppc_urcs'
+				),
 				'Stop Words' => array(
 					'description' => 'Allows to specify a list of stop words that should not be counted when computing posts word count.',
 					'image' => 'http://postpaycounter.com/ppcp_sw/features/images/stopwords.png',
@@ -189,7 +195,7 @@ class PPC_update_class {
 					'description' => 'Allows to exclude text enclosed by shortcodes from words payment.',
 					'image' => 'http://postpaycounter.com/ppc/addons/shortcode.jpg',
 					'link' => 'http://postpaycounter.com/shortcode-stripper-exclude-shortcodes-from-words-payment/',
-					'campaign' => 'ppcp_shortcode_stripper'
+					'campaign' => 'ppc_shortcode_stripper'
 				)
 			),
 			'time' => current_time( 'timestamp' ) + 3600*48
@@ -212,9 +218,14 @@ class PPC_update_class {
 		if( get_option( 'ppcp_pb_active' ) == 1 )
             activate_plugin( 'ppcp-publisher-bonus/ppcp-publisher-bonus.php' );
 		
+		if( get_option( 'ppcp_fb_active' ) == 1 )
+            activate_plugin( 'ppcp-facebook/ppcp-facebook.php' );
+		
 		if( get_option( 'ppcp_sw_active' ) == 1 )
             activate_plugin( 'ppcp-stopwords/ppcp-stopwords.php' );
+            
+	   if( get_option( 'ppc_urcs_active' ) == 1 )
+            activate_plugin( 'ppc-user-roles-custom-settings/ppc-user-roles-custom-settings.php' );
     }
 }
-
 ?>

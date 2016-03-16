@@ -207,10 +207,10 @@ class PPC_save_options {
     
     static function update_settings( $userid, $new_settings ) {
         global $ppc_global_settings;
-        $current_general_settings = PPC_general_functions::get_settings( $settings['userid'] );
+        $current_general_settings = PPC_general_functions::get_settings( 'general' );
         
         if( is_numeric( $userid ) ) {
-            $settings['userid'] = (int) $settings['userid'];
+            $new_settings['userid'] = (int) $new_settings['userid'];
             
             $current_user_settings = get_user_option( $ppc_global_settings['option_name'], $userid );
             if( ! is_array( $current_user_settings ) )	$current_user_settings = array();

@@ -120,39 +120,42 @@ class PPC_ajax_functions {
         $args = apply_filters( 'ppc_personalize_fetch_users_args', $args );
         
         $users_to_show = new WP_User_Query( $args );
-		if( $users_to_show->get_total() == 0 )
-            die( __( 'No users found.' , 'post-pay-counter') );
         
-        $n = 0;
-        $html = '';
-        echo '<table>';
-        
-        foreach( $users_to_show->results as $single ) {
-            if( $n % 3 == 0 )
-                $html .= '<tr>';
-            
-			$html .= '<td><a href="'.admin_url( $ppc_global_settings['options_menu_link'].'&amp;userid='.$single->ID ).'" title="'.$single->display_name.'">'.$single->display_name.'</a></td>';
-            
-			if( $n % 3 == 2 )
-                $html .= '</tr>';
-            
-			/**
-			 * Filters user display in Personalize settings box.
-			 * 
-			 * This fires for every user that is displayed for the selected role.
-			 *
-			 * @since	2.0
-			 * @param	string $html html code for the user list up to the current one
-			 * @param	object $single WP_User current user data
-			 */
+		if( $users_to_show->get_total() == 0 ) {
+            _e( 'No users found.' , 'post-pay-counter');
+
+		} else {
+			$n = 0;
+			$html = '';
+			echo '<table>';
 			
-            echo apply_filters( 'ppc_html_personalize_list_print_user', $html, $single );
-            
-            $html = '';
-            $n++;
-        }
-        
-        echo '</table>';
+			foreach( $users_to_show->results as $single ) {
+				if( $n % 3 == 0 )
+					$html .= '<tr>';
+				
+				$html .= '<td><a href="'.admin_url( $ppc_global_settings['options_menu_link'].'&amp;userid='.$single->ID ).'" title="'.$single->display_name.'">'.$single->display_name.'</a></td>';
+				
+				if( $n % 3 == 2 )
+					$html .= '</tr>';
+				
+				/**
+				 * Filters user display in Personalize settings box.
+				 * 
+				 * This fires for every user that is displayed for the selected role.
+				 *
+				 * @since	2.0
+				 * @param	string $html html code for the user list up to the current one
+				 * @param	object $single WP_User current user data
+				 */
+				
+				echo apply_filters( 'ppc_html_personalize_list_print_user', $html, $single );
+				
+				$html = '';
+				$n++;
+			}
+			
+			echo '</table>';
+		}
         
         /**
 		 * Allows to display html after the list of users from a user-role in the personalize settings box.
@@ -200,7 +203,7 @@ class PPC_ajax_functions {
      *
      * @access  public
      * @since   2.1.3
-    */
+     */
     
     static function import_settings() {
         global $ppc_global_settings;
@@ -209,7 +212,8 @@ class PPC_ajax_functions {
         $to_import = unserialize( base64_decode( $_REQUEST['import_settings_content'] ) );
         
         if( is_array( $to_import ) AND isset( $to_import['userid'] ) ) {
-            
+
+            $to_import['userid'] = $_REQUEST['userid'];
             $update = PPC_save_options::update_settings( $to_import['userid'], $to_import );
             
             if( is_wp_error( $update ) )

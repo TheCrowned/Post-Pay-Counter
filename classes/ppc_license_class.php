@@ -91,7 +91,7 @@ class PPC_license {
             'body' => $parameters,
             'headers' => $headers 
         ) );
-        
+
         if( is_wp_error( $request ) ) {
             $error = new PPC_Error( 'ppcp_license_request_connection_error', sprintf( __( 'Error', 'ppcp').': '.$request->get_error_message().'. '.__( '%1$sWhy does this happen?%2$s', 'ppcp' ), '<a href="http://postpaycounter.com/license-activation-fails-with-timeout/">', '</a>'), array(
                 'request_url' => $this->remote_URL,

@@ -137,6 +137,7 @@ jQuery(document).ready(function($) {
         var data = {
             action: "ppc_import_settings",
             import_settings_content: $("#ppc_import_settings_content").val(),
+            userid: $("#ppc_import_settings_userid").val(),
             _ajax_nonce: ppc_options_ajax_stuff_vars.nonce_ppc_import_settings
         };
         

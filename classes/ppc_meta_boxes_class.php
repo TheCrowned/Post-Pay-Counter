@@ -391,9 +391,11 @@ class PPC_meta_boxes {
     static function meta_box_import_export_settings( $post, $current_settings ) {
         global $ppc_global_settings;
         $current_settings = $current_settings['args'];
+        $userid = $current_settings['userid'];
+        $current_settings = PPC_general_functions::get_settings( $current_settings['userid'], false, false );
         
         echo '<form action="" id="ppc_import_export_form" method="post">';
-        echo '<p>'.sprintf( __( 'Have more than website but use the same settings? You can transfer settings from one installation of the plugin to another. If you are also running the PRO version, its settings will be taken as well. It works both for general and for user personalized settings, depending on what page you are. If you want to export this website\'s settings, copy the code below. If you want to import another website\'s settings, paste its settings code in the field below and click %s. Once you import settings, it will not be possible to go back to the previous settings. Do not edit settings code unless you know what base64 and serialization are and are sure of what you are doing!', 'post-pay-counter' ), __( 'Import settings', 'post-pay-counter' ) ).'</p>';
+        echo '<p>'.sprintf( __( 'Have more than website but use the same settings? You can transfer settings from one installation of the plugin to another. All addons settings will be taken as well. It works both for general and for user personalized settings, depending on what page you are. If you want to export this website\'s settings, copy the code below. If you want to import another website\'s settings, paste its settings code in the field below and click %s. Once you import settings, it will not be possible to go back to the previous settings. Do not edit settings code unless you know what base64 and serialization are and are sure of what you are doing!', 'post-pay-counter' ), __( 'Import settings', 'post-pay-counter' ) ).'</p>';
         
         echo '<textarea onclick="this.focus();this.select()" style="width: 100%; height: 100px;" name="ppc_import_settings_content" id="ppc_import_settings_content">'.base64_encode( serialize( apply_filters( 'ppc_export_settings_content', $current_settings ) ) ).'</textarea>';
         echo '<div class="clear"></div>';
@@ -406,7 +408,7 @@ class PPC_meta_boxes {
         <div class="ppc_save_error" id="ppc_import_settings_error"></div>
         <div class="ppc_save_settings">
             <img src="<?php echo $ppc_global_settings['folder_path'].'style/images/ajax-loader.gif'; ?>" title="<?php _e( 'Loading' , 'post-pay-counter'); ?>" alt="<?php _e( 'Loading' , 'post-pay-counter'); ?>" class="ppc_ajax_loader" id="ppc_import_settings_ajax_loader" />
-            <input type="hidden" name="userid" value="<?php echo $current_settings['userid']; ?>" />
+            <input type="hidden" name="userid" id="ppc_import_settings_userid" value="<?php echo $userid; ?>" />
             <input type="submit" class="button-primary" name="ppc_import_settings" id="ppc_import_settings" value="<?php _e( 'Import settings' , 'post-pay-counter') ?>" />
         </div>
         <div class="clear"></div>
@@ -491,7 +493,7 @@ class PPC_meta_boxes {
         echo '</p>';
         echo '<div class="clear"></div>';
         echo '</div>';
-        echo '<div style="height: 8em; overflow: auto; display: none;" id="ppc_personalize_users">';
+        echo '<div id="ppc_personalize_users">';
         echo '<p style="margin-top: 0px;"><strong>'.__( 'Available users' , 'post-pay-counter').'</strong><br />';
         echo '<span id="ppc_users"></span>';
         echo '</p>';
