@@ -198,7 +198,8 @@ class PPC_install_functions {
                 'default_stats_time_range_custom' => 0,
                 'default_stats_time_range_custom_value' => 100,
                 'admins_override_permissions' => 1,
-                'stats_display_edit_post_link' => 0
+                'stats_display_edit_post_link' => 0,
+                'enable_stats_payments_tooltips' => 0
             ),
             
             'admin' => array( 

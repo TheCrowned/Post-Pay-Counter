@@ -202,10 +202,11 @@ class PPC_HTML_functions {
 		if( is_array( $author ) ) {
 			list( $author, $author_stats ) = each( $formatted_stats['stats'] );
 			$user_settings = PPC_general_functions::get_settings( $author, true );
-		
+			$counting_types = $ppc_global_settings['counting_types_object']->get_active_counting_types( 'post', $author );
+			
 			foreach( $author_stats as $post_id => $post_stats ) {
 				$post = $raw_stats[$author][$post_id];
-		
+				
 				$tr_opacity = '';
 				if( $user_settings['counting_payment_only_when_total_threshold'] ) {
 					if( $post->ppc_misc['exceed_threshold'] == false )
@@ -235,7 +236,7 @@ class PPC_HTML_functions {
 							break;
 							
 						case 'post_total_payment':
-							$tooltip = PPC_counting_stuff::build_payment_details_tooltip( $post->ppc_count['normal_count'], $post->ppc_payment['normal_payment'], $ppc_global_settings['counting_types_object']->get_active_counting_types( 'post', $post->post_author ) );
+							$tooltip = PPC_counting_stuff::build_payment_details_tooltip( $post->ppc_count['normal_count'], $post->ppc_payment['normal_payment'], $counting_types );
 							if( $format_payment )
 								$field_value = '<abbr title="'.$tooltip.'" class="ppc_payment_column">'.PPC_general_functions::format_payment( $field_value ).'</abbr>';
 							else

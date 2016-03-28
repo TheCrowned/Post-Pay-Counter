@@ -386,6 +386,9 @@ class PPC_counting_stuff {
         global $ppc_global_settings;
         
         $tooltip = '';
+
+		if( self::$settings['enable_stats_payments_tooltips'] )
+			return $tooltip;
         
         if( ! empty( $payment ) ) {
 			foreach( $payment as $id => $value ) { 

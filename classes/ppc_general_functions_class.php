@@ -33,7 +33,7 @@ class PPC_general_functions {
         if( $userid == 'general' ) {
 			
 			//Retrieve from cache if available
-			$cache = wp_cache_get( 'ppc_general_settings' );
+			$cache = wp_cache_get( 'ppc_settings'.$userid );
             if( $cache !== false ) {
                 $return = $cache;
             } else {
@@ -51,9 +51,8 @@ class PPC_general_functions {
                         $general_settings = array_merge( $general_settings, get_option( $single ) );
                     }*/
 				
-				//Fetch them from database if first request and cache them
+				//Fetch them from database if first request 
 				$return = get_option( $ppc_global_settings['option_name'] );
-				wp_cache_set( 'ppc_global_settings', $return );
 				
                 //}
             }
@@ -68,7 +67,7 @@ class PPC_general_functions {
                 $userid = $current_user->ID;
 			
 			//Retrieve cached settings if available or from database if not
-			$cache = wp_cache_get( 'ppc_settings_user_'.$userid );
+			$cache = wp_cache_get( 'ppc_settings_'.$userid );
             if( $cache !== false ) {
                 $user_settings = $cache;
             } else {
@@ -91,9 +90,6 @@ class PPC_general_functions {
 				}
 			}
 			
-			//Cache processed settings
-			wp_cache_set( 'ppc_settings_user_'.$userid, $user_settings );
-			
 			$return = $user_settings;
 			
         } else {
@@ -111,7 +107,12 @@ class PPC_general_functions {
 		 */
 
         $return = apply_filters( 'ppc_settings', $return );
-        return apply_filters( 'ppc_get_settings', $return, $userid, $check_current_user_cap_special, $complete_with_general );
+        $return = apply_filters( 'ppc_get_settings', $return, $userid, $check_current_user_cap_special, $complete_with_general );
+
+        //Cache processed settings
+		wp_cache_set( 'ppc_settings_'.$userid, $return );
+
+		return $return;
     }
     
     /**

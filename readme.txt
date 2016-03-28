@@ -79,7 +79,10 @@ It must become: *define( 'PPC_DEBUG_LOG', false );*
 
 == Changelog ==
 = 2.519 (2016/03/28) =
-* Huge performance improvements
+* Huge **performance improvements**! Basing on our tests, with all counting types enabled (basic, words, visits (postmeta), comments and images), we managed to load 6500+ posts in around 10 seconds (overall stats disabled).
+* New: option to avoid making post titles clickable in stats (off by default, improves performance).
+* New: option to avoid making super-cautious spaces parsing in word count (off by default, improves performance).
+* New: option to avoid display of payment tooltips in stats (off by default, improves performance).
 
 = 2.518 (2016/03/16) =
 * [New addon released](http://postpaycounter.com/user-roles-custom-settings) to set custom settings per user role!
