@@ -59,7 +59,7 @@ class PPC_counting_stuff {
      *
      * @access  public
      * @since   2.0
-     * @param   $data array an array of WP posts
+     * @param   $data array grouped by author stats result
      * @param   $author array optional an array of user ids of whom stats should be taken
      * @return  array the posts array along with their counting & payment data  
     */
@@ -69,24 +69,26 @@ class PPC_counting_stuff {
         
         $processed_data = array();
         
-        foreach( $data as $single ) {
-            self::$settings = PPC_general_functions::get_settings( $single->post_author, TRUE );
-            self::$current_active_counting_types_post = $ppc_global_settings['counting_types_object']->get_active_counting_types( 'post', $single->post_author );
-            self::$current_active_counting_types_author = $ppc_global_settings['counting_types_object']->get_active_counting_types( 'author', $single->post_author );
-            self::$being_processed_author = $single->post_author;
-			
-			do_action( 'ppc_data2cash_single_before', $single );
-			
-            $post_countings = self::get_post_countings( $single );
-            $post_payment = self::get_post_payment( $post_countings['normal_count'], $single->ID );
-            
-			if( count( $post_countings['normal_count'] ) == 0 AND count( $post_payment['ppc_payment']['normal_payment'] ) == 0 ) continue;
-			
-			$single->ppc_count = $post_countings;
-			$single->ppc_payment = $post_payment['ppc_payment'];
-            $single->ppc_misc = apply_filters( 'ppc_stats_post_misc', $post_payment['ppc_misc'], $single->ID );
-            
-            $processed_data[$single->ID] = apply_filters( 'ppc_post_counting_payment_data', $single, $author );
+        foreach( $data as $author_id => &$author_stats ) {
+			self::$settings = PPC_general_functions::get_settings( $author_id, TRUE );
+			self::$current_active_counting_types_post = $ppc_global_settings['counting_types_object']->get_active_counting_types( 'post', $author_id );
+			self::$current_active_counting_types_author = $ppc_global_settings['counting_types_object']->get_active_counting_types( 'author', $author_id );
+			self::$being_processed_author = $author_id;
+				
+			foreach( $author_stats as $single ) {
+				do_action( 'ppc_data2cash_single_before', $single );
+				
+				$post_countings = self::get_post_countings( $single );
+				$post_payment = self::get_post_payment( $post_countings['normal_count'], $single->ID );
+				
+				if( count( $post_countings['normal_count'] ) == 0 AND count( $post_payment['ppc_payment']['normal_payment'] ) == 0 ) continue;
+				
+				$single->ppc_count = $post_countings;
+				$single->ppc_payment = $post_payment['ppc_payment'];
+				$single->ppc_misc = apply_filters( 'ppc_stats_post_misc', $post_payment['ppc_misc'], $single->ID );
+				
+				$processed_data[$author_id][$single->ID] = apply_filters( 'ppc_post_counting_payment_data', $single, $author );
+			}
         }
         
         return $processed_data;

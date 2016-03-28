@@ -43,23 +43,26 @@ class PPC_generate_stats {
             $requested_posts = PPC_generate_stats::get_requested_posts( $time_start, $time_end, $author );
         
         if( is_wp_error( $requested_posts ) ) return $requested_posts;
+
+		$stats = PPC_generate_stats::group_stats_by_author( $requested_posts );
+        if( is_wp_error( $stats ) ) return $stats;
         
-        $cashed_requested_posts = PPC_counting_stuff::data2cash( $requested_posts, $author );
-        if( is_wp_error( $cashed_requested_posts ) ) return $cashed_requested_posts;
+        $stats = PPC_counting_stuff::data2cash( $stats, $author );
+        if( is_wp_error( $stats ) ) return $stats;
+
+		$stats = PPC_generate_stats::calculate_total_stats( $stats );
+        if( is_wp_error( $stats ) ) return $stats;
         
-		if( empty( $cashed_requested_posts ) ) {
+		/*if( empty( $cashed_requested_posts ) ) {
             $error = new PPC_Error( 'data2cash_empty', __( 'Error: no posts were selected' , 'post-pay-counter'), array(), false );
             return $error->return_error();
-        }
-		
-        $grouped_by_author_stats = PPC_generate_stats::group_stats_by_author( $cashed_requested_posts );
-        if( is_wp_error( $grouped_by_author_stats ) ) return $grouped_by_author_stats;
+        }*/
         
-        $formatted_stats = PPC_generate_stats::format_stats_for_output( $grouped_by_author_stats, $author );
+        $formatted_stats = PPC_generate_stats::format_stats_for_output( $stats, $author );
         if( is_wp_error( $formatted_stats ) ) return $formatted_stats;
 		
-        unset( $requested_posts, $cashed_requested_posts ); //Hoping to free some memory
-        return array( 'raw_stats' => $grouped_by_author_stats, 'formatted_stats' => $formatted_stats );
+        unset( $requested_posts ); //Hoping to free some memory
+        return array( 'raw_stats' => $stats, 'formatted_stats' => $formatted_stats );
     }
     
     /**
@@ -163,62 +166,81 @@ class PPC_generate_stats {
 		
 		return $grp_args;
 	}
-	
-    /**
-     * Groups posts array by their authors and computes authors total (count+payment)
+
+	/**
+     * Groups posts array by their authors.
      *
      * @access  public
-     * @since   2.0
+     * @since   2.519
      * @param   $data array the counting data
      * @return  array the counting data, grouped by author id
      */
-    
     static function group_stats_by_author( $data ) {
         global $ppc_global_settings;
 		
 		$sorted_array = array();
-        
         foreach( $data as $post_id => $single ) {
             $sorted_array[$single->post_author][$post_id] = $single;
             $user_settings = PPC_general_functions::get_settings( $single->post_author, true );
-            
-            //Written posts count
-            if( ! isset( $sorted_array[$single->post_author]['total']['ppc_misc']['posts'] ) )
-                $sorted_array[$single->post_author]['total']['ppc_misc']['posts'] = 1;
-            else
-                $sorted_array[$single->post_author]['total']['ppc_misc']['posts']++;
-            
-            //Don't include in general stats count posts below threshold
-            if( $user_settings['counting_payment_only_when_total_threshold'] ) {
-                if( $single->ppc_misc['exceed_threshold'] == false )
-                    continue;
-            }
-            
-            //Compute total countings
-            foreach( $single->ppc_count['normal_count'] as $what => $value ) {
-                //Avoid notices of non isset index
-    			if( ! isset( $sorted_array[$single->post_author]['total']['ppc_count']['normal_count'][$what] ) ) {
-    				$sorted_array[$single->post_author]['total']['ppc_count']['normal_count'][$what]['real'] = $single->ppc_count['normal_count'][$what]['real'];
-                    $sorted_array[$single->post_author]['total']['ppc_count']['normal_count'][$what]['to_count'] = $single->ppc_count['normal_count'][$what]['to_count'];
-    			} else {
-    				$sorted_array[$single->post_author]['total']['ppc_count']['normal_count'][$what]['real'] += $single->ppc_count['normal_count'][$what]['real'];
-                    $sorted_array[$single->post_author]['total']['ppc_count']['normal_count'][$what]['to_count'] += $single->ppc_count['normal_count'][$what]['to_count'];
-    			}
-            }
-            
-            //Compute total payment
-            foreach( $single->ppc_payment['normal_payment'] as $what => $value ) {
-                //Avoid notices of non isset index
-    			if( ! isset( $sorted_array[$single->post_author]['total']['ppc_payment']['normal_payment'][$what] ) )
-    				$sorted_array[$single->post_author]['total']['ppc_payment']['normal_payment'][$what] = $value;
-    			else
-    				$sorted_array[$single->post_author]['total']['ppc_payment']['normal_payment'][$what] += $value;
-            }
-            
-            $sorted_array[$single->post_author] = apply_filters( 'ppc_sort_stats_by_author_foreach_post', $sorted_array[$single->post_author], $single );
         }
         
-        foreach( $sorted_array as $author => &$stats ) {
+        return apply_filters( 'ppc_grouped_by_author_stats', $sorted_array );
+    }
+	
+    /**
+     * Computes authors total (count+payment)
+     *
+     * @access  public
+     * @since   2.519
+     * @param   $data array the counting data grouped by author
+     * @return  array the counting data, with totals
+     */
+    
+    static function calculate_total_stats( $data ) {
+        global $ppc_global_settings;
+
+        foreach( $data as $author_id => $author_stats ) {
+			foreach( $author_stats as $post_id => $single ) {
+				$user_settings = PPC_general_functions::get_settings( $author_id, true );
+				
+				//Written posts count
+				if( ! isset( $data[$author_id]['total']['ppc_misc']['posts'] ) )
+					$data[$author_id]['total']['ppc_misc']['posts'] = 1;
+				else
+					$data[$author_id]['total']['ppc_misc']['posts']++;
+				
+				//Don't include in general stats count posts below threshold
+				if( $user_settings['counting_payment_only_when_total_threshold'] ) {
+					if( $single->ppc_misc['exceed_threshold'] == false )
+						continue;
+				}
+				
+				//Compute total countings
+				foreach( $single->ppc_count['normal_count'] as $what => $value ) {
+					//Avoid notices of non isset index
+					if( ! isset( $data[$author_id]['total']['ppc_count']['normal_count'][$what] ) ) {
+						$data[$author_id]['total']['ppc_count']['normal_count'][$what]['real'] = $single->ppc_count['normal_count'][$what]['real'];
+						$data[$author_id]['total']['ppc_count']['normal_count'][$what]['to_count'] = $single->ppc_count['normal_count'][$what]['to_count'];
+					} else {
+						$data[$author_id]['total']['ppc_count']['normal_count'][$what]['real'] += $single->ppc_count['normal_count'][$what]['real'];
+						$data[$author_id]['total']['ppc_count']['normal_count'][$what]['to_count'] += $single->ppc_count['normal_count'][$what]['to_count'];
+					}
+				}
+				
+				//Compute total payment
+				foreach( $single->ppc_payment['normal_payment'] as $what => $value ) {
+					//Avoid notices of non isset index
+					if( ! isset( $data[$author_id]['total']['ppc_payment']['normal_payment'][$what] ) )
+						$data[$author_id]['total']['ppc_payment']['normal_payment'][$what] = $value;
+					else
+						$data[$author_id]['total']['ppc_payment']['normal_payment'][$what] += $value;
+				}
+				
+				$data[$author_id] = apply_filters( 'ppc_sort_stats_by_author_foreach_post', $data[$author_id], $single );
+			}
+		}
+			
+        foreach( $data as $author => &$stats ) {
             $user_settings = PPC_general_functions::get_settings( $author, true );
             
 			$author_counting_types = $ppc_global_settings['counting_types_object']->get_active_counting_types( 'author', $author );
@@ -246,13 +268,13 @@ class PPC_generate_stats {
         }
 		
 		//Build payment tooltip
-		foreach( $sorted_array as $author => &$stats ) {
+		foreach( $data as $author => &$stats ) {
 			$active_counting_types_merge = array_merge( $ppc_global_settings['counting_types_object']->get_active_counting_types( 'author', $author ), $ppc_global_settings['counting_types_object']->get_active_counting_types( 'post', $author ) );
 			$stats['total']['ppc_misc']['tooltip_normal_payment'] = PPC_counting_stuff::build_payment_details_tooltip( $stats['total']['ppc_count']['normal_count'], $stats['total']['ppc_payment']['normal_payment'], $active_counting_types_merge );
 			$stats['total']['ppc_misc'] = apply_filters( 'ppc_stats_author_misc', $stats['total']['ppc_misc'], $author, $stats );
 		}
         
-        return apply_filters( 'ppc_generated_raw_stats', $sorted_array );
+        return apply_filters( 'ppc_generated_raw_stats', $data );
     }
     
     /**
