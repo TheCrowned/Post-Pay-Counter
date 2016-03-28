@@ -241,8 +241,13 @@ class PPC_counting_stuff {
         if( self::$settings['counting_exclude_quotations'] )
             $post->post_content = preg_replace( '/<(blockquote|q)>(.*?)<\/(blockquote|q)>/s', '', $post->post_content );
 
-		$purged_content = apply_filters( 'ppc_clean_post_content_word_count', trim( preg_replace( '/\'|&nbsp;|&#160;|\r|\n|\r\n|\s+/', ' ',  strip_tags( $post->post_content ) ) ) ); //need to trim to remove final new lines
+		$purged_content = strip_tags( $post->post_content );
 
+		if( self::$settings['counting_words_parse_spaces'] )
+			$purged_content = preg_replace( '/\'|&nbsp;|&#160;|\r|\n|\r\n|\s+/', ' ',  $purged_content );
+		
+		$purged_content = apply_filters( 'ppc_clean_post_content_word_count', trim( $purged_content ) ); //need to trim to remove final new lines
+		
 		$post_words['real'] = count( preg_split( '/\s+/', $purged_content, -1, PREG_SPLIT_NO_EMPTY ) );
 		
 		if( self::$settings['counting_words_threshold_max'] > 0 AND $post_words['real'] > self::$settings['counting_words_threshold_max'] )

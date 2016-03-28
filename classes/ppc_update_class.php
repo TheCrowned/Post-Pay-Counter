@@ -73,12 +73,12 @@ class PPC_update_class {
 				'counting_visits_display_status' => 'count',
 				'counting_images_display_status' => 'count',
 				'counting_comments_display_status' => 'count',
-				'stats_display_edit_post_link' => 1
+				'stats_display_edit_post_link' => 0,
+				'counting_words_parse_spaces' => 0
             ),
-            
+
+            //User settings only hold different-from-general-records nowadays
             'user' => array(
-				'counting_images_include_galleries' => 0,
-				'counting_visits_callback' => 0
             )
         );
         

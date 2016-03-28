@@ -224,7 +224,7 @@ class PPC_HTML_functions {
 						//Attach link to post title: if user can edit posts, attach edit link (faster), if not post permalink (slower)
 						case 'post_title':
 						
-							if( $user_settings['stats_display_edit_post_link'] ) {
+							if(! $user_settings['stats_display_edit_post_link'] ) {
 								$post_link = get_edit_post_link( $post->ID );
 								if( $post_link == '' )
 									$post_link = get_permalink( $post->ID );

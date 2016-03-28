@@ -104,6 +104,7 @@ class PPC_install_functions {
                 'counting_words_system_incremental_value' => 0.01,
                 'counting_words_threshold_max' => 0,
                 'counting_words_display_status' => 'count',
+				'counting_words_parse_spaces' => 0,
                 'counting_visits' => 0,
                 'counting_visits_postmeta' => 1,
                 'counting_visits_postmeta_value' => '',
@@ -196,91 +197,12 @@ class PPC_install_functions {
                 'default_stats_time_range_week' => 0,
                 'default_stats_time_range_custom' => 0,
                 'default_stats_time_range_custom_value' => 100,
-                'admins_override_permissions' => 1
+                'admins_override_permissions' => 1,
+                'stats_display_edit_post_link' => 0
             ),
             
             'admin' => array( 
                 'userid' => $current_user->ID,
-                'basic_payment' => 1,
-                'basic_payment_value' => 1.5,
-                'counting_words' => 1,
-                'counting_words_system_zonal' => 0,
-                'counting_words_system_zonal_value' => array(
-                    0 => array( 
-                        'threshold' => 100,
-                        'payment' => 1
-                    ),
-                    1 => array(
-                        'threshold' => 200,
-                        'payment' => 2
-                    )
-                ),
-                'counting_words_system_incremental' => 1,
-                'counting_words_system_incremental_value' => 0.01,
-                'counting_words_threshold_max' => 0,
-                'counting_visits' => 0,
-                'counting_visits_postmeta' => 1,
-                'counting_visits_postmeta_value' => '',
-				'counting_visits_callback' => 0,
-                'counting_visits_system_zonal' => 0,
-                'counting_visits_system_zonal_value' => array(
-                    0 => array( 
-                        'threshold' => 100,
-                        'payment' => 1
-                    ),
-                    1 => array(
-                        'threshold' => 200,
-                        'payment' => 2
-                    )
-                ),
-                'counting_visits_system_incremental' => 1,
-                'counting_visits_system_incremental_value' => 0.01,
-                'counting_visits_threshold_max' => 0,
-                'counting_images' => 1,
-                'counting_images_system_zonal' => 0,
-                'counting_images_system_zonal_value' => array(
-                    0 => array( 
-                        'threshold' => 100,
-                        'payment' => 1
-                    ),
-                    1 => array(
-                        'threshold' => 200,
-                        'payment' => 2
-                    )
-                ),
-                'counting_images_system_incremental' => 1,
-                'counting_images_system_incremental_value' => 0.01,
-                'counting_images_threshold_min' => 2,
-                'counting_images_value' => 0.2,
-                'counting_images_threshold_max' => 10,
-                'counting_images_include_featured' => 1,
-				'counting_images_include_galleries' => 1,
-                'counting_comments' => 1,
-                'counting_comments_system_zonal' => 0,
-                'counting_comments_system_zonal_value' => array(
-                    0 => array( 
-                        'threshold' => 100,
-                        'payment' => 1
-                    ),
-                    1 => array(
-                        'threshold' => 200,
-                        'payment' => 2
-                    )
-                ),
-                'counting_comments_system_incremental' => 1,
-                'counting_comments_system_incremental_value' => 0.01,
-                'counting_comments_threshold_min' => 2,
-                'counting_comments_value' => 0.2,
-                'counting_comments_threshold_max' => 10,
-                'counting_payment_total_threshold' => 0,
-                'counting_payment_only_when_total_threshold' => 0,
-                'counting_allowed_post_statuses' => array(
-                    'publish' => 1,
-                    'future' => 1,
-                    'pending' => 0,
-                    'private' => 0
-                ),
-                'counting_exclude_quotations' => 1,
                 'can_see_others_general_stats' => 1,
     			'can_see_others_detailed_stats' => 1,
     			'can_see_countings_special_settings' => 1
