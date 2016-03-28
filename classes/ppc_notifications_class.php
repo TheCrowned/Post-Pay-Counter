@@ -75,7 +75,7 @@ jQuery(document).ready( function($) {
 					$notifications = maybe_unserialize( wp_remote_retrieve_body( $feed ) );
 			} else {
 				$notifications = $feed;
-				new PPC_Error( "ppc_notifications_get_remote_error", $feed->get_error_message(), $feed->get_error_code() ); //log error
+				//new PPC_Error( "ppc_notifications_get_remote_error", $feed->get_error_message(), $feed->get_error_code() ); //log error
 			}
 			
 			set_transient( 'ppc_notifications_list', $notifications, 3600*8 ); //log even if error to avoid making too many requests

@@ -10,14 +10,18 @@ class PPC_counting_stuff {
     
 	/**
 	 * Holds settings being used for current item (foreach). Allows not to pull settings every time.
-	 */
-	
+	 */	
 	public static $settings;
+
+	/**
+	 * Holds being-processed-post active counting types.
+	 */ 
+	public static $current_active_counting_types_post;
+	public static $current_active_counting_types_author;
 	
 	/**
 	 * Holds user ID whose posts are currently being processed.
 	 */
-	
 	public static $being_processed_author;
     
     /**
@@ -67,6 +71,8 @@ class PPC_counting_stuff {
         
         foreach( $data as $single ) {
             self::$settings = PPC_general_functions::get_settings( $single->post_author, TRUE );
+            self::$current_active_counting_types_post = $ppc_global_settings['counting_types_object']->get_active_counting_types( 'post', $single->post_author );
+            self::$current_active_counting_types_author = $ppc_global_settings['counting_types_object']->get_active_counting_types( 'author', $single->post_author );
             self::$being_processed_author = $single->post_author;
 			
 			do_action( 'ppc_data2cash_single_before', $single );
@@ -102,7 +108,7 @@ class PPC_counting_stuff {
             'normal_count' => array()
         );
         
-        foreach( $ppc_global_settings['counting_types_object']->get_active_counting_types( 'post', $post->post_author ) as $id => $single_counting ) {
+        foreach( self::$current_active_counting_types_post as $id => $single_counting ) {
             if( ! isset( $single_counting['payment_only'] ) OR $single_counting['payment_only'] == false ) {
             	$counting_type_count = call_user_func( $single_counting['count_callback'], $post );
 				$ppc_count['normal_count'][$id] = $counting_type_count;
@@ -233,7 +239,7 @@ class PPC_counting_stuff {
         if( self::$settings['counting_exclude_quotations'] )
             $post->post_content = preg_replace( '/<(blockquote|q)>(.*?)<\/(blockquote|q)>/s', '', $post->post_content );
 
-		$purged_content = apply_filters( 'ppc_clean_post_content_word_count', preg_replace( '/[.(),;:!?%#$"_+=\\/-]+/', '', trim( preg_replace( '/\'|&nbsp;|&#160;|\r|\n|\r\n|\s+/', ' ',  strip_tags( $post->post_content ) ) ) ) ); //need to trim to remove final new lines
+		$purged_content = apply_filters( 'ppc_clean_post_content_word_count', trim( preg_replace( '/\'|&nbsp;|&#160;|\r|\n|\r\n|\s+/', ' ',  strip_tags( $post->post_content ) ) ) ); //need to trim to remove final new lines
 
 		$post_words['real'] = count( preg_split( '/\s+/', $purged_content, -1, PREG_SPLIT_NO_EMPTY ) );
 		
@@ -307,7 +313,7 @@ class PPC_counting_stuff {
 		$ppc_misc = array();
         $ppc_payment['normal_payment'] = self::get_countings_payment( $post_countings );
         
-		$counting_types = $ppc_global_settings['counting_types_object']->get_active_counting_types( 'post', self::$being_processed_author );
+		$counting_types = self::$current_active_counting_types_post;
         foreach( $counting_types as $id => $value ) { 
             if( isset( $value['payment_only'] ) AND $value['payment_only'] == true ) {  
                 $counting_type_payment = call_user_func( $value['payment_callback'], $value, $post_id );
@@ -342,9 +348,7 @@ class PPC_counting_stuff {
         
         $ppc_payment = array();
         
-		$post_counting_types = $ppc_global_settings['counting_types_object']->get_active_counting_types( 'post', self::$being_processed_author );
-		$author_counting_types = $ppc_global_settings['counting_types_object']->get_active_counting_types( 'author', self::$being_processed_author );
-		$counting_types = array_merge( $post_counting_types, $author_counting_types );
+		$counting_types = array_merge( self::$current_active_counting_types_post, self::$current_active_counting_types_author );
 		
         foreach( $countings as $id => $value ) {
             if( isset( $counting_types[$id] ) ) {

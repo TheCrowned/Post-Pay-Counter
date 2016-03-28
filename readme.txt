@@ -3,7 +3,7 @@ Contributors: Ste_95
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22
 Tags: counter, authors, payment, revenue sharing, stats, multi author, post management, post
 Tested up to: 4.4.2
-Stable tag: 2.518
+Stable tag: 2.519
 Requires at least: 3.7
 
 Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
@@ -78,7 +78,11 @@ It must become: *define( 'PPC_DEBUG_LOG', false );*
 5. The tooltip with all the counting details
 
 == Changelog ==
-= 2.518 (2016/03/) =
+= 2.519 (2016/03/28) =
+* Huge performance improvements
+
+= 2.518 (2016/03/16) =
+* [New addon released](http://postpaycounter.com/user-roles-custom-settings) to set custom settings per user role!
 * Fixed: admins override permissions feature didn't check the user role, but manage_options capability (so non-admins who could manage_options would override permissions).
 * Fixed: PHP warning due to missing argument.
 * Fixed: addons page would display "Array" and no addons in some sites.

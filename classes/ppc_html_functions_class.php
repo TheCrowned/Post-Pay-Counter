@@ -47,7 +47,7 @@ class PPC_HTML_functions {
 	<div id="ppc_stats_header">
 		<div id="ppc_stats_header_datepicker">
 			<h3>
-        <?php echo sprintf( __( 'Showing stats from %1$s to %2$s' , 'post-pay-counter'), '<input type="text" name="tstart" id="post_pay_counter_time_start" class="mydatepicker" value="'.date( 'Y-m-d', $ppc_global_settings['stats_tstart'] ).'" accesskey="'.$ppc_global_settings['stats_tstart'].'" size="8" />', '<input type="text" name="tend" id="post_pay_counter_time_end" class="mydatepicker" value="'.date( 'Y-m-d', $ppc_global_settings['stats_tend'] ).'" accesskey="'.$ppc_global_settings['stats_tend'].'" size="8" />' ).' - "'.$current_page.'"'; 
+        <?php echo sprintf( __( 'Showing posts from %1$s to %2$s' , 'post-pay-counter'), '<input type="text" name="tstart" id="post_pay_counter_time_start" class="mydatepicker" value="'.date( 'Y-m-d', $ppc_global_settings['stats_tstart'] ).'" accesskey="'.$ppc_global_settings['stats_tstart'].'" size="8" />', '<input type="text" name="tend" id="post_pay_counter_time_end" class="mydatepicker" value="'.date( 'Y-m-d', $ppc_global_settings['stats_tend'] ).'" accesskey="'.$ppc_global_settings['stats_tend'].'" size="8" />' ).' - "'.$current_page.'"'; 
 		
 		//Display filter by user role field in general stats
 		if( $ppc_global_settings['current_page'] == 'stats_general' AND $perm->can_see_others_general_stats()) {
@@ -223,11 +223,15 @@ class PPC_HTML_functions {
 					switch( $field_name ) {
 						//Attach link to post title: if user can edit posts, attach edit link (faster), if not post permalink (slower)
 						case 'post_title':
-							$post_link = get_edit_post_link( $post->ID );
-							if( $post_link == '' )
-								$post_link = get_permalink( $post->ID );
-		
-							$field_value = '<a href="'.$post_link.'" title="'.$post->post_title.'">'.$field_value.'</a>';
+						
+							if( $user_settings['stats_display_edit_post_link'] ) {
+								$post_link = get_edit_post_link( $post->ID );
+								if( $post_link == '' )
+									$post_link = get_permalink( $post->ID );
+			
+								$field_value = '<a href="'.$post_link.'" title="'.$post->post_title.'">'.$field_value.'</a>';
+							}
+							
 							break;
 							
 						case 'post_total_payment':

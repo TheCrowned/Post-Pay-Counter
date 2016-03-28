@@ -38,7 +38,8 @@ class PPC_install_functions {
 		self::ppc_install_procedure();
 		
 		//Send to Welcome page
-		set_transient( $ppc_global_settings['transient_activation_redirect'], 'do it!', 3600 );
+		//set_transient( $ppc_global_settings['transient_activation_redirect'], 'do it!', 3600 );
+		wp_safe_redirect( admin_url( add_query_arg( array( 'page' => 'ppc-about' ), 'admin.php' ) ) );
     }
     
     /**
@@ -63,7 +64,8 @@ class PPC_install_functions {
     		restore_current_blog();
 			
 			//Send to Welcome page
-			set_transient( $ppc_global_settings['transient_activation_redirect'], 'do it!', 3600 );
+			//set_transient( $ppc_global_settings['transient_activation_redirect'], 'do it!', 3600 );
+			wp_safe_redirect( admin_url( add_query_arg( array( 'page' => 'ppc-about' ), 'admin.php' ) ) );
     	}
     }
     
@@ -355,7 +357,7 @@ class PPC_install_functions {
 				),
 				'User Roles Custom Settings' => array(
 					'description' => 'Allows to set custom settings for each user role that apply to all users belonging to it.',
-					'image' => 'http://postpaycounter.com/ppc_urcs/images/personalize_settings_box.jpg',
+					'image' => 'http://postpaycounter.com/ppc_urcs/update/images/personalize_settings_box.jpg',
 					'link' => 'http://postpaycounter.com/user-roles-custom-settings',
 					'campaign' => 'ppc_urcs'
 				),

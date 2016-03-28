@@ -33,8 +33,9 @@ class PPC_general_functions {
         if( $userid == 'general' ) {
 			
 			//Retrieve from cache if available
-            if( isset( $ppc_global_settings['general_settings'] ) ) {
-                $return = $ppc_global_settings['general_settings'];
+			$cache = wp_cache_get( 'ppc_general_settings' );
+            if( $cache !== false ) {
+                $return = $cache;
             } else {
                 /* MULTISITE stuff
 				$temp_settings = get_site_option( $ppc_global_settings['general_options_name'] );
@@ -52,24 +53,25 @@ class PPC_general_functions {
 				
 				//Fetch them from database if first request and cache them
 				$return = get_option( $ppc_global_settings['option_name'] );
-				$ppc_global_settings['general_settings'] = $return;
+				wp_cache_set( 'ppc_global_settings', $return );
 				
                 //}
             }
         
 		//If a valid userid is given
-        } else if( get_userdata( $userid ) ) {
+        } else if( (int) $userid != 0 ) {
 			global $current_user;
             $perm = new PPC_permissions();
 			
 			//If user shouldn't see other users personalized settings, set the userid to their own
-            if( $check_current_user_cap_special == TRUE AND ( ! $perm->can_see_countings_special_settings() AND $current_user->ID != $userid ) )
+            if( $check_current_user_cap_special == TRUE AND $current_user->ID != $userid AND ( ! $perm->can_see_countings_special_settings() ) )
                 $userid = $current_user->ID;
 			
 			//Retrieve cached settings if available or from database if not
-            /*if( isset( $ppc_global_settings['temp']['settings'][$userid] ) AND is_array( $ppc_global_settings['temp']['settings'][$userid] ) ) {
-                $user_settings = $ppc_global_settings['temp']['settings'][$userid];
-            } else {*/
+			$cache = wp_cache_get( 'ppc_settings_user_'.$userid );
+            if( $cache !== false ) {
+                $user_settings = $cache;
+            } else {
 				$user_settings = get_user_option( $ppc_global_settings['option_name'], $userid );
 				
 				//If no special settings for this user are available, get general ones
@@ -79,17 +81,18 @@ class PPC_general_functions {
 				//If user has special settings, complete user settings with general ones if needed (i.e. add only-general settings to the return array of special user's settings)
 				} else if( $complete_with_general ) {
 					$general_settings = self::get_settings( 'general' );
-					foreach( $general_settings as $key => &$value ) {
+					$user_settings = array_merge( $general_settings, $user_settings );
+					/*foreach( $general_settings as $key => &$value ) {
 						if( isset( $user_settings[$key] ) ) {
 							$general_settings[$key] = $user_settings[$key];
 						}
 					}
-					$user_settings = $general_settings;
+					$user_settings = $general_settings;*/
 				}
-			//}
+			}
 			
 			//Cache processed settings
-			//$ppc_global_settings['temp']['settings'][$user_settings['userid']] = $user_settings;
+			wp_cache_set( 'ppc_settings_user_'.$userid, $user_settings );
 			
 			$return = $user_settings;
 			
@@ -106,7 +109,8 @@ class PPC_general_functions {
 		 * @param 	bool whether can-see-other-users-personalized-settings permission should be checked
 		 * @param	bool whether user specific settings should be completed with general ones for options which are not cusomized for that user
 		 */
-        
+
+        $return = apply_filters( 'ppc_settings', $return );
         return apply_filters( 'ppc_get_settings', $return, $userid, $check_current_user_cap_special, $complete_with_general );
     }
     

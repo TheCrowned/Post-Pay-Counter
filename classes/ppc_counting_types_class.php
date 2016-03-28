@@ -16,13 +16,14 @@ class PPC_counting_types {
      * Use register_counting_type to add a new one.
 	 */
 	
-	public $counting_types;
+	public static $counting_types;
     
     /**
 	 * Holds active counting types, both general and user-personalized.
 	 */
 	
-	public $active_counting_types;
+	public static $active_counting_types;
+	public static $user_counting_types;
 	
 	/**
 	 * Holds general visits callback function (mixed: string/array).
@@ -38,7 +39,7 @@ class PPC_counting_types {
      */ 
     
     public function __construct() {
-        $this->counting_types = array(
+        self::$counting_types = array(
             'post' => array(),
             'author' => array()
         );
@@ -112,16 +113,17 @@ class PPC_counting_types {
         
         //Counting types are stored in the global var 
         if( $parameters['apply_to'] == 'both' ) {
-            $this->counting_types['post'][$parameters['id']] = apply_filters( 'ppc_define_counting_type', $counting_type_arr );
-            $this->counting_types['author'][$parameters['id']] = apply_filters( 'ppc_define_counting_type', $counting_type_arr );
+            self::$counting_types['post'][$parameters['id']] = apply_filters( 'ppc_define_counting_type', $counting_type_arr );
+            self::$counting_types['author'][$parameters['id']] = apply_filters( 'ppc_define_counting_type', $counting_type_arr );
         } else {
-            $this->counting_types[$parameters['apply_to']][$parameters['id']] = apply_filters( 'ppc_define_counting_type', $counting_type_arr );
+            self::$counting_types[$parameters['apply_to']][$parameters['id']] = apply_filters( 'ppc_define_counting_type', $counting_type_arr );
         }
     }
     
     /**
      * Gets currently active counting types for given user and context (post or author).
-     * Active counting types for users are stored in a class var and retrieved if available when needed. 
+     * Active counting types for users are stored in a class var and retrieved if available when needed.
+     * Generates a list, whereas get_user_counting_types takes the list and completes each counting type with its details.
      * 
      * @access  public
      * @since   2.40
@@ -131,68 +133,70 @@ class PPC_counting_types {
      */ 
     
     function get_active_counting_types( $what, $userid = 'general' ) {
-        $settings = PPC_general_functions::get_settings( $userid, TRUE );
-        
         //Try to retrieve them from "cache"
-        if( isset( $this->active_counting_types[$userid] ) ) {
-            $active_counting_types = $this->get_user_counting_types( $userid );
-            
-            if( isset( $this->active_counting_types[$userid][$what] ) )
-                return $active_counting_types[$what];
-        }
+        $cache = wp_cache_get( 'ppc_user_active_counting_types_list_'.$what.'_'.$userid );
+
+		//If no cache available, need to build the data first
+        if( $cache === false ) {
+			$settings = PPC_general_functions::get_settings( $userid, TRUE );
+			
+			//See which ones are active
+			$active_user_counting_types = array();
+			
+			foreach( self::$counting_types[$what] as $id => $single ) {
+				$counting_status = 0;
+				if( isset( $single['settings_status_index'] ) AND $settings[$single['settings_status_index']] )
+					$counting_status = 1;
+				
+				//If you haven't given 'settings_status_index', this is your chance - the filter - to enable the counting type depending on custom checks! 
+				$counting_status = apply_filters( 'ppc_get_counting_type_status', $counting_status, $id, $userid );
+				
+				if( $counting_status == 1 )
+					$active_user_counting_types[] = $id;
+			}
+
+			self::$active_counting_types[$userid][$what] = $active_user_counting_types; //needed for get_user_counting_types
+			wp_cache_set( 'ppc_user_active_counting_types_list_'.$what.'_'.$userid, $active_user_counting_types ); //Cache
+		}
         
-        //See which ones are active
-        $active_user_counting_types = array();
-        
-        foreach( $this->counting_types[$what] as $id => $single ) {
-            $counting_status = 0;
-            if( isset( $single['settings_status_index'] ) AND $settings[$single['settings_status_index']] )
-                $counting_status = 1;
-            
-            //If you haven't given 'settings_status_index', this is your chance - the filter - to enable the counting type depending on custom checks! 
-            $counting_status = apply_filters( 'ppc_get_counting_type_status', $counting_status, $id, $userid );
-            
-            if( $counting_status == 1 )
-                $active_user_counting_types[] = $id;
-        }
-        
-        $this->active_counting_types[$userid][$what] = $active_user_counting_types; //Cache
-        
-        $return = $this->get_user_counting_types( $userid );
-        
-        return $return[$what];
+        return $this->get_user_counting_types( $what, $userid );
     }
     
     /**
      * Gets user counting types.
      * Checks which counting types are active for the given user and returns the array with all the details of them.
      * It basically interbreeds general counting types with a list of the user-active ones.
+     * Takes the list generated by get_active_counting_types and completes each counting type with its details.
      * 
      * @access  public
      * @since   2.40
+     * @param	$what
      * @param   $userid int userid
      * @return  array user counting types
      */ 
     
-    function get_user_counting_types( $userid ) {
+    function get_user_counting_types( $what, $userid ) {
+		//Try to retrieve them from cache
+		$cache = wp_cache_get( 'ppc_user_active_counting_types_details_'.$what.'_'.$userid );
+		if( $cache !== false )
+			return $cache;
+		
 		$user_settings = PPC_general_functions::get_settings( $userid );
 		
         $active_user_counting_types = array(); 
-        foreach( $this->active_counting_types[$userid] as $what => $data ) { //'post' and 'author'
-            $active_user_counting_types[$what] = array();
-            
-            foreach( $data as $single ) { //counting types
-                $current_counting_type = $this->counting_types[$what][$single];
-                
-                //Change 'display' param depending on user settings, if any
-                if( isset( $current_counting_type['display_status_index'] ) AND isset( $user_settings[$current_counting_type['display_status_index']] ) AND $user_settings[$current_counting_type['display_status_index']] )
-					$current_counting_type['display'] = $user_settings[$current_counting_type['display_status_index']];
-                
-                $active_user_counting_types[$what][$single] = $current_counting_type;
-            }
-        }
+		foreach( self::$active_counting_types[$userid][$what]  as $single ) { //counting types
+			$current_counting_type = self::$counting_types[$what][$single];
+			
+			//Change 'display' param depending on user settings, if any
+			if( isset( $current_counting_type['display_status_index'] ) AND isset( $user_settings[$current_counting_type['display_status_index']] ) AND $user_settings[$current_counting_type['display_status_index']] )
+				$current_counting_type['display'] = $user_settings[$current_counting_type['display_status_index']];
+			
+			$active_user_counting_types[$single] = $current_counting_type;
+		}
+
+        wp_cache_set( 'ppc_user_active_counting_types_details_'.$what.'_'.$userid, $active_user_counting_types ); //Cache
         
-        return apply_filters( 'ppc_active_user_counting_types', $active_user_counting_types, $userid );
+        return apply_filters( 'ppc_active_user_counting_types', $active_user_counting_types, $userid, $what );
     }
     
 	/**
@@ -205,7 +209,7 @@ class PPC_counting_types {
      */ 
 	
 	function get_all_counting_types( $what ) {
-		return $this->counting_types[$what];
+		return self::$counting_types[$what];
 	}
 	
     /**

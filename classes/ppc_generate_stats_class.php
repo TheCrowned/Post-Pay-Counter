@@ -276,14 +276,13 @@ class PPC_generate_stats {
         );
 
         if( is_array( $author ) ) {
-			foreach( $data as $author_id_foreach => $author_stats_foreach ) { $author_id = $author_id_foreach; $author_stats = $author_stats_foreach; }
+			foreach( $data as $author_id_foreach => $author_stats_foreach ) { $author_id = $author_id_foreach; $author_stats = $author_stats_foreach; } //list alternative
             //list( $author_id, $author_stats ) = each( $data ); 
 			
 			//if( empty( $author_stats ) ) return;
 			$post_stats = current( $author_stats ); 
 			
 			//$post_stats = $author_stats[key( $author_stats )]; //get first post object from stats to determine which countings should be shown
-			
 			$counting_types = $ppc_global_settings['counting_types_object']->get_active_counting_types( 'post', $author_id );
 			
             $formatted_stats['cols']['post_id'] = __( 'ID' , 'post-pay-counter');
