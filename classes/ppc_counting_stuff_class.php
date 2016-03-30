@@ -387,7 +387,7 @@ class PPC_counting_stuff {
         
         $tooltip = '';
 
-		if( self::$settings['enable_stats_payments_tooltips'] )
+		if( ! self::$settings['enable_stats_payments_tooltips'] )
 			return $tooltip;
         
         if( ! empty( $payment ) ) {

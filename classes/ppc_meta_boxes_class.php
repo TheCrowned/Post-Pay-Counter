@@ -72,14 +72,19 @@ class PPC_meta_boxes {
         
         echo '<form id="ppc_misc_settings_form" method="post">';
         
-		//Overall stats
+		//Performance tricks
         echo '<div class="ppc_section">';
-        echo '<div class="ppc_title">'.__( 'Overall stats' , 'post-pay-counter').'</div>';
+        echo '<div class="ppc_title">'.__( 'Performance' , 'post-pay-counter').'</div>';
         echo '<div class="main">';
+        echo '<p>'.__( 'Stats generation can become very slow on big sites. Uncheck all these options to get best performance.', 'post-pay-counter').'</p>';
         echo PPC_HTML_functions::echo_p_field( __( 'Display overall stats' , 'post-pay-counter'), $current_settings['display_overall_stats'], 'checkbox', 'display_overall_stats', __( 'Overall stats are displayed at the bottom of regular stats. They show all-time overall stats, from the first published post ever to the latest one. Although they are quite interesting, their processing may slow down the page loading on big sites.', 'post-pay-counter'), NULL, 'display_overall_stats' );
+        echo PPC_HTML_functions::echo_p_field( __( 'Make post titles clickable in stats' , 'post-pay-counter'), $current_settings['stats_display_edit_post_link'], 'checkbox', 'stats_display_edit_post_link', __( 'Allows to make post titles links that point to the poest editing page or, if the user doesn\'t have permission to edit, to the public post.', 'post-pay-counter'), NULL, 'stats_display_edit_post_link' );
+        echo PPC_HTML_functions::echo_p_field( __( 'Display payment tooltips in stats' , 'post-pay-counter'), $current_settings['enable_stats_payments_tooltips'], 'checkbox', 'enable_stats_payments_tooltips', __( 'By default, tooltips are displayed on hover on payment amounts and show all the details of a payment.', 'post-pay-counter'), NULL, 'enable_stats_payments_tooltips' );
+        echo PPC_HTML_functions::echo_p_field( __( 'Make super cautious space parsing when computing word count' , 'post-pay-counter'), $current_settings['counting_words_parse_spaces'], 'checkbox', 'counting_words_parse_spaces', __( 'This does an extra, super-cautious parsing of blank spaces when computing word count for word payment. This is usually unnedeed (turns all kind of blank spaces into normal spaces).', 'post-pay-counter'), NULL, 'counting_words_parse_spaces' );
         echo '</div>';
         echo '</div>';
-        do_action( 'ppc_misc_settings_after_overall_stats', $current_settings );
+        do_action( 'ppc_misc_settings_after_overall_stats', $current_settings ); //retro-compatibility
+        do_action( 'ppc_misc_settings_after_performance', $current_settings );
         
         //Admin permissions
         echo '<div class="ppc_section">';

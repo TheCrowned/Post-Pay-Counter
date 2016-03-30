@@ -75,7 +75,7 @@ class PPC_update_class {
 				'counting_comments_display_status' => 'count',
 				'stats_display_edit_post_link' => 0,
 				'counting_words_parse_spaces' => 0,
-				'enable_stats_payments_tooltips' => 0
+				'enable_stats_payments_tooltips' => 1
             ),
 
             //User settings only hold different-from-general-records nowadays

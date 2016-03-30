@@ -139,8 +139,11 @@ class PPC_save_options {
         $default_stats_time_range = PPC_options_fields::get_radio_value( $settings['default_stats_time_range'], 'default_stats_time_range_month', 'default_stats_time_range_week', 'default_stats_time_range_custom' ); 
         $new_settings = array_merge( $new_settings, $default_stats_time_range );
         $new_settings['default_stats_time_range_custom_value'] = (int) $settings['default_stats_time_range_custom_value'];
-		$new_settings['display_overall_stats'] = @PPC_options_fields::get_checkbox_value( $settings['display_overall_stats'] );
 		$new_settings['admins_override_permissions'] = @PPC_options_fields::get_checkbox_value( $settings['admins_override_permissions'] );
+		$new_settings['display_overall_stats'] = @PPC_options_fields::get_checkbox_value( $settings['display_overall_stats'] );
+		$new_settings['stats_display_edit_post_link'] = @PPC_options_fields::get_checkbox_value( $settings['stats_display_edit_post_link'] );
+		$new_settings['enable_stats_payments_tooltips'] = @PPC_options_fields::get_checkbox_value( $settings['enable_stats_payments_tooltips'] );
+		$new_settings['counting_words_parse_spaces'] = @PPC_options_fields::get_checkbox_value( $settings['counting_words_parse_spaces'] );
         
         foreach( $settings as $option => $value ) {
             
