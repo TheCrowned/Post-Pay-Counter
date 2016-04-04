@@ -2,8 +2,8 @@
 Contributors: Ste_95
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22
 Tags: counter, authors, payment, revenue sharing, stats, multi author, post management, post
-Tested up to: 4.4.2
-Stable tag: 2.519
+Tested up to: 4.5
+Stable tag: 2.601
 Requires at least: 3.7
 
 Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
@@ -13,13 +13,13 @@ Easily calculate and handle authors' pay on a multi-author blog by computing pos
 
 Features include:
 
-* Pay per post, word, visit ([tutorial](http://www.thecrowned.org/pay-writers-per-visit-wordpress)), image and comment (not mutually exclusive).
+* Pay per post, word, visit ([tutorial](http://www.thecrowned.org/pay-writers-per-visit-wordpress?utm_source=wprep&utm_medium=link)), image and comment (not mutually exclusive).
 * Pay with an incremental system (eg. each word is €0.01 => 100 words = €1) or with a zonal one (eg. from 200 to 300 words/visits it’s €2.00, up to 10 zones).
 * No account needed. Data is yours, no need to sign-up to anything really.
 * Old stats availability. View posts countings since the first written post, disregarding the plugin install date. A fancy date picker lets you shift between days and select the desired range.
 * Personalize user's settings, so that special settings only apply to a particular user. Different settings can be made viewable in the stats or hidden depending on your needs.
 * Customizable permissions to prevent your users to see stats and use functions they are not supposed to.
-* Extend with your own custom implementation through hooks, filters and special API features ([learn more](http://postpaycounter.com/add-custom-payment-types-post-pay-counter-stats)).
+* Extend with your own custom implementation through hooks, filters and special API features ([learn more](http://postpaycounter.com/add-custom-payment-types-post-pay-counter-stats?utm_source=wprep&utm_medium=link)).
 * And... works with custom post types, narrow your payments only to chosen user groups, and more.
 
 [GitHub repository](https://github.com/TheCrowned/Post-Pay-Counter/) (wanna join us coding?)
@@ -78,14 +78,21 @@ It must become: *define( 'PPC_DEBUG_LOG', false );*
 5. The tooltip with all the counting details
 
 == Changelog ==
-= 2.519 (2016/03/28) =
+= 2.601 (2016/04/04) =
+* Fixed: issues with memcached (settings changes didn't reflect on stats).
+* Fixed: possible PHP errors with PHP 7.
+* Tweak: using local time format.
+* Tweak: using WP checked(), selected() and disabled() functions.
+
+= 2.600 (2016/03/30) =
 * Huge **performance improvements**! Basing on our tests, with all counting types enabled (basic, words, visits (postmeta), comments and images), we managed to load 6500+ posts in around 10 seconds (overall stats disabled).
 * New: option to avoid making post titles clickable in stats (off by default, improves performance).
 * New: option to avoid making super-cautious spaces parsing in word count (off by default, improves performance).
-* New: option to avoid display of payment tooltips in stats (off by default, improves performance).
+* New: option to avoid display of payment tooltips in stats (on by default).
+* New: making use of WP_Object_Cache. If you use a permanent cache plugin, part of PPC requests will be cached as well.
 
 = 2.518 (2016/03/16) =
-* [New addon released](http://postpaycounter.com/user-roles-custom-settings) to set custom settings per user role!
+* [New addon released](http://postpaycounter.com/user-roles-custom-settings?utm_source=wprep&utm_medium=link) to set custom settings per user role!
 * Fixed: admins override permissions feature didn't check the user role, but manage_options capability (so non-admins who could manage_options would override permissions).
 * Fixed: PHP warning due to missing argument.
 * Fixed: addons page would display "Array" and no addons in some sites.

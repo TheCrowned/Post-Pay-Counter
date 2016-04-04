@@ -21,15 +21,7 @@ class PPC_options_fields {
      */
     
     static function generate_radio_field( $setting, $name, $value, $id, $disabled ) {
-        $disabled_html = '';
-		if( $disabled )
-			$disabled_html = ' disabled="disabled"';
-		
-		$checked_html = '';
-		if( $setting )
-            $checked_html = ' checked="checked"';
-		
-		return '<input type="radio" name="'.$name.'" value="'.$value.'" id="'.$id.'" '.$checked_html.$disabled_html.'/>';
+		return '<input type="radio" name="'.$name.'" value="'.$value.'" id="'.$id.'" '.checked( 1, $setting, false ).disabled( true, $disabled, false ).'/>';
     }
     
     /**
@@ -45,15 +37,7 @@ class PPC_options_fields {
      */
             
     static function generate_checkbox_field( $setting, $name, $value, $id, $disabled ) {
-        $disabled_html = '';
-		if( $disabled )
-			$disabled_html = ' disabled="disabled"';
-		
-		$checked_html = '';
-		if( $setting )
-            $checked_html = ' checked="checked"';
-		
-		return '<input type="checkbox" name="'.$name.'" value="'.$value.'" id="'.$id.'" '.$checked_html.$disabled_html.'/>';
+		return '<input type="checkbox" name="'.$name.'" value="'.$value.'" id="'.$id.'" '.checked( 1, $setting, false ).disabled( true, $disabled, false ).'/>';
     }
     
     /**
@@ -127,29 +111,14 @@ class PPC_options_fields {
 		$html .= '</span>';
 		$html .= __( 'Payment display status', 'post-pay-counter' );
 		$html .= '<select name="'.$counting_type.'_display_status">';
-		$html .= '<option value="both" '.self::echo_counting_type_display_dropdown_check_current( $current_value, 'both' ).'>'.__( 'Both', 'post-pay-counter' ).'</option>';
-		$html .= '<option value="count" '.self::echo_counting_type_display_dropdown_check_current( $current_value, 'count' ).'>'.__( 'Count', 'post-pay-counter' ).'</option>';
-		$html .= '<option value="payment" '.self::echo_counting_type_display_dropdown_check_current( $current_value, 'payment' ).'>'.__( 'Payment', 'post-pay-counter' ).'</option>';
-		$html .= '<option value="tooltip" '.self::echo_counting_type_display_dropdown_check_current( $current_value, 'tooltip' ).'>'.__( 'Tooltip', 'post-pay-counter' ).'</option>';
-		$html .= '<option value="none" '.self::echo_counting_type_display_dropdown_check_current( $current_value, 'none' ).'>'.__( 'None', 'post-pay-counter' ).'</option>';
+		$html .= '<option value="both" '.selected( 'both', $current_value, false ).'>'.__( 'Both', 'post-pay-counter' ).'</option>';
+		$html .= '<option value="count" '.selected( 'count', $current_value, false ).'>'.__( 'Count', 'post-pay-counter' ).'</option>';
+		$html .= '<option value="payment" '.selected( 'payment', $current_value, false ).'>'.__( 'Payment', 'post-pay-counter' ).'</option>';
+		$html .= '<option value="tooltip" '.selected( 'tooltip', $current_value, false ).'>'.__( 'Tooltip', 'post-pay-counter' ).'</option>';
+		$html .= '<option value="none" '.selected( 'none', $current_value, false ).'>'.__( 'None', 'post-pay-counter' ).'</option>';
 		$html .= '</select>';
 		
 		return $html;
-	}
-    
-    /**
-     * Marks as selected the currently-active option of the display options.
-     *
-     * @access  public
-     * @since   2.514
-     * @param   $current_value string current setting for given counting type
-     * @param   $maybe_check string option to check against
-     * @return  string selected html
-     */
-    
-    static function echo_counting_type_display_dropdown_check_current( $current_value, $maybe_check ) {
-		if( $maybe_check == $current_value )
-			return ' selected="selected"';
 	}
     
     /**

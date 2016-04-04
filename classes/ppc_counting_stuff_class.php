@@ -430,7 +430,8 @@ class PPC_counting_stuff {
     
     static function words_payment( $post_words ) {
         $words_counting_system_data = self::get_current_counting_system( 'words' );
-        return apply_filters( 'ppc_words_payment_value', self::$words_counting_system_data['counting_system']( $post_words['to_count'], $words_counting_system_data['counting_system_value'] ) );
+        $counting_system = $words_counting_system_data['counting_system'];
+        return apply_filters( 'ppc_words_payment_value', self::$counting_system( $post_words['to_count'], $words_counting_system_data['counting_system_value'] ) );
     }
     
     /**
@@ -444,7 +445,8 @@ class PPC_counting_stuff {
     
     static function visits_payment( $post_visits ) {
         $visits_counting_system_data = self::get_current_counting_system( 'visits' );
-        return apply_filters( 'ppc_visits_payment_value', self::$visits_counting_system_data['counting_system']( $post_visits['to_count'], $visits_counting_system_data['counting_system_value'] ) );
+        $counting_system = $visits_counting_system_data['counting_system'];
+        return apply_filters( 'ppc_visits_payment_value', self::$counting_system( $post_visits['to_count'], $visits_counting_system_data['counting_system_value'] ) );
     }
     
     /**
@@ -458,7 +460,8 @@ class PPC_counting_stuff {
     
     static function images_payment( $post_images ) {
         $images_counting_system_data = self::get_current_counting_system( 'images' );
-        return apply_filters( 'ppc_images_payment_value', self::$images_counting_system_data['counting_system']( $post_images['to_count'], $images_counting_system_data['counting_system_value'] ) );
+        $counting_system = $images_counting_system_data['counting_system'];
+        return apply_filters( 'ppc_images_payment_value', self::$counting_system( $post_images['to_count'], $images_counting_system_data['counting_system_value'] ) );
     }
     
     /**
@@ -472,7 +475,8 @@ class PPC_counting_stuff {
     
     static function comments_payment( $post_comments ) {
         $comments_counting_system_data = self::get_current_counting_system( 'comments' );
-        return apply_filters( 'ppc_comments_payment_value', self::$comments_counting_system_data['counting_system']( $post_comments['to_count'], $comments_counting_system_data['counting_system_value'] ) );
+        $counting_system = $comments_counting_system_data['counting_system'];
+        return apply_filters( 'ppc_comments_payment_value', self::$counting_system( $post_comments['to_count'], $comments_counting_system_data['counting_system_value'] ) );
     }
     
     /**

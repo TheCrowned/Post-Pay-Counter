@@ -33,7 +33,7 @@ class PPC_generate_stats {
     
     static function produce_stats( $time_start, $time_end, $author = NULL ) {
         global $current_user, $ppc_global_settings;
-        
+
         $perm = new PPC_permissions();
 		
         //If general stats & CU can't see others' general, behave as if detailed for him
@@ -60,9 +60,9 @@ class PPC_generate_stats {
         
         $formatted_stats = PPC_generate_stats::format_stats_for_output( $stats, $author );
         if( is_wp_error( $formatted_stats ) ) return $formatted_stats;
-		
-        unset( $requested_posts ); //Hoping to free some memory
-        return array( 'raw_stats' => $stats, 'formatted_stats' => $formatted_stats );
+        
+        $return = array( 'raw_stats' => $stats, 'formatted_stats' => $formatted_stats );
+        return $return;
     }
     
     /**

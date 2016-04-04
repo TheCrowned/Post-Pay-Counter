@@ -53,7 +53,7 @@ class PPC_general_functions {
 				
 				//Fetch them from database if first request 
 				$return = get_option( $ppc_global_settings['option_name'] );
-				
+				wp_cache_set( 'ppc_settings_'.$userid, $return );
                 //}
             }
         
@@ -68,25 +68,33 @@ class PPC_general_functions {
 			
 			//Retrieve cached settings if available or from database if not
 			$cache = wp_cache_get( 'ppc_settings_'.$userid );
-            if( $cache !== false ) {
+            if( $cache != false ) {
                 $user_settings = $cache;
             } else {
-				$user_settings = get_user_option( $ppc_global_settings['option_name'], $userid );
+				if( $cache === 0 ) {
+					$user_settings = self::get_settings( 'general' );
+				} else {
 				
-				//If no special settings for this user are available, get general ones
-                if( $user_settings == false ) {
-                    $user_settings = self::get_settings( 'general' );
-                
-				//If user has special settings, complete user settings with general ones if needed (i.e. add only-general settings to the return array of special user's settings)
-				} else if( $complete_with_general ) {
-					$general_settings = self::get_settings( 'general' );
-					$user_settings = array_merge( $general_settings, $user_settings );
-					/*foreach( $general_settings as $key => &$value ) {
-						if( isset( $user_settings[$key] ) ) {
-							$general_settings[$key] = $user_settings[$key];
+					$user_settings = get_user_option( $ppc_global_settings['option_name'], $userid );
+					
+					//If no special settings for this user are available, get general ones
+					if( $user_settings == false ) {
+						$user_settings = self::get_settings( 'general' );
+						wp_cache_set( 'ppc_settings_'.$userid, 0 );
+					
+					//If user has special settings, complete user settings with general ones if needed (i.e. add only-general settings to the return array of special user's settings)
+					} else if( $complete_with_general ) {
+						$general_settings = self::get_settings( 'general' );
+						$user_settings = array_merge( $general_settings, $user_settings );
+						/*foreach( $general_settings as $key => &$value ) {
+							if( isset( $user_settings[$key] ) ) {
+								$general_settings[$key] = $user_settings[$key];
+							}
 						}
+						$user_settings = $general_settings;*/
+
+						wp_cache_set( 'ppc_settings_'.$userid, $user_settings );
 					}
-					$user_settings = $general_settings;*/
 				}
 			}
 			
@@ -110,7 +118,7 @@ class PPC_general_functions {
         $return = apply_filters( 'ppc_get_settings', $return, $userid, $check_current_user_cap_special, $complete_with_general );
 
         //Cache processed settings
-		wp_cache_set( 'ppc_settings_'.$userid, $return );
+		
 
 		return $return;
     }

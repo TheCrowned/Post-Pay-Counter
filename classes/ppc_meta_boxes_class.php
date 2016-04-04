@@ -531,7 +531,7 @@ class PPC_meta_boxes {
 		
         if( is_array( $errors) AND count( $errors ) > 0 ) {
             foreach( $errors as $error ) {
-                echo date( 'Y-m-d H:i:s', $error['time'] )."\n";
+                echo date_i18n( get_option( 'date_format' ), $error['time'] ).' '.date( 'H:i:s', $error['time'] )."\n";
                 echo $error['debug_message']."\n\n";
             }
         } else {
@@ -618,7 +618,7 @@ class PPC_meta_boxes {
                 if( ! $single['expiration'] )
                     $expiration = 'N.A.';
                 else 
-                    $expiration = date( 'Y-m-d', $single['expiration'] );
+                    $expiration = date_i18n( get_option( 'date_format' ), $single['expiration'] );
                 ?>
                 
                 <tr>
