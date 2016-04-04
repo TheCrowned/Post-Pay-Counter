@@ -184,6 +184,8 @@ class PPC_ajax_functions {
         
         if( is_int( $user_id ) ) {
             delete_user_option( $user_id, $ppc_global_settings['option_name'] );
+
+			PPC_general_functions::clear_settings_cache( $user_id );
             
 			/**
 			 * Fires after a user's personalized settings have been deleted.

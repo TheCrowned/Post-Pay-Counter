@@ -241,12 +241,7 @@ class PPC_save_options {
             $ppc_global_settings['general_settings'] = $new_settings;
         }
 
-		//Clear cache of all settings-dependent objects
-		wp_cache_delete( 'ppc_settings_'.$userid );
-		wp_cache_delete( 'ppc_user_active_counting_types_list_post_'.$userid );
-		wp_cache_delete( 'ppc_user_active_counting_types_list_author_'.$userid );
-		wp_cache_delete( 'ppc_user_active_counting_types_details_post_'.$userid );
-		wp_cache_delete( 'ppc_user_active_counting_types_details_author_'.$userid );
+		PPC_general_functions::clear_settings_cache( $userid );
         
         /**
 		 * Fires after settings have been updated.
@@ -258,12 +253,7 @@ class PPC_save_options {
         
         do_action( 'ppc_settings_updated', $userid, $new_settings );
 
-        //Clear cache of all settings-dependent objects
-		wp_cache_delete( 'ppc_settings_'.$userid );
-		wp_cache_delete( 'ppc_user_active_counting_types_list_post_'.$userid );
-		wp_cache_delete( 'ppc_user_active_counting_types_list_author_'.$userid );
-		wp_cache_delete( 'ppc_user_active_counting_types_details_post_'.$userid );
-		wp_cache_delete( 'ppc_user_active_counting_types_details_author_'.$userid );
+        PPC_general_functions::clear_settings_cache( $userid );
     }
 }
 ?>

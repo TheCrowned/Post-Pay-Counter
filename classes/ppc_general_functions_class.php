@@ -122,6 +122,31 @@ class PPC_general_functions {
 
 		return $return;
     }
+
+	/**
+     * Clears cache of all settings-dependent objects.
+     *
+     * @access  public
+     * @since   2.601
+     * @param   $userid string userid whose settings cache needs to be flushed
+     */
+	static function clear_settings_cache( $userid ) {
+		wp_cache_delete( 'ppc_settings_'.$userid );
+		wp_cache_delete( 'ppc_user_active_counting_types_list_post_'.$userid );
+		wp_cache_delete( 'ppc_user_active_counting_types_list_author_'.$userid );
+		wp_cache_delete( 'ppc_user_active_counting_types_details_post_'.$userid );
+		wp_cache_delete( 'ppc_user_active_counting_types_details_author_'.$userid );
+
+		if( ! is_numeric( $userid ) ) {
+			global $wpdb;
+			
+			$wp_all_users = $wpdb->get_results( 'SELECT ID FROM '.$wpdb->users );
+
+			foreach( $wp_all_users as $user ) {
+				self::clear_settings_cache( $user->ID );
+			}
+		}
+	}
     
     /**
      * Gets non capitalized input.
