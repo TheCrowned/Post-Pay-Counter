@@ -79,7 +79,7 @@ It must become: *define( 'PPC_DEBUG_LOG', false );*
 
 == Changelog ==
 = 2.601 (2016/04/04) =
-* Fixed: issues with memcached (settings changes didn't reflect on stats).
+* Fixed: issues with memcached and other parmanent caching systems - settings changes didn't affect stats.
 * Fixed: possible PHP errors with PHP 7.
 * Tweak: using local time format.
 * Tweak: using WP checked(), selected() and disabled() functions.
