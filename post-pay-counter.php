@@ -398,7 +398,7 @@ class post_pay_counter {
         //Get notifications to be displayed
 		$notifications = PPC_notifications::notifications_get_list();
 		
-		if( empty( $notifications ) or is_wp_error( $notifications ) ) return;
+		if( ! is_array( $notifications ) OR empty( $notifications ) OR is_wp_error( $notifications ) ) return;
 		
     	//Get array list of dismissed notifications for current user and convert it to array
     	$dismissed_notifications = get_option( 'ppc_dismissed_notifications', array() );
