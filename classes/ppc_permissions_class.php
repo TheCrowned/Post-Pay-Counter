@@ -39,4 +39,3 @@ class PPC_permissions {
             return false;
     }
 }
-?>

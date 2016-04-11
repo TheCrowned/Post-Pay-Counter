@@ -84,4 +84,3 @@ jQuery(document).ready( function($) {
 		return apply_filters( 'ppc_notifications_get_list', $notifications );
 	}
 }
-?>

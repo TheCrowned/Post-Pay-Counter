@@ -47,4 +47,3 @@ if( function_exists( 'is_multisite' ) AND is_multisite() ) {
 }
 
 ppc_uninstall_procedure();
-?>

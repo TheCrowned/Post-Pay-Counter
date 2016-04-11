@@ -330,4 +330,3 @@ class PPC_counting_types {
 		return $count_callback;
 	}
  }
- ?>

@@ -450,4 +450,3 @@ class PPC_HTML_functions {
         return apply_filters( 'text_field_generation', $html );
     }
 }
-?>

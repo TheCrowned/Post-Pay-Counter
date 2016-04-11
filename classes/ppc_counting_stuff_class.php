@@ -526,4 +526,3 @@ class PPC_counting_stuff {
         return $payment = $post_counting * $counting_system_value;
     }
 }
-?>

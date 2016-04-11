@@ -178,4 +178,3 @@ class PPC_options_fields {
         return $return;
     }
 }
-?>

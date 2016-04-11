@@ -745,4 +745,3 @@ class post_pay_counter {
 global $ppc_global_settings;
 $ppc_global_settings = array();
 new post_pay_counter();
-?>

@@ -174,4 +174,3 @@ class PPC_auto_update {
         }
     }
 }
-?>

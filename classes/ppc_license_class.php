@@ -211,4 +211,3 @@ class PPC_license {
 			update_option( $this->activation_key_name, maybe_unserialize( $request['headers']['ppcp_activation_details'] ) );
     }
 }
-?>

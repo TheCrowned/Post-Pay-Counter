@@ -290,4 +290,3 @@ class PPC_welcome {
         }		
 	}
 }
-?>

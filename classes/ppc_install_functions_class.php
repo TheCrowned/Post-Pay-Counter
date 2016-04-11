@@ -309,4 +309,3 @@ class PPC_install_functions {
         update_option( 'ppc_current_version', $ppc_global_settings['newest_version'] );
     }
 }
-?>
