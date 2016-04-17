@@ -497,4 +497,3 @@ class PPC_generate_stats {
         return apply_filters( 'ppc_overall_stats', $overall_stats, $stats );
     }
 }
-?>

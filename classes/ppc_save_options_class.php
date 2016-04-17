@@ -256,4 +256,3 @@ class PPC_save_options {
         PPC_general_functions::clear_settings_cache( $userid );
     }
 }
-?>

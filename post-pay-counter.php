@@ -4,7 +4,7 @@ Plugin Name: Post Pay Counter
 Plugin URI: http://postpaycounter.com
 Description: Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
 Author: Stefano Ottolenghi
-Version: 2.601
+Version: 2.602
 Author URI: http://www.thecrowned.org/
 Text Domain: post-pay-counter
 */
@@ -57,7 +57,7 @@ class post_pay_counter {
         global $ppc_global_settings;
         
         $ppc_global_settings['current_version'] = get_option( 'ppc_current_version' );
-        $ppc_global_settings['newest_version'] = '2.601';
+        $ppc_global_settings['newest_version'] = '2.602';
         $ppc_global_settings['option_name'] = 'ppc_settings';
         $ppc_global_settings['option_errors'] = 'ppc_errors';
 		$ppc_global_settings['transient_error_deletion'] = 'ppc_error_daily_deletion';
@@ -398,7 +398,7 @@ class post_pay_counter {
         //Get notifications to be displayed
 		$notifications = PPC_notifications::notifications_get_list();
 		
-		if( empty( $notifications ) or is_wp_error( $notifications ) ) return;
+		if( ! is_array( $notifications ) OR empty( $notifications ) OR is_wp_error( $notifications ) ) return;
 		
     	//Get array list of dismissed notifications for current user and convert it to array
     	$dismissed_notifications = get_option( 'ppc_dismissed_notifications', array() );
@@ -745,4 +745,3 @@ class post_pay_counter {
 global $ppc_global_settings;
 $ppc_global_settings = array();
 new post_pay_counter();
-?>

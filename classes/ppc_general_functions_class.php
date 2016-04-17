@@ -273,4 +273,3 @@ class PPC_general_functions {
 		return apply_filters( 'ppc_format_payment', $payment );
 	}
 }
-?>

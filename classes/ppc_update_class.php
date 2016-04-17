@@ -230,4 +230,3 @@ class PPC_update_class {
             activate_plugin( 'ppc-user-roles-custom-settings/ppc-user-roles-custom-settings.php' );
     }
 }
-?>

@@ -394,11 +394,18 @@ class PPC_counting_stuff {
 			foreach( $payment as $id => $value ) { 
 				if( $id == 'total' ) continue;
 				if( isset( $active_counting_types[$id] ) AND $active_counting_types[$id]['display'] == 'none' ) continue; //hides to-be-hidden counting types
+
+				//Countings with only payment
+				if( isset( $active_counting_types[$id] ) AND isset( $active_counting_types[$id]['payment_only'] ) AND $active_counting_types[$id]['payment_only'] ) {
+					$tooltip .= ucfirst( $id ).': '.PPC_general_functions::format_payment( sprintf( '%.2f', $value ) ).'&#13;';
+
+				//Countings with count and payment
+				} else {
+					if( is_numeric( $countings[$id]['to_count'] ) )
+						$countings[$id]['to_count'] = round( $countings[$id]['to_count'], 3 );
 				
-				if( is_numeric( $countings[$id]['to_count'] ) )
-					$countings[$id]['to_count'] = round( $countings[$id]['to_count'], 3 );
-			
-				$tooltip .= ucfirst( $id ).': '.$countings[$id]['to_count'].' => '.PPC_general_functions::format_payment( sprintf( '%.2f', $value ) ).'&#13;';
+					$tooltip .= ucfirst( $id ).': '.$countings[$id]['to_count'].' => '.PPC_general_functions::format_payment( sprintf( '%.2f', $value ) ).'&#13;';
+				}
 			}
 		}
 		
@@ -519,4 +526,3 @@ class PPC_counting_stuff {
         return $payment = $post_counting * $counting_system_value;
     }
 }
-?>

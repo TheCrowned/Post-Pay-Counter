@@ -317,4 +317,3 @@ class PPC_ajax_functions {
         die( 'ok' );
     }
 }
-?>

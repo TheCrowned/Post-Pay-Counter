@@ -645,4 +645,4 @@ class PPC_meta_boxes {
         
         <?php
     }
-}?>
+}
