@@ -37,10 +37,11 @@ class PPC_auto_update {
     public $slug;
     
     /**
-     * Holds addon activation key option name.
+     * Holds addon activation key option name and value.
      */ 
 	
-	//public $activation_key_name;
+	public $activation_key_name;
+	public $activation_key;
 
     /**
      * Initialize a new instance of the WordPress Auto-Update class
@@ -53,6 +54,7 @@ class PPC_auto_update {
         $this->current_version = $current_version;
         $this->update_path = $update_path;
         $this->plugin_slug = $plugin_slug;
+        $this->activation_key_name = $activation_key_name;
         $this->activation_key = get_option( $activation_key_name );
 		$this->activation_key = $this->activation_key['activation_key'];
         
@@ -67,6 +69,8 @@ class PPC_auto_update {
         
         //Enqueue on WP cron event
         add_action( 'wp_update_plugins', array( $this, 'check_update' ) );
+
+        add_action( 'in_plugin_update_message-' . plugin_basename( $this->plugin_slug ), array( $this, 'plugin_row_license_missing' ), 10, 2 );
     }
 
     /**
@@ -97,6 +101,7 @@ class PPC_auto_update {
             $obj->package = $information->download_link;
             $transient->response[$this->plugin_slug] = $obj;
         }
+        
         return $transient;
     }
 
@@ -133,7 +138,9 @@ class PPC_auto_update {
             'body' => array(
                 'action' => 'version', 
                 'activation_key' => $this->activation_key,
-                'ppc_version' => $ppc_global_settings['current_version'],
+                'website' => site_url(),
+				'language' => get_bloginfo( 'language' ),
+				'PPC_version' => $ppc_global_settings['current_version'],
                 'addon_version' => $this->current_version
             )
         ) ) );
@@ -159,8 +166,9 @@ class PPC_auto_update {
             'timeout' => 10,
             'body' => array(
                 'action' => 'info', 
-                'activation_key' => $this->activation_key,
-                'ppc_version' => $ppc_global_settings['current_version'],
+                'website' => site_url(),
+				'language' => get_bloginfo( 'language' ),
+				'PPC_version' => $ppc_global_settings['current_version'],
                 'addon_version' => $this->current_version
             )
         ) ) );
@@ -173,4 +181,24 @@ class PPC_auto_update {
             ) );
         }
     }
+
+    /**
+	 * Displays message inline on plugin row that the license key is expired
+	 *
+	 * @access  public
+	 * @since   2.602
+	 * @return  void
+	 * @from 	EDD
+	 */
+	public function plugin_row_license_missing( $plugin_data, $version_info ) {
+		static $showed_imissing_key_message;
+		
+		$license = get_option( $this->activation_key_name );
+
+		if( ( is_array( $license ) || $license['expiration_time'] < current_time() ) && empty( $showed_imissing_key_message[ $this->plugin_slug ] ) ) {
+
+			echo '&nbsp;<strong><a href="' . esc_url( admin_url( 'admin.php?page=ppc_options' ) ) . '">' . __( 'Enter a valid, non-expired license key for automatic updates.', 'post-pay-counter' ) . '</a></strong>';
+			$showed_imissing_key_message[ $this->plugin_slug ] = true;
+		}
+	}
 }
