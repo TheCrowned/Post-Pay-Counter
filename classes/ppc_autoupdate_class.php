@@ -197,7 +197,7 @@ class PPC_auto_update {
 
 		if( ( is_array( $license ) || $license['expiration_time'] < current_time() ) && empty( $showed_imissing_key_message[ $this->plugin_slug ] ) ) {
 
-			echo '&nbsp;<strong><a href="' . esc_url( admin_url( 'admin.php?page=ppc_options' ) ) . '">' . __( 'Enter a valid, non-expired license key for automatic updates.', 'post-pay-counter' ) . '</a></strong>';
+			echo '&nbsp;<strong><a href="' . esc_url( admin_url( 'admin.php?page=ppc-options' ) ) . '">' . __( 'Enter a valid, non-expired license key for automatic updates.', 'post-pay-counter' ) . '</a></strong>';
 			$showed_imissing_key_message[ $this->plugin_slug ] = true;
 		}
 	}
