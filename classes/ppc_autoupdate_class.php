@@ -195,7 +195,7 @@ class PPC_auto_update {
 		
 		$license = get_option( $this->activation_key_name );
 
-		if( ( is_array( $license ) || $license['expiration_time'] < current_time() ) && empty( $showed_imissing_key_message[ $this->plugin_slug ] ) ) {
+		if( ( is_array( $license ) AND $license['expiration_time'] < current_time( 'timestamp' ) ) AND empty( $showed_imissing_key_message[ $this->plugin_slug ] ) ) {
 
 			echo '&nbsp;<strong><a href="' . esc_url( admin_url( 'admin.php?page=ppc-options' ) ) . '">' . __( 'Enter a valid, non-expired license key for automatic updates.', 'post-pay-counter' ) . '</a></strong>';
 			$showed_imissing_key_message[ $this->plugin_slug ] = true;
