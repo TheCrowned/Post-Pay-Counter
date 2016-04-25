@@ -167,6 +167,7 @@ class PPC_auto_update {
             'body' => array(
                 'action' => 'info', 
                 'website' => site_url(),
+                'activation_key' => $this->activation_key,
 				'language' => get_bloginfo( 'language' ),
 				'PPC_version' => $ppc_global_settings['current_version'],
                 'addon_version' => $this->current_version
