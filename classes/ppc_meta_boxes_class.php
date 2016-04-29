@@ -14,8 +14,7 @@ class PPC_meta_boxes {
      *
      * @access  public
      * @since   2.0
-    */
-    
+     */
     static function meta_box_pro_features() { 
         $pro_features = array(
             __( 'Google Analytics' , 'post-pay-counter') => __( 'use your account on the world-leading website visits tracking system to pay writers per visit.' , 'post-pay-counter' ),
@@ -44,8 +43,7 @@ class PPC_meta_boxes {
      *
      * @access  public
      * @since   2.0
-    */
-    
+     */
     static function meta_box_support_the_fucking_author() {
         global $ppc_global_settings;
         
