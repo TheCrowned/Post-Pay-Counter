@@ -33,7 +33,7 @@ class PPC_general_functions {
         if( $userid == 'general' ) {
 			
 			//Retrieve from cache if available
-			$cache = wp_cache_get( 'ppc_settings'.$userid );
+			$cache = wp_cache_get( 'ppc_settings_'.$userid );
             if( $cache !== false ) {
                 $return = $cache;
             } else {
