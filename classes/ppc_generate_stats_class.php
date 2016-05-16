@@ -88,7 +88,7 @@ class PPC_generate_stats {
 		
         self::$grp_args = array(
             'post_type' => $general_settings['counting_allowed_post_types'],
-            'post_status' => array_keys( $settings['counting_allowed_post_statuses'], 1 ), //Only statuses with 1 as value are selected
+            'post_status' => array( 'publish', 'pending', 'future', 'private' ),
             'date_query' => array(
                 'after' => date( 'Y-m-d H:i:s', $time_start ),
                 'before' => date( 'Y-m-d H:i:s', $time_end ),

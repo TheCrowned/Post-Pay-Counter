@@ -77,6 +77,9 @@ class PPC_counting_stuff {
 				
 			foreach( $author_stats as $single ) {
 				do_action( 'ppc_data2cash_single_before', $single );
+
+				if( ! ( in_array( $single->post_status, self::$settings['counting_allowed_post_statuses'] ) AND self::$settings['counting_allowed_post_statuses'][$single->post_status] ) )
+					continue;
 				
 				$post_countings = self::get_post_countings( $single );
 				$post_payment = self::get_post_payment( $post_countings['normal_count'], $single->ID );

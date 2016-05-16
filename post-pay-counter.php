@@ -503,7 +503,7 @@ class post_pay_counter {
 			 * @param	string installed version text (whole).
 			 */
 			 
-			echo apply_filters( 'ppc_options_installed_version', __( 'Installed version' , 'post-pay-counter' ).': '.$ppc_global_settings['current_version'].' - <a href="http://postpaycounter.com/forums2/forum/post-pay-counter" title="'.__( 'Support', 'post-pay-counter' ).'" target="_blank">'.__( 'Support', 'post-pay-counter' ).'</a> - <a href="http://postpaycounter.com/category/tutorials" title="'.__( 'Tutorials', 'post-pay-counter' ).'" target="_blank">'.__( 'Tutorials', 'post-pay-counter' ).'</a>' ); 
+			echo apply_filters( 'ppc_options_installed_version', __( 'Installed version' , 'post-pay-counter' ).': '.$ppc_global_settings['current_version'].' - <a href="http://postpaycounter.com/forums2/forum/post-pay-counter?utm_source=users_site&utm_medium=options_header&utm_campaign=ppc" title="'.__( 'Support', 'post-pay-counter' ).'" target="_blank">'.__( 'Support', 'post-pay-counter' ).'</a> - <a href="http://postpaycounter.com/category/tutorials?utm_source=users_site&utm_medium=options_header&utm_campaign=ppc" title="'.__( 'Tutorials', 'post-pay-counter' ).'" target="_blank">'.__( 'Tutorials', 'post-pay-counter' ).'</a> - <a href="http://postpaycounter.com/category/questionsanswers?utm_source=users_site&utm_medium=options_header&utm_campaign=ppc" title="'.__( 'Questions & Answers', 'post-pay-counter' ).'" target="_blank">'.__( 'Questions & Answers', 'post-pay-counter' ).'</a>' ); 
 			?>
 			</div>
 			<h2>Post Pay Counter - <?php _e( 'Options', 'post-pay-counter' ); ?></h2>
