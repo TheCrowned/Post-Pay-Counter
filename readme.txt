@@ -65,6 +65,8 @@ It is indeed possible to pay for BBPress topics and replies with Post Pay Counte
 
 In *Post Pay Counter > Options > Miscellanea > Allowed post types*, make sure you have *Topic* and *Reply* ticked, and those types of contents will be included in countings.
 
+You can have a look at the [apt tutorial](http://postpaycounter.com/how-to-pay-per-bbpress-topics-and-replies/) for more details.
+
 = I don't want errors to be logged =
 Set to *false* the constant *PPC_DEBUG_LOG* in *post-pay-counter.php*, it is located at line 44.
 From this: *define( 'PPC_DEBUG_LOG', true );*
@@ -78,6 +80,10 @@ It must become: *define( 'PPC_DEBUG_LOG', false );*
 5. The tooltip with all the counting details
 
 == Changelog ==
+= 2.603  (2016//) =
+* Fixed: fixed notice for unactive counting types on tooltip generation.
+* Fixed: wrong error message displayed when no posts were selected.
+
 = 2.602 (2016/04/29) =
 * Fixed: mispelled cache key resulting in poorer performance.
 * Fixed: wrong pagepath on "Insert valid license for automatic updates" link.

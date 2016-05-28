@@ -81,11 +81,6 @@ class PPC_generate_stats {
         
 		$general_settings = PPC_general_functions::get_settings( 'general' );
 		
-		if( is_array( $author ) )
-			$settings = PPC_general_functions::get_settings( current( $author ), true );
-		else
-			$settings = $general_settings;
-		
         self::$grp_args = array(
             'post_type' => $general_settings['counting_allowed_post_types'],
             'post_status' => array( 'publish', 'pending', 'future', 'private' ),
@@ -121,7 +116,7 @@ class PPC_generate_stats {
 		do_action( 'ppc_got_requested_posts', $requested_posts );
 		
         if( $requested_posts->found_posts == 0 ) {
-            $error = new PPC_Error( 'empty_selection', __( 'Error: no posts were selected' , 'post-pay-counter' ), self::$grp_args, false );
+            $error = new PPC_Error( 'ppc_empty_selection', __( 'Your query resulted in an empty result. Try to select a wider time range!' , 'post-pay-counter' ), self::$grp_args, false );
             return $error->return_error();
         }
         
@@ -423,7 +418,7 @@ class PPC_generate_stats {
             }
 			
 			if( count( $formatted_stats['stats'] ) == 0 ) {
-				$error = new PPC_Error( 'no_author_with_total_payment', 'No posts reach the threshold.' );
+				$error = new PPC_Error( 'no_author_with_total_payment', __( 'No posts reach the threshold.', 'ppc' ) );
 				return $error->return_error();
 			}
 			

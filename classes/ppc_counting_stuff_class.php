@@ -68,16 +68,18 @@ class PPC_counting_stuff {
         global $ppc_global_settings;
         
         $processed_data = array();
+		$empty_data_set = true;
         
         foreach( $data as $author_id => &$author_stats ) {
 			self::$settings = PPC_general_functions::get_settings( $author_id, TRUE );
 			self::$current_active_counting_types_post = $ppc_global_settings['counting_types_object']->get_active_counting_types( 'post', $author_id );
 			self::$current_active_counting_types_author = $ppc_global_settings['counting_types_object']->get_active_counting_types( 'author', $author_id );
 			self::$being_processed_author = $author_id;
-				
+			
 			foreach( $author_stats as $single ) {
 				do_action( 'ppc_data2cash_single_before', $single );
 
+				//Skip posts with non allowed post status
 				if( ! ( in_array( $single->post_status, self::$settings['counting_allowed_post_statuses'] ) AND self::$settings['counting_allowed_post_statuses'][$single->post_status] ) )
 					continue;
 				
@@ -91,8 +93,14 @@ class PPC_counting_stuff {
 				$single->ppc_misc = apply_filters( 'ppc_stats_post_misc', $post_payment['ppc_misc'], $single->ID );
 				
 				$processed_data[$author_id][$single->ID] = apply_filters( 'ppc_post_counting_payment_data', $single, $author );
+				$empty_data_set = false;
 			}
         }
+
+		if( $empty_data_set ) {
+			$error = new PPC_Error( 'ppc_empty_selection_after_all', __( 'Your query resulted in an empty result. Try to select a wider time range!', 'post-pay-counter' ), array(), false );
+			return $error->return_error();
+		}
         
         return $processed_data;
     }
@@ -396,10 +404,12 @@ class PPC_counting_stuff {
         if( ! empty( $payment ) ) {
 			foreach( $payment as $id => $value ) { 
 				if( $id == 'total' ) continue;
-				if( isset( $active_counting_types[$id] ) AND $active_counting_types[$id]['display'] == 'none' ) continue; //hides to-be-hidden counting types
+				if( ! isset( $active_counting_types[$id] ) ) continue; //skip unactive counting types
+
+				if( $active_counting_types[$id]['display'] == 'none' ) continue; //hides to-be-hidden counting types
 
 				//Countings with only payment
-				if( isset( $active_counting_types[$id] ) AND isset( $active_counting_types[$id]['payment_only'] ) AND $active_counting_types[$id]['payment_only'] ) {
+				if( isset( $active_counting_types[$id]['payment_only'] ) AND $active_counting_types[$id]['payment_only'] ) {
 					$tooltip .= ucfirst( $id ).': '.PPC_general_functions::format_payment( sprintf( '%.2f', $value ) ).'&#13;';
 
 				//Countings with count and payment
