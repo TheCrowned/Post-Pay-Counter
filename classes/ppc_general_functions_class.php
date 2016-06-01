@@ -60,6 +60,7 @@ class PPC_general_functions {
 		//If a valid userid is given
         } else if( (int) $userid != 0 ) {
 			global $current_user;
+			$general_settings = self::get_settings( 'general' );
             $perm = new PPC_permissions();
 			
 			//If user shouldn't see other users personalized settings, set the userid to their own
@@ -68,23 +69,22 @@ class PPC_general_functions {
 			
 			//Retrieve cached settings if available or from database if not
 			$cache = wp_cache_get( 'ppc_settings_'.$userid );
+			
             if( $cache != false ) {
                 $user_settings = $cache;
             } else {
 				if( $cache === 0 ) {
-					$user_settings = self::get_settings( 'general' );
+					$user_settings = self::get_settings( 'general' ); 
 				} else {
-				
 					$user_settings = get_user_option( $ppc_global_settings['option_name'], $userid );
 					
 					//If no special settings for this user are available, get general ones
 					if( $user_settings == false ) {
-						$user_settings = self::get_settings( 'general' );
+						$user_settings = $general_settings;
 						wp_cache_set( 'ppc_settings_'.$userid, 0 );
 					
 					//If user has special settings, complete user settings with general ones if needed (i.e. add only-general settings to the return array of special user's settings)
 					} else if( $complete_with_general ) {
-						$general_settings = self::get_settings( 'general' );
 						$user_settings = array_merge( $general_settings, $user_settings );
 						/*foreach( $general_settings as $key => &$value ) {
 							if( isset( $user_settings[$key] ) ) {
