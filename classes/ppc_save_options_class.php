@@ -30,6 +30,7 @@ class PPC_save_options {
         //Counting types (checkbox fields)
         $new_settings['basic_payment'] = @PPC_options_fields::get_checkbox_value( $settings['basic_payment'] );
         $new_settings['counting_words'] = @PPC_options_fields::get_checkbox_value( $settings['counting_words'] );
+        $new_settings['counting_words_include_excerpt'] = @PPC_options_fields::get_checkbox_value( $settings['counting_words_include_excerpt'] );
         $new_settings['counting_visits']  = @PPC_options_fields::get_checkbox_value( $settings['counting_visits'] );
         $new_settings['counting_images'] = @PPC_options_fields::get_checkbox_value( $settings['counting_images'] );
         $new_settings['counting_images_include_featured'] = @PPC_options_fields::get_checkbox_value( $settings['counting_images_include_featured'] );

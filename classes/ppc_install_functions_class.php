@@ -74,8 +74,7 @@ class PPC_install_functions {
      *
      * @access  public
      * @since   2.0
-    */
-    
+     */
     static function ppc_install_procedure() {
         global $ppc_global_settings, $current_user;
         
@@ -105,6 +104,7 @@ class PPC_install_functions {
                 'counting_words_threshold_max' => 0,
                 'counting_words_display_status' => 'count',
 				'counting_words_parse_spaces' => 0,
+				'counting_words_include_excerpt' => 0,
                 'counting_visits' => 0,
                 'counting_visits_postmeta' => 1,
                 'counting_visits_postmeta_value' => '',
@@ -280,7 +280,7 @@ class PPC_install_functions {
 				),
 				'User Roles Custom Settings' => array(
 					'description' => 'Allows to set custom settings for each user role that apply to all users belonging to it.',
-					'image' => 'http://postpaycounter.com/ppc_urcs/update/images/personalize_settings_box.jpg',
+					'image' => 'http://postpaycounter.com/ppc_urcs/features/images/personalize_settings_box.jpg',
 					'link' => 'http://postpaycounter.com/user-roles-custom-settings',
 					'campaign' => 'ppc_urcs'
 				),

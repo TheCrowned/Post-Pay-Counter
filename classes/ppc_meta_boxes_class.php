@@ -250,6 +250,7 @@ class PPC_meta_boxes {
         echo '<div class="ppc_title">'.__( 'Counting options' , 'post-pay-counter').'</div>';
         echo PPC_HTML_functions::echo_text_field( 'counting_words_threshold_max', $current_settings['counting_words_threshold_max'], __( 'Stop counting words after word # (0 = infinite)' , 'post-pay-counter') );
         echo PPC_options_fields::echo_counting_type_display_dropdown( 'counting_words', $current_settings['counting_words_display_status'] );
+        echo PPC_HTML_functions::echo_p_field( 'Include post excerpt in words counting', $current_settings['counting_words_include_excerpt'], 'checkbox', 'counting_words_include_excerpt', __( 'Determines whether post excerpt text should be included in words counting.' , 'post-pay-counter') );
         echo '</div>';
         echo '</div>';
         do_action( 'ppc_counting_settings_after_words_payment', $current_settings );

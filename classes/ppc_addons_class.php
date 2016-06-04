@@ -16,7 +16,7 @@ class PPC_addons {
 	 * @since 	2.40
 	 */
 	
-	function on_load_addons_page_enqueue() {
+	static function on_load_addons_page_enqueue() {
         global $ppc_global_settings;
         
         wp_enqueue_style( 'ppc_addons_style', $ppc_global_settings['folder_path'].'style/ppc_addons_style.css', array( 'wp-admin' ) );

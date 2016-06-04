@@ -70,6 +70,7 @@ class PPC_update_class {
 				'admins_override_permissions' => 0,
 				'basic_payment_display_status' => 'tooltip',
 				'counting_words_display_status' => 'count',
+				'counting_words_include_excerpt' => 0,
 				'counting_visits_display_status' => 'count',
 				'counting_images_display_status' => 'count',
 				'counting_comments_display_status' => 'count',
@@ -183,7 +184,7 @@ class PPC_update_class {
 				),
 				'User Roles Custom Settings' => array(
 					'description' => 'Allows to set custom settings for each user role that apply to all users belonging to it.',
-					'image' => 'http://postpaycounter.com/ppc_urcs/update/images/personalize_settings_box.jpg',
+					'image' => 'http://postpaycounter.com/ppc_urcs/features/images/personalize_settings_box.jpg',
 					'link' => 'http://postpaycounter.com/user-roles-custom-settings',
 					'campaign' => 'ppc_urcs'
 				),

@@ -234,7 +234,7 @@ class PPC_counting_stuff {
      *
      * @access  public
      * @since   2.27
-     * @param   $post object the WP post object
+     * @param   $post object|string the WP post object or a text string
      * @return  array the words data
      */
     
@@ -243,16 +243,22 @@ class PPC_counting_stuff {
             'real' => 0, 
             'to_count' => 0 
         );
-        
-		$post->post_content = apply_filters( 'ppc_count_post_words_post_content_start', $post->post_content );
+
+		//Handle input parameter
+        if( is_a( $post, 'WP_Post' ) )
+			$post_content = apply_filters( 'ppc_count_post_words_post_content_start', $post->post_content );
+		else if( is_string( $post ) )
+			$post_content = apply_filters( 'ppc_count_post_words_post_content_start', $post );
+		else
+			return new WP_Error( 'ppc_invalid_argument', 'count_post_words only accepts a WP_post istance or a text string', array( $post ) );
 
 		//Strip tags & content with class="ppc_exclude_words" (doesn't handle nested tags, ie <div class="ppc_exclude_posts">some content <div class="nested">nested content</div> this will already be counted</div>
-		$post->post_content = preg_replace( '/<([^>]*) [^>]*class=("|\')ppc_exclude_words("|\')[^>]*>(.*?)<\/\1>/s', '', $post->post_content );
+		$post_content = preg_replace( '/<([^>]*) [^>]*class=("|\')ppc_exclude_words("|\')[^>]*>(.*?)<\/\1>/s', '', $post_content );
 		
         if( self::$settings['counting_exclude_quotations'] )
-            $post->post_content = preg_replace( '/<(blockquote|q)>(.*?)<\/(blockquote|q)>/s', '', $post->post_content );
+            $post_content = preg_replace( '/<(blockquote|q)>(.*?)<\/(blockquote|q)>/s', '', $post_content );
 
-		$purged_content = strip_tags( $post->post_content );
+		$purged_content = strip_tags( $post_content );
 
 		if( self::$settings['counting_words_parse_spaces'] )
 			$purged_content = preg_replace( '/\'|&nbsp;|&#160;|\r|\n|\r\n|\s+/', ' ',  $purged_content );
@@ -260,6 +266,14 @@ class PPC_counting_stuff {
 		$purged_content = apply_filters( 'ppc_clean_post_content_word_count', trim( $purged_content ) ); //need to trim to remove final new lines
 		
 		$post_words['real'] = count( preg_split( '/\s+/', $purged_content, -1, PREG_SPLIT_NO_EMPTY ) );
+
+		//Include excerpt text if needed
+		if( self::$settings['counting_words_include_excerpt'] AND is_a( $post, 'WP_Post' ) AND ! empty( $post->post_excerpt ) ) {
+			$excerpt_words = self::count_post_words( $post->post_excerpt );
+			$post_words['real'] += $excerpt_words['real'];
+		}
+		
+		$post_words['real'] = apply_filters( 'ppc_count_post_words', $post_words['real'], $post );
 		
 		if( self::$settings['counting_words_threshold_max'] > 0 AND $post_words['real'] > self::$settings['counting_words_threshold_max'] )
             $post_words['to_count'] = self::$settings['counting_words_threshold_max'];
