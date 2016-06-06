@@ -11,7 +11,7 @@
  */
 
 //Time, in days, after which errors should be deleted
-define( 'PPCP_ERROR_PURGE_TIME', 20 );
+define( 'PPCP_ERROR_PURGE_TIME', 30 );
  
 class PPC_Error {
     
@@ -82,4 +82,29 @@ class PPC_Error {
     function return_error() {
         return $this->wp_error;
     }
+
+	/**
+     * Retrieves an error from the error log, if found.
+     * Several searching criteria available.
+     * 
+     * @since   2.604
+     * @access  public
+     *
+     * @param	$args array 
+     * @return  array|bool the error details, or bool false if not found
+     */
+    function get_error( $args ) {
+		global $ppc_global_settings;
+		
+		if( isset( $args['error_code'] ) AND ! empty( $args['error_code'] ) ) {
+			$errors = get_option( $ppc_global_settings['option_errors'], array() );
+			$key = array_search( $args['error_code'], array_column( $errors, 'code' ) );
+
+			if( is_int( $key ) )
+				return $errors[$key];
+		}
+
+		return false;
+
+	}
 }

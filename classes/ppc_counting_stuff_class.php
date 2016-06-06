@@ -25,9 +25,7 @@ class PPC_counting_stuff {
 	public static $being_processed_author;
     
     /**
-     * Switches through the possible counting systems and determines which one is active. 
-     * 
-     * Populates the class variable holding the payment value of the current system so that the methods which do the countings can rely on it without having to determine it every time.
+     * Switches through the possible counting systems and determines which one is active.
      *
      * @access  public
      * @since   2.0
