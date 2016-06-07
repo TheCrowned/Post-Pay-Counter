@@ -250,23 +250,32 @@ class PPC_generate_stats {
 				//Payment
 				$counting_type_payment = call_user_func( $single_counting['payment_callback'], $counting_type_count );
 				$stats['total']['ppc_payment']['normal_payment'][$id] = $counting_type_payment;
-				$stats['total']['ppc_payment']['normal_payment']['total'] += $counting_type_payment;
+
+				if( isset( $stats['total']['ppc_payment']['normal_payment']['total'] ) )
+					$stats['total']['ppc_payment']['normal_payment']['total'] += $counting_type_payment;
+				else
+					$stats['total']['ppc_payment']['normal_payment']['total'] = $counting_type_payment;
 			}
+
+			if( ! isset( $stats['total']['ppc_payment']['normal_payment'] ) )
+				$stats['total']['ppc_payment']['normal_payment'] = array(); //make sure the stats array always exists in a complete form, even though empty
 			
             //Check total threshold
-            if( $user_settings['counting_payment_total_threshold'] != 0 ) {
+            if( $user_settings['counting_payment_total_threshold'] != 0 AND isset( $stats['total']['ppc_payment']['normal_payment']['total'] ) ) {
                 if( $stats['total']['ppc_payment']['normal_payment']['total'] > $stats['total']['ppc_misc']['posts'] * $user_settings['counting_payment_total_threshold'] )
                     $stats['total']['ppc_payment']['normal_payment']['total'] = $stats['total']['ppc_misc']['posts'] * $user_settings['counting_payment_total_threshold'];
             }
             
             $stats = apply_filters( 'ppc_sort_stats_by_author_foreach_author', $stats, $author );
         }
-		
-		//Build payment tooltip
-		foreach( $data as $author => &$stats ) {
-			$active_counting_types_merge = array_merge( $ppc_global_settings['counting_types_object']->get_active_counting_types( 'author', $author ), $ppc_global_settings['counting_types_object']->get_active_counting_types( 'post', $author ) );
-			$stats['total']['ppc_misc']['tooltip_normal_payment'] = PPC_counting_stuff::build_payment_details_tooltip( $stats['total']['ppc_count']['normal_count'], $stats['total']['ppc_payment']['normal_payment'], $active_counting_types_merge );
-			$stats['total']['ppc_misc'] = apply_filters( 'ppc_stats_author_misc', $stats['total']['ppc_misc'], $author, $stats );
+
+		if( isset( $stats['total']['ppc_payment']['normal_payment'] ) AND isset( $stats['total']['ppc_count']['normal_count'] ) ) {
+			//Build payment tooltip
+			foreach( $data as $author => &$stats ) {
+				$active_counting_types_merge = array_merge( $ppc_global_settings['counting_types_object']->get_active_counting_types( 'author', $author ), $ppc_global_settings['counting_types_object']->get_active_counting_types( 'post', $author ) );
+				$stats['total']['ppc_misc']['tooltip_normal_payment'] = PPC_counting_stuff::build_payment_details_tooltip( $stats['total']['ppc_count']['normal_count'], $stats['total']['ppc_payment']['normal_payment'], $active_counting_types_merge );
+				$stats['total']['ppc_misc'] = apply_filters( 'ppc_stats_author_misc', $stats['total']['ppc_misc'], $author, $stats );
+			}
 		}
         
         return apply_filters( 'ppc_generated_raw_stats', $data );
@@ -373,7 +382,7 @@ class PPC_generate_stats {
 			$cols_info = array(); //holds info about columns. We build cols list after stats taking all unique cnt types enabled across all users. A user may have some counting types unabled, so we can't know before the end all the possible cols we may need
 			
             foreach( $data as $author_id => $posts ) {
-                if( ! isset( $posts['total']['ppc_payment']['normal_payment'] ) OR empty ( $posts['total']['ppc_payment']['normal_payment'] ) ) continue; //user with no counting types enabled
+                if( ! isset( $posts['total']['ppc_payment']['normal_payment'] ) OR empty( $posts['total']['ppc_payment']['normal_payment'] ) ) continue; //user with no counting types enabled
 				
 				$author_data = get_userdata( $author_id );
                 $post_counting_types = $ppc_global_settings['counting_types_object']->get_active_counting_types( 'post', $author_id );
@@ -418,7 +427,7 @@ class PPC_generate_stats {
             }
 			
 			if( count( $formatted_stats['stats'] ) == 0 ) {
-				$error = new PPC_Error( 'no_author_with_total_payment', __( 'No posts reach the threshold.', 'ppc' ) );
+				$error = new PPC_Error( 'no_author_with_total_payment', sprintf( __( 'No posts reach the threshold. Check your settings at %1$s', 'ppc' ), '<em>'.__( 'Options', 'post-pay-counter' ).' > '.__( 'Counting Settings', 'post-pay-counter' ).' > '.__( 'Total Payment', 'post-pay-counter' ).' > '.__( 'Pay only when the total payment threshold is reached', 'post-pay-counter' ).'.</em>' ) );
 				return $error->return_error();
 			}
 			
