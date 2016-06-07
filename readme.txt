@@ -3,7 +3,7 @@ Contributors: Ste_95
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22
 Tags: counter, authors, payment, revenue sharing, stats, multi author, post management, post
 Tested up to: 4.5
-Stable tag: 2.603
+Stable tag: 2.604
 Requires at least: 3.7
 
 Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
@@ -80,11 +80,16 @@ It must become: *define( 'PPC_DEBUG_LOG', false );*
 5. The tooltip with all the counting details
 
 == Changelog ==
-= 2.603  (2016//) =
+= 2.604 (2016/06/07) =
+* Feature: include post excerpt in word count payment.
+* Fixed: users having different allowed post statuses settings impacting general stats with wrong data.
 * Fixed: fixed notice for unactive counting types on tooltip generation.
 * Fixed: wrong error message displayed when no posts were selected.
+* Fixed: several PHP notices in stats page when no posts reached the threshold.
+* Fixed: PHP notice and some images not displayed in addons page.
+* Tweak: updated italian translation.
 
-= 2.602 (2016/04/29) =
+= 2.603 (2016/04/29) =
 * Fixed: mispelled cache key resulting in poorer performance.
 * Fixed: wrong pagepath on "Insert valid license for automatic updates" link.
 * Fixed: expired license notice displayed on all addons, even not yet expired ones.
