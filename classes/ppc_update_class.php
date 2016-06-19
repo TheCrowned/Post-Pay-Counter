@@ -176,6 +176,12 @@ class PPC_update_class {
 					'link' => 'http://postpaycounter.com/facebook-pay-per-social-interactions-shares-likes-and-comments',
 					'campaign' => 'ppcp_fb'
 				),
+				'Author Payment Bonus' => array(
+					'description' => 'Award a bonus to writers before paying: personally tweak the payroll, giving authors a little reward.',
+					'image' => 'http://postpaycounter.com/ppc_apb/features/images/payment_confirm_crop.png',
+					'link' => 'http://postpaycounter.com/author-payment-bonus-manually-change-the-total-payout-to-authors/',
+					'campaign' => 'ppc_apb'
+				),
 				'Publisher bonus' => array(
 					'description' => 'Set up an author rewarding system in which users (proof-readers) earn bonus by publishing posts.',
 					'image' => 'http://postpaycounter.com/ppcp_pb/features/images/metabox.png',
