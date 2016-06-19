@@ -66,7 +66,6 @@ class PPC_counting_stuff {
         global $ppc_global_settings;
         
         $processed_data = array();
-		$empty_data_set = true;
         
         foreach( $data as $author_id => &$author_stats ) {
 			self::$settings = PPC_general_functions::get_settings( $author_id, TRUE );
@@ -78,7 +77,7 @@ class PPC_counting_stuff {
 				do_action( 'ppc_data2cash_single_before', $single );
 
 				//Skip posts with non allowed post status
-				if( ! ( in_array( $single->post_status, self::$settings['counting_allowed_post_statuses'] ) AND self::$settings['counting_allowed_post_statuses'][$single->post_status] ) )
+				if( ! ( isset( $single->post_status, self::$settings['counting_allowed_post_statuses'] ) AND self::$settings['counting_allowed_post_statuses'][$single->post_status] ) )
 					continue;
 				
 				$post_countings = self::get_post_countings( $single );
@@ -91,11 +90,12 @@ class PPC_counting_stuff {
 				$single->ppc_misc = apply_filters( 'ppc_stats_post_misc', $post_payment['ppc_misc'], $single->ID );
 				
 				$processed_data[$author_id][$single->ID] = apply_filters( 'ppc_post_counting_payment_data', $single, $author );
-				$empty_data_set = false;
 			}
         }
 
-		if( $empty_data_set ) {
+        do_action( 'ppc_data2cash_processed_data', $processed_data ); //@since 2.605
+
+		if( empty( $processed_data ) ) {
 			$error = new PPC_Error( 'ppc_empty_selection_after_all', __( 'Your query resulted in an empty result. Try to select a wider time range!', 'post-pay-counter' ), array(), false );
 			return $error->return_error();
 		}

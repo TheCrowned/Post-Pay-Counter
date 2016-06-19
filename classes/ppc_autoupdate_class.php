@@ -133,7 +133,7 @@ class PPC_auto_update {
     public function getRemote_version() {
 		global $ppc_global_settings;
 		
-        $request = wp_remote_post($this->update_path, apply_filters( 'ppcp_autoupdate_get_remote_version_args', array(
+        $request = wp_remote_post( $this->update_path, apply_filters( 'ppcp_autoupdate_get_remote_version_args', array(
             'timeout' => 10,
             'body' => array(
                 'action' => 'version', 
@@ -145,7 +145,7 @@ class PPC_auto_update {
             )
         ) ) );
 		
-        if (!is_wp_error($request) || wp_remote_retrieve_response_code($request) === 200) {
+        if ( ! is_wp_error($request) || wp_remote_retrieve_response_code( $request ) === 200 ) {
             return $request['body'];
         } else {
             new PPC_Error( 'ppcp_get_remote_version_error', 'Could not get latest version from update server.', array(
@@ -162,7 +162,7 @@ class PPC_auto_update {
     public function getRemote_information() {
 		global $ppc_global_settings;
 		
-        $request = wp_remote_post($this->update_path, apply_filters( 'ppcp_autoupdate_get_remote_information_args', array(
+        $request = wp_remote_post( $this->update_path, apply_filters( 'ppcp_autoupdate_get_remote_information_args', array(
             'timeout' => 10,
             'body' => array(
                 'action' => 'info', 
@@ -173,8 +173,9 @@ class PPC_auto_update {
                 'addon_version' => $this->current_version
             )
         ) ) );
-        if (!is_wp_error($request) || wp_remote_retrieve_response_code($request) === 200) {
-			return unserialize($request['body']);
+        
+        if ( ! is_wp_error( $request ) || wp_remote_retrieve_response_code( $request ) === 200 ) {
+			return maybe_unserialize( $request['body'] );
         } else {
             new PPC_Error( 'ppcp_get_remote_information_error', 'Could not get latest version information from update server.', array(
                 'response_code' => wp_remote_retrieve_response_code($request),

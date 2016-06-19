@@ -53,11 +53,6 @@ class PPC_generate_stats {
 		$stats = PPC_generate_stats::calculate_total_stats( $stats );
         if( is_wp_error( $stats ) ) return $stats;
         
-		/*if( empty( $cashed_requested_posts ) ) {
-            $error = new PPC_Error( 'data2cash_empty', __( 'Error: no posts were selected' , 'post-pay-counter'), array(), false );
-            return $error->return_error();
-        }*/
-        
         $formatted_stats = PPC_generate_stats::format_stats_for_output( $stats, $author );
         if( is_wp_error( $formatted_stats ) ) return $formatted_stats;
         

@@ -74,7 +74,7 @@ class PPC_general_functions {
                 $user_settings = $cache;
             } else {
 				if( $cache === 0 ) {
-					$user_settings = self::get_settings( 'general' ); 
+					$user_settings = $general_settings; 
 				} else {
 					$user_settings = get_user_option( $ppc_global_settings['option_name'], $userid );
 					
@@ -86,13 +86,6 @@ class PPC_general_functions {
 					//If user has special settings, complete user settings with general ones if needed (i.e. add only-general settings to the return array of special user's settings)
 					} else if( $complete_with_general ) {
 						$user_settings = array_merge( $general_settings, $user_settings );
-						/*foreach( $general_settings as $key => &$value ) {
-							if( isset( $user_settings[$key] ) ) {
-								$general_settings[$key] = $user_settings[$key];
-							}
-						}
-						$user_settings = $general_settings;*/
-
 						wp_cache_set( 'ppc_settings_'.$userid, $user_settings );
 					}
 				}
