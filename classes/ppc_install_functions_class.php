@@ -290,6 +290,12 @@ class PPC_install_functions {
 					'link' => 'http://postpaycounter.com/user-roles-custom-settings',
 					'campaign' => 'ppc_urcs'
 				),
+				'Category Custom Settings' => array(
+					'description' => 'Allows to set custom settings for each category that apply to all posts belonging to it.',
+					'image' => 'http://postpaycounter.com/ppc_ccs/features/images/category-custom-settings.png',
+					'link' => 'http://postpaycounter.com/category-custom-settings',
+					'campaign' => 'ppc_ccs'
+				),
 				'Stop Words' => array(
 					'description' => 'Allows to specify a list of stop words that should not be counted when computing posts word count.',
 					'image' => 'http://postpaycounter.com/ppcp_sw/features/images/stopwords.png',

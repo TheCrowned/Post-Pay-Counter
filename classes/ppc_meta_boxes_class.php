@@ -101,7 +101,7 @@ class PPC_meta_boxes {
         
         $all_post_types = get_post_types();
         $allowed_post_types = $current_settings['counting_allowed_post_types'];
-        
+       
         foreach ( $all_post_types as $single ) {
             $checked = '';
             

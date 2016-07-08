@@ -188,6 +188,12 @@ class PPC_update_class {
 					'link' => 'http://postpaycounter.com/publisher-bonus-editor-rewarding-system',
 					'campaign' => 'ppcp_pb'
 				),
+				'Category Custom Settings' => array(
+					'description' => 'Allows to set custom settings for each category that apply to all posts belonging to it.',
+					'image' => 'http://postpaycounter.com/ppc_ccs/features/images/category-custom-settings.png',
+					'link' => 'http://postpaycounter.com/category-custom-settings',
+					'campaign' => 'ppc_ccs'
+				),
 				'User Roles Custom Settings' => array(
 					'description' => 'Allows to set custom settings for each user role that apply to all users belonging to it.',
 					'image' => 'http://postpaycounter.com/ppc_urcs/features/images/personalize_settings_box.jpg',

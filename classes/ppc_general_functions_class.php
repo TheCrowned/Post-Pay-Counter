@@ -70,7 +70,7 @@ class PPC_general_functions {
 			//Retrieve cached settings if available or from database if not
 			$cache = wp_cache_get( 'ppc_settings_'.$userid );
 			
-            if( $cache != false ) {
+            if( $cache != false AND $complete_with_general ) {
                 $user_settings = $cache;
             } else {
 				if( $cache === 0 ) {
