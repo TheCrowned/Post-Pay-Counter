@@ -252,8 +252,10 @@ class PPC_generate_stats {
 					$stats['total']['ppc_payment']['normal_payment']['total'] = $counting_type_payment;
 			}
 
+			//Make sure stats arrays always exist in a complete form, even though empty
 			if( ! isset( $stats['total']['ppc_payment']['normal_payment'] ) )
-				$stats['total']['ppc_payment']['normal_payment'] = array(); //make sure the stats array always exists in a complete form, even though empty
+				$stats['total']['ppc_payment']['normal_payment'] = array();
+				$stats['total']['ppc_count']['normal_count'] = array(); 
 			
             //Check total threshold
             if( $user_settings['counting_payment_total_threshold'] != 0 AND isset( $stats['total']['ppc_payment']['normal_payment']['total'] ) ) {
@@ -387,6 +389,7 @@ class PPC_generate_stats {
                 $formatted_stats['stats'][$author_id]['author_id'] = $author_id;
                 $formatted_stats['stats'][$author_id]['author_name'] = $author_data->display_name;
                 $formatted_stats['stats'][$author_id]['author_written_posts'] = (int) $posts['total']['ppc_misc']['posts'];
+
                 
                 $data_merge = array_merge( $posts['total']['ppc_count']['normal_count'], $posts['total']['ppc_payment']['normal_payment'] );
                 
