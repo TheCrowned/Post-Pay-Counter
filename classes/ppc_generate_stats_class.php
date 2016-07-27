@@ -253,9 +253,10 @@ class PPC_generate_stats {
 			}
 
 			//Make sure stats arrays always exist in a complete form, even though empty
-			if( ! isset( $stats['total']['ppc_payment']['normal_payment'] ) )
+			if( ! isset( $stats['total']['ppc_payment']['normal_payment'] ) ) {
 				$stats['total']['ppc_payment']['normal_payment'] = array();
-				$stats['total']['ppc_count']['normal_count'] = array(); 
+				$stats['total']['ppc_count']['normal_count'] = array();
+			}
 			
             //Check total threshold
             if( $user_settings['counting_payment_total_threshold'] != 0 AND isset( $stats['total']['ppc_payment']['normal_payment']['total'] ) ) {
