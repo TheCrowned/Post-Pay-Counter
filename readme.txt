@@ -2,7 +2,7 @@
 Contributors: Ste_95
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22
 Tags: counter, authors, payment, revenue sharing, stats, multi author, post management, post
-Tested up to: 4.5
+Tested up to: 4.6
 Stable tag: 2.607
 Requires at least: 3.7
 
@@ -80,6 +80,9 @@ It must become: *define( 'PPC_DEBUG_LOG', false );*
 5. The tooltip with all the counting details
 
 == Changelog ==
+= 2.608 (2016/07/31) =
+* New: French translation (Alexandre Mark).
+
 = 2.607 (2016/07/19) =
 * Fixed: last update broke stats countings (though nothing happened to payments).
 
