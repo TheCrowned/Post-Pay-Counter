@@ -394,7 +394,6 @@ class PPC_generate_stats {
                 $formatted_stats['stats'][$author_id]['author_name'] = $author_data->display_name;
                 $formatted_stats['stats'][$author_id]['author_written_posts'] = (int) $posts['total']['ppc_misc']['posts'];
 
-                var_dump($posts['total']);
                 $data_merge = array_merge( $posts['total']['ppc_count']['normal_count'], $posts['total']['ppc_payment']['normal_payment'] );
 
 				foreach( $data_merge as $id => $value ) {
