@@ -3,7 +3,7 @@ Contributors: Ste_95
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22
 Tags: counter, authors, payment, revenue sharing, stats, multi author, post management, post
 Tested up to: 4.6
-Stable tag: 2.607
+Stable tag: 2.609
 Requires at least: 3.7
 
 Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
@@ -36,6 +36,7 @@ Browse [all extensions](http://postpaycounter.com/addons?utm_source=wprep&utm_me
 Post Pay Counter has been translated into the following languages:
 
 * English
+* French (Alexandre Mark)
 * German ([Julian Beck](http://inside11.de/))
 * Dutch (Elza van Swieten)
 * Italian (Stefano Ottolenghi)
@@ -80,6 +81,9 @@ It must become: *define( 'PPC_DEBUG_LOG', false );*
 5. The tooltip with all the counting details
 
 == Changelog ==
+= 2.609 (2016/08/03) =
+* Fixed: notices in stats page when no payment criteria were enabled for some users.
+
 = 2.608 (2016/07/31) =
 * New: French translation (Alexandre Mark).
 
