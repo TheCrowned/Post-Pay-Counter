@@ -4,7 +4,7 @@ Plugin Name: Post Pay Counter
 Plugin URI: http://postpaycounter.com
 Description: Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
 Author: Stefano Ottolenghi
-Version: 2.608
+Version: 2.609
 Author URI: http://www.thecrowned.org/
 Text Domain: post-pay-counter
 */
@@ -57,7 +57,7 @@ class post_pay_counter {
         global $ppc_global_settings;
 
         $ppc_global_settings['current_version'] = get_option( 'ppc_current_version' );
-        $ppc_global_settings['newest_version'] = '2.608';
+        $ppc_global_settings['newest_version'] = '2.609';
         $ppc_global_settings['option_name'] = 'ppc_settings';
         $ppc_global_settings['option_errors'] = 'ppc_errors';
 		$ppc_global_settings['transient_error_deletion'] = 'ppc_error_daily_deletion';
@@ -232,18 +232,18 @@ class post_pay_counter {
         else
             $first_available_post_time = strtotime( $first_available_post->posts[0]->post_date );
 
-		$args = array(
+		/*$args = array(
             'post_type' => $general_settings['counting_allowed_post_types'],
 			'posts_per_page' => 1,
             'orderby' => 'post_date',
             'order' => 'DESC'
-        );
+        );*/
         $last_available_post = new WP_Query( $args );
 
-		if( $last_available_post->found_posts == 0 )
-            $last_available_post = current_time( 'timestamp' );
-        else
-            $last_available_post = strtotime( $last_available_post->posts[0]->post_date );
+		//if( $last_available_post->found_posts == 0 )
+            $last_available_post = current_time( 'timestamp' ); //Pub Bonus needs to select even days without posts in the future, maybe there are publishings
+        //else
+          //  $last_available_post = strtotime( $last_available_post->posts[0]->post_date );
 
         wp_enqueue_script( 'jquery-ui-datepicker' );
         wp_enqueue_style( 'jquery.ui.theme', $ppc_global_settings['folder_path'].'style/ui-lightness/jquery-ui-1.8.15.custom.css' );
