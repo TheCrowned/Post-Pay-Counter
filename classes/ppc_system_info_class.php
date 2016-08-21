@@ -21,15 +21,15 @@ class PPC_system_info {
 	 * @author Chris Christoff
 	 * @adapted Stefano Ottolenghi
 	 */
-	 
+
 	static function system_info() {
 		global $wpdb, $ppc_global_settings;
-		
+
 		if( isset( $_POST['ppc_download_sysinfo'] ) )
 			self::system_info_download();
-		
+
 		?>
-		
+
 		<div class="wrap">
 			<h2>Post Pay Counter - <?php _e( 'System Information', 'post-pay-counter' ) ?></h2>
 			<form action="<?php echo esc_url( wp_nonce_url( admin_url( 'admin.php?page=ppc-system-info&noheader=true' ), 'ppc_download_sysinfo' ) ); ?>" method="post" dir="ltr">
@@ -38,8 +38,8 @@ class PPC_system_info {
 
 ## Please include this information when posting support requests ##
 
-<?php 
-        do_action( 'ppc_system_info_before' ); 
+<?php
+        do_action( 'ppc_system_info_before' );
 ?>
 Multisite:                <?php echo is_multisite() ? 'Yes' . "\n" : 'No' . "\n" ?>
 
@@ -52,7 +52,6 @@ WordPress Version:        <?php echo get_bloginfo( 'version' ) . "\n"; ?>
 PHP Version:              <?php echo PHP_VERSION . "\n"; ?>
 Web Server Info:          <?php echo $_SERVER['SERVER_SOFTWARE'] . "\n"; ?>
 
-PHP Safe Mode:            <?php echo ini_get( 'safe_mode' ) ? "Yes" . "\n" : "No" . "\n"; ?>
 PHP Memory Limit:         <?php echo ini_get( 'memory_limit' ) . "\n"; ?>
 PHP Time Limit:           <?php echo ini_get( 'max_execution_time' ) . "\n"; ?>
 
@@ -64,9 +63,9 @@ WP Table Prefix:          <?php echo "Length: ". strlen( $wpdb->prefix ); echo "
 	$params = array(
 		'body' => ''
 	);
-	
+
 	$response = wp_remote_post( 'http://postpaycounter.com', $params );
-	
+
 	if ( ! is_wp_error( $response ) && $response['response']['code'] >= 200 && $response['response']['code'] < 300 ) {
 		$WP_REMOTE_POST =  'wp_remote_post() works' . "\n";
 	} else {
@@ -132,12 +131,12 @@ NETWORK ACTIVE PLUGINS:
 	 *
 	 * @since 2.1
 	 */
-	 
+
 	static function system_info_download() {
 		nocache_headers();
-        
+
         check_admin_referer( 'ppc_download_sysinfo' );
-        
+
 		header( "Content-type: text/plain" );
 		header( 'Content-Disposition: attachment; filename="ppc-system-info.txt"' );
 

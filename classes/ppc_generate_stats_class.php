@@ -253,13 +253,11 @@ class PPC_generate_stats {
 			}
 
 			//Make sure stats arrays always exist in a complete form, even though empty
-			if( ! isset( $stats['total']['ppc_payment']['normal_payment'] ) ) {
+			if( ! isset( $stats['total']['ppc_payment']['normal_payment'] ) )
 				$stats['total']['ppc_payment']['normal_payment'] = array();
+
+			if( ! isset( $stats['total']['ppc_count']['normal_count'] ) )
 				$stats['total']['ppc_count']['normal_count'] = array();
-			}
-			if( ! isset( $stats['total']['ppc_count']['normal_count'] ) ) {
-				$stats['total']['ppc_count']['normal_count'] = array();
-			}
 
             //Check total threshold
             if( $user_settings['counting_payment_total_threshold'] != 0 AND isset( $stats['total']['ppc_payment']['normal_payment']['total'] ) ) {
@@ -380,7 +378,9 @@ class PPC_generate_stats {
             }
 
         } else {
-			$cols_info = array(); //holds info about columns. We build cols list after stats taking all unique cnt types enabled across all users. A user may have some counting types unabled, so we can't know before the end all the possible cols we may need
+			$cols_info = array(
+				'counting_types' => array()
+			); //holds info about columns. We build cols list after stats taking all unique cnt types enabled across all users. A user may have some counting types unabled, so we can't know before the end all the possible cols we may need
 
             foreach( $data as $author_id => $posts ) {
                 if( ! isset( $posts['total']['ppc_payment']['normal_payment'] ) OR empty( $posts['total']['ppc_payment']['normal_payment'] ) ) continue; //user with no counting types enabled
