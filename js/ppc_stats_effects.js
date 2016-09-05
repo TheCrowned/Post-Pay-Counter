@@ -27,4 +27,16 @@ jQuery(document).ready(function() {
              jQuery('#post_pay_counter_time_start').datepicker('option', 'maxDate', new Date(inst.selectedYear, inst.selectedMonth, inst.selectedDay));
         }      
     });
+    
+    //Handles date picker fields display
+    jQuery('#ppc-time-range').change(function() {
+        if(jQuery(this).val() == 'custom') {
+            jQuery('#ppc-time-range-custom').css('display', 'block');
+        } else {
+            jQuery('#ppc-time-range-custom').css('display', 'none');
+        }
+    });
+    
+    //Makes sure datepicker fields are displayed if custom is the default choice
+    jQuery('#ppc-time-range').trigger('change');
 });

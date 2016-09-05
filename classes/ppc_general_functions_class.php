@@ -243,14 +243,19 @@ class PPC_general_functions {
     static function get_default_stats_time_range( $settings ) {
         global $ppc_global_settings;
         
-        if( $settings['default_stats_time_range_week'] == 1 )
+        if( $settings['default_stats_time_range_week'] ) {
             $ppc_global_settings['stats_tstart'] = strtotime( '00:00:00' ) - ( ( date( 'N' )-1 )*24*60*60 );
-        else if( $settings['default_stats_time_range_month'] == 1 )
-            $ppc_global_settings['stats_tstart'] = strtotime( '00:00:00' ) - ( ( date( 'j' )-1 )*24*60*60 );
-        else if( $settings['default_stats_time_range_custom'] == 1 )
+            $ppc_global_settings['stats_tend'] = ( strtotime( '23:59:59' ) );
+        } else if( $settings['default_stats_time_range_month'] ) {
+            $ppc_global_settings['stats_tstart'] = strtotime( '00:00:00' ) - ( ( date( 'j' )-1 )*24*60*60 ); //starts from timestamp of current day and subtracts seconds for enough days (depending on what day is today)
+            $ppc_global_settings['stats_tend'] = ( strtotime( '23:59:59' ) );
+        } else if( $settings['default_stats_time_range_last_month'] ) {
+            $ppc_global_settings['stats_tstart'] = strtotime( '00:00:00' ) - ( ( date( 'j' )-1 + cal_days_in_month( CAL_GREGORIAN, date( 'm' ) - 1, date( 'Y' ) ) )*24*60*60 );
+            $ppc_global_settings['stats_end'] = strtotime( '23:59:59' ) - ( ( date( 'j' )-1 )*24*60*60 ); 
+        } else if( $settings['default_stats_time_range_custom'] ) {
             $ppc_global_settings['stats_tstart'] = strtotime( '00:00:00' ) - ( $settings['default_stats_time_range_custom_value']*24*60*60 );
-        
-        $ppc_global_settings['stats_tend'] = ( strtotime( '23:59:59' ) ); 
+            $ppc_global_settings['stats_tend'] = ( strtotime( '23:59:59' ) );
+		}
     }
 	
 	/**
