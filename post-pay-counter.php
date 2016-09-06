@@ -252,8 +252,17 @@ class post_pay_counter {
         wp_enqueue_script( 'ppc_stats_effects', $ppc_global_settings['folder_path'].'js/ppc_stats_effects.js', array( 'jquery' ) );
         wp_localize_script( 'ppc_stats_effects', 'ppc_stats_effects_vars', array(
             'datepicker_mindate' => date( 'Y-m-d', $first_available_post_time ),
-            'datepicker_maxdate' => date( 'Y-m-d', $last_available_post )
+            'datepicker_maxdate' => date( 'Y-m-d', $last_available_post ),
+            'time_start_this_month' => date( 'Y-m-d', strtotime( '00:00:00' ) - ( ( date( 'j' )-1 )*24*60*60 ) ), //starts from timestamp of current day and subtracts seconds for enough days (depending on what day is today)
+            'time_end_this_month' => date( 'Y-m-d', strtotime( '23:59:59' ) ),
+            'time_start_this_year' => date( 'Y-m-d', strtotime( '00:00:00' ) - ( ( date( 'z' ) )*24*60*60 ) ), //starts from timestamp of current day and subtracts seconds for enough days (depending on what day of the year is today)
+            'time_end_this_year' => date( 'Y-m-d', strtotime( '23:59:59' ) ),
+            'time_start_this_week' => date( 'Y-m-d', strtotime( '00:00:00' ) - ( ( date( 'N' )-1 )*24*60*60 ) ),
+            'time_end_this_week' => date( 'Y-m-d', strtotime( '23:59:59' ) ),
+            'time_start_last_month' => date( 'Y-m-d', strtotime( '00:00:00' ) - ( ( date( 'j' )-1 + cal_days_in_month( CAL_GREGORIAN, (date( 'm' ) - 1), date( 'Y' ) ) )*24*60*60 ) ),
+            'time_end_last_month' => date( 'Y-m-d', strtotime( '23:59:59' ) - ( date( 'j' )*24*60*60 ) )
         ) );
+        
     }
 
     /**
@@ -642,7 +651,8 @@ class post_pay_counter {
 		<?php
         //AUTHOR STATS
         if( is_array( $author ) ) {
-            echo PPC_HTML_functions::show_stats_page_header( $userdata->display_name, PPC_general_functions::get_the_author_link( $author[0] ) );
+
+			echo PPC_HTML_functions::show_stats_page_header( $userdata->display_name, PPC_general_functions::get_the_author_link( $author[0] ) );
 
             if( ! $perm->can_see_others_detailed_stats() AND $current_user->ID != $author[0] ) return _e( 'You do not have sufficient permissions to access this page' );
 
@@ -678,6 +688,9 @@ class post_pay_counter {
         //GENERAL STATS
         } else {
 			$page_permalink = $ppc_global_settings['stats_menu_link'].'&amp;tstart='.$ppc_global_settings['stats_tstart'].'&amp;tend='.$ppc_global_settings['stats_tend'];
+
+			if( isset( $get_and_post['ppc-time-range'] ) )
+				$page_permalink .= '&amp;ppc-time-range='.$get_and_post['ppc-time-range'];
 
 			//If filtered by user role, add filter to stats generation args and complete page permalink
 			if( isset( $get_and_post['role'] ) ) {

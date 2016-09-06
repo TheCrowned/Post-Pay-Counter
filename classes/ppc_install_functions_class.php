@@ -195,6 +195,7 @@ class PPC_install_functions {
                 ),
                 'default_stats_time_range_month' => 1,
                 'default_stats_time_range_last_month' => 0,
+                'default_stats_time_range_this_year' => 0,
                 'default_stats_time_range_week' => 0,
                 'default_stats_time_range_custom' => 0,
                 'default_stats_time_range_custom_value' => 100,
