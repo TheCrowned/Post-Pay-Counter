@@ -78,7 +78,8 @@ class PPC_update_class {
 				'counting_words_parse_spaces' => 0,
 				'enable_stats_payments_tooltips' => 1,
 				'default_stats_time_range_last_month' => 0,
-				'default_stats_time_range_this_year' => 0
+				'default_stats_time_range_this_year' => 0,
+				'default_stats_time_range_all_time' => 0
             ),
 
             //User settings only hold different-from-general-records nowadays

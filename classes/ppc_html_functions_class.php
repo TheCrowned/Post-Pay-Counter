@@ -55,6 +55,7 @@ class PPC_HTML_functions {
 			'last_month' => __( 'Last Month',  'post-pay-counter' ),
 			'this_year' => __( 'This Year',  'post-pay-counter' ),
 			'this_week' => __( 'This Week',  'post-pay-counter' ),
+			'all_time' => __( 'All Time',  'post-pay-counter' ),
 			'custom' => __( 'Custom',  'post-pay-counter' )
 		);
 
@@ -76,6 +77,8 @@ class PPC_HTML_functions {
 				else if( $general_settings['default_stats_time_range_last_month'] AND $key == 'last_month' )
 					$checked = 'selected="selected"';
 				else if( $general_settings['default_stats_time_range_this_year'] AND $key == 'this_year' )
+					$checked = 'selected="selected"';
+				else if( $general_settings['default_stats_time_range_all_time'] AND $key == 'all_time' )
 					$checked = 'selected="selected"';
 				else if( $general_settings['default_stats_time_range_custom'] AND $key == 'custom' )
 					$checked = 'selected="selected"';

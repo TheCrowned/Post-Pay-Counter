@@ -55,6 +55,10 @@ jQuery(document).ready(function() {
 			jQuery('#post_pay_counter_time_start').val(ppc_stats_effects_vars.time_start_this_year);
 			jQuery('#post_pay_counter_time_end').val(ppc_stats_effects_vars.time_end_this_year);
 		}
+        if(selected == 'all_time') {
+			jQuery('#post_pay_counter_time_start').val(ppc_stats_effects_vars.datepicker_mindate);
+			jQuery('#post_pay_counter_time_end').val(ppc_stats_effects_vars.datepicker_maxdate);
+		}
 			
     });
     
