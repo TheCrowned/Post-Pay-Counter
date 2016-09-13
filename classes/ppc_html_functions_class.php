@@ -41,13 +41,58 @@ class PPC_HTML_functions {
     static function show_stats_page_header( $current_page, $page_permalink ) {
         global $ppc_global_settings, $wp_roles;
         $perm = new PPC_permissions();
+        $general_settings = PPC_general_functions::get_settings( 'general' );
 		?>
 
 <form action="" method="post">
 	<div id="ppc_stats_header">
 		<div id="ppc_stats_header_datepicker">
 			<h3>
-        <?php echo sprintf( __( 'Showing posts from %1$s to %2$s' , 'post-pay-counter'), '<input type="text" name="tstart" id="post_pay_counter_time_start" class="mydatepicker" value="'.date( 'Y-m-d', $ppc_global_settings['stats_tstart'] ).'" accesskey="'.$ppc_global_settings['stats_tstart'].'" size="8" />', '<input type="text" name="tend" id="post_pay_counter_time_end" class="mydatepicker" value="'.date( 'Y-m-d', $ppc_global_settings['stats_tend'] ).'" accesskey="'.$ppc_global_settings['stats_tend'].'" size="8" />' ).' - "'.$current_page.'"';
+
+        <?php echo __( 'Showing posts for' , 'post-pay-counter').' ';
+		$time_range_options = array(
+			'this_month' => __( 'This Month',  'post-pay-counter' ),
+			'last_month' => __( 'Last Month',  'post-pay-counter' ),
+			'this_year' => __( 'This Year',  'post-pay-counter' ),
+			'this_week' => __( 'This Week',  'post-pay-counter' ),
+			'all_time' => __( 'All Time',  'post-pay-counter' ),
+			'custom' => __( 'Custom',  'post-pay-counter' )
+		);
+
+		echo '<select name="ppc-time-range" id="ppc-time-range">';
+
+		$get_and_post = array_merge( $_GET, $_POST );
+		foreach( $time_range_options as $key => $value ) {
+			$checked = '';
+
+			//Default select choice
+			if( isset( $get_and_post['ppc-time-range'] ) ) {
+				if( $get_and_post['ppc-time-range'] == $key )
+					$checked = 'selected="selected"';
+			} else {
+				if( $general_settings['default_stats_time_range_week'] AND $key == 'this_week' )
+					$checked = 'selected="selected"';
+				else if( $general_settings['default_stats_time_range_month'] AND $key == 'this_month' )
+					$checked = 'selected="selected"';
+				else if( $general_settings['default_stats_time_range_last_month'] AND $key == 'last_month' )
+					$checked = 'selected="selected"';
+				else if( $general_settings['default_stats_time_range_this_year'] AND $key == 'this_year' )
+					$checked = 'selected="selected"';
+				else if( $general_settings['default_stats_time_range_all_time'] AND $key == 'all_time' )
+					$checked = 'selected="selected"';
+				else if( $general_settings['default_stats_time_range_custom'] AND $key == 'custom' )
+					$checked = 'selected="selected"';
+			}
+
+			echo '<option value="'.$key.'" '.$checked.'>'.$value.'</option>';
+		}
+
+		echo '</select>';
+		echo ' - "'.$current_page.'"';
+
+		echo '<div id="ppc-time-range-custom" style="display: none; margin-top: 10px;">';
+		echo sprintf( __( 'From %1$s to %2$s', 'post-pay-counter'), '<input type="text" name="tstart" id="post_pay_counter_time_start" class="mydatepicker" value="'.date( 'Y-m-d', $ppc_global_settings['stats_tstart'] ).'" accesskey="'.$ppc_global_settings['stats_tstart'].'" size="8" />', '<input type="text" name="tend" id="post_pay_counter_time_end" class="mydatepicker" value="'.date( 'Y-m-d', $ppc_global_settings['stats_tend'] ).'" accesskey="'.$ppc_global_settings['stats_tend'].'" size="8" />' );
+		echo '</div>';
 
 		//Display filter by user role field in general stats
 		if( $ppc_global_settings['current_page'] == 'stats_general' AND $perm->can_see_others_general_stats() ) {
@@ -85,11 +130,18 @@ class PPC_HTML_functions {
 		<div id="ppc_stats_header_features">
 			<span id="ppc_stats_header_links">
 		<?php
-		if( $ppc_global_settings['current_page'] == 'stats_detailed' ) { ?>
+		if( $ppc_global_settings['current_page'] == 'stats_detailed' ) {
+
+			if( ! isset( $get_and_post['ppc-time-range'] ) ) { ?>
 
 				<a href="<?php echo admin_url( $ppc_global_settings['stats_menu_link'].'&amp;tstart='.$ppc_global_settings['stats_tstart'].'&amp;tend='.$ppc_global_settings['stats_tend'] ); ?>" title="<?php _e( 'Back to general' , 'post-pay-counter'); ?>"><?php _e( 'Back to general' , 'post-pay-counter'); ?></a>
 
-		<?php }
+			<?php } else { ?>
+
+				<a href="<?php echo admin_url( $ppc_global_settings['stats_menu_link'].'&amp;tstart='.$ppc_global_settings['stats_tstart'].'&amp;tend='.$ppc_global_settings['stats_tend'].'&amp;ppc-time-range='.$get_and_post['ppc-time-range'] ); ?>" title="<?php _e( 'Back to general' , 'post-pay-counter'); ?>"><?php _e( 'Back to general' , 'post-pay-counter'); ?></a>
+
+			<?php }
+		}
 
         do_action( 'ppc_stats_header_links', $page_permalink ); ?>
 
