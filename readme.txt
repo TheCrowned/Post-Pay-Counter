@@ -2,8 +2,8 @@
 Contributors: Ste_95
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22
 Tags: counter, authors, payment, revenue sharing, stats, multi author, post management, post
-Tested up to: 4.6
-Stable tag: 2.610
+Tested up to: 4.6.1
+Stable tag: 2.620
 Requires at least: 3.7
 
 Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
@@ -80,6 +80,12 @@ It must become: *define( 'PPC_DEBUG_LOG', false );*
 5. The tooltip with all the counting details
 
 == Changelog ==
+= 2.620 (2016/09/13) =
+* New: time range dropdown choice in stats page to quickly pick the desired time frame.
+* New: added *All time* to default time range choices.
+* New: added *Last month* to default time range choices.
+* New: added *This year* to default time range choices. 
+
 = 2.610 (2016/08/19) =
 * Fixed: PHP7 issues as found by WPEngine compatibility checker.
 * New: addon [Pay Per Character](http://postpaycounter.com/pay-per-character/) 
