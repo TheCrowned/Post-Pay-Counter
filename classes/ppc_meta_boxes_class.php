@@ -226,6 +226,7 @@ class PPC_meta_boxes {
         
         echo '<p>'.__( 'Here you can define the criteria which post payments will be computed with.' , 'post-pay-counter').'</p>';
         echo '<form action="" id="ppc_counting_settings_form" method="post">';
+		do_action( 'ppc_counting_settings_before_basic_payment', $current_settings );
         
         //Basic payment
         echo '<div class="ppc_section">';
