@@ -279,3 +279,11 @@ class PPC_general_functions {
 		return apply_filters( 'ppc_format_payment', $payment );
 	}
 }
+
+if( ! function_exists( 'cal_days_in_month' ) ) { 
+    function cal_days_in_month( $calendar, $month, $year ) { 
+        return date( 't', mktime( 0, 0, 0, $month, 1, $year ) ); 
+    } 
+} 
+//if (!defined('CAL_GREGORIAN')) 
+    //define('CAL_GREGORIAN', 1); 

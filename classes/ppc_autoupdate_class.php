@@ -35,11 +35,11 @@ class PPC_auto_update {
      * @var string
      */
     public $slug;
-    
+
     /**
      * Holds addon activation key option name and value.
-     */ 
-	
+     */
+
 	public $activation_key_name;
 	public $activation_key;
 
@@ -57,7 +57,7 @@ class PPC_auto_update {
         $this->activation_key_name = $activation_key_name;
         $this->activation_key = get_option( $activation_key_name );
 		$this->activation_key = $this->activation_key['activation_key'];
-        
+
         list($t1, $t2) = explode('/', $plugin_slug);
         $this->slug = str_replace('.php', '', $t2);
 
@@ -66,7 +66,7 @@ class PPC_auto_update {
 
         // Define the alternative response for information checking
         add_filter('plugins_api', array(&$this, 'check_info'), 10, 3);
-        
+
         //Enqueue on WP cron event
         add_action( 'wp_update_plugins', array( $this, 'check_update' ) );
 
@@ -82,18 +82,18 @@ class PPC_auto_update {
     public function check_update($transient = array()) {
         if (empty($transient))
             $transient = get_site_transient( 'update_plugins' );
-        
+
         // Get the remote version
         $remote_version = $this->getRemote_version();
-        
+
         // If a newer version is available, add the update
         if (version_compare($this->current_version, $remote_version, '<')) {
-            
+
             //Get information and download url
             $information = $this->getRemote_information();
-            
+
 			if( ! is_object( $information ) ) return;
-			
+
             $obj = new stdClass();
             $obj->slug = $this->slug;
             $obj->new_version = $remote_version;
@@ -101,7 +101,7 @@ class PPC_auto_update {
             $obj->package = $information->download_link;
             $transient->response[$this->plugin_slug] = $obj;
         }
-        
+
         return $transient;
     }
 
@@ -118,12 +118,12 @@ class PPC_auto_update {
             $information = $this->getRemote_information();
             return $information;
         }
-        
-		/** 
+
+		/**
 		* Return variable $false instead of explicitly returning boolean FALSE
 		* wordpress passes FALSE here by default
 		*/
-		return $false; 
+		return $false;
     }
 
     /**
@@ -132,11 +132,11 @@ class PPC_auto_update {
      */
     public function getRemote_version() {
 		global $ppc_global_settings;
-		
+
         $request = wp_remote_post( $this->update_path, apply_filters( 'ppcp_autoupdate_get_remote_version_args', array(
             'timeout' => 10,
             'body' => array(
-                'action' => 'version', 
+                'action' => 'version',
                 'activation_key' => $this->activation_key,
                 'website' => site_url(),
 				'language' => get_bloginfo( 'language' ),
@@ -144,7 +144,7 @@ class PPC_auto_update {
                 'addon_version' => $this->current_version
             )
         ) ) );
-		
+
         if ( ! is_wp_error($request) || wp_remote_retrieve_response_code( $request ) === 200 ) {
             return $request['body'];
         } else {
@@ -161,11 +161,11 @@ class PPC_auto_update {
      */
     public function getRemote_information() {
 		global $ppc_global_settings;
-		
+
         $request = wp_remote_post( $this->update_path, apply_filters( 'ppcp_autoupdate_get_remote_information_args', array(
             'timeout' => 10,
             'body' => array(
-                'action' => 'info', 
+                'action' => 'info',
                 'website' => site_url(),
                 'activation_key' => $this->activation_key,
 				'language' => get_bloginfo( 'language' ),
@@ -173,7 +173,7 @@ class PPC_auto_update {
                 'addon_version' => $this->current_version
             )
         ) ) );
-        
+
         if ( ! is_wp_error( $request ) || wp_remote_retrieve_response_code( $request ) === 200 ) {
 			return maybe_unserialize( $request['body'] );
         } else {
@@ -194,7 +194,7 @@ class PPC_auto_update {
 	 */
 	public function plugin_row_license_missing( $plugin_data, $version_info ) {
 		static $showed_imissing_key_message;
-		
+
 		$license = get_option( $this->activation_key_name );
 
 		if( ( is_array( $license ) AND $license['expiration_time'] < current_time( 'timestamp' ) ) AND empty( $showed_imissing_key_message[ $this->plugin_slug ] ) ) {
