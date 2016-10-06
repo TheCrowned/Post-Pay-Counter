@@ -73,6 +73,239 @@ Set to *false* the constant *PPC_DEBUG_LOG* in *post-pay-counter.php*, it is loc
 From this: *define( 'PPC_DEBUG_LOG', true );*
 It must become: *define( 'PPC_DEBUG_LOG', false );*
 
+== Changelog ==
+= 2.621 (2016/09/21) =
+* Fixed: fatal error on stats page on certain server setups (lacking PHP calendar plugin).
+
+= 2.620 (2016/09/13) =
+* New: time range dropdown choice in stats page to quickly pick the desired time frame.
+* New: added *All time* to default time range choices.
+* New: added *Last month* to default time range choices.
+* New: added *This year* to default time range choices. 
+
+= 2.610 (2016/08/19) =
+* Fixed: PHP7 issues as found by WPEngine compatibility checker.
+* New: addon [Pay Per Character](http://postpaycounter.com/pay-per-character/) 
+
+= 2.609 (2016/08/03) =
+* Fixed: notices in stats page when no payment criteria were enabled for some users.
+
+= 2.608 (2016/07/31) =
+* New: French translation (Alexandre Mark).
+
+= 2.607 (2016/07/19) =
+* Fixed: last update broke stats countings (though nothing happened to payments).
+
+= 2.606 (2016/07/18) =
+* Fixed: notice in stats page when no payment criteria were enabled.
+* New: released [Author Payment Bonus](http://postpaycounter.com/author-payment-bonus-manually-change-the-total-payout-to-authors/) and [Category Custom Settings](http://postpaycounter.com/category-custom-settings/) released!
+
+= 2.605 (2016/06/19) =
+* Fixed: issue with empty stats.
+
+= 2.604 (2016/06/07) =
+* Feature: include post excerpt in word count payment.
+* Fixed: users having different allowed post statuses settings impacting general stats with wrong data.
+* Fixed: fixed notice for unactive counting types on tooltip generation.
+* Fixed: wrong error message displayed when no posts were selected.
+* Fixed: several PHP notices in stats page when no posts reached the threshold.
+* Fixed: PHP notice and some images not displayed in addons page.
+* Tweak: updated italian translation.
+
+= 2.603 (2016/04/29) =
+* Fixed: mispelled cache key resulting in poorer performance.
+* Fixed: wrong pagepath on "Insert valid license for automatic updates" link.
+* Fixed: expired license notice displayed on all addons, even not yet expired ones.
+
+= 2.602 (2016/04/17) =
+* Fixed: PHP notices with PRO bonus payment enabled.
+* Fixed: possible PHP Warning in case of notifications error.
+* Tweak: stripping PHP ?> closing tag.
+
+= 2.601 (2016/04/04) =
+* Fixed: issues with memcached and other parmanent caching systems - settings changes didn't affect stats.
+* Fixed: possible PHP errors with PHP 7.
+* Tweak: using local time format.
+* Tweak: using WP checked(), selected() and disabled() functions.
+
+= 2.600 (2016/03/30) =
+* Huge **performance improvements**! Basing on our tests, with all counting types enabled (basic, words, visits (postmeta), comments and images), we managed to load 6500+ posts in around 10 seconds (overall stats disabled).
+* New: option to avoid making post titles clickable in stats (off by default, improves performance).
+* New: option to avoid making super-cautious spaces parsing in word count (off by default, improves performance).
+* New: option to avoid display of payment tooltips in stats (on by default).
+* New: making use of WP_Object_Cache. If you use a permanent cache plugin, part of PPC requests will be cached as well.
+
+= 2.518 (2016/03/16) =
+* [New addon released](http://postpaycounter.com/user-roles-custom-settings?utm_source=wprep&utm_medium=link) to set custom settings per user role!
+* Fixed: admins override permissions feature didn't check the user role, but manage_options capability (so non-admins who could manage_options would override permissions).
+* Fixed: PHP warning due to missing argument.
+* Fixed: addons page would display "Array" and no addons in some sites.
+* Fixed: saving user settings could overwrite past settings.
+* Fixed: settings import/export did not work cross-user.
+* Tweak: settings import/export only considers settings which are different from general.
+* Tweak: personalize users list can take up more space, so more users fit in it without scrolling.
+* Tweak: allowing for faster settings retrieval.
+* Tweak: new actions and filters.
+
+= 2.517 (2016/02/21) =
+* Fixed: hour:minute:second date format wrongly displayed.
+* Tweak: addons list is now displayed even if network requests are not working, and anyway is only updated every two days.
+
+= 2.516 (2016/01/23) =
+* Fixed: issue with user settings not saving in certain circumstances.
+
+= 2.515 (2016/01/18) =
+* Fixed: people with PRO version prior to 1.5.9.1 had problems in activating/deactivating their addons license.
+* Tweak: moved promotional boxes in the Options page down below all important boxes.
+* Tweak: deleted old lang files.
+
+= 2.514 (2016/01/10) =
+* New: it's now possible to control what is displayed in the stats page for each payment criteria. You can display just the counting number, just the payment value, both or completely hide a column but still have the payment criteria active, and you can even personalize this per-user!
+* New: when personalizing a user settings, only settings that have a different value from general settings are stored in the database. This allows for less data to be stored; moreover, when general settings are updated, users don't retain outdated settings, but all settings that have not been specifically changed for them, follow the general ones. This only applies to newly-personalized user's settings.
+* Tweak: hidden license box when personalizing user settings, and moved it under the Personalize settings box in the general options.
+* Tweak: updated italian translation.
+
+= 2.513 (2016/01/07) =
+* New: added option to allow admins to override all permissions. This applies only if they don't have specific personalized settings.
+
+= 2.512 (2015/12/18) =
+* Fixed: notification dismissing not fading out immediately but only at subsequent page load.
+* Fixed: notifications being displayed on all admin pages instead of just on plugin pages.
+* Fixed: new notification not being displayed.
+
+= 2.511 (2015/10/10) =
+* New: all addons are now compatible with the free version alone, no need to get the PRO if you just need features from another addon (we moved to a [new site](http://postpaycounter.com)).
+* Tweak: sped up tooltip generation.
+* Tweak: removed penguins logo in stats/options page.
+
+= 2.510 =
+* New: added Turkish translation (Kamer DINC).
+* New: added Czech translation (Jiří Kučera).
+* Tweak: backend improvements (new filters/actions/stuff like that).
+
+= 2.509 =
+* Fixed: last update broke localization.
+
+= 2.508 =
+* Fixed: PHP warnings when payments consisting of only Bonus would be done.
+* Fixed: (hopefully for real): possible fatal error due to too many redirects on update.
+* Fixed: when selecting a time range, the end time doesn't go to the day after the selected one any more.
+* Tweak: changed text domain to *post-pay-counter* to grant compatibility with WP Language Packs.
+
+= 2.506/2.507 =
+* Fixed: PRO shortcode wouldn't exclude selected columns in detailed stats.
+
+= 2.505 =
+* Fixed: problems in saving custom visits counter callback function.
+* Fixed: detailed stats generation not working in HHVM environments.
+
+= 2.504 =
+* Fixed: possible fatal error due to too many redirects on update.
+
+= 2.503 =
+* Fixed: word counter wouldn't count one-char words.
+* Fixed: correctly handling of &nbsp; that wouldn't be counted as spaces as resulting from strange behavior of the editor.
+* New: install procedure now grants by default all permissions to administrator by personalizing their settings (the user id of the user who installs the plugin is taken).
+* Tweak: new PHP method that generates stats table tbody. That's a public one that can by used by any implementation (for example, is used several times in the PRO).
+* Fixed: layout broken in user settings page, with links at the top being smushed in the upper-right corner. 
+* New: added pot files to translate plugin in whatever language.
+* Tweak: hiding the *Filter by user role* feature in stats page if user doesn't have the permission to see other people's stats.
+* Tweak: on install, notifications issued before install date are all hidden in bulk.
+* New: added Dutch translation (Elza van Swieten).
+
+= 2.502 =
+* Fixed: after last updated PRO version Analytics visits wouldn't show up.
+
+= 2.501 =
+* New: stats countings now display amounts that should be paid (is a post has 300 words and the upper payment limit is 200, the counter will show 200). Clicking on the amount will display the real total amount.
+* Tweak: preventing (for 6 hours) notifications update if the request generated an error.
+* Fixed: couple of non-static methods called statically.
+
+= 2.500 =
+* Fixed: general stats would not display all needed columns when users had different counting types enabled.
+* Fixed: notification dismissing would log an error.
+* Tweak: when a counting type is disabled for a user, data related to that cnt type in general stats is shown as "N.A.".
+* Tweak: notifications remote request timeout decreased to 2 seconds.
+* Tweak: extended notifications transient validity (2 days).
+* Tweak: logging errors in HTTP notifications list request.
+
+= 2.492 =
+* Tweak: possible to select future dates as stast end times (allows to see future scheduled posts).
+
+= 2.491 =
+* Tweak: new actions needed for the [Facebook addon](http://www.thecrowned.org/facebook-pay-per-social-interactions-shares-likes-and-comments?utm_source=wprep&utm_medium=link&utm_campaign=ppcp_fb).
+* Tweak: notifications processing only made in wp-admin, just as a bit of speed-up.
+
+= 2.490 =
+* Feature: possible to filter stats view by user role: select a user role and get stats only for users belonging to that one.
+* Fixed: prevent PHP warning if website can't contact developer server to check for notifications.
+* Tweak: ensuring logged plugin errors are automatically deleted after 20 days.
+
+= 2.482 =
+* Fixed: fatal error in PRO payment history windows.
+
+= 2.481 =
+* Fixed: last update would break PRO Analytics feature.
+
+= 2.48 =
+* Feature: possible to specify a callback function for visits counting, instead of a postmeta (grants compatibility with Post Views Counter and [more custom counting plugins](http://www.thecrowned.org/pay-writers-per-visit-wordpress)).
+* Fixed: word counting problems for non-latin characters.
+* Fixed: (this time for real) notifications would be displayed on all admin pages although they were not supposed to.
+
+= 2.47 =
+* Fixed: word count would sometimes miss a word (the last one).
+* Fixed: notifications would be displayed on all admin pages although they were not supposed to.
+* Tweak: updated Italian and German translations (thanks [Julian](http://inside11.de/)).
+
+= 2.46 =
+* Feature: now possible to include gallery images in images counting (disabled by default, go to Counting settings > Images payment to enable it).
+* Feature: introducing plugin notifications system.
+
+= 2.45 =
+* Fixed: misaligned stats columns if users had different counting types enabled.
+
+= 2.44 =
+* Fixed: datepicker would misbehave and not let select correct dates.
+
+= 2.43 =
+* Fixed: if a maximum payment threshold was set with payment only when the threshold was reached, and no posts across all authors reached the threhsold, some warnings would be shown with no explanation of the problem.
+* Fixed: PRO version payment bonus not showing in the stats (although was counted for payment).
+* Fixed: options page style showing messed up on some sites.
+* Tweak: dinamically generating overall stats (if some payment types are disabled, they are not displayed).
+* Tweak: stats generation is a bit less memory demanding.
+* Fixed: warning again for users with no counting types enabled.
+* Tweak: updated italian translation.
+
+= 2.42 =
+* Fixed: warnings in shortcoded (PRO) and maybe admin stats if current user didn't have any counting types enabled.
+
+= 2.41 =
+* Fixed: overall stats not displaying data.
+
+= 2.40 =
+* New: centralized control of counting types - makes code easier, hopefully faster, and simple to hook for who wants to integrate with the plugin.
+* Tweak: welcome page css not being loaded on all wp-admin pages.
+* New: Pengu-ins logo added on plugin pages.
+* New: addons page (new addons coming!)
+
+... several old versions changes removed ...
+
+= 2.0 =
+**IMPORTANT NOTICE: Versions 2.0 or higher need to be reinstalled** if you had a previous version due to its different settings storage system and the availability of new features. Also, the **following features are currently missing**: post payment bonus, trial settings, csv esport, full multisite integration, word count in post list. They will be added soon. If you need one specifically, let me know in order to make up a priority list.
+
+* Almost complete plugin redesign and code refactoring which should give dramatic speed improvements. Less data is stored in the database, making requests lighter.
+* The plugin is now fully extensible, check the list of hooks and filters.
+* Supports localization.
+* Words and visits are not mutually esclusive counting types anymore.
+* Plugin's visits counting method is not available anymore. If you use some other plugin to keep track of visits, you can specify its postmeta and Post Pay Counter will use that. Post Pay Counter PRO (soon available) will allow use of Google Analytics.
+* Images and comments can now use both incremental and zones payment system.
+* Up to 10 zones are allowed now.
+* Feature to allow payment only when certain threshold is met.
+* Settings save is now AJAX working.
+* Post featured image can now be counted as well.
+
+A paid addon to Post Pay Counter, PRO, will be released soon, adding more new features.
+
 == Screenshots ==
 1. Post Pay Counter settings page
 2. Use the tooltips beside each field to know what you can do with them

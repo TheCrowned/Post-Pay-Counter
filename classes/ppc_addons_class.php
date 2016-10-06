@@ -15,11 +15,11 @@ class PPC_addons {
 	 * @access	public
 	 * @since 	2.40
 	 */
-
 	static function on_load_addons_page_enqueue() {
         global $ppc_global_settings;
 
         wp_enqueue_style( 'ppc_addons_style', $ppc_global_settings['folder_path'].'style/ppc_addons_style.css', array( 'wp-admin' ) );
+        self::add_addons_list();
 	}
 
 	/**
@@ -72,6 +72,12 @@ class PPC_addons {
 					'image' => 'http://postpaycounter.com/ppc_ppc/features/images/stats.png',
 					'link' => 'http://postpaycounter.com/pay-per-character',
 					'campaign' => 'ppc_ppc'
+				),
+				'Author Basic Payment' => array(
+					'description' => 'Allows to award authors a fixed fee for each payment.',
+					'image' => 'http://postpaycounter.com/ppc_abp/features/images/stats.png',
+					'link' => 'http://postpaycounter.com/author-basic-payment',
+					'campaign' => 'ppc_abp'
 				),
 				'Stop Words' => array(
 					'description' => 'Allows to specify a list of stop words that should not be counted when computing posts word count.',
@@ -156,7 +162,7 @@ class PPC_addons {
 			foreach( $cache['data'] as $title => $info ) {
 				$return .= '<div class="ppc_addon">
 				<h3 class="ppc_addon_title">'.$title.'</h3>
-				<a href="'.$info['link'].'" title="'.$title.'" target="_blank"><img width="320" height="200" src="'.$info['image'].'" class="attachment-showcase wp-post-image" alt="" title="'.$title.'" /></a>
+				<a href="'.$info['link'].'" title="'.$title.'" target="_blank"><img src="'.$info['image'].'" class="attachment-showcase wp-post-image" alt="" title="'.$title.'" /></a>
 				<p>'.$info['description'].'</p>
 				<a target="_blank" href="'.$info['link'].'" title="'.$title.'" class="button-secondary">Get this Add On</a>
 				</div>';

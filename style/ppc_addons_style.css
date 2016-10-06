@@ -15,6 +15,11 @@
 	margin: 0 0 8px; 
 	font-size: 13px;  
 }
+#ppc_addons .ppc_addon img { 
+	width: 320px;
+	height: 200px;
+	object-fit: contain;
+}
 #ppc_addons .ppc_addon .button-secondary { 
 	position: absolute; 
 	bottom: 8px;
