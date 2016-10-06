@@ -8,14 +8,14 @@
 require_once( 'ppc_options_fields_class.php' );
 
 class PPC_meta_boxes {
-    
+
     /**
-     * Displays the metabox "PRO features" in the Options page (only if not pro version already) 
+     * Displays the metabox "PRO features" in the Options page (only if not pro version already)
      *
      * @access  public
      * @since   2.0
      */
-    static function meta_box_pro_features() { 
+    static function meta_box_pro_features() {
         $pro_features = array(
             __( 'Google Analytics' , 'post-pay-counter') => __( 'use your account on the world-leading website visits tracking system to pay writers per visit.' , 'post-pay-counter' ),
             __( 'Google Adsense' , 'post-pay-counter') => __( 'share a percentage of your ads revenues with writers, depending on how much their posts earn.' , 'post-pay-counter' ),
@@ -25,28 +25,28 @@ class PPC_meta_boxes {
             __( 'Shortcode', 'post-pay-counter' ) => __( 'put stats in public static pages and wherever suits your needs.', 'post-pay-counter' ),
 			__( 'Stats in post editing page', 'post-pay-counter' ) => __( 'see post stats in edit page and exclude individual posts from stats.', 'post-pay-counter' )
         );
-        
+
         printf( '<p>'.__( 'There are so many things you are missing by not running the PRO version of the Post Pay Counter! Remember that PRO features are always %1$sone click away%2$s!' , 'post-pay-counter'), '<a target="_blank" href="http://postpaycounter.com/post-pay-counter-pro" title="Post Pay Counter PRO">', '</a>' ).':</p>';
-        
+
         echo '<ul style="margin: 0 0 15px 2em;">';
-        
+
 		foreach( $pro_features as $key => $single )
             echo '<li style="list-style-type: square;"><strong>'.$key.'</strong>: '.$single.'</li>';
-			
+
         echo '</ul>';
-        
+
         printf( '<p>'.__( 'Something you would like is missing? Complete the %1$sfeatures survey%2$s and let us know what our priorities should be!', 'post-pay-counter'), '<a target="_blank" href="http://postpaycounter.com/post-pay-counter-pro/post-pay-counter-pro-features-survey" title="Post Pay Counter PRO - '.__( 'Features survey', 'post-pay-counter' ).'">', '</a>' ).'</p>';
     }
-    
+
     /**
-     * Displays the metabox "Support the author" in the Options page (only if not pro version already) 
+     * Displays the metabox "Support the author" in the Options page (only if not pro version already)
      *
      * @access  public
      * @since   2.0
      */
     static function meta_box_support_the_fucking_author() {
         global $ppc_global_settings;
-        
+
         echo '<p>'.__( 'If you like the Post Pay Counter, there are a couple of crucial things you can do to support its development' , 'post-pay-counter').':</p>';
         echo '<ul style="margin: 0 0 15px 2em; padding: 0">';
         echo '<li style="list-style-image: url(\''.$ppc_global_settings['folder_path'].'style/images/pro.png\');"><a target="_blank" href="http://postpaycounter.com/post-pay-counter-pro?utm_source=users_site&utm_medium=options_support_author&utm_campaign=ppcp" title="'.__( 'Go PRO' , 'post-pay-counter').'"><strong>'.__( 'Go PRO' , 'post-pay-counter').'</strong></a>. '.__( 'Try the PRO version: more functions, more stuff!' , 'post-pay-counter').'</li>';
@@ -56,20 +56,20 @@ class PPC_meta_boxes {
         echo '<li style="list-style-image: url(\''.$ppc_global_settings['folder_path'].'style/images/write.png\');">'.__( 'Have a blog or write on some website? Write about the plugin and email me the review!' , 'post-pay-counter').'</li>';
         echo '</ul>';
     }
-    
+
     /**
-     * Displays the metabox "Miscellanea" in the Options page  
+     * Displays the metabox "Miscellanea" in the Options page
      *
      * @access  public
      * @since   2.0
     */
-    
+
     static function meta_box_misc_settings( $post, $current_settings ) {
         global $wp_roles, $ppc_global_settings;
         $current_settings = $current_settings['args'];
-        
+
         echo '<form id="ppc_misc_settings_form" method="post">';
-        
+
 		//Performance tricks
         echo '<div class="ppc_section">';
         echo '<div class="ppc_title">'.__( 'Performance' , 'post-pay-counter').'</div>';
@@ -83,7 +83,7 @@ class PPC_meta_boxes {
         echo '</div>';
         do_action( 'ppc_misc_settings_after_overall_stats', $current_settings ); //retro-compatibility
         do_action( 'ppc_misc_settings_after_performance', $current_settings );
-        
+
         //Admin permissions
         echo '<div class="ppc_section">';
         echo '<div class="ppc_title">'.__( 'Admin permissions' , 'post-pay-counter').'</div>';
@@ -92,53 +92,53 @@ class PPC_meta_boxes {
         echo '</div>';
         echo '</div>';
         do_action( 'ppc_misc_settings_after_admin_permissions', $current_settings );
-		
+
         //Post types to be included in countings
         echo '<div class="ppc_section">';
         echo '<div class="ppc_title">'.__( 'Allowed post types' , 'post-pay-counter').'</div>';
         echo '<div class="main">';
         echo '<p>'.__( 'Choose the post types you would like to be included in countings.', 'post-pay-counter').'</p>';
-        
+
         $all_post_types = get_post_types();
         $allowed_post_types = $current_settings['counting_allowed_post_types'];
-       
+
         foreach ( $all_post_types as $single ) {
             $checked = '';
-            
+
             if( in_array( $single, $allowed_post_types ) )
                 $checked = 'checked="checked"';
-                
+
             echo '<input type="checkbox" name="post_type_'.$single.'" id="post_type_'.$single.'" value="'.$single.'" '.$checked.' />';
             echo '<label for="post_type_'.$single.'">'.ucfirst( $single ).'</label>';
             echo '<br />';
-            
+
         }
-        
+
         echo '</div>';
         echo '</div>';
         do_action( 'ppc_misc_settings_after_allowed_post_types', $current_settings );
-        
+
         //User roles to be included in countings
         echo '<div class="ppc_section">';
         echo '<div class="ppc_title">'.__( 'Allowed user roles' , 'post-pay-counter').'</div>';
         echo '<div class="main">';
         echo '<p>'.__( 'Choose the user roles whose posts you would like to be included in countings.', 'post-pay-counter').'</p>';
-        
+
         foreach( $wp_roles->role_names as $key => $value ) {
             $checked = '';
-            
+
             if( in_array( $key, $current_settings['counting_allowed_user_roles'] ) )
                 $checked = 'checked="checked"';
-            
+
             echo '<input type="checkbox" name="user_role_'.$key.'" id="user_role_'.$key.'" value="'.$key.'" '.$checked.' />';
             echo '<label for="user_role_'.$key.'">'.$value.'</label>';
             echo '<br />';
         }
-        
+
         echo '</div>';
         echo '</div>';
         do_action( 'ppc_misc_settings_after_allowed_user_roles', $current_settings );
-        
+
         //Plugin options page access permissions
         echo '<div class="ppc_section">';
         echo '<div class="ppc_title">'.__( 'Options page permissions' , 'post-pay-counter').'</div>';
@@ -146,21 +146,21 @@ class PPC_meta_boxes {
         echo '<p>'.__( 'Choose the user roles who are allowed to view and edit plugin settings.' , 'post-pay-counter').'</p>';
         foreach( $wp_roles->role_names as $key => $value ) {
 			$checked = '';
-			
+
 			if( in_array( $key, $current_settings['can_see_options_user_roles'] ) )
                 $checked = ' checked="checked"';
-            
+
             echo '<input type="checkbox" name="can_see_options_user_roles_'.$key.'" id="can_see_options_user_roles_'.$key.'" value="'.$key.'"'.@$checked.'>';
             echo '<label for="can_see_options_user_roles_'.$key.'">'.$value.'</label>';
             echo '<br />';
-            
+
             unset( $checked );
         }
-        
+
         echo '</div>';
         echo '</div>';
         do_action( 'ppc_misc_settings_after_options_allowed_user_roles', $current_settings );
-        
+
         //Plugin stats page access permissions
         echo '<div class="ppc_section">';
         echo '<div class="ppc_title">'.__( 'Stats page permissions' , 'post-pay-counter').'</div>';
@@ -168,19 +168,19 @@ class PPC_meta_boxes {
         echo '<p>'.__( 'Choose the user roles who are allowed to view the stats page.' , 'post-pay-counter').'</p>';
         foreach( $wp_roles->role_names as $key => $value ) {
             $checked = '';
-			
+
             if( in_array( $key, $current_settings['can_see_stats_user_roles'] ) )
                 $checked = ' checked="checked"';
-            
+
             echo '<input type="checkbox" name="can_see_stats_user_roles_'.$key.'" id="can_see_stats_user_roles_'.$key.'" value="'.$key.'"'.@$checked.'>';
             echo '<label for="can_see_stats_user_roles_'.$key.'">'.$value.'</label>';
             echo '<br />';
         }
-        
+
         echo '</div>';
         echo '</div>';
         do_action( 'ppc_misc_settings_after_stats_allowed_user_roles', $current_settings );
-        
+
         //Default stats time range
         echo '<div class="ppc_section">';
         echo '<div class="ppc_title">'.__( 'Default stats time range' , 'post-pay-counter').'</div>';
@@ -197,10 +197,10 @@ class PPC_meta_boxes {
         echo '</div>';
         echo '</div>';
         echo '</div>';
-        
+
         do_action( 'ppc_misc_settings_after_default_time_range', $current_settings );
         ?>
-        
+
         <div class="ppc_save_success" id="ppc_misc_settings_success"><?php _e( 'Settings were successfully updated.' , 'post-pay-counter'); ?></div>
         <div class="ppc_save_error" id="ppc_misc_settings_error"></div>
         <div class="ppc_save_settings">
@@ -210,24 +210,24 @@ class PPC_meta_boxes {
         <div class="clear"></div>
         </form>
     <?php }
-    
+
     /**
-     * Displays the metabox "Counting settings" in the Options page  
+     * Displays the metabox "Counting settings" in the Options page
      *
      * @access  public
      * @since   2.0
      * @param   object WP post object
      * @param   array plugin settings
     */
-    
+
     static function meta_box_counting_settings( $post, $current_settings ) {
         global $wp_roles, $ppc_global_settings;
         $current_settings = $current_settings['args'];
-        
+
         echo '<p>'.__( 'Here you can define the criteria which post payments will be computed with.' , 'post-pay-counter').'</p>';
         echo '<form action="" id="ppc_counting_settings_form" method="post">';
 		do_action( 'ppc_counting_settings_before_basic_payment', $current_settings );
-        
+
         //Basic payment
         echo '<div class="ppc_section">';
         echo '<div class="ppc_title">'.__( 'Basic payment' , 'post-pay-counter').'</div>';
@@ -241,7 +241,7 @@ class PPC_meta_boxes {
         echo '</div>';
         echo '</div>';
         do_action( 'ppc_counting_settings_after_basic_payment', $current_settings );
-        
+
         //Words payment
         echo '<div class="ppc_section">';
         echo '<div class="ppc_title">'.__( 'Words Payment' , 'post-pay-counter').'</div>';
@@ -258,7 +258,7 @@ class PPC_meta_boxes {
         echo '</div>';
         echo '</div>';
         do_action( 'ppc_counting_settings_after_words_payment', $current_settings );
-        
+
         //Visits payment
         echo '<div class="ppc_section">';
         echo '<div class="ppc_title">'.__( 'Visits Payment' , 'post-pay-counter').'</div>';
@@ -285,7 +285,7 @@ class PPC_meta_boxes {
         echo '</div>';
         echo '</div>';
         do_action( 'ppc_counting_settings_after_visits_payment', $current_settings );
-        
+
         //Images payment
         echo '<div class="ppc_section">';
         echo '<div class="ppc_title">'.__( 'Images Payment' , 'post-pay-counter').'</div>';
@@ -304,7 +304,7 @@ class PPC_meta_boxes {
         echo '</div>';
         echo '</div>';
         do_action( 'ppc_counting_settings_after_images_payment', $current_settings );
-        
+
         //Comments payment
         echo '<div class="ppc_section">';
         echo '<div class="ppc_title">'.__( 'Comments Payment' , 'post-pay-counter').'</div>';
@@ -321,7 +321,7 @@ class PPC_meta_boxes {
         echo '</div>';
         echo '</div>';
         do_action( 'ppc_counting_settings_after_comments_payment', $current_settings );
-        
+
         //Total payment
         echo '<div class="ppc_section">';
         echo '<div class="ppc_title">'.__( 'Total payment' , 'post-pay-counter').'</div>';
@@ -331,7 +331,7 @@ class PPC_meta_boxes {
         echo '</div>';
         echo '</div>';
         do_action( 'ppc_counting_settings_after_total_payment', $current_settings );
-        
+
         //Misc
         echo '<div class="ppc_section">';
         echo '<div class="ppc_title">'.__( 'Miscellanea counting settings' , 'post-pay-counter').'</div>';
@@ -343,7 +343,7 @@ class PPC_meta_boxes {
         echo '</div>';
         echo '</div>';
         do_action( 'ppc_counting_settings_after_misc', $current_settings );
-        
+
         echo '<div class="ppc_save_success" id="ppc_counting_settings_success">'.__( 'Settings were successfully updated.' , 'post-pay-counter').'</div>';
         echo '<div class="ppc_save_error" id="ppc_counting_settings_error"></div>';
         echo '<div class="ppc_save_settings">';
@@ -354,29 +354,29 @@ class PPC_meta_boxes {
         echo '<div class="clear"></div>';
         echo '</form>';
    }
-    
+
     /**
-     * Displays the metabox "Permissions" in the Options page  
+     * Displays the metabox "Permissions" in the Options page
      *
      * @access  public
      * @since   2.0
      * @param   object WP post object
      * @param   array plugin settings
     */
-    
+
     static function meta_box_permissions( $post, $current_settings ) {
         global $ppc_global_settings;
         $current_settings = $current_settings['args'];
-        
+
         echo '<form action="" id="ppc_permissions_form" method="post">';
         echo '<p>'.__( 'Just a few fields to help you preventing users from seeing things they should not see. Administrators are subject to the same permissions; if you wish they did not, personalize their user settings.' , 'post-pay-counter').'</p>';
         echo PPC_HTML_functions::echo_p_field( __( 'Users can see other users\' general stats' , 'post-pay-counter'), $current_settings['can_see_others_general_stats'], 'checkbox', 'can_see_others_general_stats', __( 'If unchecked, users will only be able to see their stats in the general page. Other users\' names, posts and pay counts will not be displayed.' , 'post-pay-counter') );
         echo PPC_HTML_functions::echo_p_field( __( 'Users can see other users\' detailed stats' , 'post-pay-counter'), $current_settings['can_see_others_detailed_stats'], 'checkbox', 'can_see_others_detailed_stats', __( 'If unchecked, users will not be able to see other users\' detailed stats but will still able to see general ones. ' , 'post-pay-counter') );
         echo PPC_HTML_functions::echo_p_field( __( 'Let users know if other users have personalized settings' , 'post-pay-counter'), $current_settings['can_see_countings_special_settings'], 'checkbox', 'can_see_countings_special_settings', __( 'If you personalize settings by user, do not overlook this. If unchecked, users will not see personalized settings in countings, they will believe everybody is using their settings (or general settings). Anyway, users will see their own personalized settings, if they have them.' , 'post-pay-counter') );
-        
+
 		do_action( 'ppc_permissions_settings_after_default', $current_settings );
         ?>
-        
+
         <div class="ppc_save_success" id="ppc_permissions_success"><?php _e( 'Settings were successfully updated.' , 'post-pay-counter'); ?></div>
         <div class="ppc_save_error" id="ppc_permissions_error"></div>
         <div class="ppc_save_settings">
@@ -387,32 +387,32 @@ class PPC_meta_boxes {
         <div class="clear"></div>
         </form>
     <?php }
-    
+
     /**
-     * Displays the metabox "Import/Export Settings" in the Options page  
+     * Displays the metabox "Import/Export Settings" in the Options page
      *
      * @access  public
      * @since   2.2
      * @param   object WP post object
      * @param   array plugin settings
     */
-    
+
     static function meta_box_import_export_settings( $post, $current_settings ) {
         global $ppc_global_settings;
         $current_settings = $current_settings['args'];
         $userid = $current_settings['userid'];
         $current_settings = PPC_general_functions::get_settings( $current_settings['userid'], false, false );
-        
+
         echo '<form action="" id="ppc_import_export_form" method="post">';
         echo '<p>'.sprintf( __( 'Have more than website but use the same settings? You can transfer settings from one installation of the plugin to another. All addons settings will be taken as well. It works both for general and for user personalized settings, depending on what page you are. If you want to export this website\'s settings, copy the code below. If you want to import another website\'s settings, paste its settings code in the field below and click %s. Once you import settings, it will not be possible to go back to the previous settings. Do not edit settings code unless you know what base64 and serialization are and are sure of what you are doing!', 'post-pay-counter' ), __( 'Import settings', 'post-pay-counter' ) ).'</p>';
-        
+
         echo '<textarea onclick="this.focus();this.select()" style="width: 100%; height: 100px;" name="ppc_import_settings_content" id="ppc_import_settings_content">'.base64_encode( serialize( apply_filters( 'ppc_export_settings_content', $current_settings ) ) ).'</textarea>';
         echo '<div class="clear"></div>';
         echo '<br />';
-        
+
         do_action( 'ppc_import_export_settings_after_default', $current_settings );
         ?>
-        
+
         <div class="ppc_save_success" id="ppc_import_settings_success"><?php _e( 'Settings were successfully updated.' , 'post-pay-counter'); ?></div>
         <div class="ppc_save_error" id="ppc_import_settings_error"></div>
         <div class="ppc_save_settings">
@@ -423,82 +423,82 @@ class PPC_meta_boxes {
         <div class="clear"></div>
         </form>
     <?php }
-    
+
     /**
-     * Displays the metabox "Personalize settings" in the Options page  
+     * Displays the metabox "Personalize settings" in the Options page
      *
      * @access  public
      * @since   2.0
      * @param   object WP post object
      * @param   array plugin settings
     */
-    
+
     static function meta_box_personalize_settings( $post, $current_settings ) {
         global $wpdb, $ppc_global_settings, $wp_roles;
         $current_settings = $current_settings['args'];
-        
-        $already_personalized = new WP_User_Query( array( 
+
+        $already_personalized = new WP_User_Query( array(
             'meta_key' => $wpdb->prefix.$ppc_global_settings['option_name'],
             'meta_value' => '',
             'meta_compare' => '!=',
             'count_total' => true,
-            'fields' => array( 
-                'ID', 
-                'display_name' 
+            'fields' => array(
+                'ID',
+                'display_name'
             )
         ) );
-        
+
         if( $already_personalized->total_users > 0 ) {
             echo '<p>'.__( 'The following users have different settings, click to edit them.' , 'post-pay-counter').'</p>';
             echo '<div>';
-            
-            $n = 0; 
+
+            $n = 0;
             foreach( $already_personalized->results as $single ) {
                 if( $n % 2 == 0 )
                     echo '<span style="float: left; width: 50%;">';
                 else
                     echo '<span style="float: right; width: 50%;">';
-                
+
                 echo '<a href="'.admin_url( $ppc_global_settings['options_menu_link'].'&amp;userid='.$single->ID ).'" title="'.__( 'View and edit special settings for user' , 'post-pay-counter').' \''.htmlspecialchars( $single->display_name ).'\'">'.$single->display_name.'</a>
                 </span>';
-                
+
                 $n++;
             }
-            
+
             echo '<div class="clear"></div>';
             echo '</div>';
-            
+
         } else {
             echo '<p>'.__( 'No users have different settings. Learn how to personalize settings from the section below.' , 'post-pay-counter').'</p>';
         }
-        
+
         /**
 		 * Fires after the list of users who already have personalized settings.
 		 *
 		 * @since	2.518
 		 */
-        
+
         do_action( 'ppc_personalize_settings_box_after_already_personalized_users' );
-        
+
         echo '<p><strong>'.__( 'Personalize single user settings' , 'post-pay-counter').'</strong><br />';
         echo __( 'Some people\'s posts are better than somebody others\'? You can adjust settings for each user, so that they will have different permissions and their posts will be paid differently.' , 'post-pay-counter').'</p>';
         echo '<p>'.__( 'First, select a user role. You will see all users from that role: clicking on one you will be headed to the settings page for that specific user.' , 'post-pay-counter').'</p>';
         echo '<div id="ppc_personalize_user_roles">';
         echo '<p><strong>'.__( 'User roles' , 'post-pay-counter').'</strong><br />';
-        
+
         $n = 0;
         foreach( $wp_roles->role_names as $role => $role_name ) {
             if( $n % 2 == 0 )
                 echo '<span style="float: left; width: 50%;">';
             else
                 echo '<span style="float: right; width: 50%;">';
-			
+
             echo '<a href="" title="'.$role_name.'" id="'.$role.'" class="ppc_personalize_roles">'.$role_name.'</a>';
             echo '</span>';
-            
+
             $n++;
         }
-        
+
         echo '</p>';
         echo '<div class="clear"></div>';
         echo '</div>';
@@ -512,27 +512,27 @@ class PPC_meta_boxes {
         echo '</div>';
         echo '<div class="clear"></div>';
     }
-    
+
     /**
-     * Displays the metabox "Error log" in the Options page  
+     * Displays the metabox "Error log" in the Options page
      *
      * @access  public
      * @since   2.21
      * @param   object WP post object
      * @param   array plugin settings
     */
-    
+
     static function meta_box_error_log( $post, $current_settings ) {
         global $ppc_global_settings;
         $current_settings = $current_settings['args'];
-        
+
         $errors = get_option( $ppc_global_settings['option_errors'], array() );
         ?>
-		
+
         <p><?php printf( __( 'Errors which may happen during the plugin execution are logged and showed here. If something is not working properly, please send this list along with your support request. The log is cleared every now and then, but you can empty it manually with the button below. If you do not want errors to be logged at all, see the %1$sFAQ%2$s.', 'post-pay-counter' ), '<a href="http://wordpress.org/plugins/post-pay-counter/faq/" title="'.__( 'Frequently asked questions' ).'">', '</a>' ); ?></p>
         <textarea readonly="readonly" onclick="this.focus();this.select()" style="width: 100%; height: 150px;" name="ppc_error_log" title="<?php _e( 'To copy the error log, click below then press Ctrl + C (PC) or Cmd + C (Mac).', 'post-pay-counter' ); ?>"><?php
-        
-		
+
+
         if( is_array( $errors) AND count( $errors ) > 0 ) {
             foreach( $errors as $error ) {
                 echo date_i18n( get_option( 'date_format' ), $error['time'] ).' '.date( 'H:i:s', $error['time'] )."\n";
@@ -541,22 +541,22 @@ class PPC_meta_boxes {
         } else {
             _e( 'That\'s great, nothing has gone wrong so far!', 'post-pay-counter' );
         }
-        
+
 		?></textarea>
-        
+
         <br />
         <input type="button" name="ppc_clear_error_log" id="ppc_clear_error_log" value="<?php _e( 'Clear error log', 'post-pay-counter' ); ?>" class="button-secondary" style="float: right; margin-top: 5px;" />
-        
+
         <div class="ppc_save_success" id="ppc_error_log_success"><?php _e( 'Log was successfully cleared.' , 'post-pay-counter'); ?></div>
         <div class="ppc_save_error" id="ppc_error_log_error"></div>
         <div class="ppc_save_settings">
         <img src="<?php echo $ppc_global_settings['folder_path'].'style/images/ajax-loader.gif'; ?>" title="<?php _e( 'Loading' , 'post-pay-counter'); ?>" alt="<?php _e( 'Loading' , 'post-pay-counter'); ?>" class="ppc_ajax_loader" id="ppc_error_log_ajax_loader" />
         </div>
         <div class="clear"></div>
-        
+
         <?php
     }
-	
+
 	/**
      * Displays the metabox "License" in the Options page
      *
@@ -565,37 +565,43 @@ class PPC_meta_boxes {
      * @param   $post object WP post object
 	 * @param	$current_settings plugin settings
      */
-	
     static function meta_box_license( $post, $current_settings ) {
         global $ppc_global_settings;
         $current_settings = $current_settings['args'];
-        
+
         //License cron check
         if( ! wp_next_scheduled( 'ppcp_cron_check_activation' ) )
 			wp_schedule_event( time(), 'weekly2', 'ppcp_cron_check_activation' );
         ?>
-        
+
         <p><?php printf( __( 'Whatever of our %1$splenty of addons%2$s you may have bought, this is the place to activate your license. Make sure you have already uploaded the addon files, activated it, and paste the license key you have received by email in the field below.', 'ppc' ), '<a target="_blank" href="'.admin_url( add_query_arg( array( 'page' => 'ppc-addons' ), 'admin.php' ) ).'" title="Post Pay Counter Addons">', '</a>' ); ?></p>
 		<p><em><?php _e( 'To activate your license key, the following data will be sent to the activation page: license key, website URL, blog language, plugin version. Twice a month the plugin will call home to check that your license is genuine and valid without asking for permission.', 'ppc'); ?></em></p>
         <p>
         <input type="text" name="ppc_license_key" id="ppc_license_key" size="40" />
         <input type="button" name="ppc_license_key_submit" id="ppc_license_key_submit" value="<?php _e('Submit', 'ppc'); ?>" disabled="disabled" class="button-secondary" />
         </p>
-        
+
+		<div class="ppc_save_success" id="ppc_license_success"><?php _e( 'Your license was successfully activated. Reload this page and enjoy!', 'ppc'); ?></div>
+        <div class="ppc_save_error" id="ppc_license_error"></div>
+        <div class="ppc_save_settings">
+        <img src="<?php echo $ppc_global_settings['folder_path'].'style/images/ajax-loader.gif'; ?>" title="<?php _e( 'Loading', 'ppc'); ?>" alt="<?php _e( 'Loading', 'ppc'); ?>" class="ppc_ajax_loader" id="ppc_license_ajax_loader" />
+        </div>
+        <div class="clear"></div>
+
         <div class="ppc_section">
         <div class="ppc_title"><?php _e( 'Your licenses' , 'ppc' ); ?></div>
-        
+
         <?php
         $licenses = array();
         $licenses = apply_filters( 'ppcp_license_display_options_page', $licenses );
-        
+
         if( count( $licenses ) == 0 ) {
         ?>
-        
+
         <p><?php _e( 'No licenses to display.', 'ppc'); ?></p>
-        
+
         <?php } else { ?>
-        
+
         <p><?php _e( 'Your licenses status is listed below, along with their details. You may want to deactivate one to use it on other websites (but you won\'t be able to use its features on this site anymore).', 'ppc'); ?></p>
         <table class="widefat fixed">
         	<thead>
@@ -607,7 +613,7 @@ class PPC_meta_boxes {
         		</tr>
         	</thead>
         	<tbody>
-        
+
             <?php
             foreach( $licenses as $single ) {
                 if( ! isset( $single['expiration'] ) )
@@ -618,35 +624,29 @@ class PPC_meta_boxes {
                     $status = '<span style="color: orange;">'.sprintf( __( 'Anxious - In expiration | %1$sRenew%2$s', 'ppc' ), '<a target="_blank" href="'.$single['renewal_url'].'" title="'.__( 'Renew!', 'ppc' ).'">', '</a>' ).'</span>';
                 else if( $single['expiration'] - current_time( 'timestamp' ) > 3888000 )
                     $status = '<span style="color: green;">'.__( 'Astonishingly happy', 'ppc' ).'</span>';
-                
+
                 if( ! $single['expiration'] )
                     $expiration = 'N.A.';
-                else 
+                else
                     $expiration = date_i18n( get_option( 'date_format' ), $single['expiration'] );
                 ?>
-                
+
                 <tr>
                     <td><?php echo $single['name']; ?></td>
                     <td><?php echo $status ?></td>
                     <td><?php echo $expiration ?></td>
                     <td><input type="button" name="ppc_license_deactivate" accesskey="<?php echo $single['slug']; ?>" class="button-secondary ppc_license_deactivate" id="ppc_license_deactivate" value="<?php _e( 'Deactivate license', 'ppc'); ?>" /></td>
                 </tr>
-                
+
             <?php } ?>
-        
+
             </tbody>
         </table>
-        
+
         <?php } ?>
-        
+
         </div>
-        <div class="ppc_save_success" id="ppc_license_success"><?php _e( 'Your license was successfully activated. Reload this page and enjoy!', 'ppc'); ?></div>
-        <div class="ppc_save_error" id="ppc_license_error"></div>
-        <div class="ppc_save_settings">
-        <img src="<?php echo $ppc_global_settings['folder_path'].'style/images/ajax-loader.gif'; ?>" title="<?php _e( 'Loading', 'ppc'); ?>" alt="<?php _e( 'Loading', 'ppc'); ?>" class="ppc_ajax_loader" id="ppc_license_ajax_loader" />
-        </div>
-        <div class="clear"></div>
-        
+
         <?php
     }
 }
