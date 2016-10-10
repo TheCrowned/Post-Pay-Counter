@@ -148,10 +148,27 @@ class PPC_options_fields {
      * @param   $opt_1 string the value of the first option
      * @param   $opt_2 string the value of the second option
      * @param   $opt_3 string optional the value of the third option
+     * @param	$options_array array optional allows to handle N options
      * @return  array the 2/3 possibilities along with their set values
      */
     
-    static function get_radio_value( &$radio, $opt_1, $opt_2, $opt_3 = FALSE ) {
+    static function get_radio_value( &$radio, $opt_1, $opt_2, $opt_3 = FALSE, $options_array = FALSE ) {
+
+		//New method: handles more than 3 options
+		if( $options_array !== false ) {
+			$return = array();
+			foreach( $options_array as $single ) {
+				if( $radio == $single )
+					$return[$single] = 1;
+				else
+					$return[$single] = 0;
+			}
+
+			$radio = null;
+			return $return;
+		}
+
+		//OLD STUFF for backwards compatibility
         $return = array(
             $opt_1 => 0,
             $opt_2 => 0,
