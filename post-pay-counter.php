@@ -213,7 +213,7 @@ class post_pay_counter {
     function on_load_stats_page() {
         global $ppc_global_settings;
 
-		$general_settings = PPC_general_functions::get_settings( 'general' );
+		//$general_settings = PPC_general_functions::get_settings( 'general' );
 
 		//Initiliaze counting types
 		$ppc_global_settings['counting_types_object'] = new PPC_counting_types();
@@ -232,13 +232,15 @@ class post_pay_counter {
         else
             $first_available_post_time = strtotime( $first_available_post->posts[0]->post_date );
 
+        $ppc_global_settings['first_available_post_time'] = $first_available_post_time;
+
 		/*$args = array(
             'post_type' => $general_settings['counting_allowed_post_types'],
 			'posts_per_page' => 1,
             'orderby' => 'post_date',
             'order' => 'DESC'
         );*/
-        $last_available_post = new WP_Query( $args );
+        //$last_available_post = new WP_Query( $args );
 
 		//if( $last_available_post->found_posts == 0 )
             $last_available_post = current_time( 'timestamp' ); //Pub Bonus needs to select even days without posts in the future, maybe there are publishings
@@ -260,7 +262,9 @@ class post_pay_counter {
             'time_start_this_week' => date( 'Y-m-d', strtotime( '00:00:00' ) - ( ( date( 'N' )-1 )*24*60*60 ) ),
             'time_end_this_week' => date( 'Y-m-d', strtotime( '23:59:59' ) ),
             'time_start_last_month' => date( 'Y-m-d', strtotime( '00:00:00' ) - ( ( date( 'j' )-1 + cal_days_in_month( CAL_GREGORIAN, (date( 'm' ) - 1), date( 'Y' ) ) )*24*60*60 ) ),
-            'time_end_last_month' => date( 'Y-m-d', strtotime( '23:59:59' ) - ( date( 'j' )*24*60*60 ) )
+            'time_end_last_month' => date( 'Y-m-d', strtotime( '23:59:59' ) - ( date( 'j' )*24*60*60 ) ),
+            'time_start_all_time' => $first_available_post_time,
+            'time_end_all_time' => date( 'Y-m-d', strtotime( '23:59:59' ) )
         ) );
 
     }
@@ -600,7 +604,7 @@ class post_pay_counter {
         if( ( isset( $get_and_post['tstart'] ) AND ( ! is_numeric( $get_and_post['tstart'] ) OR $get_and_post['tstart'] < 0 ) )
         OR ( isset( $get_and_post['tend'] ) AND ( ! is_numeric( $get_and_post['tend'] ) OR $get_and_post['tend'] < 0 ) ) ) {
             $get_and_post['tstart'] = strtotime( $get_and_post['tstart'].' 00:00:01' );
-            $get_and_post['tend']   = ( strtotime( $get_and_post['tend'].' 23:59:59' ) );
+            $get_and_post['tend']   = strtotime( $get_and_post['tend'].' 23:59:59' );
         } else if ( ! isset( $get_and_post['tstart'] ) OR ! isset( $get_and_post['tend'] ) ) {
             $get_and_post['tstart'] = $ppc_global_settings['stats_tstart'];
             $get_and_post['tend']   = $ppc_global_settings['stats_tend'];

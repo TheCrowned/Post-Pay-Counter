@@ -259,7 +259,10 @@ class PPC_general_functions {
             $ppc_global_settings['stats_tend'] = strtotime( '23:59:59' );
         } else if( $settings['default_stats_time_range_last_month'] ) {
             $ppc_global_settings['stats_tstart'] = strtotime( '00:00:00' ) - ( ( date( 'j' )-1 + cal_days_in_month( CAL_GREGORIAN, date( 'm' ) - 1, date( 'Y' ) ) )*24*60*60 );
-            $ppc_global_settings['stats_end'] = strtotime( '23:59:59' ) - ( date( 'j' )*24*60*60 ); 
+            $ppc_global_settings['stats_tend'] = strtotime( '23:59:59' ) - ( date( 'j' )*24*60*60 ); 
+        } else if( $settings['default_stats_time_range_all_time'] ) {
+            $ppc_global_settings['stats_tstart'] = $ppc_global_settings['first_available_post_time'];
+            $ppc_global_settings['stats_tend'] = strtotime( '23:59:59' );
         } else if( $settings['default_stats_time_range_custom'] ) {
             $ppc_global_settings['stats_tstart'] = strtotime( '00:00:00' ) - ( $settings['default_stats_time_range_custom_value']*24*60*60 );
             $ppc_global_settings['stats_tend'] = strtotime( '23:59:59' );
@@ -280,10 +283,9 @@ class PPC_general_functions {
 	}
 }
 
+//Compatibility for people who lack the PHP calendar plugin
 if( ! function_exists( 'cal_days_in_month' ) ) { 
     function cal_days_in_month( $calendar, $month, $year ) { 
         return date( 't', mktime( 0, 0, 0, $month, 1, $year ) ); 
     } 
 } 
-//if (!defined('CAL_GREGORIAN')) 
-    //define('CAL_GREGORIAN', 1); 
