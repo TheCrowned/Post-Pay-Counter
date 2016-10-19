@@ -213,7 +213,7 @@ class post_pay_counter {
     function on_load_stats_page() {
         global $ppc_global_settings;
 
-		//$general_settings = PPC_general_functions::get_settings( 'general' );
+		$general_settings = PPC_general_functions::get_settings( 'general' );
 
 		//Initiliaze counting types
 		$ppc_global_settings['counting_types_object'] = new PPC_counting_types();
