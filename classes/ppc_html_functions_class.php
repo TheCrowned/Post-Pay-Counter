@@ -381,7 +381,7 @@ class PPC_HTML_functions {
 				//Bit entangled due to retro-compatibility with PRO versions <= 1.5.8.3, when this function echoed directly (thus using actions and not filters)
 				if( $echo_or_return == "echo" ) {
 					echo $html;
-					$html ="";
+					$html = "";
 					do_action( 'ppc_general_stats_'.$filter_name.'_after_each_default', $author, $formatted_stats, $raw_stats );
 				}
 

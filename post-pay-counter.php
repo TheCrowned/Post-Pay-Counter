@@ -46,6 +46,7 @@ require_once( 'classes/ppc_notifications_class.php' );
 require_once( 'classes/ppc_counting_types_class.php' );
 require_once( 'classes/ppc_license_class.php' );
 require_once( 'classes/ppc_autoupdate_class.php' );
+require_once( 'classes/ppc_wp_list_table_authors_class.php' );
 
 define( 'PPC_DEBUG_SHOW', false );
 define( 'PPC_DEBUG_LOG', true );
@@ -723,7 +724,11 @@ class post_pay_counter {
 	<form action="#" method="post" id="ppc_stats">
 
 			<?php
-			echo PPC_HTML_functions::get_html_stats( $stats['formatted_stats'], $stats['raw_stats'] );
+			//echo PPC_HTML_functions::get_html_stats( $stats['formatted_stats'], $stats['raw_stats'] );
+
+			$table = new Post_Pay_Counter_Authors_List_Table( $stats );
+			$table->prepare_items();
+			$table->display();
 
 			/**
 			 * Fires after the *general* stats page form and table been output.

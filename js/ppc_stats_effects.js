@@ -61,7 +61,7 @@ jQuery(document).ready(function() {
 		}
 			
     });
-    
+
     //Makes sure datepicker fields are displayed if custom is the default choice
     jQuery('#ppc-time-range').trigger('change');
 });
