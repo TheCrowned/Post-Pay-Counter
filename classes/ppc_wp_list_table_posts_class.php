@@ -25,13 +25,14 @@ if(!class_exists('WP_List_Table')){
  * then call $yourInstance->prepare_items() to handle any data manipulation, then
  * finally call $yourInstance->display() to render the table to the page.
  */
-class Post_Pay_Counter_Authors_List_Table extends WP_List_Table {
+class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
 
 	var $data; //hold formatted stats
 	var $raw_data; //holds raw stats
 	var $columns; //holds formatted stats columns
 	var $perm; //holds PPC_permissions instance
-	var $current_author_id; //holds current author id in table tr
+	var $current_post_id; //holds current post id in table tr
+	var $author_id; //holds author id (owner of these posts)
 
     /** ************************************************************************
      * REQUIRED. Set up a constructor that references the parent constructor. We
@@ -48,8 +49,8 @@ class Post_Pay_Counter_Authors_List_Table extends WP_List_Table {
         ) );
 
 		$this->perm = new PPC_permissions();
-		
-		$this->data = $stats_data['formatted_stats']['stats'];
+
+		list( $this->author_id, $this->data ) = each( $stats_data['formatted_stats']['stats'] );
 		$this->columns = $stats_data['formatted_stats']['cols'];
 		$this->raw_data = $stats_data['raw_stats'];
     }
@@ -77,54 +78,64 @@ class Post_Pay_Counter_Authors_List_Table extends WP_List_Table {
      * @return string Text or HTML to be placed inside the column <td>
      **************************************************************************/
     function column_default($item, $column_name) {
-		global $current_user;
+		global $current_user, $ppc_global_settings;
 
-		if( $column_name == 'author_id' AND isset( $item[$column_name] ) )
-			$this->current_author_id = $item[$column_name];
-		
+		$author = $this->author_id;
+		$general_settings = PPC_general_functions::get_settings( 'general' );
+		$counting_types = $ppc_global_settings['counting_types_object']->get_active_counting_types( 'post', $author );
+
+		if( $column_name == 'post_id' )
+			$this->current_post_id = $item[$column_name];
+
+		$post = $this->raw_data[$author][$this->current_post_id];
+
 		if( isset( $item[$column_name] ) ) {
 			$field_value = $item[$column_name];
-
-			//Cases in which other stuff needs to be added to the output
+			
 			switch( $column_name ) {
-				case 'author_name':
-					if( ( $this->perm->can_see_others_detailed_stats() OR $this->current_author_id == $current_user->ID ) )
-						$field_value = '<a href="'.PPC_general_functions::get_the_author_link( $this->current_author_id ).'" title="'.__( 'Go to detailed view' , 'post-pay-counter').'">'.$field_value.'</a>';
+				//Attach link to post title: if user can edit posts, attach edit link (faster), if not post permalink (slower)
+				case 'post_title':
+
+					if( $general_settings['stats_display_edit_post_link'] ) {
+						$post_link = get_edit_post_link( $post->ID );
+						if( $post_link == '' )
+							$post_link = get_permalink( $post->ID );
+
+						$field_value = '<a href="'.$post_link.'" title="'.$post->post_title.'">'.$item[$column_name].'</a>';
+					}
+
 					break;
 
-				case 'author_total_payment':
-					//Avoid tooltip non-isset notice
-					if( isset( $this->raw_data[$this->current_author_id]['total']['ppc_misc']['tooltip_normal_payment'] ) )
-						$tooltip = $this->raw_data[$this->current_author_id]['total']['ppc_misc']['tooltip_normal_payment'];
-					else
-						$tooltip = '';
-
-						$field_value = '<abbr title="'.$tooltip.'" class="ppc_payment_column">'.PPC_general_functions::format_payment( $field_value ).'</abbr>';
+				case 'post_total_payment':
+					$tooltip = PPC_counting_stuff::build_payment_details_tooltip( $post->ppc_count['normal_count'], $post->ppc_payment['normal_payment'], $counting_types );
+					$field_value = '<abbr title="'.$tooltip.'" class="ppc_payment_column">'.PPC_general_functions::format_payment( $item[$column_name] ).'</abbr>';
 					break;
 
-				case 'author_words':
-				case 'author_visits':
-				case 'author_images':
-				case 'author_comments':
-					$label_field_name = substr($column_name, 7, strlen($column_name));
-					if($this->raw_data[$this->current_author_id]['total']['ppc_count']['normal_count'][$label_field_name]['real'] != $this->raw_data[$this->current_author_id]['total']['ppc_count']['normal_count'][$label_field_name]['to_count'] )
-						$field_value = '<abbr title="Total is '.$this->raw_data[$this->current_author_id]['total']['ppc_count']['normal_count'][$label_field_name]['real'].'&#13;'.__( 'Displayed is what you\'ll be paid for.', 'post-pay-counter' ).'" class="ppc_count_column">'.$field_value.'</abbr>';
+				case 'post_words':
+				case 'post_visits':
+				case 'post_images':
+				case 'post_comments':
+					$label_field_value = substr( $column_name, 5, strlen( $column_name ) );
+					if( $post->ppc_count['normal_count'][$label_field_value]['real'] != $post->ppc_count['normal_count'][$label_field_value]['to_count'] )
+						$field_value = '<abbr title="'.sprintf( __( 'Total is %1$s. %2$s Displayed is what you\'ll be paid for.', 'post-pay-counter' ), $post->ppc_count['normal_count'][$label_field_value]['real'], '&#13;' ).'" class="ppc_count_column">'.$post_stats[$column_name].'</abbr>';
+
 					break;
 			}
 
-			$field_value = apply_filters( 'ppc_general_stats_html_each_field_value', $field_value, $column_name, $this->raw_data[$this->current_author_id] );
+			$field_value = apply_filters( 'ppc_author_stats_html_each_field_value', $field_value, $column_name, $post );
 
 		} else {
+
 			//Retrocompatibility for PRO HTML columns added directly to table
 			ob_start();
-			do_action( 'ppc_general_stats_html_after_each_default', $this->current_author_id, $this->data, $this->raw_data );
+			do_action( 'ppc_author_stats_html_after_each_default', $author, $this->data, $post );
 			$added_items = ob_get_clean();
 			$added_items = array_filter( explode( '</td>', $added_items ) );
 
-			if( $column_name == 'author_pay_field' )
+			if( $column_name == 'post_pay_field' )
 				$field_value = substr( $added_items[0], 4 );
-			else if( $column_name == 'author_payment_history' )
-				$field_value = substr( $added_items[1], 35 );
+			else if( $column_name == 'post_payment_history' )
+				$field_value = substr( $added_items[1], 33 );
 			else		
 				$field_value = apply_filters( 'ppc_general_stats_each_field_empty_value', 'N.A.', $column_name ).'</td>';
 		}
@@ -207,13 +218,13 @@ class Post_Pay_Counter_Authors_List_Table extends WP_List_Table {
 
 		//Retrocompatibility for PRO HTML columns added directly to table
 		ob_start();
-		do_action( 'ppc_general_stats_html_cols_after_default' );
+		do_action( 'ppc_author_stats_html_cols_after_default' );
 		$added_cols = ob_get_clean();
 		$added_cols = array_filter( explode( '</th>', $added_cols ) );
 
 		if( ! empty( $added_cols ) ) {
-			$columns['author_pay_field'] = substr( $added_cols[0], 16 );
-			$columns['author_payment_history'] = substr( $added_cols[1], 16 );
+			$columns['post_pay_field'] = substr( $added_cols[0], 16 );
+			$columns['post_payment_history'] = substr( $added_cols[1], 16 );
 		}
 		
         return $columns;
