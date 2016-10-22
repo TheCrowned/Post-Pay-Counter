@@ -131,40 +131,7 @@ class Post_Pay_Counter_Authors_List_Table extends WP_List_Table {
 
 		return $field_value;
     }
-
-
-    /** ************************************************************************
-     * Recommended. This is a custom column method and is responsible for what
-     * is rendered in any column with a name/slug of 'title'. Every time the class
-     * needs to render a column, it first looks for a method named
-     * column_{$column_title} - if it exists, that method is run. If it doesn't
-     * exist, column_default() is called instead.
-     *
-     * This example also illustrates how to implement rollover actions. Actions
-     * should be an associative array formatted as 'slug'=>'link html' - and you
-     * will need to generate the URLs yourself. You could even ensure the links
-     *
-     *
-     * @see WP_List_Table::::single_row_columns()
-     * @param array $item A singular item (one full row's worth of data)
-     * @return string Text to be placed inside the column <td> (movie title only)
-     **************************************************************************/
-    function column_title($item){
-
-        //Build row actions
-        $actions = array(
-            'edit'      => sprintf('<a href="?page=%s&action=%s&movie=%s">Edit</a>',$_REQUEST['page'],'edit',$item['ID']),
-            'delete'    => sprintf('<a href="?page=%s&action=%s&movie=%s">Delete</a>',$_REQUEST['page'],'delete',$item['ID']),
-        );
-
-        //Return the title contents
-        return sprintf('%1$s <span style="color:silver">(id:%2$s)</span>%3$s',
-            /*$1%s*/ $item['title'],
-            /*$2%s*/ $item['ID'],
-            /*$3%s*/ $this->row_actions($actions)
-        );
-    }
-
+    
 
     /** ************************************************************************
      * REQUIRED if displaying checkboxes or using bulk actions! The 'cb' column

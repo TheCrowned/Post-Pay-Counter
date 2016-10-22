@@ -125,7 +125,6 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
 			$field_value = apply_filters( 'ppc_author_stats_html_each_field_value', $field_value, $column_name, $post );
 
 		} else {
-
 			//Retrocompatibility for PRO HTML columns added directly to table
 			ob_start();
 			do_action( 'ppc_author_stats_html_after_each_default', $author, $this->data, $post );
@@ -141,39 +140,6 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
 		}
 
 		return $field_value;
-    }
-
-
-    /** ************************************************************************
-     * Recommended. This is a custom column method and is responsible for what
-     * is rendered in any column with a name/slug of 'title'. Every time the class
-     * needs to render a column, it first looks for a method named
-     * column_{$column_title} - if it exists, that method is run. If it doesn't
-     * exist, column_default() is called instead.
-     *
-     * This example also illustrates how to implement rollover actions. Actions
-     * should be an associative array formatted as 'slug'=>'link html' - and you
-     * will need to generate the URLs yourself. You could even ensure the links
-     *
-     *
-     * @see WP_List_Table::::single_row_columns()
-     * @param array $item A singular item (one full row's worth of data)
-     * @return string Text to be placed inside the column <td> (movie title only)
-     **************************************************************************/
-    function column_title($item){
-
-        //Build row actions
-        $actions = array(
-            'edit'      => sprintf('<a href="?page=%s&action=%s&movie=%s">Edit</a>',$_REQUEST['page'],'edit',$item['ID']),
-            'delete'    => sprintf('<a href="?page=%s&action=%s&movie=%s">Delete</a>',$_REQUEST['page'],'delete',$item['ID']),
-        );
-
-        //Return the title contents
-        return sprintf('%1$s <span style="color:silver">(id:%2$s)</span>%3$s',
-            /*$1%s*/ $item['title'],
-            /*$2%s*/ $item['ID'],
-            /*$3%s*/ $this->row_actions($actions)
-        );
     }
 
 
@@ -209,10 +175,9 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
      * @return array An associative array containing column information: 'slugs'=>'Visible Titles'
      **************************************************************************/
     function get_columns(){
-        $columns = array(
+        //$columns = array(
             //'cb'        => '<input type="checkbox" />', //Render a checkbox instead of text
-            'title'     => 'Title'
-        );
+        //);
 	
 		$columns = $this->columns;
 
@@ -247,12 +212,15 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
      **************************************************************************/
     function get_sortable_columns() {
 
-		return array();
+		//return array();
 		
         $sortable_columns = array(
-            'title'     => array('title',false),     //true means it's already sorted
-            'rating'    => array('rating',false),
-            'director'  => array('director',false)
+			'post_id'     			=> array('post_id', false),
+            'post_title'     		=> array('post_title', false),
+            'post_publication_date' => array('post_publication_date', true), //true means it's already sorted
+            'post_total_payment'    => array('post_total_payment', false),
+            'post_due_payment'     	=> array('post_due_payment', false),
+          
         );
         return $sortable_columns;
     }
@@ -319,7 +287,7 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
         /**
          * First, lets decide how many records per page to show
          */
-        $per_page = 5000;
+        //$per_page = 5000;
 
 
         /**
@@ -370,13 +338,15 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
          * to a custom query. The returned data will be pre-sorted, and this array
          * sorting technique would be unnecessary.
          */
-        /*function usort_reorder($a,$b){
-            $orderby = (!empty($_REQUEST['orderby'])) ? $_REQUEST['orderby'] : 'title'; //If no sort, default to title
-            $order = (!empty($_REQUEST['order'])) ? $_REQUEST['order'] : 'asc'; //If no order, default to asc
-            $result = strcmp($a[$orderby], $b[$orderby]); //Determine sort order
-            return ($order==='asc') ? $result : -$result; //Send final sort direction to usort
-        }
-        usort($data, 'usort_reorder');*/
+        if( isset( $_REQUEST['orderby'] ) AND isset( $_REQUEST['order'] ) AND ! ( $_REQUEST['orderby'] == 'post_publication_date' AND $_REQUEST['order'] == 'desc' ) ) { //don't sort if post_publication_date desc, it's already sorted
+        	function usort_reorder($a, $b) {
+				$orderby = (!empty($_REQUEST['orderby'])) ? $_REQUEST['orderby'] : 'post_publication_date'; //If no sort, default to title
+				$order = (!empty($_REQUEST['order'])) ? $_REQUEST['order'] : 'desc'; //If no order, default to desc
+				$result = strcmp($a[$orderby], $b[$orderby]); //Determine sort order
+				return ($order === 'asc') ? $result : -$result; //Send final sort direction to usort
+			}
+			usort($data, 'usort_reorder');
+		}
 
 
         /**
