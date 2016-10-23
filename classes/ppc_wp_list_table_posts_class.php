@@ -306,8 +306,10 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
          * headers. The $this->_column_headers property takes an array which contains
          * 3 other arrays. One for all columns, one for hidden columns, and one
          * for sortable columns.
+         *
+         * $this->get_column_info(); retrieves user-hidden columns through Screen Options.
          */
-        $this->_column_headers = array($columns, $hidden, $sortable);
+        $this->_column_headers = $this->get_column_info();
 
 
         /**

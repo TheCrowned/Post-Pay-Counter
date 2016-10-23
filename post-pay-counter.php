@@ -221,6 +221,16 @@ class post_pay_counter {
 		$ppc_global_settings['counting_types_object'] = new PPC_counting_types();
 		$ppc_global_settings['counting_types_object']->register_built_in_counting_types();
 
+		/*$option = 'per_page';
+		$args = array(
+         'label' => 'Books',
+         'default' => 10,
+         'option' => 'books_per_page'
+         );
+		add_screen_option( $option, $args );*/
+
+		$this->initialize_stats();
+
         $args = array(
             'post_type' => $general_settings['counting_allowed_post_types'],
 			'posts_per_page' => 1,
@@ -251,9 +261,9 @@ class post_pay_counter {
 
         wp_enqueue_script( 'jquery-ui-datepicker' );
         wp_enqueue_style( 'jquery.ui.theme', $ppc_global_settings['folder_path'].'style/ui-lightness/jquery-ui-1.8.15.custom.css' );
-        wp_enqueue_style( 'ppc_header_style', $ppc_global_settings['folder_path'].'style/ppc_header_style.css', array( 'wp-admin' ) );
-		wp_enqueue_style( 'ppc_stats_style', $ppc_global_settings['folder_path'].'style/ppc_stats_style.css' );
-        wp_enqueue_script( 'ppc_stats_effects', $ppc_global_settings['folder_path'].'js/ppc_stats_effects.js', array( 'jquery' ) );
+        wp_enqueue_style( 'ppc_header_style', $ppc_global_settings['folder_path'].'style/ppc_header_style.css', array( 'wp-admin' ), filemtime( $ppc_global_settings['dir_path'].'style/ppc_header_style.css' ) );
+		wp_enqueue_style( 'ppc_stats_style', $ppc_global_settings['folder_path'].'style/ppc_stats_style.css', array(), filemtime( $ppc_global_settings['dir_path'].'style/ppc_stats_style.css' ) );
+        wp_enqueue_script( 'ppc_stats_effects', $ppc_global_settings['folder_path'].'js/ppc_stats_effects.js', array( 'jquery' ), filemtime( $ppc_global_settings['dir_path'].'js/ppc_stats_effects.js' ) );
         wp_localize_script( 'ppc_stats_effects', 'ppc_stats_effects_vars', array(
             'datepicker_mindate' => date( 'Y-m-d', $first_available_post_time ),
             'datepicker_maxdate' => date( 'Y-m-d', $last_available_post ),
@@ -297,11 +307,11 @@ class post_pay_counter {
         add_meta_box( 'ppc_error_log', __( 'Error log', 'post-pay-counter' ), array( 'PPC_meta_boxes', 'meta_box_error_log' ), $ppc_global_settings['options_menu_slug'], 'side', 'default', self::$options_page_settings );
 
         wp_enqueue_style( 'jquery.tooltip.theme', $ppc_global_settings['folder_path'].'style/tipTip.css' );
-        wp_enqueue_style( 'ppc_header_style', $ppc_global_settings['folder_path'].'style/ppc_header_style.css', array( 'wp-admin' ) );
-		wp_enqueue_style( 'ppc_options_style', $ppc_global_settings['folder_path'].'style/ppc_options_style.css', array( 'wp-admin' ) );
-		wp_enqueue_style( 'ppc_options_style_old', $ppc_global_settings['folder_path'].'style/ppc_options_style_old.css', array( 'wp-admin' ) );
+        wp_enqueue_style( 'ppc_header_style', $ppc_global_settings['folder_path'].'style/ppc_header_style.css', array( 'wp-admin' ), filemtime( $ppc_global_settings['dir_path'].'style/ppc_header_style.css' ) );
+		wp_enqueue_style( 'ppc_options_style', $ppc_global_settings['folder_path'].'style/ppc_options_style.css', array( 'wp-admin' ), filemtime( $ppc_global_settings['dir_path'].'style/ppc_options_style.css' ) );
+		wp_enqueue_style( 'ppc_options_style_old', $ppc_global_settings['folder_path'].'style/ppc_options_style_old.css', array( 'wp-admin' ), filemtime( $ppc_global_settings['dir_path'].'style/ppc_options_style_old.css' ) );
         wp_enqueue_script( 'jquery-tooltip-plugin', $ppc_global_settings['folder_path'].'js/jquery.tiptip.min.js', array( 'jquery' ) );
-        wp_enqueue_script( 'ppc_options_ajax_stuff', $ppc_global_settings['folder_path'].'js/ppc_options_ajax_stuff.js', array( 'jquery' ) );
+        wp_enqueue_script( 'ppc_options_ajax_stuff', $ppc_global_settings['folder_path'].'js/ppc_options_ajax_stuff.js', array( 'jquery' ), filemtime( $ppc_global_settings['dir_path'].'js/ppc_options_ajax_stuff.js' ) );
         wp_localize_script( 'ppc_options_ajax_stuff', 'ppc_options_ajax_stuff_vars', array(
             'nonce_ppc_save_counting_settings' => wp_create_nonce( 'ppc_save_counting_settings' ),
             'nonce_ppc_save_permissions' => wp_create_nonce( 'ppc_save_permissions' ),
@@ -317,7 +327,7 @@ class post_pay_counter {
             'localized_vaporize_user_success' => __( 'User\'s settings successfully deleted. You will be redirected to the general options page.' , 'ppc'),
             'ppc_options_url' => $ppc_global_settings['options_menu_link']
         ) );
-		wp_enqueue_script( 'ppc_options_effects', $ppc_global_settings['folder_path'].'js/ppc_options_effects.js', array( 'jquery' ) );
+		wp_enqueue_script( 'ppc_options_effects', $ppc_global_settings['folder_path'].'js/ppc_options_effects.js', array( 'jquery' ), filemtime( $ppc_global_settings['dir_path'].'js/ppc_options_effects.js' ) );
 		wp_localize_script( 'ppc_options_effects', 'ppc_options_effects_vars', array(
             'counting_words_current_zones_count' => count( self::$options_page_settings['counting_words_system_zonal_value'] ),
 			'counting_visits_current_zones_count' => count( self::$options_page_settings['counting_visits_system_zonal_value'] ),
@@ -585,15 +595,15 @@ class post_pay_counter {
 		<?php
     }
 
-    /**
-     * Shows the Stats page.
+	/**
+     * Initilizes stats page (defines time range and stuff like that).
+     * Needed to be done before actual HTML loading because the WP_List_Table object needs to be loaded early, or it won't be possible to hide columns.
      *
      * @access  public
-     * @since   2.0
+     * @since   2.700
      */
-
-    function show_stats() {
-        global $current_user, $ppc_global_settings, $wp_roles;
+	function initialize_stats() {
+		global $current_user, $ppc_global_settings, $wp_roles;
         $general_settings = PPC_general_functions::get_settings( 'general' );
         $perm = new PPC_permissions();
 
@@ -633,13 +643,46 @@ class post_pay_counter {
 			$ppc_global_settings['stats_role'] = $get_and_post['role'];
 
 		//If an author is given, put that in an array
-        if( isset( $get_and_post['author'] ) AND is_numeric( $get_and_post['author'] ) AND $userdata = get_userdata( $get_and_post['author'] ) ) {
+        if( isset( $get_and_post['author'] ) AND is_numeric( $get_and_post['author'] ) AND get_userdata( $get_and_post['author'] ) ) {
             $ppc_global_settings['current_page'] = 'stats_detailed';
-			$author = array( $get_and_post['author'] );
+			$this->author = array( $get_and_post['author'] );
         } else {
             $ppc_global_settings['current_page'] = 'stats_general';
-			$author = NULL;
+			$this->author = NULL;
 		}
+
+		if( is_array( $this->author ) ) {
+
+            if( ! $perm->can_see_others_detailed_stats() AND $current_user->ID != $this->author[0] ) return _e( 'You do not have sufficient permissions to access this page' );
+
+            $this->stats = PPC_generate_stats::produce_stats( $ppc_global_settings['stats_tstart'], $ppc_global_settings['stats_tend'], $this->author );
+            if( is_wp_error( $this->stats ) ) {
+                echo $this->stats->get_error_message();
+                return;
+            }
+
+			$this->stats_table = new Post_Pay_Counter_Posts_List_Table( $this->stats );
+
+		} else {
+			$this->stats = PPC_generate_stats::produce_stats( $ppc_global_settings['stats_tstart'], $ppc_global_settings['stats_tend'] );
+            if( is_wp_error( $this->stats ) ) {
+                echo $this->stats->get_error_message();
+                return;
+            }
+
+			$this->stats_table = new Post_Pay_Counter_Authors_List_Table( $this->stats );
+		}
+	}
+
+    /**
+     * Shows the Stats page.
+     *
+     * @access  public
+     * @since   2.0
+     */
+    function show_stats() {
+		global $current_user, $ppc_global_settings, $wp_roles;
+		$general_settings = PPC_general_functions::get_settings( 'general' );
 
 		/**
 		 * Fires before any HTML has been output in the stats page.
@@ -648,7 +691,7 @@ class post_pay_counter {
 		 * @param	mixed $author author for which stats are displayed. If given, is the only index of an array, NULL means general stats are being requested.
 		 */
 
-        do_action( 'ppc_before_stats_html', $author );
+        do_action( 'ppc_before_stats_html', $this->author );
         ?>
 
 <div class="wrap">
@@ -656,17 +699,10 @@ class post_pay_counter {
 
 		<?php
         //AUTHOR STATS
-        if( is_array( $author ) ) {
-
-			echo PPC_HTML_functions::show_stats_page_header( $userdata->display_name, PPC_general_functions::get_the_author_link( $author[0] ) );
-
-            if( ! $perm->can_see_others_detailed_stats() AND $current_user->ID != $author[0] ) return _e( 'You do not have sufficient permissions to access this page' );
-
-            $stats = PPC_generate_stats::produce_stats( $ppc_global_settings['stats_tstart'], $ppc_global_settings['stats_tend'], $author );
-            if( is_wp_error( $stats ) ) {
-                echo $stats->get_error_message();
-                return;
-            }
+        if( is_array( $this->author ) ) {
+			$userdata = get_userdata( $this->author[0] );
+			
+			echo PPC_HTML_functions::show_stats_page_header( $userdata->display_name, PPC_general_functions::get_the_author_link( $this->author[0] ) );
 
 			/**
 			 * Fires before the *author* stats page form and table been output.
@@ -675,15 +711,14 @@ class post_pay_counter {
 			 * @param	array $stats a PPC_generate_stats::produce_stats() result - current stats.
 			 */
 
-            do_action( 'ppc_html_stats_author_before_stats_form', $stats );
+            do_action( 'ppc_html_stats_author_before_stats_form', $this->stats );
             ?>
 
-	<form action="#" method="post" id="ppc_stats" accesskey="<?php echo $author[0]; //accesskey holds author id ?>">
+	<form action="#" method="post" id="ppc_stats" accesskey="<?php echo $this->author[0]; //accesskey holds author id ?>">
 
 			<?php
-			$table = new Post_Pay_Counter_Posts_List_Table( $stats );
-			$table->prepare_items();
-			$table->display();
+			$this->stats_table->prepare_items();
+			$this->stats_table->display();
 
 			/**
 			 * Fires after the *author* stats page form and table been output.
@@ -708,12 +743,6 @@ class post_pay_counter {
 
             echo PPC_HTML_functions::show_stats_page_header( __( 'General' , 'post-pay-counter'), admin_url( $page_permalink ) );
 
-            $stats = PPC_generate_stats::produce_stats( $ppc_global_settings['stats_tstart'], $ppc_global_settings['stats_tend'] );
-            if( is_wp_error( $stats ) ) {
-                echo $stats->get_error_message();
-                return;
-            }
-
 			/**
 			 * Fires before the *general* stats page form and table been output.
 			 *
@@ -721,15 +750,14 @@ class post_pay_counter {
 			 * @param	array $stats a PPC_generate_stats::produce_stats() result - current stats.
 			 */
 
-            do_action( 'ppc_html_stats_general_before_stats_form', $stats );
+            do_action( 'ppc_html_stats_general_before_stats_form', $this->stats );
             ?>
 
 	<form action="#" method="post" id="ppc_stats">
 
 			<?php
-			$table = new Post_Pay_Counter_Authors_List_Table( $stats );
-			$table->prepare_items();
-			$table->display();
+			$this->stats_table->prepare_items();
+			$this->stats_table->display();
 
 			/**
 			 * Fires after the *general* stats page form and table been output.
@@ -746,7 +774,7 @@ class post_pay_counter {
 
 		<?php
         if( $general_settings['display_overall_stats'] ) {
-			$overall_stats = PPC_generate_stats::get_overall_stats( $stats['raw_stats'] );
+			$overall_stats = PPC_generate_stats::get_overall_stats( $this->stats['raw_stats'] );
 			echo PPC_HTML_functions::print_overall_stats( $overall_stats );
 
 			/**
