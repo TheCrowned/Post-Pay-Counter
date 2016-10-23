@@ -203,14 +203,14 @@ class Post_Pay_Counter_Authors_List_Table extends WP_List_Table {
      **************************************************************************/
     function get_sortable_columns() {
 
-		return array();
+		//return array();
 		
         $sortable_columns = array(
-            'title'     => array('title',false),     //true means it's already sorted
-            'rating'    => array('rating',false),
-            'director'  => array('director',false)
+            'author_id'     => array('author_id',false),     //true means it's already sorted
+            'author_name'    => array('author_name',false),
+            'author_total_payment'  => array('author_total_payment',false)
         );
-        return $sortable_columns;
+        return apply_filters( 'ppc_stats_author_sortable_columns', $sortable_columns );
     }
 
 
@@ -326,13 +326,13 @@ class Post_Pay_Counter_Authors_List_Table extends WP_List_Table {
          * to a custom query. The returned data will be pre-sorted, and this array
          * sorting technique would be unnecessary.
          */
-        /*function usort_reorder($a,$b){
-            $orderby = (!empty($_REQUEST['orderby'])) ? $_REQUEST['orderby'] : 'title'; //If no sort, default to title
-            $order = (!empty($_REQUEST['order'])) ? $_REQUEST['order'] : 'asc'; //If no order, default to asc
-            $result = strcmp($a[$orderby], $b[$orderby]); //Determine sort order
-            return ($order==='asc') ? $result : -$result; //Send final sort direction to usort
-        }
-        usort($data, 'usort_reorder');*/
+		if( isset( $_REQUEST['orderby'] ) AND isset( $_REQUEST['order'] ) ) {
+			function usort_reorder($a, $b) {
+				$result = strnatcasecmp( $a[$_REQUEST['orderby']], $b[$_REQUEST['orderby']] ); //Determine sort order
+				return ( $_REQUEST['order'] === 'asc' ) ? $result : -$result; //Send final sort direction to usort
+			}
+			usort($data, 'usort_reorder');
+		}
 
 
         /**

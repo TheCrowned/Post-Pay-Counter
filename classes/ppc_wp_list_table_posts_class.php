@@ -218,11 +218,10 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
 			'post_id'     			=> array('post_id', false),
             'post_title'     		=> array('post_title', false),
             'post_publication_date' => array('post_publication_date', true), //true means it's already sorted
-            'post_total_payment'    => array('post_total_payment', false),
-            'post_due_payment'     	=> array('post_due_payment', false),
+            'post_total_payment'    => array('post_total_payment', false)
           
         );
-        return $sortable_columns;
+        return apply_filters( 'ppc_stats_general_sortable_columns', $sortable_columns );
     }
 
 
@@ -338,12 +337,10 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
          * to a custom query. The returned data will be pre-sorted, and this array
          * sorting technique would be unnecessary.
          */
-        if( isset( $_REQUEST['orderby'] ) AND isset( $_REQUEST['order'] ) AND ! ( $_REQUEST['orderby'] == 'post_publication_date' AND $_REQUEST['order'] == 'desc' ) ) { //don't sort if post_publication_date desc, it's already sorted
+        if( isset( $_REQUEST['orderby'] ) AND isset( $_REQUEST['order'] ) AND in_array( $_REQUEST['orderby'], $this->get_sortable_columns() ) AND ( $_REQUEST['order'] == 'desc' OR $_REQUEST['order'] == 'asc' ) AND ! ( $_REQUEST['orderby'] == 'post_publication_date' AND $_REQUEST['order'] == 'desc' ) ) { //don't sort if post_publication_date desc, it's already sorted
         	function usort_reorder($a, $b) {
-				$orderby = (!empty($_REQUEST['orderby'])) ? $_REQUEST['orderby'] : 'post_publication_date'; //If no sort, default to title
-				$order = (!empty($_REQUEST['order'])) ? $_REQUEST['order'] : 'desc'; //If no order, default to desc
-				$result = strcmp($a[$orderby], $b[$orderby]); //Determine sort order
-				return ($order === 'asc') ? $result : -$result; //Send final sort direction to usort
+				$result = strnatcasecmp( $a[$_REQUEST['orderby']], $b[$_REQUEST['orderby']] ); //Determine sort order
+				return ( $_REQUEST['order'] === 'asc' ) ? $result : -$result; //Send final sort direction to usort
 			}
 			usort($data, 'usort_reorder');
 		}
