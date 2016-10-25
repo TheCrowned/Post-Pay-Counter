@@ -172,11 +172,15 @@ class PPC_general_functions {
         global $ppc_global_settings;
 
 		$get_and_post = array_merge( $_GET, $_POST );
+		$link = admin_url( $ppc_global_settings['stats_menu_link'].'&amp;author='.$author_id.'&amp;tstart='.$ppc_global_settings['stats_tstart'].'&amp;tend='.$ppc_global_settings['stats_tend'] );
 		
-        if( ! isset( $get_and_post['ppc-time-range'] ) )
-			return apply_filters( 'ppc_get_author_link', admin_url( $ppc_global_settings['stats_menu_link'].'&amp;author='.$author_id.'&amp;tstart='.$ppc_global_settings['stats_tstart'].'&amp;tend='.$ppc_global_settings['stats_tend'] ) );
-		else
-			return apply_filters( 'ppc_get_author_link', admin_url( $ppc_global_settings['stats_menu_link'].'&amp;author='.$author_id.'&amp;tstart='.$ppc_global_settings['stats_tstart'].'&amp;tend='.$ppc_global_settings['stats_tend'].'&amp;ppc-time-range='.$get_and_post['ppc-time-range'] ) );
+        if( isset( $get_and_post['ppc-time-range'] ) AND ! empty( $get_and_post['ppc-time-range'] ) )
+			$link .= '&amp;ppc-time-range='.$get_and_post['ppc-time-range'];
+			
+        if( isset( $get_and_post['paged'] ) AND ! empty( $get_and_post['paged'] ) )
+			$link .= '&amp;paged='.$get_and_post['paged'];
+		
+		return apply_filters( 'ppc_get_author_link', $link );
     }
     
     /**

@@ -96,6 +96,7 @@ class post_pay_counter {
         add_action( 'load-'.sanitize_title( apply_filters( "ppc_admin_menu_name", "Post Pay Counter" ) ).'_page_ppc-options', array( $this, 'on_load_options_page_enqueue' ), 2 );
 		add_action( 'load-'.sanitize_title( apply_filters( "ppc_admin_menu_name", "Post Pay Counter" ) ).'_page_ppc-addons', array( 'PPC_addons', 'on_load_addons_page_enqueue' ) );
         //add_action( 'load-toplevel_page_post_pay_counter_show_network_stats', array( &$this, 'on_load_stats_page' ) );
+        add_filter('set-screen-option', array( $this, 'handle_stats_pagination_values' ), 10, 3);
 
         //Localization
         add_action( 'plugins_loaded', array( $this, 'load_localization' ) );
@@ -220,14 +221,6 @@ class post_pay_counter {
 		//Initiliaze counting types
 		$ppc_global_settings['counting_types_object'] = new PPC_counting_types();
 		$ppc_global_settings['counting_types_object']->register_built_in_counting_types();
-
-		/*$option = 'per_page';
-		$args = array(
-         'label' => 'Books',
-         'default' => 10,
-         'option' => 'books_per_page'
-         );
-		add_screen_option( $option, $args );*/
 
 		$this->initialize_stats();
 
@@ -661,6 +654,14 @@ class post_pay_counter {
                 return;
             }
 
+			$option = 'per_page';
+			$args = array(
+			 'label' => 'Posts',
+			 'default' => 500,
+			 'option' => 'ppc_posts_per_page'
+			 );
+			add_screen_option( $option, $args );
+		
 			$this->stats_table = new Post_Pay_Counter_Posts_List_Table( $this->stats );
 
 		} else {
@@ -672,6 +673,16 @@ class post_pay_counter {
 
 			$this->stats_table = new Post_Pay_Counter_Authors_List_Table( $this->stats );
 		}
+	}
+
+	/**
+     * Saves pagination value in Screen Options.
+     *
+     * @access  public
+     * @since   2.700
+     */
+	function handle_stats_pagination_values( $status, $option, $value ) {
+		return $value;
 	}
 
     /**
@@ -714,12 +725,16 @@ class post_pay_counter {
             do_action( 'ppc_html_stats_author_before_stats_form', $this->stats );
             ?>
 
-	<form action="#" method="post" id="ppc_stats" accesskey="<?php echo $this->author[0]; //accesskey holds author id ?>">
+	<form method="post" id="ppc_stats" accesskey="<?php echo $this->author[0]; //accesskey holds author id ?>">
 
 			<?php
 			$this->stats_table->prepare_items();
 			$this->stats_table->display();
+			?>
 
+		<input type="submit" value="Needed to override payment buttons for PRO users" name="ppc_first_submit" style="display: none;" />
+
+		<?php
 			/**
 			 * Fires after the *author* stats page form and table been output.
 			 *
@@ -754,6 +769,7 @@ class post_pay_counter {
             ?>
 
 	<form action="#" method="post" id="ppc_stats">
+		
 
 			<?php
 			$this->stats_table->prepare_items();

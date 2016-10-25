@@ -131,12 +131,17 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
 			$added_items = ob_get_clean();
 			$added_items = array_filter( explode( '</td>', $added_items ) );
 
-			if( $column_name == 'post_pay_field' )
-				$field_value = substr( $added_items[0], 4 );
-			else if( $column_name == 'post_payment_history' )
-				$field_value = substr( $added_items[1], 33 );
-			else		
-				$field_value = apply_filters( 'ppc_general_stats_each_field_empty_value', 'N.A.', $column_name ).'</td>';
+			if( ! empty( $added_items ) ) {
+				foreach( $added_items as $single ) { //TERRIBLE!
+					if( strpos( $single, 'ppcp_paid_status_update' ) !== false AND $column_name == 'post_pay_field' )
+						$field_value = substr( $single, 4 );
+					else if( $column_name == 'post_payment_history' )
+						$field_value = substr( $single, 33 );
+				}
+			}
+			
+			if( ! isset( $field_value ) )
+				$field_value = apply_filters( 'ppc_author_stats_each_field_empty_value', 'N.A.', $column_name ).'</td>';
 		}
 
 		return $field_value;
@@ -174,7 +179,7 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
      * @see WP_List_Table::::single_row_columns()
      * @return array An associative array containing column information: 'slugs'=>'Visible Titles'
      **************************************************************************/
-    function get_columns(){
+    function get_columns() {
         //$columns = array(
             //'cb'        => '<input type="checkbox" />', //Render a checkbox instead of text
         //);
@@ -188,8 +193,12 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
 		$added_cols = array_filter( explode( '</th>', $added_cols ) );
 
 		if( ! empty( $added_cols ) ) {
-			$columns['post_pay_field'] = substr( $added_cols[0], 16 );
-			$columns['post_payment_history'] = substr( $added_cols[1], 16 );
+			foreach( $added_cols as $single ) {
+				if( strpos( $single, 'ppcp_one_to_rule_them_all' ) !== false )
+					$columns['post_pay_field'] = substr( $single, 16 );
+				else
+					$columns['post_payment_history'] = substr( $single, 16 );
+			}
 		}
 		
         return $columns;
@@ -281,12 +290,11 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
      * @uses $this->set_pagination_args()
      **************************************************************************/
     function prepare_items() {
-        global $wpdb; //This is used only if making any database queries
 
         /**
          * First, lets decide how many records per page to show
          */
-        //$per_page = 5000;
+        $per_page = $this->get_items_per_page( 'ppc_posts_per_page', 500 );
 
 
         /**
@@ -353,7 +361,7 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
          * looking at. We'll need this later, so you should always include it in
          * your own package classes.
          */
-        //$current_page = $this->get_pagenum();
+        $current_page = $this->get_pagenum();
 
         /**
          * REQUIRED for pagination. Let's check how many items are in our data array.
@@ -361,7 +369,7 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
          * without filtering. We'll need this later, so you should always include it
          * in your own package classes.
          */
-        //$total_items = count($data);
+        $total_items = count($data);
 
 
         /**
@@ -369,8 +377,7 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
          * to ensure that the data is trimmed to only the current page. We can use
          * array_slice() to
          */
-        //$data = array_slice($data,(($current_page-1)*$per_page),$per_page);
-
+        $data = array_slice( $data, ( ( $current_page - 1 ) * $per_page ), $per_page );
 
 
         /**
@@ -383,10 +390,10 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
         /**
          * REQUIRED. We also have to register our pagination options & calculations.
          */
-        /*$this->set_pagination_args( array(
+        $this->set_pagination_args( array(
             'total_items' => $total_items,                  //WE have to calculate the total number of items
             'per_page'    => $per_page,                     //WE have to determine how many items to show on a page
             'total_pages' => ceil($total_items/$per_page)   //WE have to calculate the total number of pages
-        ) );*/
+        ) );
     }
 }
