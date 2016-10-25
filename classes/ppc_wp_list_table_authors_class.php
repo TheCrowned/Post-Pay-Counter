@@ -218,7 +218,7 @@ class Post_Pay_Counter_Authors_List_Table extends WP_List_Table {
             'author_name'    => array('author_name',false),
             'author_total_payment'  => array('author_total_payment',false)
         );
-        return apply_filters( 'ppc_stats_author_sortable_columns', $sortable_columns );
+        return apply_filters( 'ppc_stats_general_sortable_columns', $sortable_columns );
     }
 
 
