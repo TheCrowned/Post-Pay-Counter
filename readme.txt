@@ -2,8 +2,8 @@
 Contributors: Ste_95
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22
 Tags: counter, authors, payment, revenue sharing, stats, multi author, post management, post
-Tested up to: 4.6.1
-Stable tag: 2.623
+Tested up to: 4.6.2
+Stable tag: 2.700
 Requires at least: 3.7
 
 Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
@@ -20,7 +20,7 @@ Features include:
 * Personalize user's settings, so that special settings only apply to a particular user. Different settings can be made viewable in the stats or hidden depending on your needs.
 * Customizable permissions to prevent your users to see stats and use functions they are not supposed to.
 * Extend with your own custom implementation through hooks, filters and special API features ([learn more](http://postpaycounter.com/add-custom-payment-types-post-pay-counter-stats?utm_source=wprep&utm_medium=link)).
-* And... works with custom post types, narrow your payments only to chosen user groups, and more.
+* And... works with custom post types, narrow your payments only to chosen user groups, supports pagination and sorting, and even more!
 
 [GitHub repository](https://github.com/TheCrowned/Post-Pay-Counter/) (wanna join us coding?)
 
@@ -74,6 +74,16 @@ From this: *define( 'PPC_DEBUG_LOG', true );*
 It must become: *define( 'PPC_DEBUG_LOG', false );*
 
 == Changelog ==
+= 2.700 (2016/11/02) =
+* Feature: stats page can now be sorted! Just click on a column and the whole table will be sorted for that column.
+* Feature: stats page supports pagination! Default number of items per page is 300, but you can change it in the Screen Options section (upper-right corner).
+* Feature: stats columns can now be hidden through the Screen Options section in the upper-right corner.
+* Fixed: payment tooltip not displayed for any user if one user was not supposed to have it.
+* Tweak: automating cache purging for css and js files using WP file versions.
+* Tweak: sorted list of active licenses in License Status box.
+* Tweak: updated Italian translation.
+* Tweak: minor performance improvements.
+
 = 2.623 (2016/10/10) =
 * Fixed: yet more issues with default stats time range.
 * Tweak: minor improvements.
