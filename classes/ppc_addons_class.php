@@ -55,6 +55,12 @@ class PPC_addons {
 					'link' => 'http://postpaycounter.com/publisher-bonus-editor-rewarding-system',
 					'campaign' => 'ppcp_pb'
 				),
+				'BuddyPress' => array(
+					'description' => 'Displays stats, payment history and PayPal email field in BuddyPress Member page.',
+					'image' => 'http://postpaycounter.com/ppc_buddypress/features/images/buddypress-stats_crop.png',
+					'link' => 'http://postpaycounter.com/buddypress',
+					'campaign' => 'ppc_buddypress'
+				),
 				'User Roles Custom Settings' => array(
 					'description' => 'Allows to set custom settings for each user role that apply to all users belonging to it.',
 					'image' => 'http://postpaycounter.com/ppc_urcs/features/images/personalize_settings_box.jpg',

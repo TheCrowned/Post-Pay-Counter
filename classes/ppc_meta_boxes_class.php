@@ -594,6 +594,7 @@ class PPC_meta_boxes {
         <?php
         $licenses = array();
         $licenses = apply_filters( 'ppcp_license_display_options_page', $licenses );
+        sort( $licenses );
 
         if( count( $licenses ) == 0 ) {
         ?>
