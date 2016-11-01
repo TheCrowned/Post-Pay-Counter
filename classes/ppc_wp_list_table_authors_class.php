@@ -282,7 +282,7 @@ class Post_Pay_Counter_Authors_List_Table extends WP_List_Table {
         /**
          * First, lets decide how many records per page to show
          */
-        $per_page = $this->get_items_per_page( 'ppc_authors_per_page', 50 );
+        $per_page = $this->get_items_per_page( 'ppc_authors_per_page', 300 );
 
 
         /**

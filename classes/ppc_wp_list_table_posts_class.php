@@ -294,7 +294,7 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
         /**
          * First, lets decide how many records per page to show
          */
-        $per_page = $this->get_items_per_page( 'ppc_posts_per_page', 500 );
+        $per_page = $this->get_items_per_page( 'ppc_posts_per_page', 300 );
 
 
         /**
