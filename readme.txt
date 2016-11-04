@@ -74,10 +74,11 @@ From this: *define( 'PPC_DEBUG_LOG', true );*
 It must become: *define( 'PPC_DEBUG_LOG', false );*
 
 == Changelog ==
-= 2.700 (2016/11/02) =
+= 2.700 (2016/11/07) =
 * Feature: stats page can now be sorted! Just click on a column and the whole table will be sorted for that column.
 * Feature: stats page supports pagination! Default number of items per page is 300, but you can change it in the Screen Options section (upper-right corner).
 * Feature: stats columns can now be hidden through the Screen Options section in the upper-right corner.
+* Fixed: stats time picker would not allow to pick future days as end time, making the *Count future scheduled posts* uneffective.
 * Fixed: payment tooltip not displayed for any user if one user was not supposed to have it.
 * Tweak: automating cache purging for css and js files using WP file versions.
 * Tweak: sorted list of active licenses in License Status box.
