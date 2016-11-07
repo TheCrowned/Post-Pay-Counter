@@ -251,7 +251,6 @@ class post_pay_counter {
 		if( ! isset( $last_available_post_time ) OR $last_available_post_time < current_time( 'timestamp' ) )
             $last_available_post = current_time( 'timestamp' ); //Pub Bonus needs to select even days without posts in the future, maybe there are publishings
             
-
         wp_enqueue_script( 'jquery-ui-datepicker' );
         wp_enqueue_style( 'jquery.ui.theme', $ppc_global_settings['folder_path'].'style/ui-lightness/jquery-ui-1.8.15.custom.css' );
         wp_enqueue_style( 'ppc_header_style', $ppc_global_settings['folder_path'].'style/ppc_header_style.css', array( 'wp-admin' ) );
@@ -272,6 +271,7 @@ class post_pay_counter {
             'time_end_all_time' => date( 'Y-m-d', strtotime( '23:59:59' ) )
         ) );
 
+		$this->initialize_stats();
     }
 
     /**
