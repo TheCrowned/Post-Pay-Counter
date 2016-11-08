@@ -10,7 +10,7 @@ jQuery(document).ready(function() {
         selectOtherMonths: true,
         showAnim: "slideDown",
         onSelect: function(dateText, inst) {
-            jQuery('#post_pay_counter_time_end').datepicker('option', 'minDate', new Date(inst.selectedYear, inst.selectedMonth, inst.selectedDay));
+        jQuery('#post_pay_counter_time_end').datepicker('option', 'minDate', new Date(inst.selectedYear, inst.selectedMonth, inst.selectedDay));
         }
     });
     jQuery('#post_pay_counter_time_end').datepicker({
@@ -24,7 +24,7 @@ jQuery(document).ready(function() {
         selectOtherMonths: true,
         showAnim: "slideDown",
         onSelect: function(dateText, inst) {
-             jQuery('#post_pay_counter_time_start').datepicker('option', 'maxDate', new Date(inst.selectedYear, inst.selectedMonth, inst.selectedDay));
+        jQuery('#post_pay_counter_time_start').datepicker('option', 'maxDate', new Date(inst.selectedYear, inst.selectedMonth, inst.selectedDay));
         }      
     });
     

@@ -3,7 +3,7 @@ Contributors: Ste_95
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22
 Tags: counter, authors, payment, revenue sharing, stats, multi author, post management, post
 Tested up to: 4.6.2
-Stable tag: 2.700
+Stable tag: 2.703
 Requires at least: 3.7
 
 Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
@@ -74,6 +74,15 @@ From this: *define( 'PPC_DEBUG_LOG', true );*
 It must become: *define( 'PPC_DEBUG_LOG', false );*
 
 == Changelog ==
+= 2.703 (2016/11/08) =
+* Fixed: fatal error in stats if no posts were to be displayed.
+
+= 2.702 (2016/11/08) =
+* Fixed: broken mark as paid for PRO users.
+
+= 2.701 (2016/11/08) =
+* Fixed: fatal error in stats for few people.
+
 = 2.700 (2016/11/07) =
 * Feature: stats page can now be sorted! Just click on a column and the whole table will be sorted for that column.
 * Feature: stats page supports pagination! Default number of items per page is 300, but you can change it in the Screen Options section (upper-right corner).

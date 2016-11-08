@@ -4,7 +4,7 @@ Plugin Name: Post Pay Counter
 Plugin URI: http://postpaycounter.com
 Description: Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
 Author: Stefano Ottolenghi
-Version: 2.700
+Version: 2.702
 Author URI: http://www.thecrowned.org/
 Text Domain: post-pay-counter
 */
@@ -59,7 +59,7 @@ class post_pay_counter {
         global $ppc_global_settings;
 
         $ppc_global_settings['current_version'] = get_option( 'ppc_current_version' );
-        $ppc_global_settings['newest_version'] = '2.700';
+        $ppc_global_settings['newest_version'] = '2.702';
         $ppc_global_settings['option_name'] = 'ppc_settings';
         $ppc_global_settings['option_errors'] = 'ppc_errors';
 		$ppc_global_settings['transient_error_deletion'] = 'ppc_error_daily_deletion';
@@ -649,29 +649,33 @@ class post_pay_counter {
             if( ! $perm->can_see_others_detailed_stats() AND $current_user->ID != $this->author[0] ) return _e( 'You do not have sufficient permissions to access this page' );
 
             $this->stats = PPC_generate_stats::produce_stats( $ppc_global_settings['stats_tstart'], $ppc_global_settings['stats_tend'], $this->author );
-            if( is_wp_error( $this->stats ) ) {
-                echo $this->stats->get_error_message();
-                return;
-            }
 
-			$option = 'per_page';
-			$args = array(
-			 'label' => 'Posts',
-			 'default' => 500,
-			 'option' => 'ppc_posts_per_page'
-			 );
-			add_screen_option( $option, $args );
-		
-			$this->stats_table = new Post_Pay_Counter_Posts_List_Table( $this->stats );
+            if( ! is_wp_error( $this->stats ) ) {
+				$option = 'per_page';
+				$args = array(
+					 'label' => 'Posts',
+					 'default' => 500,
+					 'option' => 'ppc_posts_per_page'
+				 );
+				add_screen_option( $option, $args );
+			
+				$this->stats_table = new Post_Pay_Counter_Posts_List_Table( $this->stats );
+			}
 
 		} else {
 			$this->stats = PPC_generate_stats::produce_stats( $ppc_global_settings['stats_tstart'], $ppc_global_settings['stats_tend'] );
-            if( is_wp_error( $this->stats ) ) {
-                echo $this->stats->get_error_message();
-                return;
-            }
 
-			$this->stats_table = new Post_Pay_Counter_Authors_List_Table( $this->stats );
+            if( ! is_wp_error( $this->stats ) ) {
+				$option = 'per_page';
+				$args = array(
+					 'label' => 'Authors',
+					 'default' => 50,
+					 'option' => 'ppc_authors_per_page'
+				 );
+				add_screen_option( $option, $args );
+				
+				$this->stats_table = new Post_Pay_Counter_Authors_List_Table( $this->stats );
+			}
 		}
 	}
 
@@ -709,7 +713,7 @@ class post_pay_counter {
 	<h2>Post Pay Counter - <?php _e( 'Stats', 'post-pay-counter' ); ?></h2>
 
 		<?php
-        //AUTHOR STATS
+		//AUTHOR STATS
         if( is_array( $this->author ) ) {
 			$userdata = get_userdata( $this->author[0] );
 			
@@ -723,13 +727,24 @@ class post_pay_counter {
 			 */
 
             do_action( 'ppc_html_stats_author_before_stats_form', $this->stats );
+
+			if( is_wp_error( $this->stats ) ) {
+				echo $this->stats->get_error_message();
+				echo '</div>';
+				return;
+			}
+            
             ?>
 
 	<form method="post" id="ppc_stats" accesskey="<?php echo $this->author[0]; //accesskey holds author id ?>">
+		<div id="ppc_stats_table"> <!-- PRO mark as paid retrocompatibility -->
 
 			<?php
-			$this->stats_table->prepare_items();
-			$this->stats_table->display();
+			var_dump($this->stats_table);
+			if( isset( $this->stats_table ) AND ! is_wp_error( $this->stats_table ) ) {
+				$this->stats_table->prepare_items();
+				$this->stats_table->display();
+			}
 			?>
 
 		<input type="submit" value="Needed to override payment buttons for PRO users" name="ppc_first_submit" style="display: none;" />
@@ -766,14 +781,23 @@ class post_pay_counter {
 			 */
 
             do_action( 'ppc_html_stats_general_before_stats_form', $this->stats );
+
+            if( is_wp_error( $this->stats ) ) {
+				echo $this->stats->get_error_message();
+				echo '</div>';
+				return;
+			}		
             ?>
 
-	<form action="#" method="post" id="ppc_stats">
+	<form method="post" id="ppc_stats">
+		<div id="ppc_stats_table"> <!-- PRO mark as paid retrocompatibility -->
 		
 
 			<?php
-			$this->stats_table->prepare_items();
-			$this->stats_table->display();
+			if( isset( $this->stats_table ) AND ! is_wp_error( $this->stats_table ) ) {
+				$this->stats_table->prepare_items();
+				$this->stats_table->display();
+			}
 
 			/**
 			 * Fires after the *general* stats page form and table been output.
@@ -785,6 +809,7 @@ class post_pay_counter {
         }
         ?>
 
+		</div>
 	</form>
 	<div class="ppc_table_divider"></div>
 
