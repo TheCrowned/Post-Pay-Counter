@@ -293,3 +293,10 @@ if( ! function_exists( 'cal_days_in_month' ) ) {
         return date( 't', mktime( 0, 0, 0, $month, 1, $year ) ); 
     } 
 } 
+
+//Ensuring compatibility with PHP < 5.5
+if( ! function_exists( "array_column" ) ) {
+    function array_column( $array, $column_name ) {
+        return array_map( function( $element ) use( $column_name ) { return $element[$column_name]; }, $array );
+    }
+}

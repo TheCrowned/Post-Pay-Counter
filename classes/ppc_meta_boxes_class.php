@@ -327,7 +327,7 @@ class PPC_meta_boxes {
         echo '<div class="ppc_title">'.__( 'Total payment' , 'post-pay-counter').'</div>';
         echo '<div class="main">';
         echo PPC_HTML_functions::echo_text_field( 'counting_payment_total_threshold', $current_settings['counting_payment_total_threshold'], __( 'Set payment maximum (0 = infinite)' , 'post-pay-counter') );
-        echo PPC_HTML_functions::echo_p_field( __( 'Pay only when the total payment threshold is reached' , 'post-pay-counter'), $current_settings['counting_payment_only_when_total_threshold'], 'checkbox', 'counting_payment_only_when_total_threshold', __( 'Check this if you want to pay items only when they reach the max payment threshold. Other items will appear grayed out.' , 'post-pay-counter'), 'counting_payment_only_when_total_threshold', 'counting_payment_only_when_total_threshold' );
+        echo PPC_HTML_functions::echo_p_field( __( 'Hide posts that don\'t reach the threshold' , 'post-pay-counter'), $current_settings['counting_payment_only_when_total_threshold'], 'checkbox', 'counting_payment_only_when_total_threshold', __( 'Check this if you want to pay items only when they reach the max payment threshold. Other items will appear grayed out.' , 'post-pay-counter'), 'counting_payment_only_when_total_threshold', 'counting_payment_only_when_total_threshold' );
         echo '</div>';
         echo '</div>';
         do_action( 'ppc_counting_settings_after_total_payment', $current_settings );
