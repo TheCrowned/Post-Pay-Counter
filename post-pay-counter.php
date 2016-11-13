@@ -4,7 +4,7 @@ Plugin Name: Post Pay Counter
 Plugin URI: http://postpaycounter.com
 Description: Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
 Author: Stefano Ottolenghi
-Version: 2.702
+Version: 2.704
 Author URI: http://www.thecrowned.org/
 Text Domain: post-pay-counter
 */
@@ -59,7 +59,7 @@ class post_pay_counter {
         global $ppc_global_settings;
 
         $ppc_global_settings['current_version'] = get_option( 'ppc_current_version' );
-        $ppc_global_settings['newest_version'] = '2.702';
+        $ppc_global_settings['newest_version'] = '2.704';
         $ppc_global_settings['option_name'] = 'ppc_settings';
         $ppc_global_settings['option_errors'] = 'ppc_errors';
 		$ppc_global_settings['transient_error_deletion'] = 'ppc_error_daily_deletion';
@@ -710,7 +710,7 @@ class post_pay_counter {
         ?>
 
 <div class="wrap">
-	<h2>Post Pay Counter - <?php _e( 'Stats', 'post-pay-counter' ); ?></h2>
+	<h2><?php echo apply_filters( "ppc_admin_menu_name", "Post Pay Counter" ) .' - '. __( 'Stats', 'post-pay-counter' ); ?></h2>
 
 		<?php
 		//AUTHOR STATS
@@ -740,7 +740,6 @@ class post_pay_counter {
 		<div id="ppc_stats_table"> <!-- PRO mark as paid retrocompatibility -->
 
 			<?php
-			var_dump($this->stats_table);
 			if( isset( $this->stats_table ) AND ! is_wp_error( $this->stats_table ) ) {
 				$this->stats_table->prepare_items();
 				$this->stats_table->display();
