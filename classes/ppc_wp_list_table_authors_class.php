@@ -48,7 +48,7 @@ class Post_Pay_Counter_Authors_List_Table extends WP_List_Table {
         ) );
 
 		$this->perm = new PPC_permissions();
-		
+
 		$this->data = $stats_data['formatted_stats']['stats'];
 		$this->columns = $stats_data['formatted_stats']['cols'];
 		$this->raw_data = $stats_data['raw_stats'];
@@ -81,7 +81,7 @@ class Post_Pay_Counter_Authors_List_Table extends WP_List_Table {
 
 		if( $column_name == 'author_id' AND isset( $item[$column_name] ) )
 			$this->current_author_id = $item[$column_name];
-		
+
 		if( isset( $item[$column_name] ) ) {
 			$field_value = $item[$column_name];
 
@@ -129,15 +129,15 @@ class Post_Pay_Counter_Authors_List_Table extends WP_List_Table {
 						$field_value = substr( $single, 35 );
 				}
 			}
-			
-			
+
+
 			if( ! isset( $field_value ) )
 				$field_value = apply_filters( 'ppc_general_stats_each_field_empty_value', 'N.A.', $column_name ).'</td>';
 		}
 
 		return $field_value;
     }
-    
+
 
     /** ************************************************************************
      * REQUIRED if displaying checkboxes or using bulk actions! The 'cb' column
@@ -175,7 +175,7 @@ class Post_Pay_Counter_Authors_List_Table extends WP_List_Table {
             //'cb'        => '<input type="checkbox" />', //Render a checkbox instead of text
             'title'     => 'Title'
         );
-	
+
 		$columns = $this->columns;
 
 		//Retrocompatibility for PRO HTML columns added directly to table
@@ -190,7 +190,7 @@ class Post_Pay_Counter_Authors_List_Table extends WP_List_Table {
 			else
 				$columns['author_payment_history'] = substr( $single, 16 );
 			}
-		
+
         return $columns;
     }
 
@@ -212,7 +212,7 @@ class Post_Pay_Counter_Authors_List_Table extends WP_List_Table {
     function get_sortable_columns() {
 
 		//return array();
-		
+
         $sortable_columns = array(
             'author_id'     => array('author_id',false),     //true means it's already sorted
             'author_name'    => array('author_name',false),
@@ -292,9 +292,9 @@ class Post_Pay_Counter_Authors_List_Table extends WP_List_Table {
          * can be defined in another method (as we've done here) before being
          * used to build the value for our _column_headers property.
          */
-        $columns = $this->get_columns();
-        $hidden = array();
-        $sortable = $this->get_sortable_columns();
+        //$columns = $this->get_columns();
+        //$hidden = array();
+        //$sortable = $this->get_sortable_columns();
 
 
         /**
@@ -302,7 +302,7 @@ class Post_Pay_Counter_Authors_List_Table extends WP_List_Table {
          * headers. The $this->_column_headers property takes an array which contains
          * 3 other arrays. One for all columns, one for hidden columns, and one
          * for sortable columns.
-         * 
+         *
          * $this->get_column_info(); retrieves user-hidden columns through Screen Options.
          */
         $this->_column_headers = $this->get_column_info();
@@ -325,7 +325,7 @@ class Post_Pay_Counter_Authors_List_Table extends WP_List_Table {
          * be able to use your precisely-queried data immediately.
          */
         $data = $this->data;
-        
+
 
         /**
          * This checks for sorting input and sorts the data in our array accordingly.

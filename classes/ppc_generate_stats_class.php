@@ -426,7 +426,7 @@ class PPC_generate_stats {
             }
 
 			if( count( $formatted_stats['stats'] ) == 0 ) {
-				$error = new PPC_Error( 'no_author_with_total_payment', sprintf( __( 'No posts reach the threshold. Check your settings at %1$s', 'ppc' ), '<em>'.__( 'Options', 'post-pay-counter' ).' > '.__( 'Counting Settings', 'post-pay-counter' ).' > '.__( 'Total Payment', 'post-pay-counter' ).' > '.__( 'Pay only when the total payment threshold is reached', 'post-pay-counter' ).'.</em>' ) );
+				$error = new PPC_Error( 'no_author_with_total_payment', sprintf( __( 'No posts reach the threshold. Check your settings at %1$s', 'ppc' ), '<em>'.__( 'Options', 'post-pay-counter' ).' > '.__( 'Counting Settings', 'post-pay-counter' ).' > '.__( 'Total Payment', 'post-pay-counter' ).' > '.__( 'Pay only when the total payment threshold is reached', 'post-pay-counter' ).'.</em>' ), false );
 				return $error->return_error();
 			}
 

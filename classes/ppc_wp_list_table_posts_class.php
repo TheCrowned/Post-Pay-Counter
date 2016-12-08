@@ -91,7 +91,7 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
 
 		if( isset( $item[$column_name] ) ) {
 			$field_value = $item[$column_name];
-			
+
 			switch( $column_name ) {
 				//Attach link to post title: if user can edit posts, attach edit link (faster), if not post permalink (slower)
 				case 'post_title':
@@ -139,7 +139,7 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
 						$field_value = substr( $single, 33 );
 				}
 			}
-			
+
 			if( ! isset( $field_value ) )
 				$field_value = apply_filters( 'ppc_author_stats_each_field_empty_value', 'N.A.', $column_name ).'</td>';
 		}
@@ -183,7 +183,7 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
         //$columns = array(
             //'cb'        => '<input type="checkbox" />', //Render a checkbox instead of text
         //);
-	
+
 		$columns = $this->columns;
 
 		//Retrocompatibility for PRO HTML columns added directly to table
@@ -200,7 +200,7 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
 					$columns['post_payment_history'] = substr( $single, 16 );
 			}
 		}
-		
+
         return $columns;
     }
 
@@ -222,13 +222,13 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
     function get_sortable_columns() {
 
 		//return array();
-		
+
         $sortable_columns = array(
 			'post_id'     			=> array('post_id', false),
             'post_title'     		=> array('post_title', false),
             'post_publication_date' => array('post_publication_date', true), //true means it's already sorted
             'post_total_payment'    => array('post_total_payment', false)
-          
+
         );
         return apply_filters( 'ppc_stats_author_sortable_columns', $sortable_columns );
     }
@@ -304,9 +304,9 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
          * can be defined in another method (as we've done here) before being
          * used to build the value for our _column_headers property.
          */
-        $columns = $this->get_columns();
-        $hidden = array();
-        $sortable = $this->get_sortable_columns();
+        //$columns = $this->get_columns();
+        //$hidden = array();
+        //$sortable = $this->get_sortable_columns();
 
 
         /**
@@ -317,6 +317,7 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
          *
          * $this->get_column_info(); retrieves user-hidden columns through Screen Options.
          */
+		//$this->_column_headers = array( $columns, $hidden, $sortable );
         $this->_column_headers = $this->get_column_info();
 
 
@@ -337,7 +338,7 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
          * be able to use your precisely-queried data immediately.
          */
         $data = $this->data;
-        
+
 
         /**
          * This checks for sorting input and sorts the data in our array accordingly.

@@ -73,6 +73,8 @@ class PPC_counting_stuff {
 			self::$current_active_counting_types_author = $ppc_global_settings['counting_types_object']->get_active_counting_types( 'author', $author_id );
 			self::$being_processed_author = $author_id;
 
+		$data_arr = array();
+
 			foreach( $author_stats as $single ) {
 				do_action( 'ppc_data2cash_single_before', $single );
 
@@ -82,6 +84,8 @@ class PPC_counting_stuff {
 
 				$post_countings = self::get_post_countings( $single );
 				$post_payment = self::get_post_payment( $post_countings['normal_count'], $single->ID );
+//var_dump($post_countings['normal_count']['comments']);
+				//$data_arr[] = array( $post_countings['normal_count']['adsense_revenues']['real'], $post_countings['normal_count']['visits']['real'], $post_countings['normal_count']['facebook_shares']['real'] );
 
 				if( count( $post_countings['normal_count'] ) == 0 AND count( $post_payment['ppc_payment']['normal_payment'] ) == 0 ) continue;
 
@@ -92,6 +96,9 @@ class PPC_counting_stuff {
 				$processed_data[$author_id][$single->ID] = apply_filters( 'ppc_post_counting_payment_data', $single, $author );
 			}
         }
+
+        //var_dump($data_arr);
+        //print_r(serialize($data_arr));
 
         do_action( 'ppc_data2cash_processed_data', $processed_data ); //@since 2.605
 
