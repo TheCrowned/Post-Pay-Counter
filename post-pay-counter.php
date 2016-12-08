@@ -4,7 +4,7 @@ Plugin Name: Post Pay Counter
 Plugin URI: http://postpaycounter.com
 Description: Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
 Author: Stefano Ottolenghi
-Version: 2.704
+Version: 2.705
 Author URI: http://www.thecrowned.org/
 Text Domain: post-pay-counter
 */
@@ -59,7 +59,7 @@ class post_pay_counter {
         global $ppc_global_settings;
 
         $ppc_global_settings['current_version'] = get_option( 'ppc_current_version' );
-        $ppc_global_settings['newest_version'] = '2.704';
+        $ppc_global_settings['newest_version'] = '2.705';
         $ppc_global_settings['option_name'] = 'ppc_settings';
         $ppc_global_settings['option_errors'] = 'ppc_errors';
 		$ppc_global_settings['transient_error_deletion'] = 'ppc_error_daily_deletion';
@@ -250,7 +250,7 @@ class post_pay_counter {
 
 		if( ! isset( $last_available_post_time ) OR $last_available_post_time < current_time( 'timestamp' ) )
             $last_available_post = current_time( 'timestamp' ); //Pub Bonus needs to select even days without posts in the future, maybe there are publishings
-            
+
         wp_enqueue_script( 'jquery-ui-datepicker' );
         wp_enqueue_style( 'jquery.ui.theme', $ppc_global_settings['folder_path'].'style/ui-lightness/jquery-ui-1.8.15.custom.css' );
         wp_enqueue_style( 'ppc_header_style', $ppc_global_settings['folder_path'].'style/ppc_header_style.css', array( 'wp-admin' ) );
@@ -658,7 +658,7 @@ class post_pay_counter {
 					 'option' => 'ppc_posts_per_page'
 				 );
 				add_screen_option( $option, $args );
-			
+
 				$this->stats_table = new Post_Pay_Counter_Posts_List_Table( $this->stats );
 			}
 
@@ -673,7 +673,7 @@ class post_pay_counter {
 					 'option' => 'ppc_authors_per_page'
 				 );
 				add_screen_option( $option, $args );
-				
+
 				$this->stats_table = new Post_Pay_Counter_Authors_List_Table( $this->stats );
 			}
 		}
@@ -716,7 +716,7 @@ class post_pay_counter {
 		//AUTHOR STATS
         if( is_array( $this->author ) ) {
 			$userdata = get_userdata( $this->author[0] );
-			
+
 			echo PPC_HTML_functions::show_stats_page_header( $userdata->display_name, PPC_general_functions::get_the_author_link( $this->author[0] ) );
 
 			/**
@@ -733,7 +733,7 @@ class post_pay_counter {
 				echo '</div>';
 				return;
 			}
-            
+
             ?>
 
 	<form method="post" id="ppc_stats" accesskey="<?php echo $this->author[0]; //accesskey holds author id ?>">
@@ -785,12 +785,12 @@ class post_pay_counter {
 				echo $this->stats->get_error_message();
 				echo '</div>';
 				return;
-			}		
+			}
             ?>
 
 	<form method="post" id="ppc_stats">
 		<div id="ppc_stats_table"> <!-- PRO mark as paid retrocompatibility -->
-		
+
 
 			<?php
 			if( isset( $this->stats_table ) AND ! is_wp_error( $this->stats_table ) ) {

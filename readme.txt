@@ -2,8 +2,8 @@
 Contributors: Ste_95
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22
 Tags: counter, authors, payment, revenue sharing, stats, multi author, post management, post
-Tested up to: 4.6.2
-Stable tag: 2.703
+Tested up to: 4.7
+Stable tag: 2.705
 Requires at least: 3.7
 
 Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
@@ -74,6 +74,14 @@ From this: *define( 'PPC_DEBUG_LOG', true );*
 It must become: *define( 'PPC_DEBUG_LOG', false );*
 
 == Changelog ==
+= 2.705 (2016/12/08) =
+* Fixed: compatibility with PHP < 5.5 (array_column() error).
+* Tweak: (PRO users) header name is not *Post Pay Counter - Stats*, but whatever you have set your menu label to be named like.
+* Tweak: changed *Total payment threshold* label in metabox.
+
+= 2.704 (2016/11/08) =
+* Fixed: log data left in stats page.
+
 = 2.703 (2016/11/08) =
 * Fixed: fatal error in stats if no posts were to be displayed.
 
