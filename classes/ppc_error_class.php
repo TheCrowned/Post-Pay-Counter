@@ -98,6 +98,9 @@ class PPC_Error {
 		
 		if( isset( $args['error_code'] ) AND ! empty( $args['error_code'] ) ) {
 			$errors = get_option( $ppc_global_settings['option_errors'], array() );
+
+			if( ! is_array( $errors ) OR empty( $errors ) ) return false;
+			
 			$key = array_search( $args['error_code'], array_column( $errors, 'code' ) );
 
 			if( is_int( $key ) )

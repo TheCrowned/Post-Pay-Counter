@@ -60,7 +60,7 @@ function ppc_zones_manager(counting_type, zones_count) {
         }
 		zones_count++;
     
-        jQuery('<tr><td><input type="text" name="'+counting_type+'_'+zones_count+'_zone_threshold" id="'+counting_type+'_'+zones_count+'_zone_threshold" /></td><td><input type="text" name="'+counting_type+'_'+zones_count+'_zone_payment" id="'+counting_type+'_'+zones_count+'_zone_payment" /></td></tr>').appendTo(jQuery("#counting_"+counting_type+"_system_zonal_content").find("#"+counting_type+"_0_zone_threshold").parent().parent().parent());
+        jQuery('<tr><td><input type="text" size="15" name="'+counting_type+'_'+zones_count+'_zone_threshold" id="'+counting_type+'_'+zones_count+'_zone_threshold" /></td><td><input type="text" size="15" name="'+counting_type+'_'+zones_count+'_zone_payment" id="'+counting_type+'_'+zones_count+'_zone_payment" /></td></tr>').appendTo(jQuery("#counting_"+counting_type+"_system_zonal_content").find("#"+counting_type+"_0_zone_threshold").parent().parent().parent());
      });
  
      jQuery("#counting_"+counting_type+"_less_zones").click(function(e) {
