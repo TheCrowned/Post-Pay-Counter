@@ -68,17 +68,24 @@ jQuery(document).ready( function($) {
 	 */
 	static function notifications_get_list() {
 		if ( false === ( $notifications = get_transient( 'ppc_notifications_list' ) ) ) {
-			$feed = wp_remote_get( 'http://postpaycounter.com/ppcp/features/ppcp_spit_html.php?notifications_list', array( 'timeout' => 4 ) );
 
-			if ( ! is_wp_error( $feed ) ) {
-				if ( isset( $feed['body'] ) && strlen( $feed['body'] ) > 0 )
-					$notifications = maybe_unserialize( wp_remote_retrieve_body( $feed ) );
+			if( strpos( $_SERVER['QUERY_STRING'], 'ppc-' ) === false ) { //remote load and store notifications only on plugins pages
+				$notifications = array();
 			} else {
-				$notifications = $feed;
-				//new PPC_Error( "ppc_notifications_get_remote_error", $feed->get_error_message(), $feed->get_error_code() ); //log error
-			}
+				
+				$feed = wp_remote_get( 'http://postpaycounter.com/ppcp/features/ppcp_spit_html.php?notifications_list', array( 'timeout' => 4 ) );
 
-			set_transient( 'ppc_notifications_list', $notifications, 3600*15 ); //log even if error to avoid making too many requests
+				if ( ! is_wp_error( $feed ) ) {
+					if ( isset( $feed['body'] ) && strlen( $feed['body'] ) > 0 )
+						$notifications = maybe_unserialize( wp_remote_retrieve_body( $feed ) );
+				} else {
+					$notifications = $feed;
+					//new PPC_Error( "ppc_notifications_get_remote_error", $feed->get_error_message(), $feed->get_error_code() ); //log error
+				}
+
+				set_transient( 'ppc_notifications_list', $notifications, 3600*15 ); //log even if error to avoid making too many requests
+			}
+			
 		}
 
 		return apply_filters( 'ppc_notifications_get_list', $notifications );
