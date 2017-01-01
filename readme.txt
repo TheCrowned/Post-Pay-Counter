@@ -3,7 +3,7 @@ Contributors: Ste_95
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22
 Tags: counter, authors, payment, revenue sharing, stats, multi author, post management, post
 Tested up to: 4.7
-Stable tag: 2.706
+Stable tag: 2.707
 Requires at least: 3.7
 
 Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
@@ -11,26 +11,28 @@ Easily handle authors' payments on a multi-author blog by computing posts' remun
 == Description ==
 Easily calculate and handle authors' pay on a multi-author blog by computing posts' remuneration basing on admin defined rules. The administrator can specify criteria upon which payments should be computed and the stats will immediately be viewable. Both a general view with all users and a specific one for a author are possible. It can easily help you implement a revenue sharing/paid to write model for your business.
 
+[Plugin HOMEPAGE](https://postpaycounter.com)
+
 Features include:
 
-* Pay per post, word, visit ([tutorial](http://www.thecrowned.org/pay-writers-per-visit-wordpress?utm_source=wprep&utm_medium=link)), image and comment (not mutually exclusive).
+* Pay per post, word, visit ([tutorial](https://postpaycounter.com/pay-writers-per-visit-wordpress?utm_source=wprep&utm_medium=link)), image and comment (not mutually exclusive).
 * Pay with an incremental system (eg. each word is €0.01 => 100 words = €1) or with a zonal one (eg. from 200 to 300 words/visits it’s €2.00, up to 10 zones).
 * No account needed. Data is yours, no need to sign-up to anything really.
 * Old stats availability. View posts countings since the first written post, disregarding the plugin install date. A fancy date picker lets you shift between days and select the desired range.
 * Personalize user's settings, so that special settings only apply to a particular user. Different settings can be made viewable in the stats or hidden depending on your needs.
 * Customizable permissions to prevent your users to see stats and use functions they are not supposed to.
-* Extend with your own custom implementation through hooks, filters and special API features ([learn more](http://postpaycounter.com/add-custom-payment-types-post-pay-counter-stats?utm_source=wprep&utm_medium=link)).
+* Extend with your own custom implementation through hooks, filters and special API features ([learn more](https://postpaycounter.com/add-custom-payment-types-post-pay-counter-stats?utm_source=wprep&utm_medium=link)).
 * And... works with custom post types, narrow your payments only to chosen user groups, supports pagination and sorting, and even more!
 
 [GitHub repository](https://github.com/TheCrowned/Post-Pay-Counter/) (wanna join us coding?)
 
 = Integrate with Analytics/Adsense and pay with PayPal =
-The [PRO version](http://postpaycounter.com/post-pay-counter-pro?utm_source=wprep&utm_medium=link&utm_campaign=ppcp) includes Analytics visits payment, Adsense Revenues sharing and PayPal payments. Among other stuff, it also allows to keep a convenient log of past payments and to display stats in public pages through a shortcode. 
+The [PRO version](https://postpaycounter.com/post-pay-counter-pro?utm_source=wprep&utm_medium=link&utm_campaign=ppcp) includes Analytics visits payment, Adsense Revenues sharing and PayPal payments. Among other stuff, it also allows to keep a convenient log of past payments and to display stats in public pages through a shortcode. 
 
 = Integrate with Facebook =
-The [Facebook addon](http://postpaycounter.com/facebook-pay-per-social-interactions-shares-likes-and-comments?utm_source=wprep&utm_medium=link&utm_campaign=ppcp_fb) allows to pay posts for the Facebook shares and comments they receive.
+The [Facebook addon](https://postpaycounter.com/facebook-pay-per-social-interactions-shares-likes-and-comments?utm_source=wprep&utm_medium=link&utm_campaign=ppcp_fb) allows to pay posts for the Facebook shares and comments they receive.
 
-Browse [all extensions](http://postpaycounter.com/addons?utm_source=wprep&utm_medium=description&utm_campaign=ppc_addons).
+Browse [all extensions](https://postpaycounter.com/addons?utm_source=wprep&utm_medium=description&utm_campaign=ppc_addons).
 
 = Available languages =
 Post Pay Counter has been translated into the following languages:
@@ -66,7 +68,7 @@ It is indeed possible to pay for BBPress topics and replies with Post Pay Counte
 
 In *Post Pay Counter > Options > Miscellanea > Allowed post types*, make sure you have *Topic* and *Reply* ticked, and those types of contents will be included in countings.
 
-You can have a look at the [apt tutorial](http://postpaycounter.com/how-to-pay-per-bbpress-topics-and-replies/) for more details.
+You can have a look at the [apt tutorial](https://postpaycounter.com/how-to-pay-per-bbpress-topics-and-replies/) for more details.
 
 = I don't want errors to be logged =
 Set to *false* the constant *PPC_DEBUG_LOG* in *post-pay-counter.php*, it is located at line 44.
@@ -74,10 +76,14 @@ From this: *define( 'PPC_DEBUG_LOG', true );*
 It must become: *define( 'PPC_DEBUG_LOG', false );*
 
 == Changelog ==
-= 2.706 (2016/12/13) =
+= 2.707 (2017/01/01) =
+* Fixed: issue with dates due to new year.
+
+= 2.706 (2016/12/30) =
 * Fixed: improved error handling.
 * Tweak: updated French translation.
 * Tweak: improved *Payment systems* section layout for payment criteria.
+* New: addon [BuddyPress](https://postpaycounter.com/buddypress/) 
 
 = 2.705 (2016/12/08) =
 * Fixed: compatibility with PHP < 5.5 (array_column() error).
@@ -126,7 +132,7 @@ It must become: *define( 'PPC_DEBUG_LOG', false );*
 
 = 2.610 (2016/08/19) =
 * Fixed: PHP7 issues as found by WPEngine compatibility checker.
-* New: addon [Pay Per Character](http://postpaycounter.com/pay-per-character/) 
+* New: addon [Pay Per Character](https://postpaycounter.com/pay-per-character/) 
 
 = 2.609 (2016/08/03) =
 * Fixed: notices in stats page when no payment criteria were enabled for some users.
@@ -139,7 +145,7 @@ It must become: *define( 'PPC_DEBUG_LOG', false );*
 
 = 2.606 (2016/07/18) =
 * Fixed: notice in stats page when no payment criteria were enabled.
-* New: released [Author Payment Bonus](http://postpaycounter.com/author-payment-bonus-manually-change-the-total-payout-to-authors/) and [Category Custom Settings](http://postpaycounter.com/category-custom-settings/) released!
+* New: released [Author Payment Bonus](https://postpaycounter.com/author-payment-bonus-manually-change-the-total-payout-to-authors/) and [Category Custom Settings](http://postpaycounter.com/category-custom-settings/) released!
 
 = 2.605 (2016/06/19) =
 * Fixed: issue with empty stats.

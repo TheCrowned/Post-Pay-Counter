@@ -4,7 +4,7 @@ Plugin Name: Post Pay Counter
 Plugin URI: http://postpaycounter.com
 Description: Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
 Author: Stefano Ottolenghi
-Version: 2.706
+Version: 2.707
 Author URI: http://www.thecrowned.org/
 Text Domain: post-pay-counter
 */
@@ -59,7 +59,7 @@ class post_pay_counter {
         global $ppc_global_settings;
 
         $ppc_global_settings['current_version'] = get_option( 'ppc_current_version' );
-        $ppc_global_settings['newest_version'] = '2.706';
+        $ppc_global_settings['newest_version'] = '2.707';
         $ppc_global_settings['option_name'] = 'ppc_settings';
         $ppc_global_settings['option_errors'] = 'ppc_errors';
 		$ppc_global_settings['transient_error_deletion'] = 'ppc_error_daily_deletion';
@@ -259,14 +259,14 @@ class post_pay_counter {
         wp_localize_script( 'ppc_stats_effects', 'ppc_stats_effects_vars', array(
             'datepicker_mindate' => date( 'Y-m-d', $first_available_post_time ),
             'datepicker_maxdate' => date( 'Y-m-d', $last_available_post_time ),
-            'time_start_this_month' => date( 'Y-m-d', strtotime( '00:00:00' ) - ( ( date( 'j' )-1 )*24*60*60 ) ), //starts from timestamp of current day and subtracts seconds for enough days (depending on what day is today)
+            'time_start_this_month' => date( 'Y-m-d', strtotime( 'this month' ) ),
             'time_end_this_month' => date( 'Y-m-d', strtotime( '23:59:59' ) ),
-            'time_start_this_year' => date( 'Y-m-d', strtotime( '00:00:00' ) - ( ( date( 'z' ) )*24*60*60 ) ), //starts from timestamp of current day and subtracts seconds for enough days (depending on what day of the year is today)
+            'time_start_this_year' => date( 'Y-m-d', strtotime( 'this year' ) ),
             'time_end_this_year' => date( 'Y-m-d', strtotime( '23:59:59' ) ),
-            'time_start_this_week' => date( 'Y-m-d', strtotime( '00:00:00' ) - ( ( date( 'N' )-1 )*24*60*60 ) ),
+            'time_start_this_week' => date( 'Y-m-d', strtotime( 'this week' ) ),
             'time_end_this_week' => date( 'Y-m-d', strtotime( '23:59:59' ) ),
-            'time_start_last_month' => date( 'Y-m-d', strtotime( '00:00:00' ) - ( ( date( 'j' )-1 + cal_days_in_month( CAL_GREGORIAN, (date( 'm' ) - 1), date( 'Y' ) ) )*24*60*60 ) ),
-            'time_end_last_month' => date( 'Y-m-d', strtotime( '23:59:59' ) - ( date( 'j' )*24*60*60 ) ),
+            'time_start_last_month' => date( 'Y-m-d', strtotime('last month') ),
+            'time_end_last_month' => date( 'Y-m-d', strtotime( 'this month' ) - 3600 ), //go to first day of current month and back of one day
             'time_start_all_time' => $first_available_post_time,
             'time_end_all_time' => date( 'Y-m-d', strtotime( '23:59:59' ) )
         ) );
