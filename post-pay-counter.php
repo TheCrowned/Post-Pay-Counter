@@ -266,7 +266,7 @@ class post_pay_counter {
             'time_start_this_week' => date( 'Y-m-d', strtotime( 'this week' ) ),
             'time_end_this_week' => date( 'Y-m-d', strtotime( '23:59:59' ) ),
             'time_start_last_month' => date( 'Y-m-d', strtotime('last month') ),
-            'time_end_last_month' => date( 'Y-m-d', strtotime( 'this month' ) - 3600 ), //go to first day of current month and back of one day
+            'time_end_last_month' => date( 'Y-m-d', strtotime( 'this month' ) - 86400 ), //go to first day of current month and back of one day
             'time_start_all_time' => $first_available_post_time,
             'time_end_all_time' => date( 'Y-m-d', strtotime( '23:59:59' ) )
         ) );
