@@ -76,6 +76,9 @@ From this: *define( 'PPC_DEBUG_LOG', true );*
 It must become: *define( 'PPC_DEBUG_LOG', false );*
 
 == Changelog ==
+= 2.708 (2017/01/04) =
+* Fixed: broken stats time range picker.
+
 = 2.707 (2017/01/01) =
 * Fixed: issue with dates due to new year.
 

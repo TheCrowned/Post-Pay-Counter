@@ -259,14 +259,14 @@ class post_pay_counter {
         wp_localize_script( 'ppc_stats_effects', 'ppc_stats_effects_vars', array(
             'datepicker_mindate' => date( 'Y-m-d', $first_available_post_time ),
             'datepicker_maxdate' => date( 'Y-m-d', $last_available_post_time ),
-            'time_start_this_month' => date( 'Y-m-d', strtotime( 'this month' ) ),
+            'time_start_this_month' => date( 'Y-m-d', strtotime( 'first day of this month' ) ),
             'time_end_this_month' => date( 'Y-m-d', strtotime( '23:59:59' ) ),
-            'time_start_this_year' => date( 'Y-m-d', strtotime( 'this year' ) ),
+            'time_start_this_year' => date( 'Y-m-d', strtotime( 'first day of this year' ) ),
             'time_end_this_year' => date( 'Y-m-d', strtotime( '23:59:59' ) ),
-            'time_start_this_week' => date( 'Y-m-d', strtotime( 'this week' ) ),
+            'time_start_this_week' => date( 'Y-m-d', strtotime( 'first day of this week' ) ),
             'time_end_this_week' => date( 'Y-m-d', strtotime( '23:59:59' ) ),
-            'time_start_last_month' => date( 'Y-m-d', strtotime('last month') ),
-            'time_end_last_month' => date( 'Y-m-d', strtotime( 'this month' ) - 86400 ), //go to first day of current month and back of one day
+            'time_start_last_month' => date( 'Y-m-d', strtotime('first day of last month') ),
+            'time_end_last_month' => date( 'Y-m-d', strtotime( 'first day of this month' ) - 86400 ), //go to first day of current month and back of one day
             'time_start_all_time' => $first_available_post_time,
             'time_end_all_time' => date( 'Y-m-d', strtotime( '23:59:59' ) )
         ) );
