@@ -294,9 +294,22 @@ if( ! function_exists( 'cal_days_in_month' ) ) {
     } 
 } 
 
-//Ensuring compatibility with PHP < 5.5
+//Ensuring compatibility with PHP < 5.5 (Requires 5.3, though)
 if( ! function_exists( "array_column" ) ) {
     function array_column( $array, $column_name ) {
-        return array_map( function( $element ) use( $column_name ) { return $element[$column_name]; }, $array );
+        return array_map( function( $element ) use( $column_name ) {
+			return $element[$column_name];
+		}, $array );
     }
 }
+
+/*if( ! function_exists( "array_columnn" ) ) {
+	function array_column_map_callback( $array, $column_name ) {
+		return $array[$column_name];
+	}
+
+    function array_columnn( $array, $column_name ) {
+        return array_map( 'array_column_map_callback', $array );
+    }
+}
+*/

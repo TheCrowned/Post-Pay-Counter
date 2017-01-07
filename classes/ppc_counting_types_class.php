@@ -133,6 +133,8 @@ class PPC_counting_types {
      */ 
     
     function get_active_counting_types( $what, $userid = 'general' ) {
+//		$userid = apply_filters( 'ppc_get_active_counting_types_settings_userid', $userid, $what );
+
         //Try to retrieve them from "cache"
         $cache = wp_cache_get( 'ppc_user_active_counting_types_list_'.$what.'_'.$userid );
 

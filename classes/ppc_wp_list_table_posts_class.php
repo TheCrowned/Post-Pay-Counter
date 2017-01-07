@@ -82,7 +82,7 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
 
 		$author = $this->author_id;
 		$general_settings = PPC_general_functions::get_settings( 'general' );
-		$counting_types = $ppc_global_settings['counting_types_object']->get_active_counting_types( 'post', $author );
+		$counting_types = $ppc_global_settings['counting_types_object']->get_all_counting_types( 'post' );
 
 		if( $column_name == 'post_id' )
 			$this->current_post_id = $item[$column_name];

@@ -257,7 +257,7 @@ class PPC_HTML_functions {
 		if( is_array( $author ) ) {
 			list( $author, $author_stats ) = each( $formatted_stats['stats'] );
 			$user_settings = PPC_general_functions::get_settings( $author, true );
-			$counting_types = $ppc_global_settings['counting_types_object']->get_active_counting_types( 'post', $author );
+			$counting_types = $ppc_global_settings['counting_types_object']->get_all_counting_types( 'post' );
 
 			foreach( $author_stats as $post_id => $post_stats ) {
 				$post = $raw_stats[$author][$post_id];

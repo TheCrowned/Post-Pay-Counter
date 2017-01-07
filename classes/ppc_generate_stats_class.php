@@ -267,7 +267,7 @@ class PPC_generate_stats {
 
 			//Build payment tooltips
 			if( isset( $stats['total']['ppc_payment']['normal_payment'] ) AND isset( $stats['total']['ppc_count']['normal_count'] ) AND ! empty( $stats['total']['ppc_payment']['normal_payment'] ) AND ! empty( $stats['total']['ppc_count']['normal_count'] ) ) {
-				$active_counting_types_merge = array_merge( $ppc_global_settings['counting_types_object']->get_active_counting_types( 'author', $author ), $ppc_global_settings['counting_types_object']->get_active_counting_types( 'post', $author ) );
+				$active_counting_types_merge = array_merge( $ppc_global_settings['counting_types_object']->get_all_counting_types( 'author' ), $ppc_global_settings['counting_types_object']->get_all_counting_types( 'post' ) );
 				$stats['total']['ppc_misc']['tooltip_normal_payment'] = PPC_counting_stuff::build_payment_details_tooltip( $stats['total']['ppc_count']['normal_count'], $stats['total']['ppc_payment']['normal_payment'], $active_counting_types_merge );
 				$stats['total']['ppc_misc'] = apply_filters( 'ppc_stats_author_misc', $stats['total']['ppc_misc'], $author, $stats );
 			}
@@ -305,8 +305,7 @@ class PPC_generate_stats {
 			//if( empty( $author_stats ) ) return;
 			$post_stats = current( $author_stats );
 
-			//$post_stats = $author_stats[key( $author_stats )]; //get first post object from stats to determine which countings should be shown
-			$counting_types = $ppc_global_settings['counting_types_object']->get_active_counting_types( 'post', $author_id );
+			$counting_types = $ppc_global_settings['counting_types_object']->get_all_counting_types( 'post' );
 
             $formatted_stats['cols']['post_id'] = __( 'ID' , 'post-pay-counter');
             $formatted_stats['cols']['post_title'] = __( 'Title', 'post-pay-counter');
@@ -314,23 +313,17 @@ class PPC_generate_stats {
             $formatted_stats['cols']['post_status'] = __( 'Status', 'post-pay-counter');
             $formatted_stats['cols']['post_publication_date'] = __( 'Pub. Date', 'post-pay-counter');
 
-            $data_merge = array_merge( $post_stats->ppc_count['normal_count'], $post_stats->ppc_payment['normal_payment'] );
+            $data_merge = array_merge( $post_stats->ppc_count['normal_count'], $post_stats->ppc_payment['normal_payment'] ); //get counting types from a random post
+
+			/*
+            // BUG: if random post has different counting types (for example because of category custom settings, then the whole thing is screwed up)
+            // It doesnt work even if in the whole page there is just on different post, because then on line 357 we use this var to foreach cnt types
+            */
+            
 			unset( $data_merge['total'] );
 
-			foreach( $data_merge as $id => $value ) {
-				if( isset( $counting_types[$id] ) ) {
-					switch( $counting_types[$id]['display'] ) {
-						case 'none':
-						case 'tooltip':
-							//nothing to display here
-							break;
-
-						default:
-							$formatted_stats['cols']['post_'.$id] = $counting_types[$id]['label'];
-							break;
-					}
-				}
-			}
+			//Add column labels for counting types
+			self::get_detailed_stats_columns( $formatted_stats['cols'], $data_merge );
 
             $formatted_stats['cols']['post_total_payment'] = __( 'Total Pay', 'post-pay-counter');
 
@@ -347,7 +340,12 @@ class PPC_generate_stats {
                 $formatted_stats['stats'][$author_id][$post->ID]['post_status'] = $post->post_status;
                 $formatted_stats['stats'][$author_id][$post->ID]['post_publication_date'] = $post_date[0];
 
-				foreach( $data_merge as $id => $value ) {
+				$data_merge = array_merge( $post->ppc_count['normal_count'], $post->ppc_payment['normal_payment'] ); //get counting types for this post
+
+				//Add column labels for counting types, if new ones are there
+				self::get_detailed_stats_columns( $formatted_stats['cols'], $data_merge );
+			
+				foreach( $data_merge as $id => $value ) { //foreach counting types in $post->ppc_* vars
 					if( isset( $counting_types[$id] ) ) {
 						switch( $counting_types[$id]['display'] ) {
 							case 'both':
@@ -375,6 +373,8 @@ class PPC_generate_stats {
                 $formatted_stats['stats'][$author_id][$post->ID] = apply_filters( 'ppc_author_stats_format_stats_after_each_default', $formatted_stats['stats'][$author_id][$post->ID], $author_id, $post );
             }
 
+            self::sort_detailed_stats_columns();
+
         } else {
 			$cols_info = array(
 				'counting_types' => array()
@@ -384,8 +384,8 @@ class PPC_generate_stats {
                 if( ! isset( $posts['total']['ppc_payment']['normal_payment'] ) OR empty( $posts['total']['ppc_payment']['normal_payment'] ) ) continue; //user with no counting types enabled
 
 				$author_data = get_userdata( $author_id );
-                $post_counting_types = $ppc_global_settings['counting_types_object']->get_active_counting_types( 'post', $author_id );
-				$author_counting_types = $ppc_global_settings['counting_types_object']->get_active_counting_types( 'author', $author_id );
+                $post_counting_types = $ppc_global_settings['counting_types_object']->get_all_counting_types( 'post' );
+				$author_counting_types = $ppc_global_settings['counting_types_object']->get_all_counting_types( 'author' );
 				$counting_types = array_merge( $post_counting_types, $author_counting_types );
 
                 $formatted_stats['stats'][$author_id]['author_id'] = $author_id;
@@ -454,6 +454,53 @@ class PPC_generate_stats {
 
         return apply_filters( 'ppc_formatted_stats', $formatted_stats );
     }
+
+	/**
+	 * Builds detailed stats columns array incrementally.
+	 * 
+	 * Since each post can have different cnt types enabled (for example
+	 * because of Category custom settings), every post must be able to
+	 * contribute to the table columns.
+	 *
+	 * @since 	2.715
+	 * @param 	&$columns array current columns
+	 * @param	$maybe_add array columns current post contributes
+	 * @return	void
+	 */ 
+    static function get_detailed_stats_columns( &$columns, $maybe_add ) {
+		global $ppc_global_settings;
+
+		$cols = array();
+		$counting_types = $ppc_global_settings['counting_types_object']->get_all_counting_types( 'post' );
+		
+		foreach( $maybe_add as $id => $value ) {
+			if( isset( $counting_types[$id] ) ) {
+				switch( $counting_types[$id]['display'] ) {
+					case 'none':
+					case 'tooltip':
+						//nothing to display here
+						break;
+
+					default:
+						$cols['post_'.$id] = $counting_types[$id]['label'];
+						break;
+				}
+			}
+		}
+
+		$columns = array_merge( $columns, $cols );
+	}
+
+	/**
+	 * Sorts detailed stats cols so that Pay cols are always at the bottom.
+	 *
+	 * @since 	2.715
+	 * @param	&columns array
+	 * @return void
+	 */ 
+	static function sort_detailed_stats_columns( &$columns ) {
+		
+	}
 
     /**
      * Computes overall stats.

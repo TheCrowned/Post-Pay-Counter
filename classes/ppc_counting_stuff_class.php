@@ -68,12 +68,12 @@ class PPC_counting_stuff {
         $processed_data = array();
 
         foreach( $data as $author_id => &$author_stats ) {
+			self::$being_processed_author = $author_id;
 			self::$settings = PPC_general_functions::get_settings( $author_id, TRUE );
 			self::$current_active_counting_types_post = $ppc_global_settings['counting_types_object']->get_active_counting_types( 'post', $author_id );
 			self::$current_active_counting_types_author = $ppc_global_settings['counting_types_object']->get_active_counting_types( 'author', $author_id );
-			self::$being_processed_author = $author_id;
-
-		$data_arr = array();
+			
+			$data_arr = array();
 
 			foreach( $author_stats as $single ) {
 				do_action( 'ppc_data2cash_single_before', $single );
@@ -84,7 +84,8 @@ class PPC_counting_stuff {
 
 				$post_countings = self::get_post_countings( $single );
 				$post_payment = self::get_post_payment( $post_countings['normal_count'], $single->ID );
-//var_dump($post_countings['normal_count']['comments']);
+
+				//var_dump($post_countings['normal_count']['comments']);
 				//$data_arr[] = array( $post_countings['normal_count']['adsense_revenues']['real'], $post_countings['normal_count']['visits']['real'], $post_countings['normal_count']['facebook_shares']['real'] );
 
 				if( count( $post_countings['normal_count'] ) == 0 AND count( $post_payment['ppc_payment']['normal_payment'] ) == 0 ) continue;
@@ -413,23 +414,23 @@ class PPC_counting_stuff {
      * @return  string tooltip
     */
 
-    static function build_payment_details_tooltip( $countings, $payment, $active_counting_types = array() ) {
+    static function build_payment_details_tooltip( $countings, $payment, $counting_types = array() ) {
         global $ppc_global_settings;
 
         $tooltip = '';
 
 		if( ! self::$settings['enable_stats_payments_tooltips'] )
 			return $tooltip;
-
+			
         if( ! empty( $payment ) ) {
 			foreach( $payment as $id => $value ) {
 				if( $id == 'total' ) continue;
-				if( ! isset( $active_counting_types[$id] ) ) continue; //skip unactive counting types
+				if( ! isset( $counting_types[$id] ) ) continue; //skip unactive counting types
 
-				if( $active_counting_types[$id]['display'] == 'none' ) continue; //hides to-be-hidden counting types
+				if( $counting_types[$id]['display'] == 'none' ) continue; //hides to-be-hidden counting types
 
 				//Countings with only payment
-				if( isset( $active_counting_types[$id]['payment_only'] ) AND $active_counting_types[$id]['payment_only'] ) {
+				if( isset( $counting_types[$id]['payment_only'] ) AND $counting_types[$id]['payment_only'] ) {
 					$tooltip .= ucfirst( $id ).': '.PPC_general_functions::format_payment( sprintf( '%.2f', $value ) ).'&#13;';
 
 				//Countings with count and payment
