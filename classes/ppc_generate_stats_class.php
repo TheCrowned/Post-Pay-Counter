@@ -325,10 +325,6 @@ class PPC_generate_stats {
 			//Add column labels for counting types
 			self::get_detailed_stats_columns( $formatted_stats['cols'], $data_merge );
 
-            $formatted_stats['cols']['post_total_payment'] = __( 'Total Pay', 'post-pay-counter');
-
-            $formatted_stats['cols'] = apply_filters( 'ppc_author_stats_format_stats_after_cols_default', $formatted_stats['cols'] );
-
             foreach( $author_stats as $key => $post ) {
                 if( $key === 'total' ) continue; //Skip author's total
 
@@ -373,7 +369,10 @@ class PPC_generate_stats {
                 $formatted_stats['stats'][$author_id][$post->ID] = apply_filters( 'ppc_author_stats_format_stats_after_each_default', $formatted_stats['stats'][$author_id][$post->ID], $author_id, $post );
             }
 
-            self::sort_detailed_stats_columns();
+			//Cols bottom, so that Payment cols are always at the end
+			$formatted_stats['cols']['post_total_payment'] = __( 'Total Pay', 'post-pay-counter');
+
+			$formatted_stats['cols'] = apply_filters( 'ppc_author_stats_format_stats_after_cols_default', $formatted_stats['cols'] );
 
         } else {
 			$cols_info = array(
@@ -489,17 +488,6 @@ class PPC_generate_stats {
 		}
 
 		$columns = array_merge( $columns, $cols );
-	}
-
-	/**
-	 * Sorts detailed stats cols so that Pay cols are always at the bottom.
-	 *
-	 * @since 	2.715
-	 * @param	&columns array
-	 * @return void
-	 */ 
-	static function sort_detailed_stats_columns( &$columns ) {
-		
 	}
 
     /**
