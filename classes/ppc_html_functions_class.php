@@ -99,7 +99,7 @@ class PPC_HTML_functions {
 			echo '<div style="margin-top: 10px;">';
 			echo __( 'Filter by user role', 'post-pay-counter' ). ' ';
 			echo '<select name="role" id="ppc_stats_role">';
-			echo '<option value="ppc_any" />'.__( 'Any', 'post-pay-counter' ).'</option>';
+			echo '<option value="ppc_any">'.__( 'Any', 'post-pay-counter' ).'</option>';
 
 			foreach( $wp_roles->role_names as $key => $value ) {
 				$checked = '';
@@ -107,7 +107,22 @@ class PPC_HTML_functions {
 				if( isset( $ppc_global_settings['stats_role'] ) AND $key == $ppc_global_settings['stats_role'] )
 					$checked = 'selected="selected"';
 
-				echo '<option value="'.$key.'" '.$checked.' />'.$value.'</option>';
+				echo '<option value="'.$key.'" '.$checked.'>'.$value.'</option>';
+			}
+
+			echo '</select>';
+			echo ' - '.__( 'User', 'post-pay-counter' ).' ';
+			echo '<select name="author" id="ppc_stats_user">';
+			echo '<option value="ppc_any">'.__( 'Any', 'post-pay-counter' ).'</option>';
+
+			$all_users = get_users( array( 'orderby' => 'nicename', 'fields' => array( 'ID', 'user_nicename' ) ) );
+			foreach( $all_users as $user ) {
+				$checked = '';
+
+				if( isset( $ppc_global_settings['stats_user'] ) AND $key == $ppc_global_settings['stats_user'] )
+					$checked = 'selected="selected"';
+
+				echo '<option value="'.$user->ID.'" '.$checked.' />'.$user->user_nicename.'</option>';
 			}
 
 			echo '</select>';

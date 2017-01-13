@@ -127,6 +127,7 @@ class post_pay_counter {
         add_action( 'wp_ajax_ppc_import_settings', array( 'PPC_ajax_functions', 'import_settings' ) );
         add_action( 'wp_ajax_ppc_clear_error_log', array( 'PPC_ajax_functions', 'clear_error_log' ) );
 		add_action( 'wp_ajax_ppc_dismiss_notification', array( 'PPC_ajax_functions', 'dismiss_notification' ) );
+		add_action( 'wp_ajax_ppc_stats_get_users_by_role', array( 'PPC_ajax_functions', 'stats_get_users_by_role' ) );
 
 		//License hooks
 		add_action( 'wp_ajax_ppc_license_activate', array( 'PPC_ajax_functions', 'license_activate' ) );
@@ -145,7 +146,7 @@ class post_pay_counter {
     function cron_add_times( $schedules ) {
         $schedules['weekly2'] = array(
             'interval' => 3600*24*7*2,
-            'display' => __( 'Once every two weeks', 'ppcp')
+            'display' => 'Once every two weeks'
         );
 
         return $schedules;
@@ -268,7 +269,8 @@ class post_pay_counter {
             'time_start_last_month' => date( 'Y-m-d', strtotime('first day of last month') ),
             'time_end_last_month' => date( 'Y-m-d', strtotime( 'first day of this month' ) - 86400 ), //go to first day of current month and back of one day
             'time_start_all_time' => $first_available_post_time,
-            'time_end_all_time' => date( 'Y-m-d', strtotime( '23:59:59' ) )
+            'time_end_all_time' => date( 'Y-m-d', strtotime( '23:59:59' ) ),
+            'nonce_ppc_stats_get_users_by_role' => wp_create_nonce( 'ppc_stats_get_users_by_role' )
         ) );
 
 		$this->initialize_stats();

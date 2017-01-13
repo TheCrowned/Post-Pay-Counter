@@ -245,5 +245,6 @@ jQuery(document).ready(function($) {
             }
         });
     });
+    /* </LICENSE BOX CALLS> */
 
 });

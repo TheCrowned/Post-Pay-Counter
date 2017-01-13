@@ -88,8 +88,7 @@ class PPC_ajax_functions {
      *
      * @access  public
      * @since   2.0  
-    */
-    
+     */
     static function personalize_fetch_users_by_roles() {
         global $ppc_global_settings;
         self::ppc_check_ajax_referer( 'ppc_personalize_fetch_users_by_roles' );
@@ -167,6 +166,55 @@ class PPC_ajax_functions {
         do_action( 'ppc_personalize_users_role_list_end', $user_role );
         
         exit;
+    }
+
+    /**
+     * Fetches users to be personalized basing on the requested user role.
+     *
+     * @access  public
+     * @since   2.710
+     */
+    static function stats_get_users_by_role() {
+        global $ppc_global_settings;
+        self::ppc_check_ajax_referer( 'ppc_stats_get_users_by_role' );
+        
+        $user_role = trim( $_REQUEST['user_role'] );
+        
+        $args = array( 
+            'orderby' => 'display_name', 
+            'order' => 'ASC', 
+            'role' => $user_role,
+            'count_total' => true, 
+            'fields' => array( 
+                'ID', 
+                'display_name' 
+            ) 
+        );
+		
+		/**
+		 * Filters user fetching (by role) for stats select.
+		 * 
+		 * This fetches the users list that is shown in the Stats User dropdown when a user role is selected.
+		 *
+		 * @since	2.710
+		 * @param	array $args	WP_User_query args
+		 */
+		
+        $args = apply_filters( 'ppc_stats_get_users_args', $args );
+        
+        $users_to_show = new WP_User_Query( $args );
+        $html = '<option value="ppc_any">'.__( 'Any', 'post-pay-counter' ).'</option>';
+        
+		if( $users_to_show->get_total() != 0 ) {
+
+			foreach( $users_to_show->results as $single )
+				$html .= '<option value="'.$single->ID.'">'.$single->display_name.'</option>';
+				
+		}
+        
+        wp_send_json_success( array(
+			'html' => $html
+		) );
     }
     
     /**

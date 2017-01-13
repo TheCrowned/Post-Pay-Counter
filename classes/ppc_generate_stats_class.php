@@ -461,7 +461,7 @@ class PPC_generate_stats {
 	 * because of Category custom settings), every post must be able to
 	 * contribute to the table columns.
 	 *
-	 * @since 	2.715
+	 * @since 	2.710
 	 * @param 	&$columns array current columns
 	 * @param	$maybe_add array columns current post contributes
 	 * @return	void
