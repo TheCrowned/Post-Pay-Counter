@@ -16,9 +16,8 @@ class PPC_install_functions {
      * @access  public
      * @since   2.0
      * @param   $network_wide bool whether network wide activation has been requested
-    */
-
-    function ppc_install( $network_wide ) {
+     */
+    static function ppc_install( $network_wide ) {
         global $wpdb, $ppc_global_settings;
 
 		//Network activation
@@ -53,9 +52,8 @@ class PPC_install_functions {
      * @param   $path string the path of the newly created blog's admin
      * @param   $site_id int the site id (usually = 1)
      * @param   $meta array initial site options
-    */
-
-    function ppc_new_blog_install( $blog_id, $user_id, $domain, $path, $site_id, $meta ) {
+     */
+    static function ppc_new_blog_install( $blog_id, $user_id, $domain, $path, $site_id, $meta ) {
     	global $ppc_global_settings;
 
 		if( is_plugin_active_for_network( basename( dirname( dirname( __FILE__ ) ).'/post-pay-counter.php' ) ) ) {

@@ -93,21 +93,26 @@ class PPC_counting_types {
         
         if( isset( $parameters['settings_status_index'] ) )
             $counting_type_arr['settings_status_index'] = $parameters['settings_status_index'];
+
+		//If no display choice is made, assign 'both'
+        if( ! isset( $parameters['display'] ) )
+            $counting_type_arr['display'] = 'both';
+        else
+            $counting_type_arr['display'] = $parameters['display'];
         
-        if( isset( $parameters['display_status_index'] ) )
+        if( isset( $parameters['display_status_index'] ) AND ! empty( $parameters['display_status_index'] ) ) {
             $counting_type_arr['display_status_index'] = $parameters['display_status_index'];
+
+			$general_settings = PPC_general_functions::get_settings( 'general' );
+			if( isset( $general_settings[$parameters['display_status_index']] ) ) //Adjust display arg depending on settings
+				$counting_type_arr['display'] = $general_settings[$parameters['display_status_index']];
+		}
         
         if( isset( $parameters['count_callback'] ) )
             $counting_type_arr['count_callback'] = $parameters['count_callback'];
         
         if( isset( $parameters['other_params'] ) )
         	$counting_type_arr['other_params'] = $parameters['other_params'];
-        
-        //If no display choice is made, assign 'both'
-        if( ! isset( $parameters['display'] ) )
-            $counting_type_arr['display'] = 'both';
-        else
-            $counting_type_arr['display'] = $parameters['display'];
         
         do_action( 'ppc_registering_counting_type', $counting_type_arr );
         

@@ -67,6 +67,12 @@ class PPC_counting_stuff {
 
         $processed_data = array();
 
+        //Initializes counting types
+        if( ! isset( $ppc_global_settings['counting_types_object'] ) OR ! is_a( $ppc_global_settings['counting_types_object'], 'PPC_counting_types' ) ) {
+			$ppc_global_settings['counting_types_object'] = new PPC_counting_types();
+			$ppc_global_settings['counting_types_object']->register_built_in_counting_types();
+		}
+
         foreach( $data as $author_id => &$author_stats ) {
 			self::$being_processed_author = $author_id;
 			self::$settings = PPC_general_functions::get_settings( $author_id, TRUE );

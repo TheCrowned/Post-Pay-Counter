@@ -143,7 +143,7 @@ jQuery(document).ready(function($) {
         
         $.post(ajaxurl, data, function(response) {
             $('#ppc_import_settings_ajax_loader').css('display', 'none');
-            
+
             if(response.indexOf('ok') < 0) {
                 $('#ppc_import_settings_error').html(response);
                 $('#ppc_import_settings_error').css('display', 'inline');

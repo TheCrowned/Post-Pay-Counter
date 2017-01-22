@@ -2,8 +2,8 @@
 Contributors: Ste_95
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22
 Tags: counter, authors, payment, revenue sharing, stats, multi author, post management, post
-Tested up to: 4.7
-Stable tag: 2.707
+Tested up to: 4.7.1
+Stable tag: 2.710
 Requires at least: 3.7
 
 Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
@@ -76,6 +76,11 @@ From this: *define( 'PPC_DEBUG_LOG', true );*
 It must become: *define( 'PPC_DEBUG_LOG', false );*
 
 == Changelog ==
+= 2.710 (2017/01/14) =
+* Feature: dropdown to select a user to view stats for after picking a user role in stats page.
+* Feature: supporting each *post* to have different payment criteria enabled. This allows to effectively selectively enable/disable payment criteria for each category through the [Category Custom Settings](http://postpaycounter.com/category-custom-settings/), for example, and also allows (in theory) to set up per post settings.
+* Tweak: minor performance improvements in stats generation.
+
 = 2.708 (2017/01/04) =
 * Fixed: broken stats time range picker.
 

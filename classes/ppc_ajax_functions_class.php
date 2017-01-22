@@ -260,7 +260,7 @@ class PPC_ajax_functions {
         self::ppc_check_ajax_referer( 'ppc_import_settings' );
         
         $to_import = unserialize( base64_decode( $_REQUEST['import_settings_content'] ) );
-        
+
         if( is_array( $to_import ) AND isset( $to_import['userid'] ) ) {
 
             $to_import['userid'] = $_REQUEST['userid'];

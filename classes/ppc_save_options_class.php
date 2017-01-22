@@ -207,8 +207,8 @@ class PPC_save_options {
      * @since   2.0
      * @param   string the userid of the to be updated item (general, trial, [int])
      * @param   $settings array the new settings
-    */
-
+     * @return 	true in case of success, WP_Error otherwise
+     */
     static function update_settings( $userid, $new_settings ) {
         global $ppc_global_settings;
         $current_general_settings = PPC_general_functions::get_settings( 'general' );
@@ -255,5 +255,7 @@ class PPC_save_options {
         do_action( 'ppc_settings_updated', $userid, $new_settings );
 
         PPC_general_functions::clear_settings_cache( $userid );
+
+        return true;
     }
 }

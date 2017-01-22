@@ -300,6 +300,7 @@ class PPC_generate_stats {
 
         if( is_array( $author ) ) {
 			foreach( $data as $author_id_foreach => $author_stats_foreach ) { $author_id = $author_id_foreach; $author_stats = $author_stats_foreach; } //list alternative
+			$user_settings = PPC_general_functions::get_settings( $author_id, TRUE );
             //list( $author_id, $author_stats ) = each( $data );
 
 			//if( empty( $author_stats ) ) return;
@@ -343,7 +344,13 @@ class PPC_generate_stats {
 			
 				foreach( $data_merge as $id => $value ) { //foreach counting types in $post->ppc_* vars
 					if( isset( $counting_types[$id] ) ) {
-						switch( $counting_types[$id]['display'] ) {
+
+						if( isset( $counting_types[$id]['display_status_index'] ) AND isset( $user_settings[$counting_types[$id]['display_status_index']] ) ) //check display setting per user
+							$display = $user_settings[$counting_types[$id]['display_status_index']];
+						else
+							$display = $counting_types[$id]['display'];
+						
+						switch( $display ) {
 							case 'both':
 								$formatted_stats['stats'][$author_id][$post->ID]['post_'.$id] = $post->ppc_count['normal_count'][$id]['to_count'].' ('.PPC_general_functions::format_payment( sprintf( '%.2f', $post->ppc_payment['normal_payment'][$id] ) ).')';
 								break;
@@ -383,6 +390,7 @@ class PPC_generate_stats {
                 if( ! isset( $posts['total']['ppc_payment']['normal_payment'] ) OR empty( $posts['total']['ppc_payment']['normal_payment'] ) ) continue; //user with no counting types enabled
 
 				$author_data = get_userdata( $author_id );
+				$user_settings = PPC_general_functions::get_settings( $author_id, TRUE );
                 $post_counting_types = $ppc_global_settings['counting_types_object']->get_all_counting_types( 'post' );
 				$author_counting_types = $ppc_global_settings['counting_types_object']->get_all_counting_types( 'author' );
 				$counting_types = array_merge( $post_counting_types, $author_counting_types );
@@ -395,7 +403,13 @@ class PPC_generate_stats {
 
 				foreach( $data_merge as $id => $value ) {
 					if( isset( $counting_types[$id] ) ) {
-						switch( $counting_types[$id]['display'] ) {
+
+						if( isset( $counting_types[$id]['display_status_index'] ) AND isset( $user_settings[$counting_types[$id]['display_status_index']] ) ) //check display setting per user
+							$display = $user_settings[$counting_types[$id]['display_status_index']];
+						else
+							$display = $counting_types[$id]['display'];
+						
+						switch( $display ) {
 							case 'both':
 								$formatted_stats['stats'][$author_id]['author_'.$id] = $posts['total']['ppc_count']['normal_count'][$id]['to_count'].' ('.PPC_general_functions::format_payment( sprintf( '%.2f', $posts['total']['ppc_payment']['normal_payment'][$id] ) ).')';
 								break;
