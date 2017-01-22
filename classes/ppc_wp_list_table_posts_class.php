@@ -117,7 +117,7 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
 				case 'post_comments':
 					$label_field_value = substr( $column_name, 5, strlen( $column_name ) );
 					if( $post->ppc_count['normal_count'][$label_field_value]['real'] != $post->ppc_count['normal_count'][$label_field_value]['to_count'] )
-						$field_value = '<abbr title="'.sprintf( __( 'Total is %1$s. %2$s Displayed is what you\'ll be paid for.', 'post-pay-counter' ), $post->ppc_count['normal_count'][$label_field_value]['real'], '&#13;' ).'" class="ppc_count_column">'.$post_stats[$column_name].'</abbr>';
+						$field_value = '<abbr title="'.sprintf( __( 'Total is %1$s. %2$s Displayed is what you\'ll be paid for.', 'post-pay-counter' ), $post->ppc_count['normal_count'][$label_field_value]['real'], '&#13;' ).'" class="ppc_count_column">'.$item[$column_name].'</abbr>';
 
 					break;
 			}

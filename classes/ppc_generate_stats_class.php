@@ -171,7 +171,7 @@ class PPC_generate_stats {
 		$sorted_array = array();
         foreach( $data as $post_id => $single ) {
             $sorted_array[$single->post_author][$post_id] = $single;
-            $user_settings = PPC_general_functions::get_settings( $single->post_author, true );
+            //$user_settings = PPC_general_functions::get_settings( $single->post_author, true );
         }
 
         return apply_filters( 'ppc_grouped_by_author_stats', $sorted_array );
@@ -190,8 +190,9 @@ class PPC_generate_stats {
         global $ppc_global_settings;
 
         foreach( $data as $author_id => $author_stats ) {
+			$user_settings = PPC_general_functions::get_settings( $author_id, true );
+			
 			foreach( $author_stats as $post_id => $single ) {
-				$user_settings = PPC_general_functions::get_settings( $author_id, true );
 
 				//Written posts count
 				if( ! isset( $data[$author_id]['total']['ppc_misc']['posts'] ) )
