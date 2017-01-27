@@ -238,7 +238,7 @@ class post_pay_counter {
 
         $ppc_global_settings['first_available_post_time'] = $first_available_post_time;
 
-		$args = array(
+		/*$args = array(
             'post_type' => $general_settings['counting_allowed_post_types'],
 			'posts_per_page' => 1,
             'orderby' => 'post_date',
@@ -249,8 +249,8 @@ class post_pay_counter {
 		if( $last_available_post->found_posts !== 0 )
 			$last_available_post_time = strtotime( $last_available_post->posts[0]->post_date );
 
-		if( ! isset( $last_available_post_time ) OR $last_available_post_time < current_time( 'timestamp' ) )
-            $last_available_post = current_time( 'timestamp' ); //Pub Bonus needs to select even days without posts in the future, maybe there are publishings
+		if( ! isset( $last_available_post_time ) OR $last_available_post_time < current_time( 'timestamp' ) )*/
+            $last_available_post_time = current_time( 'timestamp' ); //Pub Bonus needs to select even days without posts in the future, maybe there are publishings
 
         wp_enqueue_script( 'jquery-ui-datepicker' );
         wp_enqueue_style( 'jquery.ui.theme', $ppc_global_settings['folder_path'].'style/ui-lightness/jquery-ui-1.8.15.custom.css' );
