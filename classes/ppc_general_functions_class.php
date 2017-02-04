@@ -73,7 +73,7 @@ class PPC_general_functions {
             if( $cache != false AND $complete_with_general ) {
                 $user_settings = $cache;
             } else {
-				if( $cache === 0 ) {
+				if( $cache === 0 ) { //cache equal to 0 means user has no special settings
 					$user_settings = $general_settings; 
 				} else {
 					$user_settings = get_user_option( $ppc_global_settings['option_name'], $userid );

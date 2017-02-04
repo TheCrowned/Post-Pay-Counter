@@ -395,15 +395,17 @@ class PPC_counting_stuff {
 
 		$counting_types = array_merge( self::$current_active_counting_types_post, self::$current_active_counting_types_author );
 
-        foreach( $countings as $id => $value ) {
-            if( isset( $counting_types[$id] ) ) {
-				if( isset( $counting_types[$id]['payment_only'] ) AND $counting_types[$id]['payment_only'] == true ) continue; //these are dealt with in get_post_payment
-				if( isset( $counting_types[$id]['other_params']['not_to_pay'] ) AND $counting_types[$id]['other_params']['not_to_pay'] ) continue;
+		if( ! empty( $countings ) ) {
+			foreach( $countings as $id => $value ) {
+				if( isset( $counting_types[$id] ) ) {
+					if( isset( $counting_types[$id]['payment_only'] ) AND $counting_types[$id]['payment_only'] == true ) continue; //these are dealt with in get_post_payment
+					if( isset( $counting_types[$id]['other_params']['not_to_pay'] ) AND $counting_types[$id]['other_params']['not_to_pay'] ) continue;
 
-                $counting_type_payment = call_user_func( $counting_types[$id]['payment_callback'], $value );
-                $ppc_payment[$id] = $counting_type_payment;
-            }
-        }
+					$counting_type_payment = call_user_func( $counting_types[$id]['payment_callback'], $value );
+					$ppc_payment[$id] = $counting_type_payment;
+				}
+			}
+		}
 
 		$ppc_payment = apply_filters( 'ppc_get_countings_payment', $ppc_payment, $countings );
 

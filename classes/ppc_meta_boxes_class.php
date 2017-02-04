@@ -395,14 +395,12 @@ class PPC_meta_boxes {
      * @since   2.2
      * @param   object WP post object
      * @param   array plugin settings
-    */
-
+     */
     static function meta_box_import_export_settings( $post, $current_settings ) {
         global $ppc_global_settings;
         $current_settings = $current_settings['args'];
         $userid = $current_settings['userid'];
-        $current_settings = PPC_general_functions::get_settings( $current_settings['userid'], false, false );
-
+        
         echo '<form action="" id="ppc_import_export_form" method="post">';
         echo '<p>'.sprintf( __( 'Have more than website but use the same settings? You can transfer settings from one installation of the plugin to another. All addons settings will be taken as well. It works both for general and for user personalized settings, depending on what page you are. If you want to export this website\'s settings, copy the code below. If you want to import another website\'s settings, paste its settings code in the field below and click %s. Once you import settings, it will not be possible to go back to the previous settings. Do not edit settings code unless you know what base64 and serialization are and are sure of what you are doing!', 'post-pay-counter' ), __( 'Import settings', 'post-pay-counter' ) ).'</p>';
 
