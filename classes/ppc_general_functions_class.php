@@ -302,14 +302,3 @@ if( ! function_exists( "array_column" ) ) {
 		}, $array );
     }
 }
-
-/*if( ! function_exists( "array_columnn" ) ) {
-	function array_column_map_callback( $array, $column_name ) {
-		return $array[$column_name];
-	}
-
-    function array_columnn( $array, $column_name ) {
-        return array_map( 'array_column_map_callback', $array );
-    }
-}
-*/

@@ -2,8 +2,8 @@
 Contributors: Ste_95
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22
 Tags: counter, authors, payment, revenue sharing, stats, multi author, post management, post
-Tested up to: 4.7.1
-Stable tag: 2.711
+Tested up to: 4.7.2
+Stable tag: 2.712
 Requires at least: 3.7
 
 Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
@@ -76,6 +76,13 @@ From this: *define( 'PPC_DEBUG_LOG', true );*
 It must become: *define( 'PPC_DEBUG_LOG', false );*
 
 == Changelog ==
+= 2.712 (2017/02/04) =
+* Fixed: possible warning in stats page for users with PRO version.
+* Fixed: Import/Export settings box may not work correctly the first time user settings were customized.
+* Fixed: stats time end not going up to today, causing issues with Publisher Bonus addon (for example).
+* Fixed: *Total is X. Displayed is what you'll be paid for* message on hover would not display the total amount.
+* Tweak: improved stats page loading time.
+
 = 2.711 (2017/01/22) =
 * Fixed: possible error in stats page (*undefined counting_types_object index*)
 * Fixed: changing the display setting for payment criteria did not have any effect.
