@@ -262,7 +262,7 @@ class post_pay_counter {
             'datepicker_maxdate' => date( 'Y-m-d', $last_available_post_time ),
             'time_start_this_month' => date( 'Y-m-d', strtotime( 'first day of this month' ) ),
             'time_end_this_month' => date( 'Y-m-d', strtotime( '23:59:59' ) ),
-            'time_start_this_year' => date( 'Y-m-d', strtotime( 'first day of this year' ) ),
+            'time_start_this_year' => date( 'Y-m-d', strtotime( 'first day of january this year' ) ),
             'time_end_this_year' => date( 'Y-m-d', strtotime( '23:59:59' ) ),
             'time_start_this_week' => date( 'Y-m-d', strtotime( 'first day of this week' ) ),
             'time_end_this_week' => date( 'Y-m-d', strtotime( '23:59:59' ) ),
