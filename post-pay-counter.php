@@ -1,10 +1,10 @@
 <?php
 /*
 Plugin Name: Post Pay Counter
-Plugin URI: http://postpaycounter.com
+Plugin URI: https://postpaycounter.com
 Description: Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
 Author: Stefano Ottolenghi
-Version: 2.712
+Version: 2.713
 Author URI: http://www.thecrowned.org/
 Text Domain: post-pay-counter
 */
@@ -59,7 +59,7 @@ class post_pay_counter {
         global $ppc_global_settings;
 
         $ppc_global_settings['current_version'] = get_option( 'ppc_current_version' );
-        $ppc_global_settings['newest_version'] = '2.712';
+        $ppc_global_settings['newest_version'] = '2.713';
         $ppc_global_settings['option_name'] = 'ppc_settings';
         $ppc_global_settings['option_errors'] = 'ppc_errors';
 		$ppc_global_settings['transient_error_deletion'] = 'ppc_error_daily_deletion';
@@ -492,8 +492,8 @@ class post_pay_counter {
     function donate_meta_link( $links, $file ) {
        if( $file == plugin_basename( __FILE__ ) ) {
             $links[] = '<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22" title="'.__( 'Donate', 'post-pay-counter' ).'">'.__( 'Donate', 'post-pay-counter' ).'</a>';
-			$links[] = '<a href="http://postpaycounter.com/post-pay-counter-pro?utm_source=users_site&utm_medium=plugins_list&utm_campaign=ppcp" title="'.__( 'Go PRO', 'post-pay-counter' ).'">'.__( 'Go PRO', 'post-pay-counter' ).'</a>';
-			$links[] = '<a href="http://postpaycounter.com/addons?utm_source=users_site&utm_medium=plugins_list&utm_campaign=ppc_addons" title="'.__( 'Addons', 'post-pay-counter' ).'">'.__( 'Addons', 'post-pay-counter' ).'</a>';
+			$links[] = '<a href="https://postpaycounter.com/post-pay-counter-pro?utm_source=users_site&utm_medium=plugins_list&utm_campaign=ppcp" title="'.__( 'Go PRO', 'post-pay-counter' ).'">'.__( 'Go PRO', 'post-pay-counter' ).'</a>';
+			$links[] = '<a href="https://postpaycounter.com/addons?utm_source=users_site&utm_medium=plugins_list&utm_campaign=ppc_addons" title="'.__( 'Addons', 'post-pay-counter' ).'">'.__( 'Addons', 'post-pay-counter' ).'</a>';
        }
 
         return $links;
@@ -523,12 +523,12 @@ class post_pay_counter {
 			 * @param	string installed version text (whole).
 			 */
 
-			echo apply_filters( 'ppc_options_installed_version', __( 'Installed version' , 'post-pay-counter' ).': '.$ppc_global_settings['current_version'].' - <a href="http://postpaycounter.com/forums2/forum/post-pay-counter?utm_source=users_site&utm_medium=options_header&utm_campaign=ppc" title="'.__( 'Support', 'post-pay-counter' ).'" target="_blank">'.__( 'Support', 'post-pay-counter' ).'</a> - <a href="http://postpaycounter.com/category/tutorials?utm_source=users_site&utm_medium=options_header&utm_campaign=ppc" title="'.__( 'Tutorials', 'post-pay-counter' ).'" target="_blank">'.__( 'Tutorials', 'post-pay-counter' ).'</a> - <a href="http://postpaycounter.com/category/questionsanswers?utm_source=users_site&utm_medium=options_header&utm_campaign=ppc" title="'.__( 'Questions & Answers', 'post-pay-counter' ).'" target="_blank">'.__( 'Questions & Answers', 'post-pay-counter' ).'</a>' );
+			echo apply_filters( 'ppc_options_installed_version', __( 'Installed version' , 'post-pay-counter' ).': '.$ppc_global_settings['current_version'].' - <a href="https://postpaycounter.com/forums2/forum/post-pay-counter?utm_source=users_site&utm_medium=options_header&utm_campaign=ppc" title="'.__( 'Support', 'post-pay-counter' ).'" target="_blank">'.__( 'Support', 'post-pay-counter' ).'</a> - <a href="https://postpaycounter.com/category/tutorials?utm_source=users_site&utm_medium=options_header&utm_campaign=ppc" title="'.__( 'Tutorials', 'post-pay-counter' ).'" target="_blank">'.__( 'Tutorials', 'post-pay-counter' ).'</a> - <a href="https://postpaycounter.com/category/questionsanswers?utm_source=users_site&utm_medium=options_header&utm_campaign=ppc" title="'.__( 'Questions & Answers', 'post-pay-counter' ).'" target="_blank">'.__( 'Questions & Answers', 'post-pay-counter' ).'</a>' );
 			?>
 			</div>
 			<h2>Post Pay Counter - <?php _e( 'Options', 'post-pay-counter' ); ?></h2>
 			<p><?php _e( 'The Post Pay Counter plugin is ready to make handling authors\' payments much, much easier, starting from... now! From this page you can set the plugin up, customizing each possible feature to best suit your needs. Options are divided into groups, and for each of the following boxes you will find details of all the features of the plugin and, for most of them, additional details and examples are available by clicking on the info icon on the right of them.', 'post-pay-counter' ); ?></p>
-			<p><?php printf( __( 'Don\'t forget to take our %1$sfeatures survey%2$s to let us know what functions you\'d like to see in future releases of the plugin! Also, if you like this plugin, you may be interested in trying the shiny %3$sPRO version%2$s, containing a whole lot of useful features!', 'post-pay-counter' ), '<a href="http://postpaycounter.com/post-pay-counter-pro/post-pay-counter-pro-features-survey" title="'.__( 'Features survey', 'post-pay-counter' ).'" target="_blank">', '</a>', '<a href="http://postpaycounter.com/post-pay-counter-pro?utm_source=users_site&utm_medium=options_description&utm_campaign=ppcp" title="Post Pay Counter PRO" target="_blank">' ); ?></p>
+			<p><?php printf( __( 'Don\'t forget to take our %1$sfeatures survey%2$s to let us know what functions you\'d like to see in future releases of the plugin! Also, if you like this plugin, you may be interested in trying the shiny %3$sPRO version%2$s, containing a whole lot of useful features!', 'post-pay-counter' ), '<a href="https://postpaycounter.com/post-pay-counter-pro/post-pay-counter-pro-features-survey" title="'.__( 'Features survey', 'post-pay-counter' ).'" target="_blank">', '</a>', '<a href="https://postpaycounter.com/post-pay-counter-pro?utm_source=users_site&utm_medium=options_description&utm_campaign=ppcp" title="Post Pay Counter PRO" target="_blank">' ); ?></p>
 		</div>
 	</div>
 

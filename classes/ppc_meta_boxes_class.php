@@ -26,7 +26,7 @@ class PPC_meta_boxes {
 			__( 'Stats in post editing page', 'post-pay-counter' ) => __( 'see post stats in edit page and exclude individual posts from stats.', 'post-pay-counter' )
         );
 
-        printf( '<p>'.__( 'There are so many things you are missing by not running the PRO version of the Post Pay Counter! Remember that PRO features are always %1$sone click away%2$s!' , 'post-pay-counter'), '<a target="_blank" href="http://postpaycounter.com/post-pay-counter-pro" title="Post Pay Counter PRO">', '</a>' ).':</p>';
+        printf( '<p>'.__( 'There are so many things you are missing by not running the PRO version of the Post Pay Counter! Remember that PRO features are always %1$sone click away%2$s!' , 'post-pay-counter'), '<a target="_blank" href="https://postpaycounter.com/post-pay-counter-pro" title="Post Pay Counter PRO">', '</a>' ).':</p>';
 
         echo '<ul style="margin: 0 0 15px 2em;">';
 
@@ -35,7 +35,7 @@ class PPC_meta_boxes {
 
         echo '</ul>';
 
-        printf( '<p>'.__( 'Something you would like is missing? Complete the %1$sfeatures survey%2$s and let us know what our priorities should be!', 'post-pay-counter'), '<a target="_blank" href="http://postpaycounter.com/post-pay-counter-pro/post-pay-counter-pro-features-survey" title="Post Pay Counter PRO - '.__( 'Features survey', 'post-pay-counter' ).'">', '</a>' ).'</p>';
+        printf( '<p>'.__( 'Something you would like is missing? Complete the %1$sfeatures survey%2$s and let us know what our priorities should be!', 'post-pay-counter'), '<a target="_blank" href="https://postpaycounter.com/post-pay-counter-pro/post-pay-counter-pro-features-survey" title="Post Pay Counter PRO - '.__( 'Features survey', 'post-pay-counter' ).'">', '</a>' ).'</p>';
     }
 
     /**
@@ -49,10 +49,10 @@ class PPC_meta_boxes {
 
         echo '<p>'.__( 'If you like the Post Pay Counter, there are a couple of crucial things you can do to support its development' , 'post-pay-counter').':</p>';
         echo '<ul style="margin: 0 0 15px 2em; padding: 0">';
-        echo '<li style="list-style-image: url(\''.$ppc_global_settings['folder_path'].'style/images/pro.png\');"><a target="_blank" href="http://postpaycounter.com/post-pay-counter-pro?utm_source=users_site&utm_medium=options_support_author&utm_campaign=ppcp" title="'.__( 'Go PRO' , 'post-pay-counter').'"><strong>'.__( 'Go PRO' , 'post-pay-counter').'</strong></a>. '.__( 'Try the PRO version: more functions, more stuff!' , 'post-pay-counter').'</li>';
+        echo '<li style="list-style-image: url(\''.$ppc_global_settings['folder_path'].'style/images/pro.png\');"><a target="_blank" href="https://postpaycounter.com/post-pay-counter-pro?utm_source=users_site&utm_medium=options_support_author&utm_campaign=ppcp" title="'.__( 'Go PRO' , 'post-pay-counter').'"><strong>'.__( 'Go PRO' , 'post-pay-counter').'</strong></a>. '.__( 'Try the PRO version: more functions, more stuff!' , 'post-pay-counter').'</li>';
         echo '<li style="list-style-image: url(\''.$ppc_global_settings['folder_path'].'style/images/paypal.png\');"><a target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22" title="'.__( 'Donate money' , 'post-pay-counter').'"><strong>'.__( 'Donate money' , 'post-pay-counter').'</strong></a>. '.__( 'Plugins do not write themselves: they need time and effort, and I give all of that free of charge. Donations of every amount are absolutely welcome.' , 'post-pay-counter').'</li>';
         echo '<li style="list-style-image: url(\''.$ppc_global_settings['folder_path'].'style/images/amazon.png\');">'.sprintf( __( 'Give me something from my %1$sAmazon Wishlist%2$s.' , 'post-pay-counter'), '<a target="_blank" href="http://www.amazon.it/registry/wishlist/1JWAS1MWTLROQ" title="Amazon Wishlist">', '</a>' ).'</li>';
-        echo '<li style="list-style-image: url(\''.$ppc_global_settings['folder_path'].'style/images/star.png\');">'.sprintf( __( 'Rate it in the %1$sWordpress Directory%3$s and share the %2$sofficial page%3$s.' , 'post-pay-counter'), '<a target="_blank" href="http://wordpress.org/extend/plugins/post-pay-counter/" title="Wordpress directory">', '<a target="_blank" href="http://postpaycounter.com" title="Official plugin page">', '</a>' ).'</li>';
+        echo '<li style="list-style-image: url(\''.$ppc_global_settings['folder_path'].'style/images/star.png\');">'.sprintf( __( 'Rate it in the %1$sWordpress Directory%3$s and share the %2$sofficial page%3$s.' , 'post-pay-counter'), '<a target="_blank" href="http://wordpress.org/extend/plugins/post-pay-counter/" title="Wordpress directory">', '<a target="_blank" href="https://postpaycounter.com" title="Official plugin page">', '</a>' ).'</li>';
         echo '<li style="list-style-image: url(\''.$ppc_global_settings['folder_path'].'style/images/write.png\');">'.__( 'Have a blog or write on some website? Write about the plugin and email me the review!' , 'post-pay-counter').'</li>';
         echo '</ul>';
     }
@@ -266,7 +266,7 @@ class PPC_meta_boxes {
         echo PPC_HTML_functions::echo_p_field( __( 'Visits contribute to payment computation' , 'post-pay-counter'), $current_settings['counting_visits'], 'checkbox', 'counting_visits', __( 'You may define a post value basing on the number of visits that it registers as well. The more people see a post, the more interesting the post is supposed to be, the more it should be paid. You will be able to choose how much each visit is worth.' , 'post-pay-counter'), NULL, 'counting_visits' );
         echo '</div>';
         echo '<div class="ppc_content" id="ppc_counting_visits_content">';
-        echo '<p>'.sprintf( __( 'How to setup visits payment? Have a look at our %1$svisits tutorials%2$s.', 'post-pay-counter' ), '<a href="http://postpaycounter.com/tag/visits/?utm_source=users_site&utm_medium=options_box&utm_campaign=tutorials" title="Visits tutorials" target="_blank">', '</a>' ).'</p>';
+        echo '<p>'.sprintf( __( 'How to setup visits payment? Have a look at our %1$svisits tutorials%2$s.', 'post-pay-counter' ), '<a href="https://postpaycounter.com/tag/visits/?utm_source=users_site&utm_medium=options_box&utm_campaign=tutorials" title="Visits tutorials" target="_blank">', '</a>' ).'</p>';
         echo '<div class="ppc_title">'.__( 'Counting method' , 'post-pay-counter').'</div>';
         echo PPC_HTML_functions::echo_p_field( __( 'I have my own visit counter (postmeta)' , 'post-pay-counter'), $current_settings['counting_visits_postmeta'], 'radio', 'counting_visits_method', sprintf( __( 'If you already have some plugin counting visits, and you know the %1$spostmeta%2$s name it stores them into, you can use those data to compute payments. Activate this setting and put the postmeta in the field below.' , 'post-pay-counter'), '<em>', '</em>' ), 'counting_visits_postmeta', 'counting_visits_postmeta' );
         echo '<div id="counting_visits_postmeta_content" class="field_value">';
