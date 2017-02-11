@@ -238,18 +238,18 @@ class post_pay_counter {
 
         $ppc_global_settings['first_available_post_time'] = $first_available_post_time;
 
-		/*$args = array(
+		$args = array(
             'post_type' => $general_settings['counting_allowed_post_types'],
 			'posts_per_page' => 1,
             'orderby' => 'post_date',
             'order' => 'DESC'
         );
-        $last_available_post = new WP_Query( $args );
+        $last_available_post = new WP_Query( $args ); //for future scheduled posts
 
 		if( $last_available_post->found_posts !== 0 )
 			$last_available_post_time = strtotime( $last_available_post->posts[0]->post_date );
 
-		if( ! isset( $last_available_post_time ) OR $last_available_post_time < current_time( 'timestamp' ) )*/
+		if( ! isset( $last_available_post_time ) OR $last_available_post_time < current_time( 'timestamp' ) )
             $last_available_post_time = current_time( 'timestamp' ); //Pub Bonus needs to select even days without posts in the future, maybe there are publishings
 
         wp_enqueue_script( 'jquery-ui-datepicker' );
