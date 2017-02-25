@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Add-ons
  *
@@ -31,70 +32,82 @@ class PPC_addons {
 	static function add_addons_list() {
 		$addons = array(
 			'data' => array(
+				'Addons Premium Bundle' => array(
+					'description' => 'Our best addons at discounted price. All the payment tracking features to save time and pay authors easily!',
+					'image' => 'https://postpaycounter.com/ppcp/features/images/addons-premium-bundle.png',
+					'link' => 'https://postpaycounter.com/addons-premium-bundle',
+					'campaign' => 'ppc_premium_bundle'
+				),
 				'Post Pay Counter PRO' => array(
 					'description' => 'Keep track of past payments, integrate with PayPal, Analytics and Adsense, and much more!',
-					'image' => 'http://postpaycounter.com/ppcp/features/images/ppcp.png',
-					'link' => 'http://postpaycounter.com/post-pay-counter-pro',
+					'image' => 'https://postpaycounter.com/ppcp/features/images/ppcp.png',
+					'link' => 'https://postpaycounter.com/post-pay-counter-pro',
 					'campaign' => 'ppcp'
 				),
 				'Facebook' => array(
 					'description' => 'Pay writers basing on the number of Facebook shares, likes and comments their articles receive.',
-					'image' => 'http://postpaycounter.com/ppcp_fb/features/images/stats.png',
-					'link' => 'http://postpaycounter.com/facebook-pay-per-social-interactions-shares-likes-and-comments',
+					'image' => 'https://postpaycounter.com/ppcp_fb/features/images/stats.png',
+					'link' => 'https://postpaycounter.com/facebook-pay-per-social-interactions-shares-likes-and-comments',
 					'campaign' => 'ppcp_fb'
 				),
 				'Author Payment Bonus' => array(
 					'description' => 'Award a bonus to writers before paying: personally tweak the payroll, giving authors a little reward.',
-					'image' => 'http://postpaycounter.com/ppc_apb/features/images/payment_confirm_crop.png',
-					'link' => 'http://postpaycounter.com/author-payment-bonus-manually-change-the-total-payout-to-authors/',
+					'image' => 'https://postpaycounter.com/ppc_apb/features/images/payment_confirm_crop.png',
+					'link' => 'https://postpaycounter.com/author-payment-bonus-manually-change-the-total-payout-to-authors/',
 					'campaign' => 'ppc_apb'
 				),
 				'Publisher bonus' => array(
 					'description' => 'Set up an author rewarding system in which users (proof-readers) earn bonus by publishing posts.',
-					'image' => 'http://postpaycounter.com/ppcp_pb/features/images/metabox.png',
-					'link' => 'http://postpaycounter.com/publisher-bonus-editor-rewarding-system',
+					'image' => 'https://postpaycounter.com/ppcp_pb/features/images/metabox.png',
+					'link' => 'https://postpaycounter.com/publisher-bonus-editor-rewarding-system',
 					'campaign' => 'ppcp_pb'
 				),
 				'BuddyPress' => array(
 					'description' => 'Displays stats, payment history and PayPal email field in BuddyPress Member page.',
-					'image' => 'http://postpaycounter.com/ppc_buddypress/features/images/buddypress-stats_crop.png',
-					'link' => 'http://postpaycounter.com/buddypress',
+					'image' => 'https://postpaycounter.com/ppc_buddypress/features/images/buddypress-stats_crop.png',
+					'link' => 'https://postpaycounter.com/buddypress',
 					'campaign' => 'ppc_buddypress'
 				),
 				'User Roles Custom Settings' => array(
 					'description' => 'Allows to set custom settings for each user role that apply to all users belonging to it.',
-					'image' => 'http://postpaycounter.com/ppc_urcs/features/images/personalize_settings_box.jpg',
-					'link' => 'http://postpaycounter.com/user-roles-custom-settings',
+					'image' => 'https://postpaycounter.com/ppc_urcs/features/images/personalize_settings_box.jpg',
+					'link' => 'https://postpaycounter.com/user-roles-custom-settings',
 					'campaign' => 'ppc_urcs'
+				),
+				'Custom Email Notifications' => array(
+					'description' => 'Allows to customize payment email notifications sent by the PRO version when users are paid.',
+					'image' => 'https://postpaycounter.com/ppc_cen/features/images/custom-email-notifications.png',
+					'link' => 'https://postpaycounter.com/custom-email-notifications/',
+					'campaign' => 'ppc_cen'
 				),
 				'Category Custom Settings' => array(
 					'description' => 'Allows to set custom settings for each category that apply to all posts belonging to it.',
-					'image' => 'http://postpaycounter.com/ppc_ccs/features/images/category-custom-settings.png',
-					'link' => 'http://postpaycounter.com/category-custom-settings',
+					'image' => 'https://postpaycounter.com/ppc_ccs/features/images/category-custom-settings.png',
+					'link' => 'https://postpaycounter.com/category-custom-settings',
 					'campaign' => 'ppc_ccs'
 				),
 				'Pay Per Character' => array(
 					'description' => 'Allows to pay writers depending on how many characters their posts are made of.',
-					'image' => 'http://postpaycounter.com/ppc_ppc/features/images/stats.png',
-					'link' => 'http://postpaycounter.com/pay-per-character',
+					'image' => 'https://postpaycounter.com/ppc_ppc/features/images/stats.png',
+					'link' => 'https://postpaycounter.com/pay-per-character',
 					'campaign' => 'ppc_ppc'
 				),
 				'Author Basic Payment' => array(
 					'description' => 'Allows to award authors a fixed fee for each payment.',
-					'image' => 'http://postpaycounter.com/ppc_abp/features/images/stats.png',
-					'link' => 'http://postpaycounter.com/author-basic-payment',
+					'image' => 'https://postpaycounter.com/ppc_abp/features/images/stats.png',
+					'link' => 'https://postpaycounter.com/author-basic-payment',
 					'campaign' => 'ppc_abp'
 				),
 				'Stop Words' => array(
 					'description' => 'Allows to specify a list of stop words that should not be counted when computing posts word count.',
-					'image' => 'http://postpaycounter.com/ppcp_sw/features/images/stopwords.png',
-					'link' => 'http://postpaycounter.com/stop-words-exclude-certain-words',
+					'image' => 'https://postpaycounter.com/ppcp_sw/features/images/stopwords.png',
+					'link' => 'https://postpaycounter.com/stop-words-exclude-certain-words',
 					'campaign' => 'ppcp_sw'
 				),
 				'Shortcode Stripper' => array(
 					'description' => 'Allows to exclude text enclosed by shortcodes from words payment.',
-					'image' => 'http://postpaycounter.com/ppc/addons/shortcode.jpg',
-					'link' => 'http://postpaycounter.com/shortcode-stripper-exclude-shortcodes-from-words-payment/',
+					'image' => 'https://postpaycounter.com/ppc/addons/shortcode.jpg',
+					'link' => 'https://postpaycounter.com/shortcode-stripper-exclude-shortcodes-from-words-payment/',
 					'campaign' => 'ppc_shortcode_stripper'
 				)
 			),
@@ -123,7 +136,7 @@ class PPC_addons {
 		<div class="wrap" id="ppc_addons">
 			<h2>
 				<?php _e( 'Addons for Post Pay Counter', 'post-pay-counter' ); ?>
-				&nbsp;&mdash;&nbsp;<a href="http://postpaycounter.com/addons?utm_source=users_site&utm_medium=addons_list&utm_campaign=ppc_addons" class="button-primary" title="<?php _e( 'Browse All Extensions', 'post-pay-counter' ); ?>" target="_blank"><?php _e( 'Browse All Extensions', 'post-pay-counter' ); ?></a>
+				&nbsp;&mdash;&nbsp;<a href="https://postpaycounter.com/addons?utm_source=users_site&utm_medium=addons_list&utm_campaign=ppc_addons" class="button-primary" title="<?php _e( 'Browse All Extensions', 'post-pay-counter' ); ?>" target="_blank"><?php _e( 'Browse All Extensions', 'post-pay-counter' ); ?></a>
 			</h2>
 			<p><?php _e( 'These addons add more features to Post Pay Counter.', 'post-pay-counter' ); ?></p>
 			<?php echo self::addons_get_list(); ?>
@@ -143,7 +156,7 @@ class PPC_addons {
 	   $cache = maybe_unserialize( get_option( 'ppc_addons_list' ) );
 
 		/*if ( $cache === false OR $cache['time'] < current_time( 'timestamp' ) ) {
-			$feed = wp_remote_get( 'http://postpaycounter.com/ppcp/features/ppcp_spit_html.php?addons_list', array( 'timeout' => 10 ) );
+			$feed = wp_remote_get( 'https://postpaycounter.com/ppcp/features/ppcp_spit_html.php?addons_list', array( 'timeout' => 10 ) );
 
 			if ( ! is_wp_error( $feed ) ) {
 				if ( isset( $feed['body'] ) && strlen( $feed['body'] ) > 0 ) {
