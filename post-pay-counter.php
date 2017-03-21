@@ -142,7 +142,6 @@ class post_pay_counter {
      * @param 	$schedules array shedules already
 	 * @return	array schedules
      */
-
     function cron_add_times( $schedules ) {
         $schedules['weekly2'] = array(
             'interval' => 3600*24*7*2,
@@ -158,7 +157,6 @@ class post_pay_counter {
      * @access  public
      * @since   2.0
      */
-
     function admin_menus() {
         global $ppc_global_settings;
 
@@ -184,7 +182,6 @@ class post_pay_counter {
      * @access  public
      * @since   2.1.1
      */
-
     function maybe_update() {
         global $ppc_global_settings;
 
@@ -198,7 +195,6 @@ class post_pay_counter {
 			 * Fires after PPC has been updated to latest version.
 			 * @since 2.1.1
 			 */
-
             do_action( 'ppc_updated' );
 
 			//Send to Welcome page
@@ -213,7 +209,6 @@ class post_pay_counter {
      * @access  public
      * @since   2.0
      */
-
     function on_load_stats_page() {
         global $ppc_global_settings;
 
@@ -282,7 +277,6 @@ class post_pay_counter {
      * @access  public
      * @since   2.0
      */
-
     function on_load_options_page_enqueue() {
         global $ppc_global_settings;
         wp_enqueue_script( 'post' );
@@ -342,7 +336,6 @@ class post_pay_counter {
 		 * @since 	2.0
 		 * @param	$_GET['userid'] string userid (querystring param)
 		 */
-
         do_action( 'ppc_on_load_options_page', @$_GET['userid'] );
     }
 
@@ -355,7 +348,6 @@ class post_pay_counter {
      * @access  public
      * @since   2.0
      */
-
     function on_load_options_page_get_settings() {
 		//Numeric userid
 		if( isset( $_GET['userid'] ) AND is_numeric( $_GET['userid'] ) ) {
@@ -399,7 +391,6 @@ class post_pay_counter {
 		 * @since	2.0
 		 * @param	$settings PPC options settings
 		 */
-
 		$settings = apply_filters( 'ppc_selected_options_settings', $settings );
 
 		self::$options_page_settings = $settings; //store in class var
@@ -411,7 +402,6 @@ class post_pay_counter {
      * @access  public
      * @since   2.46
      */
-
     function load_notifications() {
     	if( ! current_user_can( 'manage_options' ) ) return;
 
@@ -457,7 +447,6 @@ class post_pay_counter {
      * @access  public
      * @since   2.0
      */
-
     function load_localization() {
         load_plugin_textdomain( 'post-pay-counter', false, dirname( plugin_basename( __FILE__ ) ).'/lang/' );
     }
@@ -470,7 +459,6 @@ class post_pay_counter {
      * @param   $links array links already in place
      * @param   $file string current plugin-file
      */
-
     function settings_meta_link( $links, $file ) {
         global $ppc_global_settings;
 
@@ -488,7 +476,6 @@ class post_pay_counter {
      * @param   $links array links already in place
      * @param   $file string current plugin-file
      */
-
     function donate_meta_link( $links, $file ) {
        if( $file == plugin_basename( __FILE__ ) ) {
             $links[] = '<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22" title="'.__( 'Donate', 'post-pay-counter' ).'">'.__( 'Donate', 'post-pay-counter' ).'</a>';
@@ -505,7 +492,6 @@ class post_pay_counter {
      * @access  public
      * @since   2.0
      */
-
     function show_options() {
         global $ppc_global_settings;
         ?>
@@ -522,8 +508,8 @@ class post_pay_counter {
 			 * @since	2.0
 			 * @param	string installed version text (whole).
 			 */
-
 			echo apply_filters( 'ppc_options_installed_version', __( 'Installed version' , 'post-pay-counter' ).': '.$ppc_global_settings['current_version'].' - <a href="https://postpaycounter.com/forums2/forum/post-pay-counter?utm_source=users_site&utm_medium=options_header&utm_campaign=ppc" title="'.__( 'Support', 'post-pay-counter' ).'" target="_blank">'.__( 'Support', 'post-pay-counter' ).'</a> - <a href="https://postpaycounter.com/category/tutorials?utm_source=users_site&utm_medium=options_header&utm_campaign=ppc" title="'.__( 'Tutorials', 'post-pay-counter' ).'" target="_blank">'.__( 'Tutorials', 'post-pay-counter' ).'</a> - <a href="https://postpaycounter.com/category/questionsanswers?utm_source=users_site&utm_medium=options_header&utm_campaign=ppc" title="'.__( 'Questions & Answers', 'post-pay-counter' ).'" target="_blank">'.__( 'Questions & Answers', 'post-pay-counter' ).'</a>' );
+
 			?>
 			</div>
 			<h2>Post Pay Counter - <?php _e( 'Options', 'post-pay-counter' ); ?></h2>
@@ -539,7 +525,6 @@ class post_pay_counter {
 		 *
 		 * @since	2.518
 		 */
-
 		do_action( 'ppc_options_page_after_intro' );
 
         if( is_numeric( self::$options_page_settings['userid'] ) ) {
@@ -560,7 +545,6 @@ class post_pay_counter {
 		 *
 		 * @since	2.0
 		 */
-
         do_action( 'ppc_html_options_before_boxes' );
 
         wp_nonce_field( 'closedpostboxes', 'closedpostboxesnonce', false );
@@ -627,7 +611,6 @@ class post_pay_counter {
 		 * @since 	2.0
 		 * @param	array $get_and_post merged GET and POST data
 		 */
-
         $get_and_post = apply_filters( 'ppc_stats_defined_parameters', $get_and_post );
 
 		//Assign to global var
@@ -707,7 +690,6 @@ class post_pay_counter {
 		 * @since	2.0
 		 * @param	mixed $author author for which stats are displayed. If given, is the only index of an array, NULL means general stats are being requested.
 		 */
-
         do_action( 'ppc_before_stats_html', $this->author );
         ?>
 
@@ -756,7 +738,6 @@ class post_pay_counter {
 			 *
 			 * @since	2.0
 			 */
-
             do_action( 'ppc_html_stats_author_after_stats_form' );
 
         //GENERAL STATS
@@ -805,7 +786,6 @@ class post_pay_counter {
 			 *
 			 * @since	2.0
 			 */
-
             do_action( 'ppc_html_stats_general_after_stats_form' );
         }
         ?>
@@ -824,7 +804,6 @@ class post_pay_counter {
 			 *
 			 * @since	2.0
 			 */
-
 			do_action( 'ppc_html_stats_after_overall_stats' );
 		}
         ?>

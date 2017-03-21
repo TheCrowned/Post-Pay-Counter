@@ -88,7 +88,7 @@ class PPC_meta_boxes {
         echo '<div class="ppc_section">';
         echo '<div class="ppc_title">'.__( 'Admin permissions' , 'post-pay-counter').'</div>';
         echo '<div class="main">';
-        echo PPC_HTML_functions::echo_p_field( __( 'Admins override all permissions' , 'post-pay-counter'), $current_settings['admins_override_permissions'], 'checkbox', 'admins_override_permissions', __( 'By default, admins are subject to the same permissions as normal users. Checking this will make admins capable of anything, unless you give them special permissions through the Personalize settings box.', 'post-pay-counter'), NULL, 'admins_override_permissions' );
+        echo PPC_HTML_functions::echo_p_field( __( 'Admins override all permissions' , 'post-pay-counter'), $current_settings['admins_override_permissions'], 'checkbox', 'admins_override_permissions', sprintf( __( 'By default, admins are subject to the same permissions as normal users. Checking this will make admins capable of anything, unless you give them special permissions through the %1$s box.', 'post-pay-counter' ), __( 'Personalize settings', 'post-pay-counter' ) ), NULL, 'admins_override_permissions' );
         echo '</div>';
         echo '</div>';
         do_action( 'ppc_misc_settings_after_admin_permissions', $current_settings );
@@ -327,7 +327,7 @@ class PPC_meta_boxes {
         echo '<div class="ppc_title">'.__( 'Total payment' , 'post-pay-counter').'</div>';
         echo '<div class="main">';
         echo PPC_HTML_functions::echo_text_field( 'counting_payment_total_threshold', $current_settings['counting_payment_total_threshold'], __( 'Set payment maximum (0 = infinite)' , 'post-pay-counter') );
-        echo PPC_HTML_functions::echo_p_field( __( 'Hide posts that do not reach the threshold' , 'post-pay-counter'), $current_settings['counting_payment_only_when_total_threshold'], 'checkbox', 'counting_payment_only_when_total_threshold', __( 'Check this if you want to pay items only when they reach the max payment threshold. Other items will appear grayed out.' , 'post-pay-counter'), 'counting_payment_only_when_total_threshold', 'counting_payment_only_when_total_threshold' );
+        echo PPC_HTML_functions::echo_p_field( __( 'Hide posts that do not reach the threshold', 'post-pay-counter'), $current_settings['counting_payment_only_when_total_threshold'], 'checkbox', 'counting_payment_only_when_total_threshold', __( 'Check this if you want to pay items only when they reach the max payment threshold. Other items will appear grayed out.' , 'post-pay-counter'), 'counting_payment_only_when_total_threshold', 'counting_payment_only_when_total_threshold' );
         echo '</div>';
         echo '</div>';
         do_action( 'ppc_counting_settings_after_total_payment', $current_settings );
