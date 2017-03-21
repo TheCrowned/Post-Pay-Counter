@@ -16,7 +16,6 @@ class PPC_HTML_functions {
 	 * @access	public
 	 * @since	2.36
 	 */
-
 	static function display_header_logo() {
 		global $ppc_global_settings;
 		?>
@@ -36,8 +35,7 @@ class PPC_HTML_functions {
      * @since   2.0
      * @param   $current_page string current page title
      * @param   $page_permalink string current page permalink
-    */
-
+     */
     static function show_stats_page_header( $current_page, $page_permalink ) {
         global $ppc_global_settings, $wp_roles;
         $perm = new PPC_permissions();
@@ -184,8 +182,7 @@ class PPC_HTML_functions {
      * @param   $formatted_stats array formatted stats
      * @param   $raw_stats array ordered-by-author stats
      * @param   $author array optional whether detailed stats
-    */
-
+     */
     static function get_html_stats( $formatted_stats, $raw_stats, $author = NULL ) {
         ?>
 
@@ -265,7 +262,6 @@ class PPC_HTML_functions {
      * @param	string (optional) $echo_or_return what to do with the output, if echo or return. If echoed, actions are fired as well
      * @return 	string html stats
      */
-
     static function get_html_stats_tbody( $formatted_stats, $raw_stats, $author = NULL, $filter_name = "html", $format_payment = true, $echo_or_return = "return" ) {
 		global $current_user, $ppc_global_settings;
 		$perm = new PPC_permissions();
@@ -415,8 +411,7 @@ class PPC_HTML_functions {
      * @access  public
      * @since   2.0
      * @param   $overall_stats array overall stats
-    */
-
+     */
     static function print_overall_stats( $overall_stats ) {
         global $ppc_global_settings;
         ?>
@@ -475,8 +470,7 @@ class PPC_HTML_functions {
      * @param   $value string optional the field value (for radio)
      * @param   $id string optional the field id
      * @return  string the html
-    */
-
+     */
     static function echo_p_field( $text, $setting, $field, $name, $tooltip_description = NULL, $value = NULL, $id = NULL, $disabled = false ) {
 	   global $ppc_global_settings;
 
@@ -514,8 +508,7 @@ class PPC_HTML_functions {
      * @param   $label_text string the label text
      * @param   $size int optional the text field size
      * @return  string the html
-    */
-
+     */
     static function echo_text_field( $field_name, $field_value, $label_text, $size = 15, $placeholder = '' ) {
         if( ! empty( $placeholder ) )
 			$placeholder = ' placeholder="'.$placeholder.'"';

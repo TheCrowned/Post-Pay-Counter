@@ -615,6 +615,8 @@ class PPC_meta_boxes {
 
             <?php
             foreach( $licenses as $single ) {
+				$single['renewal_url'] .= '?utm_source=users_site&utm_medium=license_box&utm_campaign='.$single['slug'].'_renew'; //attach Analytics source/medium to renew URL
+				
                 if( ! isset( $single['expiration'] ) )
 					$status = '<span style="color: gray;">'.__( 'Unknown', 'ppc' ).'</span>';
 				else if( $single['expiration'] - current_time( 'timestamp' ) < 0 )
