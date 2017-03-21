@@ -631,7 +631,7 @@ class PPC_meta_boxes {
                 ?>
 
                 <tr>
-                    <td><?php echo $single['name']; ?></td>
+                    <td><?php echo $single['name']; ?><br /><span class="ppc_copy_license_key"><?php if( isset( $single['license_key'] ) ) echo $single['license_key']; ?></span></td>
                     <td><?php echo $status ?></td>
                     <td><?php echo $expiration ?></td>
                     <td><input type="button" name="ppc_license_deactivate" accesskey="<?php echo $single['slug']; ?>" class="button-secondary ppc_license_deactivate" id="ppc_license_deactivate" value="<?php _e( 'Deactivate license', 'ppc'); ?>" /></td>

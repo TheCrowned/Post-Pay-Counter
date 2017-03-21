@@ -91,3 +91,7 @@
 	overflow: auto;
 	display: none;
 }
+.ppc_copy_license_key {
+	font-size: x-small;
+	color: grey;
+}
