@@ -98,9 +98,6 @@ class post_pay_counter {
         //add_action( 'load-toplevel_page_post_pay_counter_show_network_stats', array( &$this, 'on_load_stats_page' ) );
         add_filter('set-screen-option', array( $this, 'handle_stats_pagination_values' ), 10, 3);
 
-        //Localization
-        add_action( 'plugins_loaded', array( $this, 'load_localization' ) );
-
 		//About screen
 		add_action( 'admin_menu', array( 'PPC_welcome', 'add_pages' ) );
 		add_action( 'admin_head', array( 'PPC_welcome', 'admin_head' ) );
@@ -442,16 +439,6 @@ class post_pay_counter {
     		$notification = new PPC_notifications( $single );
 			add_action( 'admin_notices', array( $notification, 'display_notification' ) );
     	}
-    }
-
-    /**
-     * Loads localization files
-     *
-     * @access  public
-     * @since   2.0
-     */
-    function load_localization() {
-        load_plugin_textdomain( 'post-pay-counter', false, dirname( plugin_basename( __FILE__ ) ).'/lang/' );
     }
 
     /**
@@ -816,6 +803,17 @@ class post_pay_counter {
 	<?php
     }
 }
+
+/**
+ * Loads localization files
+ *
+ * @access  public
+ * @since   2.0
+ */
+function ppc_load_localization() {
+	load_plugin_textdomain( 'post-pay-counter', false, dirname( plugin_basename( __FILE__ ) ).'/lang/' );
+}
+add_action( 'plugins_loaded', 'ppc_load_localization' );
 
 global $ppc_global_settings;
 $ppc_global_settings = array();

@@ -88,7 +88,7 @@ class PPC_meta_boxes {
         echo '<div class="ppc_section">';
         echo '<div class="ppc_title">'.__( 'Admin permissions' , 'post-pay-counter').'</div>';
         echo '<div class="main">';
-        echo PPC_HTML_functions::echo_p_field( __( 'Admins override all permissions' , 'post-pay-counter'), $current_settings['admins_override_permissions'], 'checkbox', 'admins_override_permissions', sprintf( __( 'By default, admins are subject to the same permissions as normal users. Checking this will make admins capable of anything, unless you give them special permissions through the %1$s box.', 'post-pay-counter' ), __( 'Personalize settings', 'post-pay-counter' ) ), NULL, 'admins_override_permissions' );
+        echo PPC_HTML_functions::echo_p_field( __( 'Admins override all permissions' , 'post-pay-counter'), $current_settings['admins_override_permissions'], 'checkbox', 'admins_override_permissions', sprintf( __( 'By default, admins are subject to the same permissions as normal users. Checking this will make admins capable of anything, unless you give them special permissions through the %1$s box.', 'post-pay-counter' ), __( 'Personalize Settings', 'post-pay-counter' ) ), NULL, 'admins_override_permissions' );
         echo '</div>';
         echo '</div>';
         do_action( 'ppc_misc_settings_after_admin_permissions', $current_settings );
@@ -572,22 +572,22 @@ class PPC_meta_boxes {
 			wp_schedule_event( time(), 'weekly2', 'ppcp_cron_check_activation' );
         ?>
 
-        <p><?php printf( __( 'Whatever of our %1$splenty of addons%2$s you may have bought, this is the place to activate your license. Make sure you have already uploaded the addon files, activated it, and paste the license key you have received by email in the field below.', 'ppc' ), '<a target="_blank" href="'.admin_url( add_query_arg( array( 'page' => 'ppc-addons' ), 'admin.php' ) ).'" title="Post Pay Counter Addons">', '</a>' ); ?></p>
-		<p><em><?php _e( 'To activate your license key, the following data will be sent to the activation page: license key, website URL, blog language, plugin version. Twice a month the plugin will call home to check that your license is genuine and valid without asking for permission.', 'ppc'); ?></em></p>
+        <p><?php printf( __( 'Whatever of our %1$splenty of addons%2$s you may have bought, this is the place to activate your license. Make sure you have already uploaded the addon files, activated it, and paste the license key you have received by email in the field below.', 'post-pay-counter' ), '<a target="_blank" href="'.admin_url( add_query_arg( array( 'page' => 'ppc-addons' ), 'admin.php' ) ).'" title="Post Pay Counter Addons">', '</a>' ); ?></p>
+		<p><em><?php _e( 'To activate your license key, the following data will be sent to the activation page: license key, website URL, blog language, plugin version. Twice a month the plugin will call home to check that your license is genuine and valid without asking for permission.', 'post-pay-counter'); ?></em></p>
         <p>
         <input type="text" name="ppc_license_key" id="ppc_license_key" size="40" />
-        <input type="button" name="ppc_license_key_submit" id="ppc_license_key_submit" value="<?php _e('Submit', 'ppc'); ?>" disabled="disabled" class="button-secondary" />
+        <input type="button" name="ppc_license_key_submit" id="ppc_license_key_submit" value="<?php _e('Submit', 'post-pay-counter'); ?>" disabled="disabled" class="button-secondary" />
         </p>
 
-		<div class="ppc_save_success" id="ppc_license_success"><?php _e( 'Your license was successfully activated. Reload this page and enjoy!', 'ppc'); ?></div>
+		<div class="ppc_save_success" id="ppc_license_success"><?php _e( 'Your license was successfully activated. Reload this page and enjoy!', 'post-pay-counter'); ?></div>
         <div class="ppc_save_error" id="ppc_license_error"></div>
         <div class="ppc_save_settings">
-        <img src="<?php echo $ppc_global_settings['folder_path'].'style/images/ajax-loader.gif'; ?>" title="<?php _e( 'Loading', 'ppc'); ?>" alt="<?php _e( 'Loading', 'ppc'); ?>" class="ppc_ajax_loader" id="ppc_license_ajax_loader" />
+        <img src="<?php echo $ppc_global_settings['folder_path'].'style/images/ajax-loader.gif'; ?>" title="<?php _e( 'Loading', 'post-pay-counter'); ?>" alt="<?php _e( 'Loading', 'post-pay-counter'); ?>" class="ppc_ajax_loader" id="ppc_license_ajax_loader" />
         </div>
         <div class="clear"></div>
 
         <div class="ppc_section">
-        <div class="ppc_title"><?php _e( 'Your licenses' , 'ppc' ); ?></div>
+        <div class="ppc_title"><?php _e( 'Your licenses' , 'post-pay-counter' ); ?></div>
 
         <?php
         $licenses = array();
@@ -597,18 +597,18 @@ class PPC_meta_boxes {
         if( count( $licenses ) == 0 ) {
         ?>
 
-        <p><?php _e( 'No licenses to display.', 'ppc'); ?></p>
+        <p><?php _e( 'No licenses to display.', 'post-pay-counter'); ?></p>
 
         <?php } else { ?>
 
-        <p><?php _e( 'Your licenses status is listed below, along with their details. You may want to deactivate one to use it on other websites (but you won\'t be able to use its features on this site anymore).', 'ppc'); ?></p>
+        <p><?php _e( 'Your licenses status is listed below, along with their details. You may want to deactivate one to use it on other websites (but you won\'t be able to use its features on this site anymore).', 'post-pay-counter'); ?></p>
         <table class="widefat fixed">
         	<thead>
         		<tr>
-        			<th style="width: 30%"><?php _e( 'Addon', 'ppc' ); ?></th>
-        			<th><?php _e( 'Status', 'ppc' ); ?></th>
-        			<th style="width: 15%;"><?php _ex( 'Exp. time', '(license) Expiration time', 'ppc' ); ?></th>
-                    <th><?php _e( 'Deactivate', 'ppc' ); ?></th>
+        			<th style="width: 30%"><?php _e( 'Addon', 'post-pay-counter' ); ?></th>
+        			<th><?php _e( 'Status', 'post-pay-counter' ); ?></th>
+        			<th style="width: 15%;"><?php _ex( 'Exp. time', '(license) Expiration time', 'post-pay-counter' ); ?></th>
+                    <th><?php _e( 'Deactivate', 'post-pay-counter' ); ?></th>
         		</tr>
         	</thead>
         	<tbody>
@@ -618,13 +618,13 @@ class PPC_meta_boxes {
 				$single['renewal_url'] .= '?utm_source=users_site&utm_medium=license_box&utm_campaign='.$single['slug'].'_renew'; //attach Analytics source/medium to renew URL
 				
                 if( ! isset( $single['expiration'] ) )
-					$status = '<span style="color: gray;">'.__( 'Unknown', 'ppc' ).'</span>';
+					$status = '<span style="color: gray;">'.__( 'Unknown', 'post-pay-counter' ).'</span>';
 				else if( $single['expiration'] - current_time( 'timestamp' ) < 0 )
-                    $status = '<span style="color: red;">'.sprintf( __( 'Awfully sad - Expired | %1$sRenew%2$s', 'ppc' ), '<a target="_blank" href="'.$single['renewal_url'].'" title="'.__( 'Renew!', 'ppc' ).'">', '</a>' ).'</span>';
+                    $status = '<span style="color: red;">'.sprintf( __( 'Awfully sad - Expired | %1$sRenew%2$s', 'post-pay-counter' ), '<a target="_blank" href="'.$single['renewal_url'].'" title="'.__( 'Renew!', 'post-pay-counter' ).'">', '</a>' ).'</span>';
                 else if( $single['expiration'] - current_time( 'timestamp' ) < 3888000 ) //1.5 months
-                    $status = '<span style="color: orange;">'.sprintf( __( 'Anxious - In expiration | %1$sRenew%2$s', 'ppc' ), '<a target="_blank" href="'.$single['renewal_url'].'" title="'.__( 'Renew!', 'ppc' ).'">', '</a>' ).'</span>';
+                    $status = '<span style="color: orange;">'.sprintf( __( 'Anxious - In expiration | %1$sRenew%2$s', 'post-pay-counter' ), '<a target="_blank" href="'.$single['renewal_url'].'" title="'.__( 'Renew!', 'post-pay-counter' ).'">', '</a>' ).'</span>';
                 else if( $single['expiration'] - current_time( 'timestamp' ) > 3888000 )
-                    $status = '<span style="color: green;">'.__( 'Astonishingly happy', 'ppc' ).'</span>';
+                    $status = '<span style="color: green;">'.__( 'Astonishingly happy', 'post-pay-counter' ).'</span>';
 
                 if( ! $single['expiration'] )
                     $expiration = 'N.A.';
@@ -636,7 +636,7 @@ class PPC_meta_boxes {
                     <td><?php echo $single['name']; ?><br /><span class="ppc_copy_license_key"><?php if( isset( $single['license_key'] ) ) echo $single['license_key']; ?></span></td>
                     <td><?php echo $status ?></td>
                     <td><?php echo $expiration ?></td>
-                    <td><input type="button" name="ppc_license_deactivate" accesskey="<?php echo $single['slug']; ?>" class="button-secondary ppc_license_deactivate" id="ppc_license_deactivate" value="<?php _e( 'Deactivate license', 'ppc'); ?>" /></td>
+                    <td><input type="button" name="ppc_license_deactivate" accesskey="<?php echo $single['slug']; ?>" class="button-secondary ppc_license_deactivate" id="ppc_license_deactivate" value="<?php _e( 'Deactivate license', 'post-pay-counter'); ?>" /></td>
                 </tr>
 
             <?php } ?>
