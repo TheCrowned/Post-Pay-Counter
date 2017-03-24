@@ -247,6 +247,9 @@ class post_pay_counter {
 		if( ! isset( $last_available_post_time ) OR $last_available_post_time < current_time( 'timestamp' ) )
             $last_available_post_time = current_time( 'timestamp' ); //Pub Bonus needs to select even days without posts in the future, maybe there are publishings
 
+		$time_end_now = date( 'Y-m-d', strtotime( '23:59:59' ) );
+		$time_start_end_week = get_weekstartend( current_time('mysql') );
+
         wp_enqueue_script( 'jquery-ui-datepicker' );
         wp_enqueue_style( 'jquery.ui.theme', $ppc_global_settings['folder_path'].'style/ui-lightness/jquery-ui-1.8.15.custom.css' );
         wp_enqueue_style( 'ppc_header_style', $ppc_global_settings['folder_path'].'style/ppc_header_style.css', array( 'wp-admin' ) );
@@ -256,15 +259,15 @@ class post_pay_counter {
             'datepicker_mindate' => date( 'Y-m-d', $first_available_post_time ),
             'datepicker_maxdate' => date( 'Y-m-d', $last_available_post_time ),
             'time_start_this_month' => date( 'Y-m-d', strtotime( 'first day of this month' ) ),
-            'time_end_this_month' => date( 'Y-m-d', strtotime( '23:59:59' ) ),
+            'time_end_this_month' => $time_end_now,
             'time_start_this_year' => date( 'Y-m-d', strtotime( 'first day of january this year' ) ),
-            'time_end_this_year' => date( 'Y-m-d', strtotime( '23:59:59' ) ),
-            'time_start_this_week' => date( 'Y-m-d', strtotime( 'first day of this week' ) ),
-            'time_end_this_week' => date( 'Y-m-d', strtotime( '23:59:59' ) ),
+            'time_end_this_year' => $time_end_now,
+            'time_start_this_week' => date( 'Y-m-d', $time_start_end_week['start'] ),
+            'time_end_this_week' => $time_end_now,
             'time_start_last_month' => date( 'Y-m-d', strtotime('first day of last month') ),
             'time_end_last_month' => date( 'Y-m-d', strtotime( 'first day of this month' ) - 86400 ), //go to first day of current month and back of one day
             'time_start_all_time' => $first_available_post_time,
-            'time_end_all_time' => date( 'Y-m-d', strtotime( '23:59:59' ) ),
+            'time_end_all_time' => $time_end_now,
             'nonce_ppc_stats_get_users_by_role' => wp_create_nonce( 'ppc_stats_get_users_by_role' )
         ) );
 
