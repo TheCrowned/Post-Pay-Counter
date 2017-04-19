@@ -420,8 +420,7 @@ class PPC_counting_stuff {
      * @param   $countings array PPC count
      * @param   $payment array PPC payment
      * @return  string tooltip
-    */
-
+     */
     static function build_payment_details_tooltip( $countings, $payment, $counting_types = array() ) {
         global $ppc_global_settings;
 
@@ -439,14 +438,16 @@ class PPC_counting_stuff {
 
 				//Countings with only payment
 				if( isset( $counting_types[$id]['payment_only'] ) AND $counting_types[$id]['payment_only'] ) {
-					$tooltip .= ucfirst( $id ).': '.PPC_general_functions::format_payment( sprintf( '%.2f', $value ) ).'&#13;';
+					$tooltip .= ucfirst( $id ).': '.PPC_general_functions::format_payment( sprintf( '%.2f', $value ) ).'
+';
 
 				//Countings with count and payment
 				} else {
 					if( is_numeric( $countings[$id]['to_count'] ) )
 						$countings[$id]['to_count'] = round( $countings[$id]['to_count'], 3 );
 
-					$tooltip .= ucfirst( $id ).': '.$countings[$id]['to_count'].' => '.PPC_general_functions::format_payment( sprintf( '%.2f', $value ) ).'&#13;';
+					$tooltip .= ucfirst( $id ).': '.$countings[$id]['to_count'].' => '.PPC_general_functions::format_payment( sprintf( '%.2f', $value ) ).'
+';
 				}
 			}
 		}
