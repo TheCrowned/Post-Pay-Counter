@@ -284,16 +284,19 @@ class post_pay_counter {
         add_meta_box( 'ppc_counting_settings', __( 'Counting Settings', 'post-pay-counter' ), array( 'PPC_meta_boxes', 'meta_box_counting_settings' ), $ppc_global_settings['options_menu_slug'], 'normal', 'default', self::$options_page_settings );
         add_meta_box( 'ppc_permissions', __( 'Permissions', 'post-pay-counter' ), array( 'PPC_meta_boxes', 'meta_box_permissions' ), $ppc_global_settings['options_menu_slug'], 'normal', 'default', self::$options_page_settings );
 
-        if( ! isset( $_GET['userid'] ) OR ( isset( $_GET['userid'] ) AND ! is_numeric( $_GET['userid'] ) ) ) {
+        if( ! isset( $_GET['userid'] ) OR ( isset( $_GET['userid'] ) AND $_GET['userid'] == 'general' ) ) {
             add_meta_box( 'ppc_personalize_settings', __( 'Personalize Settings', 'post-pay-counter' ), array( 'PPC_meta_boxes', 'meta_box_personalize_settings' ), $ppc_global_settings['options_menu_slug'], 'side', 'default', self::$options_page_settings );
-            add_meta_box( 'ppc_license', __( 'License status', 'ppc' ), array( 'PPC_meta_boxes', 'meta_box_license' ), $ppc_global_settings['options_menu_slug'], 'side', 'default', post_pay_counter::$options_page_settings );
+            add_meta_box( 'ppc_license', __( 'License status', 'post-pay-counter' ), array( 'PPC_meta_boxes', 'meta_box_license' ), $ppc_global_settings['options_menu_slug'], 'side', 'default', post_pay_counter::$options_page_settings );
             add_meta_box( 'ppc_misc_settings', __( 'Miscellanea', 'post-pay-counter' ), array( 'PPC_meta_boxes', 'meta_box_misc_settings' ), $ppc_global_settings['options_menu_slug'], 'normal', 'default', self::$options_page_settings );
         }
 
         add_meta_box( 'ppc_import_export_settings', __( 'Import/Export Settings', 'post-pay-counter' ), array( 'PPC_meta_boxes', 'meta_box_import_export_settings' ), $ppc_global_settings['options_menu_slug'], 'side', 'default', self::$options_page_settings );
 		add_meta_box( 'ppc_pro_features', __( 'Everything you\'re missing by not being PRO', 'post-pay-counter' ), array( 'PPC_meta_boxes', 'meta_box_pro_features' ), $ppc_global_settings['options_menu_slug'], 'side' );
         add_meta_box( 'ppc_support_the_fucking_author', __( 'Support the author', 'post-pay-counter' ), array( 'PPC_meta_boxes', 'meta_box_support_the_fucking_author' ), $ppc_global_settings['options_menu_slug'], 'side' );
-        add_meta_box( 'ppc_error_log', __( 'Error log', 'post-pay-counter' ), array( 'PPC_meta_boxes', 'meta_box_error_log' ), $ppc_global_settings['options_menu_slug'], 'side', 'default', self::$options_page_settings );
+
+        if( ! isset( $_GET['userid'] ) OR ( isset( $_GET['userid'] ) AND $_GET['userid'] == 'general' ) ) {
+			add_meta_box( 'ppc_error_log', __( 'Error log', 'post-pay-counter' ), array( 'PPC_meta_boxes', 'meta_box_error_log' ), $ppc_global_settings['options_menu_slug'], 'side', 'default', self::$options_page_settings );
+		}
 
         wp_enqueue_style( 'jquery.tooltip.theme', $ppc_global_settings['folder_path'].'style/tipTip.css' );
         wp_enqueue_style( 'ppc_header_style', $ppc_global_settings['folder_path'].'style/ppc_header_style.css', array( 'wp-admin' ), filemtime( $ppc_global_settings['dir_path'].'style/ppc_header_style.css' ) );
