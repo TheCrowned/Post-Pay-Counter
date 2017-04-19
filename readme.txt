@@ -9,20 +9,21 @@ Requires at least: 3.7
 Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
 
 == Description ==
-Easily calculate and handle authors' pay on a multi-author blog by computing posts' remuneration basing on admin defined rules. The administrator can specify criteria upon which payments should be computed and the stats will immediately be viewable. Both a general view with all users and a specific one for a author are possible. It can easily help you implement a revenue sharing/paid to write model for your business.
+Easily calculate and handle authors' pay on a multi-author blog. Set up the wished payment criteria and let the plugin compute posts payment. Stats are immediately be viewable. Both a general view with all users and a specific one for each author are possible. It can easily help you implement a revenue sharing/paid to write model for your business.
 
 [Plugin HOMEPAGE](https://postpaycounter.com)
 
-Features include:
+**Features include:**
 
 * Pay per post, word, visit ([tutorial](https://postpaycounter.com/pay-writers-per-visit-wordpress?utm_source=wprep&utm_medium=link)), image and comment (not mutually exclusive).
 * Pay with an incremental system (eg. each word is €0.01 => 100 words = €1) or with a zonal one (eg. from 200 to 300 words/visits it’s €2.00, up to 10 zones).
 * No account needed. Data is yours, no need to sign-up to anything really.
-* Old stats availability. View posts countings since the first written post, disregarding the plugin install date. A fancy date picker lets you shift between days and select the desired range.
-* Personalize user's settings, so that special settings only apply to a particular user. Different settings can be made viewable in the stats or hidden depending on your needs.
+* Old stats availability. View posts countings since the first written post, disregarding the plugin install date. A fancy date picker lets you shift between days and select the desired range, or pick a ready choice (such as *This month*, *Last month*...).
+* Responsive and sortable stats: optimized stats page for mobile devices and sortable stats table.
+* Personalize user's settings, so that special settings only apply to a particular user. Different settings can be made apparent in the stats or hidden depending on your needs.
 * Customizable permissions to prevent your users to see stats and use functions they are not supposed to.
 * Extend with your own custom implementation through hooks, filters and special API features ([learn more](https://postpaycounter.com/add-custom-payment-types-post-pay-counter-stats?utm_source=wprep&utm_medium=link)).
-* And... works with custom post types, narrow your payments only to chosen user groups, supports pagination and sorting, and even more!
+* And... works with custom post types, narrow your payments only to chosen user groups, supports pagination, and even more!
 
 [GitHub repository](https://github.com/TheCrowned/Post-Pay-Counter/) (wanna join us coding?)
 
@@ -345,33 +346,6 @@ It must become: *define( 'PPC_DEBUG_LOG', false );*
 * Feature: now possible to include gallery images in images counting (disabled by default, go to Counting settings > Images payment to enable it).
 * Feature: introducing plugin notifications system.
 
-= 2.45 =
-* Fixed: misaligned stats columns if users had different counting types enabled.
-
-= 2.44 =
-* Fixed: datepicker would misbehave and not let select correct dates.
-
-= 2.43 =
-* Fixed: if a maximum payment threshold was set with payment only when the threshold was reached, and no posts across all authors reached the threhsold, some warnings would be shown with no explanation of the problem.
-* Fixed: PRO version payment bonus not showing in the stats (although was counted for payment).
-* Fixed: options page style showing messed up on some sites.
-* Tweak: dinamically generating overall stats (if some payment types are disabled, they are not displayed).
-* Tweak: stats generation is a bit less memory demanding.
-* Fixed: warning again for users with no counting types enabled.
-* Tweak: updated italian translation.
-
-= 2.42 =
-* Fixed: warnings in shortcoded (PRO) and maybe admin stats if current user didn't have any counting types enabled.
-
-= 2.41 =
-* Fixed: overall stats not displaying data.
-
-= 2.40 =
-* New: centralized control of counting types - makes code easier, hopefully faster, and simple to hook for who wants to integrate with the plugin.
-* Tweak: welcome page css not being loaded on all wp-admin pages.
-* New: Pengu-ins logo added on plugin pages.
-* New: addons page (new addons coming!)
-
 ... several old versions changes removed ...
 
 = 2.0 =
@@ -391,8 +365,9 @@ It must become: *define( 'PPC_DEBUG_LOG', false );*
 A paid addon to Post Pay Counter, PRO, will be released soon, adding more new features.
 
 == Screenshots ==
-1. Post Pay Counter settings page
-2. Use the tooltips beside each field to know what you can do with them
-3. Post Pay Counter general stats (i.e. all author are shown). The provided datapicker allows to edit the time range and select the wished stats
-4. Post Pay Counter per author stats. Datapicker avaiable here, too
-5. The tooltip with all the counting details
+1. Post Pay Counter general stats (i.e. all author are shown). The provided datapicker allows to edit the time range and select the wished stats
+2. Post Pay Counter per author stats. Datapicker avaiable here, too
+3. Post Pay Counter settings page
+4. Use the tooltips beside each field to know what you can do with them
+5. Stats responsive layout
+6. The tooltip with all the counting details
