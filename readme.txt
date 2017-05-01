@@ -3,7 +3,7 @@ Contributors: Ste_95
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22
 Tags: counter, authors, payment, revenue sharing, stats, multi author, post management, post
 Tested up to: 4.7.2
-Stable tag: 2.715
+Stable tag: 2.716
 Requires at least: 3.7
 
 Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
@@ -77,6 +77,12 @@ From this: *define( 'PPC_DEBUG_LOG', true );*
 It must become: *define( 'PPC_DEBUG_LOG', false );*
 
 == Changelog ==
+= 2.716 (2017-05-01) =
+* Tweak: hidden Error Log box from non-general options pages.
+* Tweak: better hiding of general options boxes from non-general options pages.
+* Fixed: License box not showing localized strings.
+* Fixed: tooltip line breaks not shown on certain browsers/systems.
+
 = 2.715 (2017/03/23) =
 * Fixed: roles and users picker in stats page would display roles/users set not-to-show-up in stats as well.
 * Fixed: *This week* choice in stats time range would not work correctly.
@@ -366,8 +372,8 @@ A paid addon to Post Pay Counter, PRO, will be released soon, adding more new fe
 
 == Screenshots ==
 1. Post Pay Counter general stats (i.e. all author are shown). The provided datapicker allows to edit the time range and select the wished stats
-2. Post Pay Counter per author stats. Datapicker avaiable here, too
+2. Post Pay Counter per author stats
 3. Post Pay Counter settings page
-4. Use the tooltips beside each field to know what you can do with them
-5. Stats responsive layout
-6. The tooltip with all the counting details
+4. Stats responsive layout
+5. The tooltip with all the counting details
+6. Extensive documentation in options tooltips
