@@ -82,25 +82,38 @@ class PPC_counting_stuff {
 			$data_arr = array();
 
 			foreach( $author_stats as $single ) {
-				do_action( 'ppc_data2cash_single_before', $single );
 
 				//Skip posts with non allowed post status
 				if( ! ( isset( $single->post_status, self::$settings['counting_allowed_post_statuses'] ) AND self::$settings['counting_allowed_post_statuses'][$single->post_status] ) )
 					continue;
 
-				$post_countings = self::get_post_countings( $single );
-				$post_payment = self::get_post_payment( $post_countings['normal_count'], $single->ID );
+				//Use cached data if available
+				$post_stats = PPC_cache_functions::get_post_stats( $single->ID );
+				
+				if( $post_stats !== false ) {
+					$processed_data[$author_id][$single->ID] = $post_stats;
+					
+				} else {
+					
+					do_action( 'ppc_data2cash_single_before', $single );
 
-				//var_dump($post_countings['normal_count']['comments']);
-				//$data_arr[] = array( $post_countings['normal_count']['adsense_revenues']['real'], $post_countings['normal_count']['visits']['real'], $post_countings['normal_count']['facebook_shares']['real'] );
+					$post_countings = self::get_post_countings( $single );
+					$post_payment = self::get_post_payment( $post_countings['normal_count'], $single->ID );
 
-				if( count( $post_countings['normal_count'] ) == 0 AND count( $post_payment['ppc_payment']['normal_payment'] ) == 0 ) continue;
+					//var_dump($post_countings['normal_count']['comments']);
+					//$data_arr[] = array( $post_countings['normal_count']['adsense_revenues']['real'], $post_countings['normal_count']['visits']['real'], $post_countings['normal_count']['facebook_shares']['real'] );
 
-				$single->ppc_count = $post_countings;
-				$single->ppc_payment = $post_payment['ppc_payment'];
-				$single->ppc_misc = apply_filters( 'ppc_stats_post_misc', $post_payment['ppc_misc'], $single->ID );
+					if( count( $post_countings['normal_count'] ) == 0 AND count( $post_payment['ppc_payment']['normal_payment'] ) == 0 ) continue;
 
-				$processed_data[$author_id][$single->ID] = apply_filters( 'ppc_post_counting_payment_data', $single, $author );
+					$single->ppc_count = $post_countings;
+					$single->ppc_payment = $post_payment['ppc_payment'];
+					$single->ppc_misc = apply_filters( 'ppc_stats_post_misc', $post_payment['ppc_misc'], $single->ID );
+
+					$processed_data[$author_id][$single->ID] = apply_filters( 'ppc_post_counting_payment_data', $single, $author );
+
+					//Cache post stats for one day
+					wp_cache_set( 'ppc_stats_post_ID-'.$single->ID, $processed_data[$author_id][$single->ID], 'ppc_stats', 86400 );
+				}
 			}
         }
 
@@ -124,8 +137,7 @@ class PPC_counting_stuff {
      * @since   2.0
      * @param   $post object a WP posts
      * @return  array the posts array along with their counting data
-    */
-
+     */
     static function get_post_countings( $post ) {
         global $ppc_global_settings;
 

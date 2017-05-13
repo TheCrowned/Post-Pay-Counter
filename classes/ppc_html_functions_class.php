@@ -385,12 +385,12 @@ class PPC_HTML_functions {
 						$html = apply_filters( 'ppc_general_stats_'.$filter_name.'_after_'.$field_name, $html, $author, $formatted_stats, $raw_stats );
 
 					} else {
-						$html .= '<td class="'.$field_name.'">'.apply_filters( 'ppc_general_stats_each_field_empty_value', 'N.A.', $field_name, $raw_stats[$author] ).'</td>';
+						$html .= '<td class="'.$field_name.'">'.apply_filters( 'ppc_general_stats_each_field_empty_value', 'N.A.', $field_name, $raw_stats[$author], $author ).'</td>';
 					}
 				}
 
 				$html = apply_filters( 'ppc_general_stats_'.$filter_name.'_after_each_default_filter', $html, $author, $formatted_stats, $raw_stats );
-
+				
 				//Bit entangled due to retro-compatibility with PRO versions <= 1.5.8.3, when this function echoed directly (thus using actions and not filters)
 				if( $echo_or_return == "echo" ) {
 					echo $html;
@@ -400,6 +400,7 @@ class PPC_HTML_functions {
 
 				$html .= '</tr>';
 			}
+			
 		}
 
 		return $html;

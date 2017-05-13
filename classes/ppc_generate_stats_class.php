@@ -30,33 +30,33 @@ class PPC_generate_stats {
      * @param   $author array optional an array of users for detailed stats
      * @return  array raw stats + formatted for output stats
      */
-
     static function produce_stats( $time_start, $time_end, $author = NULL ) {
         global $current_user, $ppc_global_settings;
 
         $perm = new PPC_permissions();
 
-        //If general stats & CU can't see others' general, behave as if detailed for him
-        if( ! is_array( $author ) AND ! $perm->can_see_others_general_stats() )
-            $requested_posts = PPC_generate_stats::get_requested_posts( $time_start, $time_end, array( $current_user->ID ) );
-        else
-            $requested_posts = PPC_generate_stats::get_requested_posts( $time_start, $time_end, $author );
+		//If general stats & CU can't see others' general, behave as if detailed for him
+		if( ! is_array( $author ) AND ! $perm->can_see_others_general_stats() )
+			$requested_posts = PPC_generate_stats::get_requested_posts( $time_start, $time_end, array( $current_user->ID ) );
+		else
+			$requested_posts = PPC_generate_stats::get_requested_posts( $time_start, $time_end, $author );
 
-        if( is_wp_error( $requested_posts ) ) return $requested_posts;
+		if( is_wp_error( $requested_posts ) ) return $requested_posts;
 
 		$stats = PPC_generate_stats::group_stats_by_author( $requested_posts );
-        if( is_wp_error( $stats ) ) return $stats;
+		if( is_wp_error( $stats ) ) return $stats;
 
-        $stats = PPC_counting_stuff::data2cash( $stats, $author );
-        if( is_wp_error( $stats ) ) return $stats;
+		$stats = PPC_counting_stuff::data2cash( $stats, $author );
+		if( is_wp_error( $stats ) ) return $stats;
 
 		$stats = PPC_generate_stats::calculate_total_stats( $stats );
-        if( is_wp_error( $stats ) ) return $stats;
+		if( is_wp_error( $stats ) ) return $stats;
 
         $formatted_stats = PPC_generate_stats::format_stats_for_output( $stats, $author );
         if( is_wp_error( $formatted_stats ) ) return $formatted_stats;
 
         $return = array( 'raw_stats' => $stats, 'formatted_stats' => $formatted_stats );
+        
         return $return;
     }
 

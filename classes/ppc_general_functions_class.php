@@ -106,40 +106,23 @@ class PPC_general_functions {
 		 * @param 	bool whether can-see-other-users-personalized-settings permission should be checked
 		 * @param	bool whether user specific settings should be completed with general ones for options which are not cusomized for that user
 		 */
-
         $return = apply_filters( 'ppc_settings', $return );
         $return = apply_filters( 'ppc_get_settings', $return, $userid, $check_current_user_cap_special, $complete_with_general );
-
-        //Cache processed settings
-
 
 		return $return;
     }
 
 	/**
      * Clears cache of all settings-dependent objects.
-     * Flushing general settings will result in flushing ALL users cache as well.
+     * This is DEPRECATED and is now a wrapper of PPC_cache_functions::clear_settings_cache( $userid ).
      *
      * @access  public
      * @since   2.601
      * @param   $userid string userid whose settings cache needs to be flushed
+     * @return	void
      */
 	static function clear_settings_cache( $userid ) {
-		wp_cache_delete( 'ppc_settings_'.$userid );
-		wp_cache_delete( 'ppc_user_active_counting_types_list_post_'.$userid );
-		wp_cache_delete( 'ppc_user_active_counting_types_list_author_'.$userid );
-		wp_cache_delete( 'ppc_user_active_counting_types_details_post_'.$userid );
-		wp_cache_delete( 'ppc_user_active_counting_types_details_author_'.$userid );
-
-		if( ! is_numeric( $userid ) ) {
-			global $wpdb;
-
-			$wp_all_users = get_users( array( 'fields' => array( 'ID' ) ) );
-
-			foreach( $wp_all_users as $user ) {
-				self::clear_settings_cache( $user->ID );
-			}
-		}
+		PPC_cache_functions::clear_settings( $userid );
 	}
 
     /**

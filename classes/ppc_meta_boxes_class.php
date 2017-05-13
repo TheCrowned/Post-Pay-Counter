@@ -616,6 +616,9 @@ class PPC_meta_boxes {
             <?php
             foreach( $licenses as $single ) {
 				$single['renewal_url'] .= '?utm_source=users_site&utm_medium=license_box&utm_campaign='.$single['slug'].'_renew'; //attach Analytics source/medium to renew URL
+
+				if( isset( $single['license_key'] ) )
+					$single['renewal_url'] .= '&license_key='.$single['license_key']; //attach license key to renew URL
 				
                 if( ! isset( $single['expiration'] ) )
 					$status = '<span style="color: gray;">'.__( 'Unknown', 'post-pay-counter' ).'</span>';
@@ -626,7 +629,7 @@ class PPC_meta_boxes {
                 else if( $single['expiration'] - current_time( 'timestamp' ) > 3888000 )
                     $status = '<span style="color: green;">'.__( 'Astonishingly happy', 'post-pay-counter' ).'</span>';
 
-                if( ! $single['expiration'] )
+                if( ! isset( $single['expiration'] ) OR ! $single['expiration'] )
                     $expiration = 'N.A.';
                 else
                     $expiration = date_i18n( get_option( 'date_format' ), $single['expiration'] );

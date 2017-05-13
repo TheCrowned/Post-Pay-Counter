@@ -200,7 +200,8 @@ class PPC_install_functions {
                 'default_stats_time_range_custom_value' => 100,
                 'admins_override_permissions' => 1,
                 'stats_display_edit_post_link' => 0,
-                'enable_stats_payments_tooltips' => 1
+                'enable_stats_payments_tooltips' => 1,
+                'enable_stats_cache' => 1
             ),
 
             'admin' => array(
@@ -260,6 +261,9 @@ class PPC_install_functions {
 
         //Insert default addons list
         PPC_addons::add_addons_list();
+
+        //Clear settings cache
+        PPC_cache_functions::clear_settings();
 
         update_option( 'ppc_current_version', $ppc_global_settings['newest_version'] );
     }

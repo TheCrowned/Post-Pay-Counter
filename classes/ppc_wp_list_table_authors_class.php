@@ -112,7 +112,7 @@ class Post_Pay_Counter_Authors_List_Table extends WP_List_Table {
 					break;
 			}
 
-			$field_value = apply_filters( 'ppc_general_stats_html_each_field_value', $field_value, $column_name, $this->raw_data[$this->current_author_id] );
+			$field_value = apply_filters( 'ppc_general_stats_html_each_field_value', $field_value, $column_name, $this->raw_data[$this->current_author_id], $this->current_author_id );
 
 		} else {
 			//Retrocompatibility for PRO HTML columns added directly to table
@@ -132,7 +132,7 @@ class Post_Pay_Counter_Authors_List_Table extends WP_List_Table {
 
 
 			if( ! isset( $field_value ) )
-				$field_value = apply_filters( 'ppc_general_stats_each_field_empty_value', 'N.A.', $column_name ).'</td>';
+				$field_value = apply_filters( 'ppc_general_stats_each_field_empty_value', 'N.A.', $column_name, $this->raw_data[$this->current_author_id], $this->current_author_id ).'</td>';
 		}
 
 		return $field_value;

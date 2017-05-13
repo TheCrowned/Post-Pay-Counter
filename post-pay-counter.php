@@ -46,6 +46,7 @@ require_once( 'classes/ppc_notifications_class.php' );
 require_once( 'classes/ppc_counting_types_class.php' );
 require_once( 'classes/ppc_license_class.php' );
 require_once( 'classes/ppc_autoupdate_class.php' );
+require_once( 'classes/ppc_cache_class.php' );
 require_once( 'classes/ppc_wp_list_table_authors_class.php' );
 require_once( 'classes/ppc_wp_list_table_posts_class.php' );
 
@@ -129,6 +130,9 @@ class post_pay_counter {
 		//License hooks
 		add_action( 'wp_ajax_ppc_license_activate', array( 'PPC_ajax_functions', 'license_activate' ) );
         add_action( 'wp_ajax_ppc_license_deactivate', array( 'PPC_ajax_functions', 'license_deactivate' ) );
+
+        //Caching compatibility with old PRO version and other addons
+        PPC_cache_functions::clear_post_stats_old_addons();
     }
 
 	/**

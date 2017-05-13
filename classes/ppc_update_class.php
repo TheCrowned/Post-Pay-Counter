@@ -66,35 +66,25 @@ class PPC_update_class {
          */
 
         $new_settings = array(
-            'general' => array(
-				'display_overall_stats' => 1,
-				'counting_visits_callback_value' => '',
-				'admins_override_permissions' => 0,
-				'basic_payment_display_status' => 'tooltip',
-				'counting_words_display_status' => 'count',
-				'counting_words_include_excerpt' => 0,
-				'counting_visits_display_status' => 'count',
-				'counting_images_display_status' => 'count',
-				'counting_comments_display_status' => 'count',
-				'stats_display_edit_post_link' => 0,
-				'counting_words_parse_spaces' => 0,
-				'enable_stats_payments_tooltips' => 1,
-				'default_stats_time_range_last_month' => 0,
-				'default_stats_time_range_this_year' => 0,
-				'default_stats_time_range_all_time' => 0
-            ),
-
-            //User settings only hold different-from-general-records nowadays
-            'user' => array(
-            )
+			'display_overall_stats' => 1,
+			'counting_visits_callback_value' => '',
+			'admins_override_permissions' => 0,
+			'basic_payment_display_status' => 'tooltip',
+			'counting_words_display_status' => 'count',
+			'counting_words_include_excerpt' => 0,
+			'counting_visits_display_status' => 'count',
+			'counting_images_display_status' => 'count',
+			'counting_comments_display_status' => 'count',
+			'stats_display_edit_post_link' => 0,
+			'counting_words_parse_spaces' => 0,
+			'enable_stats_payments_tooltips' => 1,
+			'default_stats_time_range_last_month' => 0,
+			'default_stats_time_range_this_year' => 0,
+			'default_stats_time_range_all_time' => 0,
+			'enable_stats_cache' => 1
         );
 
-        foreach( $new_settings['general'] as $setting => $value ) {
-            if( ! isset( $general_settings[$setting] ) )
-                $general_settings[$setting] = $value;
-        }
-
-		foreach( $new_settings['user'] as $setting => $value ) {
+        foreach( $new_settings as $setting => $value ) {
             if( ! isset( $general_settings[$setting] ) )
                 $general_settings[$setting] = $value;
         }
@@ -131,11 +121,6 @@ class PPC_update_class {
 			$user_settings = PPC_general_functions::get_settings( $user );
             $user_settings_old = $user_settings;
 
-			foreach( $new_settings['user'] as $setting => $value ) {
-            if( ! isset( $user_settings[$setting] ) )
-                $user_settings[$setting] = $value;
-            }
-
             //Count private posts
             if( ! isset( $user_settings['counting_allowed_post_statuses']['private'] ) )
                 $user_settings['counting_allowed_post_statuses']['private'] = 0;
@@ -157,8 +142,6 @@ class PPC_update_class {
     			}
             }
 		}
-
-		//$general_settings = PPC_general_functions::get_settings( 'general' );
 
 		//License cron check
         if( ! wp_next_scheduled( 'ppcp_cron_check_activation' ) )
@@ -186,5 +169,5 @@ class PPC_update_class {
 
 	   if( get_option( 'ppc_urcs_active' ) == 1 )
             activate_plugin( 'ppc-user-roles-custom-settings/ppc-user-roles-custom-settings.php' );
-    }
+	}
 }
