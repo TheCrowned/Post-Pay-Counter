@@ -171,6 +171,7 @@ class PPC_install_functions {
                 'can_see_others_general_stats' => 1,
     			'can_see_others_detailed_stats' => 1,
     			'can_see_countings_special_settings' => 1,
+    			'enable_post_stats_caching' => 1,
 				'display_overall_stats' => 1,
                 'can_see_options_user_roles' => array(
                     'administrator' => 'administrator'
@@ -200,8 +201,7 @@ class PPC_install_functions {
                 'default_stats_time_range_custom_value' => 100,
                 'admins_override_permissions' => 1,
                 'stats_display_edit_post_link' => 0,
-                'enable_stats_payments_tooltips' => 1,
-                'enable_stats_cache' => 1
+                'enable_stats_payments_tooltips' => 1
             ),
 
             'admin' => array(

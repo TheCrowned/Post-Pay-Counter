@@ -50,7 +50,7 @@ class PPC_cache_functions {
 
 		//$cache_salt = PPC_cache_functions::get_stats_incrementor();
 
-		if( $general_settings['enable_stats_cache'] )
+		if( $general_settings['enable_post_stats_caching'] )
 			return wp_cache_get( 'ppc_stats_post_ID-'.$post_id, 'ppc_stats' );
 		else
 			return false;

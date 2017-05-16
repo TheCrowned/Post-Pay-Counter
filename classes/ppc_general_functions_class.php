@@ -231,8 +231,7 @@ class PPC_general_functions {
      * @access  public
      * @since   2.1
      * @param   $settings array plugin settings
-    */
-
+     */
     static function get_default_stats_time_range( $settings ) {
         global $ppc_global_settings;
 
