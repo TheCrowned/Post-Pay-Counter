@@ -3,7 +3,7 @@ Contributors: Ste_95
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22
 Tags: counter, authors, payment, revenue sharing, stats, multi author, post management, post
 Tested up to: 4.7.2
-Stable tag: 2.716
+Stable tag: 2.720
 Requires at least: 3.7
 
 Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
@@ -77,6 +77,11 @@ From this: *define( 'PPC_DEBUG_LOG', true );*
 It must become: *define( 'PPC_DEBUG_LOG', false );*
 
 == Changelog ==
+= 2.720 (2017-05-16) =
+* New: post stats are now cached for one day. This **speeds up stats page loading by roughly 50%**! The feature can be disabled in case of issues.
+* Tweak: updated plugin hooks for compatibility with the new Request Payment addon.
+* Tweak: improvements in update routine.
+
 = 2.716 (2017-05-01) =
 * Tweak: hidden Error Log box from non-general options pages.
 * Tweak: better hiding of general options boxes from non-general options pages.
