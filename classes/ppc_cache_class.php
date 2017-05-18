@@ -85,12 +85,12 @@ class PPC_cache_functions {
 	 */ 
 	static function clear_post_stats_old_addons() {
 		global $ppcp_global_settings;
-        if( version_compare( $ppcp_global_settings['current_version'], '1.7.2' ) ) {
+        if( isset( $ppcp_global_settings['current_version'] ) AND version_compare( $ppcp_global_settings['current_version'], '1.7.2' ) ) {
 			add_action( 'ppcp_updated_post_payment_history', array( 'PPC_cache_functions', 'clear_post_stats' ), 10, 1 );
 		}
 		
         global $ppcp_fb_global_settings;
-        if( version_compare( $ppcp_fb_global_settings['current_version'], '1.4.1' ) ) {
+        if( isset( $ppcp_fb_global_settings['current_version'] ) AND version_compare( $ppcp_fb_global_settings['current_version'], '1.4.1' ) ) {
 			add_action( 'ppcp_fb_updated_post_data', array( 'PPC_cache_functions', 'clear_post_stats' ), 10, 1 );
 		}
 	}
