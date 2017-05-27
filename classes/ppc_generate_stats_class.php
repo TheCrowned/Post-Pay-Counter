@@ -361,7 +361,7 @@ class PPC_generate_stats {
 								break;
 
 							case 'payment':
-								$formatted_stats['stats'][$author_id][$post->ID]['post_'.$id] = PPC_general_functions::format_payment( sprintf( '%.2f', $post->ppc_payment['normal_payment'][$id] ) );
+								$formatted_stats['stats'][$author_id][$post->ID]['post_'.$id] = PPC_general_functions::format_payment( $post->ppc_payment['normal_payment'][$id] );
 								break;
 
 							case 'none':
@@ -372,7 +372,7 @@ class PPC_generate_stats {
 					}
 				}
 
-                $formatted_stats['stats'][$author_id][$post->ID]['post_total_payment'] = sprintf( '%.2f', $post->ppc_payment['normal_payment']['total'] );
+                $formatted_stats['stats'][$author_id][$post->ID]['post_total_payment'] = PPC_general_functions::format_payment( $post->ppc_payment['normal_payment']['total'] );
 
                 $formatted_stats['stats'][$author_id][$post->ID] = apply_filters( 'ppc_author_stats_format_stats_after_each_default', $formatted_stats['stats'][$author_id][$post->ID], $author_id, $post );
             }
@@ -412,7 +412,7 @@ class PPC_generate_stats {
 						
 						switch( $display ) {
 							case 'both':
-								$formatted_stats['stats'][$author_id]['author_'.$id] = $posts['total']['ppc_count']['normal_count'][$id]['to_count'].' ('.PPC_general_functions::format_payment( sprintf( '%.2f', $posts['total']['ppc_payment']['normal_payment'][$id] ) ).')';
+								$formatted_stats['stats'][$author_id]['author_'.$id] = $posts['total']['ppc_count']['normal_count'][$id]['to_count'].' ('.PPC_general_functions::format_payment( $posts['total']['ppc_payment']['normal_payment'][$id] ).')';
 								break;
 
 							case 'count':
@@ -420,7 +420,7 @@ class PPC_generate_stats {
 								break;
 
 							case 'payment':
-								$formatted_stats['stats'][$author_id]['author_'.$id] = PPC_general_functions::format_payment( sprintf( '%.2f', $posts['total']['ppc_payment']['normal_payment'][$id] ) );
+								$formatted_stats['stats'][$author_id]['author_'.$id] = PPC_general_functions::format_payment( $posts['total']['ppc_payment']['normal_payment'][$id] );
 								break;
 
 							case 'none':
@@ -434,7 +434,7 @@ class PPC_generate_stats {
 					}
 				}
 
-				$formatted_stats['stats'][$author_id]['author_total_payment'] = sprintf( '%.2f', $posts['total']['ppc_payment']['normal_payment']['total'] );
+				$formatted_stats['stats'][$author_id]['author_total_payment'] = PPC_general_functions::format_payment( $posts['total']['ppc_payment']['normal_payment']['total'] );
 
                 $formatted_stats['stats'][$author_id] = apply_filters( 'ppc_general_stats_format_stats_after_each_default', $formatted_stats['stats'][$author_id], $author_id, $posts );
             }

@@ -235,6 +235,24 @@ class PPC_general_functions {
     static function get_default_stats_time_range( $settings ) {
         global $ppc_global_settings;
 
+		//Default time range already done
+		if( isset( $ppc_global_settings['stats_tstart'] ) ) return;
+
+		$args = array(
+            'post_type' => $settings['counting_allowed_post_types'],
+			'posts_per_page' => 1,
+            'orderby' => 'post_date',
+            'order' => 'ASC'
+        );
+        $first_available_post = new WP_Query( $args );
+
+		if( $first_available_post->found_posts == 0 )
+            $first_available_post_time = current_time( 'timestamp' );
+        else
+            $first_available_post_time = strtotime( $first_available_post->posts[0]->post_date );
+
+        $ppc_global_settings['first_available_post_time'] = $first_available_post_time;
+
         if( $settings['default_stats_time_range_week'] ) {
             $ppc_global_settings['stats_tstart'] = strtotime( '00:00:00' ) - ( ( date( 'N' )-1 )*24*60*60 );
             $ppc_global_settings['stats_tend'] = strtotime( '23:59:59' );
@@ -266,7 +284,9 @@ class PPC_general_functions {
 	 */
 
 	static function format_payment( $payment ) {
-		return apply_filters( 'ppc_format_payment', $payment );
+		$general_settings = PPC_general_functions::get_settings( 'general' );
+		
+		return apply_filters( 'ppc_format_payment', sprintf( '%.'.$general_settings['payment_display_round_digits'].'f', $payment ) );
 	}
 }
 

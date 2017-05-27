@@ -219,20 +219,8 @@ class post_pay_counter {
 		$ppc_global_settings['counting_types_object'] = new PPC_counting_types();
 		$ppc_global_settings['counting_types_object']->register_built_in_counting_types();
 
-        $args = array(
-            'post_type' => $general_settings['counting_allowed_post_types'],
-			'posts_per_page' => 1,
-            'orderby' => 'post_date',
-            'order' => 'ASC'
-        );
-        $first_available_post = new WP_Query( $args );
-
-		if( $first_available_post->found_posts == 0 )
-            $first_available_post_time = current_time( 'timestamp' );
-        else
-            $first_available_post_time = strtotime( $first_available_post->posts[0]->post_date );
-
-        $ppc_global_settings['first_available_post_time'] = $first_available_post_time;
+		//Also populates $ppc_global_settings['first_available_post_time']
+		PPC_general_functions::get_default_stats_time_range( $general_settings );
 
 		$args = array(
             'post_type' => $general_settings['counting_allowed_post_types'],
@@ -257,7 +245,7 @@ class post_pay_counter {
 		wp_enqueue_style( 'ppc_stats_style', $ppc_global_settings['folder_path'].'style/ppc_stats_style.css' );
         wp_enqueue_script( 'ppc_stats_effects', $ppc_global_settings['folder_path'].'js/ppc_stats_effects.js', array( 'jquery' ) );
         wp_localize_script( 'ppc_stats_effects', 'ppc_stats_effects_vars', array(
-            'datepicker_mindate' => date( 'Y-m-d', $first_available_post_time ),
+            'datepicker_mindate' => date( 'Y-m-d', $ppc_global_settings['first_available_post_time'] ),
             'datepicker_maxdate' => date( 'Y-m-d', $last_available_post_time ),
             'time_start_this_month' => date( 'Y-m-d', strtotime( 'first day of this month' ) ),
             'time_end_this_month' => $time_end_now,
@@ -267,7 +255,7 @@ class post_pay_counter {
             'time_end_this_week' => $time_end_now,
             'time_start_last_month' => date( 'Y-m-d', strtotime('first day of last month') ),
             'time_end_last_month' => date( 'Y-m-d', strtotime( 'first day of this month' ) - 86400 ), //go to first day of current month and back of one day
-            'time_start_all_time' => $first_available_post_time,
+            'time_start_all_time' => $ppc_global_settings['first_available_post_time'],
             'time_end_all_time' => $time_end_now,
             'nonce_ppc_stats_get_users_by_role' => wp_create_nonce( 'ppc_stats_get_users_by_role' )
         ) );
@@ -582,8 +570,6 @@ class post_pay_counter {
 		global $current_user, $ppc_global_settings, $wp_roles;
         $general_settings = PPC_general_functions::get_settings( 'general' );
         $perm = new PPC_permissions();
-
-        PPC_general_functions::get_default_stats_time_range( $general_settings );
 
         //Merging _GET and _POST data due to the time range form in the stats page. Don't know whether the user is choosing the time frame from the form (POST) or arrived following a link (GET)
         $get_and_post = array_merge( $_GET, $_POST );

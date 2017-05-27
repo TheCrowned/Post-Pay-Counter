@@ -13,8 +13,7 @@ class PPC_save_options {
      * @access  public
      * @since   2.0
      * @param   $settings array new settings
-    */
-
+     */
     static function save_counting_settings( $settings ) {
 		//$current_settings = PPC_general_functions::get_settings( $settings['userid'] );
         $new_settings = array(
@@ -31,7 +30,7 @@ class PPC_save_options {
         $new_settings['basic_payment'] = @PPC_options_fields::get_checkbox_value( $settings['basic_payment'] );
         $new_settings['counting_words'] = @PPC_options_fields::get_checkbox_value( $settings['counting_words'] );
         $new_settings['counting_words_include_excerpt'] = @PPC_options_fields::get_checkbox_value( $settings['counting_words_include_excerpt'] );
-        $new_settings['counting_visits']  = @PPC_options_fields::get_checkbox_value( $settings['counting_visits'] );
+        $new_settings['counting_visits'] = @PPC_options_fields::get_checkbox_value( $settings['counting_visits'] );
         $new_settings['counting_images'] = @PPC_options_fields::get_checkbox_value( $settings['counting_images'] );
         $new_settings['counting_images_include_featured'] = @PPC_options_fields::get_checkbox_value( $settings['counting_images_include_featured'] );
 		$new_settings['counting_images_include_galleries'] = @PPC_options_fields::get_checkbox_value( $settings['counting_images_include_galleries'] );
@@ -76,7 +75,9 @@ class PPC_save_options {
         $new_settings['counting_comments_display_status'] = $settings['counting_comments_display_status'];
         $new_settings['counting_payment_total_threshold'] = (float) str_replace( ',', '.', $settings['counting_payment_total_threshold'] );
 
-		if( isset( $settings['counting_visits_callback_value'] ) AND $settings['counting_visits_callback_value'] != "" ) {
+		//If visits payment enabled and using callback vaue, check validity
+		if( isset( $new_settings['counting_visits'] ) AND $new_settings['counting_visits'] AND 
+			isset( $settings['counting_visits_callback_value'] ) AND $settings['counting_visits_callback_value'] != "" ) {
 			$settings['counting_visits_callback_value'] = trim( $settings['counting_visits_callback_value'] );
 
 			//Check if callback is valid
@@ -132,7 +133,6 @@ class PPC_save_options {
      * @since   2.0
      * @param   $settings array new settings
      */
-
     static function save_misc_settings( $settings ) {
 		//$current_settings = PPC_general_functions::get_settings( 'general' );
         $new_settings = array( 'counting_allowed_post_types' => array(), 'counting_allowed_user_roles' => array(), 'can_see_options_user_roles' => array(), 'can_see_stats_user_roles' => array() );
@@ -140,6 +140,8 @@ class PPC_save_options {
         $default_stats_time_range = PPC_options_fields::get_radio_value( $settings['default_stats_time_range'], false, false, false, array( 'default_stats_time_range_month', 'default_stats_time_range_week', 'default_stats_time_range_custom', 'default_stats_time_range_last_month', 'default_stats_time_range_all_time', 'default_stats_time_range_this_month' ) );
         $new_settings = array_merge( $new_settings, $default_stats_time_range );
         $new_settings['default_stats_time_range_custom_value'] = (int) $settings['default_stats_time_range_custom_value'];
+        $new_settings['payment_display_round_digits'] = (int) $settings['payment_display_round_digits'];
+        
 		$new_settings['admins_override_permissions'] = @PPC_options_fields::get_checkbox_value( $settings['admins_override_permissions'] );
 		$new_settings['display_overall_stats'] = @PPC_options_fields::get_checkbox_value( $settings['display_overall_stats'] );
 		$new_settings['stats_display_edit_post_link'] = @PPC_options_fields::get_checkbox_value( $settings['stats_display_edit_post_link'] );

@@ -182,6 +182,16 @@ class PPC_meta_boxes {
         echo '</div>';
         do_action( 'ppc_misc_settings_after_stats_allowed_user_roles', $current_settings );
 
+		//Stats display settings
+        echo '<div class="ppc_section">';
+        echo '<div class="ppc_title">'.__( 'Stats display settings' , 'post-pay-counter').'</div>';
+        echo '<div class="main">';
+        echo '<p>'.__( 'By default, payment figures are rounded to two decimal digits. You may customize this in the field below.', 'post-pay-counter' ).'</p>';
+        echo PPC_HTML_functions::echo_text_field( 'payment_display_round_digits', $current_settings['payment_display_round_digits'], __( 'Round to decimal digit #' , 'post-pay-counter') );
+        echo '</div>';
+        echo '</div>';
+        do_action( 'ppc_misc_settings_after_display_settings', $current_settings );
+
         //Default stats time range
         echo '<div class="ppc_section">';
         echo '<div class="ppc_title">'.__( 'Default stats time range' , 'post-pay-counter').'</div>';
