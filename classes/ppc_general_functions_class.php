@@ -155,14 +155,13 @@ class PPC_general_functions {
     static function get_the_author_link( $author_id ) {
         global $ppc_global_settings;
 
-		$get_and_post = array_merge( $_GET, $_POST );
 		$link = admin_url( $ppc_global_settings['stats_menu_link'].'&amp;author='.$author_id.'&amp;tstart='.$ppc_global_settings['stats_tstart'].'&amp;tend='.$ppc_global_settings['stats_tend'] );
 
-        if( isset( $get_and_post['ppc-time-range'] ) AND ! empty( $get_and_post['ppc-time-range'] ) )
-			$link .= '&amp;ppc-time-range='.$get_and_post['ppc-time-range'];
+        if( isset( $_REQUEST['ppc-time-range'] ) AND ! empty( $_REQUEST['ppc-time-range'] ) )
+			$link .= '&amp;ppc-time-range='.$_REQUEST['ppc-time-range'];
 
-        if( isset( $get_and_post['paged'] ) AND ! empty( $get_and_post['paged'] ) )
-			$link .= '&amp;paged='.$get_and_post['paged'];
+        if( isset( $_REQUEST['paged'] ) AND ! empty( $_REQUEST['paged'] ) )
+			$link .= '&amp;paged='.$_REQUEST['paged'];
 
 		return apply_filters( 'ppc_get_author_link', $link );
     }
@@ -238,6 +237,7 @@ class PPC_general_functions {
 		//Default time range already done
 		if( isset( $ppc_global_settings['stats_tstart'] ) ) return;
 
+		//First available post time
 		$args = array(
             'post_type' => $settings['counting_allowed_post_types'],
 			'posts_per_page' => 1,
@@ -253,6 +253,24 @@ class PPC_general_functions {
 
         $ppc_global_settings['first_available_post_time'] = $first_available_post_time;
 
+		//Last available post time
+		$args = array(
+            'post_type' => $settings['counting_allowed_post_types'],
+			'posts_per_page' => 1,
+            'orderby' => 'post_date',
+            'order' => 'DESC'
+        );
+        $last_available_post = new WP_Query( $args ); //for future scheduled posts
+
+		if( $last_available_post->found_posts !== 0 )
+			$last_available_post_time = strtotime( $last_available_post->posts[0]->post_date );
+
+		if( ! isset( $last_available_post_time ) OR $last_available_post_time < current_time( 'timestamp' ) )
+            $last_available_post_time = current_time( 'timestamp' ); //Pub Bonus needs to select even days without posts in the future, maybe there are publishings
+
+		$ppc_global_settings['last_available_post_time'] = $last_available_post_time;
+
+		//Define default time range
         if( $settings['default_stats_time_range_week'] ) {
             $ppc_global_settings['stats_tstart'] = strtotime( '00:00:00' ) - ( ( date( 'N' )-1 )*24*60*60 );
             $ppc_global_settings['stats_tend'] = strtotime( '23:59:59' );
@@ -267,12 +285,37 @@ class PPC_general_functions {
             $ppc_global_settings['stats_tend'] = strtotime( '23:59:59' ) - ( date( 'j' )*24*60*60 );
         } else if( $settings['default_stats_time_range_all_time'] ) {
             $ppc_global_settings['stats_tstart'] = $ppc_global_settings['first_available_post_time'];
-            $ppc_global_settings['stats_tend'] = strtotime( '23:59:59' );
+            $ppc_global_settings['stats_tend'] = $ppc_global_settings['last_available_post_time'];
         } else if( $settings['default_stats_time_range_custom'] ) {
             $ppc_global_settings['stats_tstart'] = strtotime( '00:00:00' ) - ( $settings['default_stats_time_range_custom_value']*24*60*60 );
             $ppc_global_settings['stats_tend'] = strtotime( '23:59:59' );
 		}
     }
+    
+    static function default_stats_order() {
+		global $ppc_global_settings;
+		
+		//If there is a saved sorting, use it
+		if( ! isset( $_GET['orderby'] ) AND isset( $_COOKIE['ppc_'.$ppc_global_settings['current_page'].'_orderby'] ) ) {
+			
+			if( isset( $_COOKIE['ppc_'.$ppc_global_settings['current_page'].'_order'] ) )
+				$redirect_url = admin_url( add_query_arg( array( 'page' => 'ppc-stats', 'orderby' => $_COOKIE['ppc_'.$ppc_global_settings['current_page'].'_orderby'], 'order' => $_COOKIE['ppc_'.$ppc_global_settings['current_page'].'_order'] ), 'admin.php' ) );
+			else
+				$redirect_url = admin_url( add_query_arg( array( 'page' => 'ppc-stats', 'orderby' => $_COOKIE['ppc_'.$ppc_global_settings['current_page'].'_orderby'] ), 'admin.php' ) );
+			
+			wp_safe_redirect( $redirect_url );
+			
+		}
+
+		//Store stats sorting settings 
+		if( isset( $_GET['orderby'] ) ) {
+			setcookie( 'ppc_'.$ppc_global_settings['current_page'].'_orderby', htmlentities( $_GET['orderby'] ), 0 );
+			
+			if( isset( $_GET['order'] ) )
+				setcookie( 'ppc_'.$ppc_global_settings['current_page'].'_order', htmlentities( $_GET['order'] ), 0 );
+		}
+
+	}
 
 	/**
 	 * Formats payments for output.

@@ -59,13 +59,13 @@ class PPC_HTML_functions {
 
 		echo '<select name="ppc-time-range" id="ppc-time-range">';
 
-		$get_and_post = array_merge( $_GET, $_POST );
+		$_REQUEST = array_merge( $_GET, $_POST );
 		foreach( $time_range_options as $key => $value ) {
 			$checked = '';
 
 			//Default select choice
-			if( isset( $get_and_post['ppc-time-range'] ) ) {
-				if( $get_and_post['ppc-time-range'] == $key )
+			if( isset( $_REQUEST['ppc-time-range'] ) ) {
+				if( $_REQUEST['ppc-time-range'] == $key )
 					$checked = 'selected="selected"';
 			} else {
 				if( $general_settings['default_stats_time_range_week'] AND $key == 'this_week' )
@@ -147,13 +147,13 @@ class PPC_HTML_functions {
 		<?php
 		if( $ppc_global_settings['current_page'] == 'stats_detailed' ) {
 
-			if( ! isset( $get_and_post['ppc-time-range'] ) ) { ?>
+			if( ! isset( $_REQUEST['ppc-time-range'] ) ) { ?>
 
 				<a href="<?php echo admin_url( $ppc_global_settings['stats_menu_link'].'&amp;tstart='.$ppc_global_settings['stats_tstart'].'&amp;tend='.$ppc_global_settings['stats_tend'] ); ?>" title="<?php _e( 'Back to general' , 'post-pay-counter'); ?>"><?php _e( 'Back to general' , 'post-pay-counter'); ?></a>
 
 			<?php } else { ?>
 
-				<a href="<?php echo admin_url( $ppc_global_settings['stats_menu_link'].'&amp;tstart='.$ppc_global_settings['stats_tstart'].'&amp;tend='.$ppc_global_settings['stats_tend'].'&amp;ppc-time-range='.$get_and_post['ppc-time-range'] ); ?>" title="<?php _e( 'Back to general' , 'post-pay-counter'); ?>"><?php _e( 'Back to general' , 'post-pay-counter'); ?></a>
+				<a href="<?php echo admin_url( $ppc_global_settings['stats_menu_link'].'&amp;tstart='.$ppc_global_settings['stats_tstart'].'&amp;tend='.$ppc_global_settings['stats_tend'].'&amp;ppc-time-range='.$_REQUEST['ppc-time-range'] ); ?>" title="<?php _e( 'Back to general' , 'post-pay-counter'); ?>"><?php _e( 'Back to general' , 'post-pay-counter'); ?></a>
 
 			<?php }
 		}

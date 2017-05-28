@@ -284,7 +284,6 @@ class Post_Pay_Counter_Authors_List_Table extends WP_List_Table {
          */
         $per_page = $this->get_items_per_page( 'ppc_authors_per_page', 300 );
 
-
         /**
          * REQUIRED. Now we need to define our column headers. This includes a complete
          * array of columns to be displayed (slugs & titles), a list of columns
@@ -335,12 +334,18 @@ class Post_Pay_Counter_Authors_List_Table extends WP_List_Table {
          * to a custom query. The returned data will be pre-sorted, and this array
          * sorting technique would be unnecessary.
          */
-		if( isset( $_REQUEST['orderby'] ) AND isset( $_REQUEST['order'] ) ) {
+        $sortable_cols = $this->get_sortable_columns();
+        if( isset( $_REQUEST['orderby'] ) AND isset( $_REQUEST['order'] ) 
+		AND isset( $sortable_cols[$_REQUEST['orderby']] ) 
+		AND ( $_REQUEST['order'] == 'desc' OR $_REQUEST['order'] == 'asc' ) )
+		{
+			
 			function usort_reorder($a, $b) {
 				$result = strnatcasecmp( $a[$_REQUEST['orderby']], $b[$_REQUEST['orderby']] ); //Determine sort order
 				return ( $_REQUEST['order'] === 'asc' ) ? $result : -$result; //Send final sort direction to usort
 			}
 			usort($data, 'usort_reorder');
+			
 		}
 
 
