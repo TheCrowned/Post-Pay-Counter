@@ -308,11 +308,10 @@ class PPC_general_functions {
 		
 		//If there is a saved sorting, use it
 		if( ! isset( $_GET['orderby'] ) AND isset( $_COOKIE['ppc_'.$ppc_global_settings['current_page'].'_orderby'] ) ) {
+			$redirect_url = admin_url( 'admin.php' ).'?'.$_SERVER['QUERY_STRING'].'&orderby='.$_COOKIE['ppc_'.$ppc_global_settings['current_page'].'_orderby'];
 			
 			if( isset( $_COOKIE['ppc_'.$ppc_global_settings['current_page'].'_order'] ) )
-				$redirect_url = admin_url( add_query_arg( array( 'page' => 'ppc-stats', 'orderby' => $_COOKIE['ppc_'.$ppc_global_settings['current_page'].'_orderby'], 'order' => $_COOKIE['ppc_'.$ppc_global_settings['current_page'].'_order'] ), 'admin.php' ) );
-			else
-				$redirect_url = admin_url( add_query_arg( array( 'page' => 'ppc-stats', 'orderby' => $_COOKIE['ppc_'.$ppc_global_settings['current_page'].'_orderby'] ), 'admin.php' ) );
+				$redirect_url .= '&order='.$_COOKIE['ppc_'.$ppc_global_settings['current_page'].'_order'];
 			
 			wp_safe_redirect( $redirect_url );
 			

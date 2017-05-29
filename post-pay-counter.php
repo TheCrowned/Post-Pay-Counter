@@ -686,6 +686,9 @@ class post_pay_counter {
 		<div id="ppc_stats_table"> <!-- PRO mark as paid retrocompatibility -->
 
 			<?php
+			if( $general_settings['enable_post_stats_caching'] )
+				echo '<div style="float: left; margin-bottom: -20px; font-style: italic;">'.__( 'Displayed data is cached. You may have to wait 24 hours for updated data.', 'post-pay-counter' ).'</div>';
+			
 			if( isset( $this->stats_table ) AND ! is_wp_error( $this->stats_table ) ) {
 				$this->stats_table->prepare_items();
 				$this->stats_table->display();
