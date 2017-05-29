@@ -94,7 +94,6 @@ class PPC_counting_stuff {
 					$processed_data[$author_id][$single->ID] = $post_stats;
 					
 				} else {
-					
 					do_action( 'ppc_data2cash_single_before', $single );
 
 					$post_countings = self::get_post_countings( $single );

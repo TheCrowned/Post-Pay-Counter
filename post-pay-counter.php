@@ -569,9 +569,6 @@ class post_pay_counter {
         $general_settings = PPC_general_functions::get_settings( 'general' );
         $perm = new PPC_permissions();
 
-        //Merging _GET and _POST data due to the time range form in the stats page. Don't know whether the user is choosing the time frame from the form (POST) or arrived following a link (GET)
-        //$_REQUEST = array_merge( $_GET, $_POST );
-
         //Validate time range values (start and end), if set. They must be isset, numeric and positive. If something's wrong, start and end time are taken from the default publication time range
         if( ( isset( $_REQUEST['tstart'] ) AND ( ! is_numeric( $_REQUEST['tstart'] ) OR $_REQUEST['tstart'] < 0 ) )
         OR ( isset( $_REQUEST['tend'] ) AND ( ! is_numeric( $_REQUEST['tend'] ) OR $_REQUEST['tend'] < 0 ) ) ) {
@@ -581,18 +578,11 @@ class post_pay_counter {
             $_REQUEST['tstart'] = $ppc_global_settings['stats_tstart'];
             $_REQUEST['tend']   = $ppc_global_settings['stats_tend'];
         }
+        //else the values are correct and valid
 
 		//If empty role, or any role, or invalud role => get rid of role param
 		if( isset( $_REQUEST['role'] ) AND ( $_REQUEST['role'] == 'ppc_any' OR $_REQUEST['role'] == '' OR ! isset( $wp_roles->role_names[$_REQUEST['role']] ) ) )
 			unset( $_REQUEST['role'] );
-
-		/**
-		 * Filters stats view parameters (time start, time end, role).
-		 *
-		 * @since 	2.0
-		 * @param	array $_REQUEST merged GET and POST data
-		 */
-        $_REQUEST = apply_filters( 'ppc_stats_defined_parameters', $_REQUEST );
 
 		//Assign to global var
 		$ppc_global_settings['stats_tstart'] = $_REQUEST['tstart'];
@@ -737,7 +727,6 @@ class post_pay_counter {
 			 * @since	2.0
 			 * @param	array $stats a PPC_generate_stats::produce_stats() result - current stats.
 			 */
-
             do_action( 'ppc_html_stats_general_before_stats_form', $this->stats );
 
             if( is_wp_error( $this->stats ) ) {
@@ -750,8 +739,10 @@ class post_pay_counter {
 	<form method="post" id="ppc_stats">
 		<div id="ppc_stats_table"> <!-- PRO mark as paid retrocompatibility -->
 
-
 			<?php
+			if( $general_settings['enable_post_stats_caching'] )
+				echo '<div style="float: left; margin-bottom: -20px; font-style: italic;">Displayed data is cached. You may have to wait 24 hours for updated data.</div>';
+				
 			if( isset( $this->stats_table ) AND ! is_wp_error( $this->stats_table ) ) {
 				$this->stats_table->prepare_items();
 				$this->stats_table->display();
