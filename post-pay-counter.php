@@ -212,6 +212,18 @@ class post_pay_counter {
      */
     function on_load_stats_page() {
         global $ppc_global_settings;
+		
+		//If an author is given, put that in an array
+        if( isset( $_REQUEST['author'] ) AND is_numeric( $_REQUEST['author'] ) AND get_userdata( $_REQUEST['author'] ) ) {
+            $ppc_global_settings['current_page'] = 'stats_detailed';
+			$this->author = array( $_REQUEST['author'] );
+        } else {
+            $ppc_global_settings['current_page'] = 'stats_general';
+			$this->author = NULL;
+		}
+		
+		//Store and maybe_redirect to ordered stats
+		PPC_general_functions::default_stats_order();
 
 		$general_settings = PPC_general_functions::get_settings( 'general' );
 
@@ -219,22 +231,8 @@ class post_pay_counter {
 		$ppc_global_settings['counting_types_object'] = new PPC_counting_types();
 		$ppc_global_settings['counting_types_object']->register_built_in_counting_types();
 
-		//Also populates $ppc_global_settings['first_available_post_time']
+		//Also populates $ppc_global_settings['first_available_post_time'] and $ppc_global_settings['last_available_post_time']
 		PPC_general_functions::get_default_stats_time_range( $general_settings );
-
-		$args = array(
-            'post_type' => $general_settings['counting_allowed_post_types'],
-			'posts_per_page' => 1,
-            'orderby' => 'post_date',
-            'order' => 'DESC'
-        );
-        $last_available_post = new WP_Query( $args ); //for future scheduled posts
-
-		if( $last_available_post->found_posts !== 0 )
-			$last_available_post_time = strtotime( $last_available_post->posts[0]->post_date );
-
-		if( ! isset( $last_available_post_time ) OR $last_available_post_time < current_time( 'timestamp' ) )
-            $last_available_post_time = current_time( 'timestamp' ); //Pub Bonus needs to select even days without posts in the future, maybe there are publishings
 
 		$time_end_now = date( 'Y-m-d', strtotime( '23:59:59' ) );
 		$time_start_end_week = get_weekstartend( current_time('mysql') );
@@ -246,7 +244,7 @@ class post_pay_counter {
         wp_enqueue_script( 'ppc_stats_effects', $ppc_global_settings['folder_path'].'js/ppc_stats_effects.js', array( 'jquery' ) );
         wp_localize_script( 'ppc_stats_effects', 'ppc_stats_effects_vars', array(
             'datepicker_mindate' => date( 'Y-m-d', $ppc_global_settings['first_available_post_time'] ),
-            'datepicker_maxdate' => date( 'Y-m-d', $last_available_post_time ),
+            'datepicker_maxdate' => date( 'Y-m-d', $ppc_global_settings['last_available_post_time'] ),
             'time_start_this_month' => date( 'Y-m-d', strtotime( 'first day of this month' ) ),
             'time_end_this_month' => $time_end_now,
             'time_start_this_year' => date( 'Y-m-d', strtotime( 'first day of january this year' ) ),
@@ -572,45 +570,36 @@ class post_pay_counter {
         $perm = new PPC_permissions();
 
         //Merging _GET and _POST data due to the time range form in the stats page. Don't know whether the user is choosing the time frame from the form (POST) or arrived following a link (GET)
-        $get_and_post = array_merge( $_GET, $_POST );
+        //$_REQUEST = array_merge( $_GET, $_POST );
 
         //Validate time range values (start and end), if set. They must be isset, numeric and positive. If something's wrong, start and end time are taken from the default publication time range
-        if( ( isset( $get_and_post['tstart'] ) AND ( ! is_numeric( $get_and_post['tstart'] ) OR $get_and_post['tstart'] < 0 ) )
-        OR ( isset( $get_and_post['tend'] ) AND ( ! is_numeric( $get_and_post['tend'] ) OR $get_and_post['tend'] < 0 ) ) ) {
-            $get_and_post['tstart'] = strtotime( $get_and_post['tstart'].' 00:00:01' );
-            $get_and_post['tend']   = strtotime( $get_and_post['tend'].' 23:59:59' );
-        } else if ( ! isset( $get_and_post['tstart'] ) OR ! isset( $get_and_post['tend'] ) ) {
-            $get_and_post['tstart'] = $ppc_global_settings['stats_tstart'];
-            $get_and_post['tend']   = $ppc_global_settings['stats_tend'];
+        if( ( isset( $_REQUEST['tstart'] ) AND ( ! is_numeric( $_REQUEST['tstart'] ) OR $_REQUEST['tstart'] < 0 ) )
+        OR ( isset( $_REQUEST['tend'] ) AND ( ! is_numeric( $_REQUEST['tend'] ) OR $_REQUEST['tend'] < 0 ) ) ) {
+            $_REQUEST['tstart'] = strtotime( $_REQUEST['tstart'].' 00:00:01' );
+            $_REQUEST['tend']   = strtotime( $_REQUEST['tend'].' 23:59:59' );
+        } else if ( ! isset( $_REQUEST['tstart'] ) OR ! isset( $_REQUEST['tend'] ) ) {
+            $_REQUEST['tstart'] = $ppc_global_settings['stats_tstart'];
+            $_REQUEST['tend']   = $ppc_global_settings['stats_tend'];
         }
 
 		//If empty role, or any role, or invalud role => get rid of role param
-		if( isset( $get_and_post['role'] ) AND ( $get_and_post['role'] == 'ppc_any' OR $get_and_post['role'] == '' OR ! isset( $wp_roles->role_names[$get_and_post['role']] ) ) )
-			unset( $get_and_post['role'] );
+		if( isset( $_REQUEST['role'] ) AND ( $_REQUEST['role'] == 'ppc_any' OR $_REQUEST['role'] == '' OR ! isset( $wp_roles->role_names[$_REQUEST['role']] ) ) )
+			unset( $_REQUEST['role'] );
 
 		/**
 		 * Filters stats view parameters (time start, time end, role).
 		 *
 		 * @since 	2.0
-		 * @param	array $get_and_post merged GET and POST data
+		 * @param	array $_REQUEST merged GET and POST data
 		 */
-        $get_and_post = apply_filters( 'ppc_stats_defined_parameters', $get_and_post );
+        $_REQUEST = apply_filters( 'ppc_stats_defined_parameters', $_REQUEST );
 
 		//Assign to global var
-		$ppc_global_settings['stats_tstart'] = $get_and_post['tstart'];
-        $ppc_global_settings['stats_tend'] = $get_and_post['tend'];
+		$ppc_global_settings['stats_tstart'] = $_REQUEST['tstart'];
+        $ppc_global_settings['stats_tend'] = $_REQUEST['tend'];
 
-		if( isset( $get_and_post['role'] ) )
-			$ppc_global_settings['stats_role'] = $get_and_post['role'];
-
-		//If an author is given, put that in an array
-        if( isset( $get_and_post['author'] ) AND is_numeric( $get_and_post['author'] ) AND get_userdata( $get_and_post['author'] ) ) {
-            $ppc_global_settings['current_page'] = 'stats_detailed';
-			$this->author = array( $get_and_post['author'] );
-        } else {
-            $ppc_global_settings['current_page'] = 'stats_general';
-			$this->author = NULL;
-		}
+		if( isset( $_REQUEST['role'] ) )
+			$ppc_global_settings['stats_role'] = $_REQUEST['role'];
 
 		if( is_array( $this->author ) ) {
 
@@ -727,11 +716,15 @@ class post_pay_counter {
         } else {
 			$page_permalink = $ppc_global_settings['stats_menu_link'].'&amp;tstart='.$ppc_global_settings['stats_tstart'].'&amp;tend='.$ppc_global_settings['stats_tend'];
 
-			if( isset( $get_and_post['ppc-time-range'] ) )
-				$page_permalink .= '&amp;ppc-time-range='.$get_and_post['ppc-time-range'];
+			if( isset( $_REQUEST['ppc-time-range'] ) )
+				$page_permalink .= '&amp;ppc-time-range='.$_REQUEST['ppc-time-range'];
+			if( isset( $_REQUEST['orderby'] ) )
+				$page_permalink .= '&amp;orderby='.$_REQUEST['orderby'];
+			if( isset( $_REQUEST['order'] ) )
+				$page_permalink .= '&amp;order='.$_REQUEST['order'];
 
 			//If filtered by user role, add filter to stats generation args and complete page permalink
-			if( isset( $get_and_post['role'] ) ) {
+			if( isset( $_REQUEST['role'] ) ) {
 				$page_permalink .= '&amp;role='.$ppc_global_settings['stats_role'];
 				add_filter( 'ppc_get_requested_posts_args', array( 'PPC_generate_stats', 'filter_stats_by_user_role' ) );
 			}

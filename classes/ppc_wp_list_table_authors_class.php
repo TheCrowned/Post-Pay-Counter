@@ -348,7 +348,6 @@ class Post_Pay_Counter_Authors_List_Table extends WP_List_Table {
 			
 		}
 
-
         /**
          * REQUIRED for pagination. Let's figure out what page the user is currently
          * looking at. We'll need this later, so you should always include it in

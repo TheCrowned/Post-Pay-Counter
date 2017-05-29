@@ -148,6 +148,7 @@ class PPC_save_options {
 		$new_settings['enable_stats_payments_tooltips'] = @PPC_options_fields::get_checkbox_value( $settings['enable_stats_payments_tooltips'] );
 		$new_settings['counting_words_parse_spaces'] = @PPC_options_fields::get_checkbox_value( $settings['counting_words_parse_spaces'] );
 		$new_settings['enable_post_stats_caching'] = @PPC_options_fields::get_checkbox_value( $settings['enable_post_stats_caching'] );
+		$new_settings['save_stats_order'] = @PPC_options_fields::get_checkbox_value( $settings['save_stats_order'] );
 
         foreach( $settings as $option => $value ) {
 

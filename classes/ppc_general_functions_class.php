@@ -292,8 +292,19 @@ class PPC_general_functions {
 		}
     }
     
+    /**
+     * Checks if there is a saved ordering for stats and redirects to the apt ordered stats page in case.
+     * Stores current ordering, if any.
+     * 
+     * @since	2.725
+     * 
+     */ 
     static function default_stats_order() {
 		global $ppc_global_settings;
+		
+		//Exit if disabled
+		$general_settings = PPC_general_functions::get_settings( 'general' );
+		if( ! $general_settings['save_stats_order'] ) return;
 		
 		//If there is a saved sorting, use it
 		if( ! isset( $_GET['orderby'] ) AND isset( $_COOKIE['ppc_'.$ppc_global_settings['current_page'].'_orderby'] ) ) {

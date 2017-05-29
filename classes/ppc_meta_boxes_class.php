@@ -186,6 +186,7 @@ class PPC_meta_boxes {
         echo '<div class="ppc_section">';
         echo '<div class="ppc_title">'.__( 'Stats display settings' , 'post-pay-counter').'</div>';
         echo '<div class="main">';
+        echo PPC_HTML_functions::echo_p_field( __( 'Remember stats order', 'post-pay-counter' ), $current_settings['save_stats_order'], 'checkbox', 'save_stats_order', __( 'This will ensure that you always see stats ordered by the column you picked the last time.' , 'post-pay-counter'), 'save_stats_order', 'save_stats_order' );
         echo '<p>'.__( 'By default, payment figures are rounded to two decimal digits. You may customize this in the field below.', 'post-pay-counter' ).'</p>';
         echo PPC_HTML_functions::echo_text_field( 'payment_display_round_digits', $current_settings['payment_display_round_digits'], __( 'Round to decimal digit #' , 'post-pay-counter') );
         echo '</div>';
