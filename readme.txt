@@ -3,7 +3,7 @@ Contributors: Ste_95
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22
 Tags: counter, authors, payment, revenue sharing, stats, multi author, post management, post
 Tested up to: 4.7.2
-Stable tag: 2.720
+Stable tag: 2.725
 Requires at least: 3.7
 
 Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
@@ -77,6 +77,17 @@ From this: *define( 'PPC_DEBUG_LOG', true );*
 It must become: *define( 'PPC_DEBUG_LOG', false );*
 
 == Changelog ==
+= 2.725 (2017-05-30) =
+Feature: stats will always display ordered by the column you picked the last time. Can be disabled.
+Feature: possible to change how many digits payment figures are rounded to.
+Tweak: added notice on top of stats table if post stats caching is active.
+Fixed: stats ordering not working in author view.
+Fixed: sorting parameters not included in page permalink.
+Fixed: counting settings could not be saved if the visits payment callback value had an invalid callback, even if visits payment was inactive.
+Fixed: possible PHP notice in cache class.
+Fixed: PHP notice in BuddyPress addon if no posts were to be displayed.
+Tweak: several enhancements under the hood.
+
 = 2.720 (2017-05-16) =
 * New: post stats are now cached for one day. This **speeds up stats page loading by roughly 50%**! The feature can be disabled in case of issues.
 * Tweak: updated plugin hooks for compatibility with the new Request Payment addon.
