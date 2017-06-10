@@ -317,12 +317,12 @@ class PPC_general_functions {
 			
 		}
 
-		//Store stats sorting settings 
+		//Store stats sorting settings, cookies expire in 6 months
 		if( isset( $_GET['orderby'] ) ) {
-			setcookie( 'ppc_'.$ppc_global_settings['current_page'].'_orderby', htmlentities( $_GET['orderby'] ), 0 );
+			setcookie( 'ppc_'.$ppc_global_settings['current_page'].'_orderby', htmlentities( $_GET['orderby'] ), time()+(86400*180) );
 			
 			if( isset( $_GET['order'] ) )
-				setcookie( 'ppc_'.$ppc_global_settings['current_page'].'_order', htmlentities( $_GET['order'] ), 0 );
+				setcookie( 'ppc_'.$ppc_global_settings['current_page'].'_order', htmlentities( $_GET['order'] ), time()+(86400*180) );
 		}
 
 	}

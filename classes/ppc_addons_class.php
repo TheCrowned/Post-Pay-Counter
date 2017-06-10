@@ -50,6 +50,18 @@ class PPC_addons {
 					'link' => 'https://postpaycounter.com/facebook-pay-per-social-interactions-shares-likes-and-comments',
 					'campaign' => 'ppcp_fb'
 				),
+				'BuddyPress' => array(
+					'description' => 'Displays stats, payment history and PayPal email field in BuddyPress Member page.',
+					'image' => 'https://postpaycounter.com/ppc_buddypress/features/images/buddypress-stats_crop.png',
+					'link' => 'https://postpaycounter.com/buddypress',
+					'campaign' => 'ppc_buddypress'
+				),
+				'Payment Request' => array(
+					'description' => 'Allows authors to request payment when they reach a certain threshold.',
+					'image' => 'https://postpaycounter.com/ppcp_rp/features/images/payment-request.png',
+					'link' => 'https://postpaycounter.com/request-payment-require-authors-reach-threshold-request-paid/',
+					'campaign' => 'ppc_rp'
+				),
 				'Author Payment Bonus' => array(
 					'description' => 'Award a bonus to writers before paying: personally tweak the payroll, giving authors a little reward.',
 					'image' => 'https://postpaycounter.com/ppc_apb/features/images/payment_confirm_crop.png',
@@ -61,12 +73,6 @@ class PPC_addons {
 					'image' => 'https://postpaycounter.com/ppcp_pb/features/images/metabox.png',
 					'link' => 'https://postpaycounter.com/publisher-bonus-editor-rewarding-system',
 					'campaign' => 'ppcp_pb'
-				),
-				'BuddyPress' => array(
-					'description' => 'Displays stats, payment history and PayPal email field in BuddyPress Member page.',
-					'image' => 'https://postpaycounter.com/ppc_buddypress/features/images/buddypress-stats_crop.png',
-					'link' => 'https://postpaycounter.com/buddypress',
-					'campaign' => 'ppc_buddypress'
 				),
 				'User Roles Custom Settings' => array(
 					'description' => 'Allows to set custom settings for each user role that apply to all users belonging to it.',
