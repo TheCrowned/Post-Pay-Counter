@@ -20,7 +20,7 @@ class PPC_cache_functions {
      * @since   2.720
      * @param   $userid string userid whose settings cache needs to be flushed
      */
-	static function clear_settings( $userid ) {
+	static function clear_settings( $userid = 'general' ) {
 		wp_cache_delete( 'ppc_settings_'.$userid );
 		wp_cache_delete( 'ppc_user_active_counting_types_list_post_'.$userid );
 		wp_cache_delete( 'ppc_user_active_counting_types_list_author_'.$userid );
