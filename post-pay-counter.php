@@ -63,6 +63,7 @@ class post_pay_counter {
         $ppc_global_settings['newest_version'] = '2.726';
         $ppc_global_settings['option_name'] = 'ppc_settings';
         $ppc_global_settings['option_errors'] = 'ppc_errors';
+        $ppc_global_settings['option_stats_cache_incrementor'] = 'ppc_stats_cache_incrementor';
 		$ppc_global_settings['transient_error_deletion'] = 'ppc_error_daily_deletion';
 		$ppc_global_settings['transient_activation_redirect'] = '_ppc_activation_redirect';
 		$ppc_global_settings['transient_update_redirect'] = '_ppc_update_redirect';

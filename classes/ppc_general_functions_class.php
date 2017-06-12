@@ -121,7 +121,7 @@ class PPC_general_functions {
      * @param   $userid string userid whose settings cache needs to be flushed
      * @return	void
      */
-	static function clear_settings_cache( $userid ) {
+	static function clear_settings_cache( $userid = 'general' ) {
 		PPC_cache_functions::clear_settings( $userid );
 	}
 

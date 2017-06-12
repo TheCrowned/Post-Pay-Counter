@@ -264,9 +264,6 @@ class PPC_install_functions {
         //Insert default addons list
         PPC_addons::add_addons_list();
 
-        //Clear settings cache
-        PPC_cache_functions::clear_settings();
-
         update_option( 'ppc_current_version', $ppc_global_settings['newest_version'] );
     }
 }

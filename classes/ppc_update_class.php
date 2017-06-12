@@ -169,7 +169,11 @@ class PPC_update_class {
 		if( get_option( 'ppcp_sw_active' ) == 1 )
             activate_plugin( 'ppcp-stopwords/ppcp-stopwords.php' );
 
-	   if( get_option( 'ppc_urcs_active' ) == 1 )
+		if( get_option( 'ppc_urcs_active' ) == 1 )
             activate_plugin( 'ppc-user-roles-custom-settings/ppc-user-roles-custom-settings.php' );
+
+		//Clear settings cache
+        PPC_cache_functions::clear_settings( 'general' );
+        PPC_cache_functions::clear_stats();
 	}
 }

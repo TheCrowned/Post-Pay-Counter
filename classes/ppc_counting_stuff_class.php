@@ -111,7 +111,7 @@ class PPC_counting_stuff {
 					$processed_data[$author_id][$single->ID] = apply_filters( 'ppc_post_counting_payment_data', $single, $author );
 
 					//Cache post stats for one day
-					wp_cache_set( 'ppc_stats_post_ID-'.$single->ID, $processed_data[$author_id][$single->ID], 'ppc_stats', 86400 );
+					PPC_cache_functions::set_post_stats( $single->ID, $processed_data[$author_id][$single->ID] );
 				}
 			}
         }

@@ -48,12 +48,18 @@ class PPC_cache_functions {
 	static function get_post_stats( $post_id ) {
 		$general_settings = PPC_general_functions::get_settings( 'general' );
 
-		//$cache_salt = PPC_cache_functions::get_stats_incrementor();
-
+		$cache_salt = PPC_cache_functions::get_stats_incrementor();
+		
 		if( $general_settings['enable_post_stats_caching'] )
-			return wp_cache_get( 'ppc_stats_post_ID-'.$post_id, 'ppc_stats' );
+			return wp_cache_get( 'ppc_stats_post_ID-'.$post_id.'-'.$cache_salt, 'ppc_stats' );
 		else
 			return false;
+	}
+
+	static function set_post_stats( $post_id, $data ) {
+		$cache_salt = PPC_cache_functions::get_stats_incrementor();
+		
+		wp_cache_set( 'ppc_stats_post_ID-'.$post_id.'-'.$cache_salt, $data, 'ppc_stats', 86400 );
 	}
 
 	/**
@@ -64,7 +70,7 @@ class PPC_cache_functions {
 	 * @return 	void
 	 */
 	static function clear_post_stats( $post_id ) {
-		 wp_cache_delete( 'ppc_stats_post_ID-'.$post_id, 'ppc_stats');//-'.self::get_stats_incrementor() );
+		 wp_cache_delete( 'ppc_stats_post_ID-'.$post_id.'-'.self::get_stats_incrementor(), 'ppc_stats' );
 	}
 
 	/**
@@ -105,12 +111,14 @@ class PPC_cache_functions {
 	 * @return 	string incrementor current value
 	 */ 
 	static function get_stats_incrementor( $refresh = false ) {
-		$incrementor_key = 'ppc_stats_cache_incrementor';
-		$incrementor_value = wp_cache_get( $incrementor_key );
+		global $ppc_global_settings;
+		
+		$incrementor_key = $ppc_global_settings['option_stats_cache_incrementor'];
+		$incrementor_value = get_option( $incrementor_key );
 	 
 		if( $incrementor_value === false OR $refresh === true ) {
 			$incrementor_value = time();
-			wp_cache_set( $incrementor_key, $incrementor_value );
+			update_option( $incrementor_key, $incrementor_value );
 		}
 	 
 		return $incrementor_value;

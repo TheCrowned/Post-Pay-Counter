@@ -258,7 +258,9 @@ class PPC_save_options {
 
         do_action( 'ppc_settings_updated', $userid, $new_settings );
 
+		//Clear all cache
         PPC_general_functions::clear_settings_cache( $userid );
+        PPC_cache_functions::clear_stats();
 
         return true;
     }
