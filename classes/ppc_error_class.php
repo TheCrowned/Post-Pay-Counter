@@ -11,7 +11,7 @@
  */
 
 //Time, in days, after which errors should be deleted
-define( 'PPCP_ERROR_PURGE_TIME', 30 );
+define( 'PPC_ERROR_PURGE_TIME', 30 );
  
 class PPC_Error {
     
@@ -28,7 +28,6 @@ class PPC_Error {
      * @param   $data array (optional) Error data
      * @param   $log bool (optional) Whether error should be logged
     */
-    
     function __construct( $code, $message, $data = array(), $log = true ) {
         global $ppc_global_settings;
         
@@ -53,14 +52,19 @@ class PPC_Error {
             $errors = get_option( $ppc_global_settings['option_errors'], array() );
             $errors[] = $error_details;
             
-			//Get rid of old errors - only run once a day, ensure this through a transient
-			if( ! get_transient( $ppc_global_settings['transient_error_deletion'] ) ) {
+			//Get rid of old errors - only run once a day, ensure this through an option
+			$daily_delete = get_option( $ppc_global_settings['option_error_deletion'], true );
+			if( $daily_delete != false AND $daily_delete < current_time( 'timestamp' ) - 86400 ) {
 				foreach( $errors as $key => $single ) {
-					if( $single['time'] < ( current_time( 'timestamp' ) - PPCP_ERROR_PURGE_TIME*24*60*60 ) )
+					if( $single['time'] < ( current_time( 'timestamp' ) - PPC_ERROR_PURGE_TIME*24*60*60 ) )
 						unset( $errors[$key] );
 				}
+
+				//See the record is not bigger than ~10MB
+				if( strlen( serialize( $errors ) ) > 10000 )
+					$errors = array( $error_details ); //only save latest error
 				
-				set_transient( $ppc_global_settings['transient_error_deletion'], 'done', 86400 );
+				update_option( $ppc_global_settings['option_error_deletion'], current_time( 'timestamp' ) );
 			}
 			
 			if( update_option( $ppc_global_settings['option_errors'], $errors ) )
@@ -78,7 +82,6 @@ class PPC_Error {
      * 
      * @return  object WP_Error with current error details
      */
-    
     function return_error() {
         return $this->wp_error;
     }
