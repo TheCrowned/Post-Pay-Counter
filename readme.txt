@@ -3,7 +3,7 @@ Contributors: Ste_95
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22
 Tags: counter, authors, payment, revenue sharing, stats, multi author, post management, post
 Tested up to: 4.8
-Stable tag: 2.727
+Stable tag: 2.728
 Requires at least: 3.7
 
 Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
@@ -77,9 +77,15 @@ From this: *define( 'PPC_DEBUG_LOG', true );*
 It must become: *define( 'PPC_DEBUG_LOG', false );*
 
 == Changelog ==
+= 2.728 (2017-06-22) =
+* Tweak: overall stats conform with stats display settings, shows counts and/or payments accordingly.
+* Fixed: counting settings could not be saved if the visits payment callback value had an invalid callback, even if that method was inactive.
+* Fixed: preventing error log from exceeding 10MB in size.
+* Fixed: sounder delete of 30-days old errors from log.
+
 = 2.727 (2017-06-12) =
 * Fixed: possible fatal error on activation.
-* Tweak: clearing all posts stat cache on update and settings update.
+* Tweak: clearing all posts stats cache on update and settings update.
 
 = 2.726 (2017-06-10) =
 * Fixed: issue with stats remember order feature.
