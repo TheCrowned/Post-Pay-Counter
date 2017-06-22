@@ -517,7 +517,8 @@ class PPC_generate_stats {
     static function get_overall_stats( $stats ) {
         $overall_stats = array(
             'posts' => 0,
-            'payment' => 0,
+            'total_payment' => 0,
+            'payment' => array(),
 			'count' => array()
         );
 
@@ -526,25 +527,29 @@ class PPC_generate_stats {
 			$overall_stats['posts'] += $single['total']['ppc_misc']['posts'];
 
 			//Total payment
-			$overall_stats['payment'] += $single['total']['ppc_payment']['normal_payment']['total'];
+			$overall_stats['total_payment'] += $single['total']['ppc_payment']['normal_payment']['total'];
 
 			//Total counts
 			if( isset( $single['total'] ) AND isset( $single['total']['ppc_count'] ) AND isset( $single['total']['ppc_count']['normal_count'] ) ) {
-				foreach( $single['total']['ppc_count']['normal_count'] as $single => $data ) {
-					if( ! isset( $overall_stats['count'][$single] ) )
-						$overall_stats['count'][$single] = $data['to_count'];
+				foreach( $single['total']['ppc_count']['normal_count'] as $key => $data ) {
+					if( ! isset( $overall_stats['count'][$key] ) )
+						$overall_stats['count'][$key] = $data['to_count'];
 					else
-						$overall_stats['count'][$single] += $data['to_count'];
+						$overall_stats['count'][$key] += $data['to_count'];
 				}
 			}
 
 			//Total payments
-			/*foreach( $single['total']['ppc_count']['normal_count'] as $single => $data ) {
-				if( ! isset( $overall_stats['count_'.$single] ) )
-					$overall_stats['payment_'.$single] = $data;
-				else
-					$overall_stats['payment_'.$single] += $data;
-			}*/
+			if( isset( $single['total'] ) AND isset( $single['total']['ppc_payment'] ) AND isset( $single['total']['ppc_payment']['normal_payment'] ) ) {
+				foreach( $single['total']['ppc_payment']['normal_payment'] as $key => $data ) {
+					if( $key == 'total' ) continue; //skip total payment
+
+					if( ! isset( $overall_stats['payment'][$key] ) )
+						$overall_stats['payment'][$key] = $data;
+					else
+						$overall_stats['payment'][$key] += $data;
+				}
+			}
         }
 
         return apply_filters( 'ppc_overall_stats', $overall_stats, $stats );
