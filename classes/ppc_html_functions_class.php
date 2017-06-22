@@ -466,7 +466,7 @@ class PPC_HTML_functions {
 			}
 		?>
 
-		<td width="40%"><?php echo ucfirst( sprintf( __( '%s:', 'post-pay-counter' ), $id ) ); ?></td>
+		<td width="40%"><?php echo ucfirst( sprintf( '%s:', $id ) ); ?></td>
 		<td align="left" width="10%"><?php echo $disp; ?></td>
 
 		<?php
