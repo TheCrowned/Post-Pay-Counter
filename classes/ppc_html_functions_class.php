@@ -415,6 +415,9 @@ class PPC_HTML_functions {
      */
     static function print_overall_stats( $overall_stats ) {
         global $ppc_global_settings;
+
+		$general_settings = PPC_general_functions::get_settings( 'general' );
+        $counting_types = array_merge( $ppc_global_settings['counting_types_object']->get_all_counting_types( 'author' ), $ppc_global_settings['counting_types_object']->get_all_counting_types( 'post' ) );
         ?>
 
 <table class="widefat fixed">
@@ -422,7 +425,7 @@ class PPC_HTML_functions {
 		<td width="40%"><?php _e( 'Total displayed posts:', 'post-pay-counter' ); ?></td>
 		<td align="left" width="10%"><?php echo $overall_stats['posts']; ?></td>
 		<td width="35%"><?php _e( 'Total displayed payment:', 'post-pay-counter' ); ?></td>
-		<td align="left" width="15%"><?php echo PPC_general_functions::format_payment( sprintf( '%.2f', $overall_stats['payment'] ) ); ?></td>
+		<td align="left" width="15%"><?php echo PPC_general_functions::format_payment( sprintf( '%.2f', $overall_stats['total_payment'] ) ); ?></td>
 	</tr>
 
 		<?php
@@ -430,18 +433,41 @@ class PPC_HTML_functions {
 		?>
 
 	<tr><td colspan="4"></td></tr>
-	<tr><td colspan="4" style="text-align: center; font-size: smaller;"><strong><?php echo strtoupper( __( 'counts', 'post-pay-counter' ) ); ?></strong></td></tr>
+	<tr><td colspan="4" style="text-align: center; font-size: smaller;"><strong><?php echo __( 'Totals', 'post-pay-counter' ); ?></strong></td></tr>
 
 		<?php
 		$n = 0;
-		foreach( $overall_stats['count'] as $single => $data ) {
+		foreach( $overall_stats['payment'] as $id => $data ) {
 			if( $n % 2 == 0 )
 				echo '<tr>';
 
+			if( isset( $counting_types[$id] ) ) {
+
+				if( isset( $counting_types[$id]['display_status_index'] ) AND isset( $general_settings[$counting_types[$id]['display_status_index']] ) ) 
+					$display = $general_settings[$counting_types[$id]['display_status_index']];
+				else
+					$display = $counting_types[$id]['display'];
+						
+				switch( $display ) {
+					case 'both':
+						$disp = $overall_stats['count'][$id].' ('.PPC_general_functions::format_payment( $overall_stats['payment'][$id] ).')';
+						break;
+
+					case 'count':
+						$disp = $overall_stats['count'][$id];
+						break;
+
+					case 'payment':
+					case 'none':
+					case 'tooltip':
+						$disp = PPC_general_functions::format_payment( $overall_stats['payment'][$id] );
+						break;
+				}
+			}
 		?>
 
-		<td width="40%"><?php printf( __( 'Total %s count:', 'post-pay-counter' ), $single ); ?></td>
-		<td align="left" width="10%"><?php echo $data ?></td>
+		<td width="40%"><?php echo ucfirst( sprintf( '%s:', $id ) ); ?></td>
+		<td align="left" width="10%"><?php echo $disp; ?></td>
 
 		<?php
 			if( $n % 2 == 1 )

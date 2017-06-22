@@ -75,8 +75,8 @@ class PPC_save_options {
         $new_settings['counting_comments_display_status'] = $settings['counting_comments_display_status'];
         $new_settings['counting_payment_total_threshold'] = (float) str_replace( ',', '.', $settings['counting_payment_total_threshold'] );
 
-		//If visits payment enabled and using callback vaue, check validity
-		if( isset( $new_settings['counting_visits'] ) AND $new_settings['counting_visits'] AND 
+		//If visits payment enabled and using callback value, check validity
+		if( $new_settings['counting_visits'] AND $new_settings['counting_visits_callback'] AND
 			isset( $settings['counting_visits_callback_value'] ) AND $settings['counting_visits_callback_value'] != "" ) {
 			$settings['counting_visits_callback_value'] = trim( $settings['counting_visits_callback_value'] );
 
