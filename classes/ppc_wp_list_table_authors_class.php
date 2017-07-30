@@ -216,6 +216,7 @@ class Post_Pay_Counter_Authors_List_Table extends WP_List_Table {
         $sortable_columns = array(
             'author_id'     => array('author_id',false),     //true means it's already sorted
             'author_name'    => array('author_name',false),
+            'author_written_posts'    => array('author_written_posts',false),
             'author_total_payment'  => array('author_total_payment',false)
         );
         return apply_filters( 'ppc_stats_general_sortable_columns', $sortable_columns );
