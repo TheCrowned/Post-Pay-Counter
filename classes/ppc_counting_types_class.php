@@ -141,7 +141,8 @@ class PPC_counting_types {
 //		$userid = apply_filters( 'ppc_get_active_counting_types_settings_userid', $userid, $what );
 
         //Try to retrieve them from "cache"
-        $cache = wp_cache_get( 'ppc_user_active_counting_types_list_'.$what.'_'.$userid );
+        $cache = false; //wp_cache_get( 'ppc_user_active_counting_types_list_'.$what.'_'.$userid );
+        //WARNING - Cannot cache this stuff, as it also depends on who VIEWS the stats - there's a true parameter in the $settings call below!
 
 		//If no cache available, need to build the data first
         if( $cache === false ) {
@@ -163,7 +164,7 @@ class PPC_counting_types {
 			}
 
 			self::$active_counting_types[$userid][$what] = $active_user_counting_types; //needed for get_user_counting_types
-			wp_cache_set( 'ppc_user_active_counting_types_list_'.$what.'_'.$userid, $active_user_counting_types ); //Cache
+			//wp_cache_set( 'ppc_user_active_counting_types_list_'.$what.'_'.$userid, $active_user_counting_types ); //Cache
 		}
         
         return $this->get_user_counting_types( $what, $userid );
@@ -184,7 +185,8 @@ class PPC_counting_types {
     
     function get_user_counting_types( $what, $userid ) {
 		//Try to retrieve them from cache
-		$cache = wp_cache_get( 'ppc_user_active_counting_types_details_'.$what.'_'.$userid );
+		$cache = false; //wp_cache_get( 'ppc_user_active_counting_types_details_'.$what.'_'.$userid );
+		//WARNING - Cannot cache this stuff, as it also depends on who VIEWS the stats
 		if( $cache !== false )
 			return $cache;
 		
@@ -201,7 +203,7 @@ class PPC_counting_types {
 			$active_user_counting_types[$single] = $current_counting_type;
 		}
 
-        wp_cache_set( 'ppc_user_active_counting_types_details_'.$what.'_'.$userid, $active_user_counting_types ); //Cache
+        //wp_cache_set( 'ppc_user_active_counting_types_details_'.$what.'_'.$userid, $active_user_counting_types ); //Cache
         
         return apply_filters( 'ppc_active_user_counting_types', $active_user_counting_types, $userid, $what );
     }

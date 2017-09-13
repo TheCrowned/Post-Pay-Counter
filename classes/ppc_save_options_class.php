@@ -137,7 +137,7 @@ class PPC_save_options {
 		//$current_settings = PPC_general_functions::get_settings( 'general' );
         $new_settings = array( 'counting_allowed_post_types' => array(), 'counting_allowed_user_roles' => array(), 'can_see_options_user_roles' => array(), 'can_see_stats_user_roles' => array() );
 
-        $default_stats_time_range = PPC_options_fields::get_radio_value( $settings['default_stats_time_range'], false, false, false, array( 'default_stats_time_range_month', 'default_stats_time_range_week', 'default_stats_time_range_custom', 'default_stats_time_range_last_month', 'default_stats_time_range_all_time', 'default_stats_time_range_this_month' ) );
+        $default_stats_time_range = PPC_options_fields::get_radio_value( $settings['default_stats_time_range'], false, false, false, array( 'default_stats_time_range_month', 'default_stats_time_range_week', 'default_stats_time_range_custom', 'default_stats_time_range_last_month', 'default_stats_time_range_all_time', 'default_stats_time_range_this_month', 'default_stats_time_range_this_year' ) );
         $new_settings = array_merge( $new_settings, $default_stats_time_range );
         $new_settings['default_stats_time_range_custom_value'] = (int) $settings['default_stats_time_range_custom_value'];
         $new_settings['payment_display_round_digits'] = (int) $settings['payment_display_round_digits'];
@@ -255,7 +255,6 @@ class PPC_save_options {
 		 * @param	$userid string user id updated
 		 * @param	$new_settings array new values for settings
 		 */
-
         do_action( 'ppc_settings_updated', $userid, $new_settings );
 
 		//Clear all cache

@@ -31,8 +31,7 @@ class PPC_counting_stuff {
      * @since   2.0
      * @param   $counting_type string the counting type (words, visits, images, comments)
      * @return  array the current counting system data
-    */
-
+     */
     static function get_current_counting_system( $counting_type ) {
         $counting_systems = apply_filters( 'ppc_counting_systems', array( 'zonal', 'incremental' ) );
 

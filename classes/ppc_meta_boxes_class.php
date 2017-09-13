@@ -62,8 +62,7 @@ class PPC_meta_boxes {
      *
      * @access  public
      * @since   2.0
-    */
-
+     */
     static function meta_box_misc_settings( $post, $current_settings ) {
         global $wp_roles, $ppc_global_settings;
         $current_settings = $current_settings['args'];
@@ -230,8 +229,7 @@ class PPC_meta_boxes {
      * @since   2.0
      * @param   object WP post object
      * @param   array plugin settings
-    */
-
+     */
     static function meta_box_counting_settings( $post, $current_settings ) {
         global $wp_roles, $ppc_global_settings;
         $current_settings = $current_settings['args'];
@@ -352,9 +350,11 @@ class PPC_meta_boxes {
         echo PPC_HTML_functions::echo_p_field( __( 'Count future scheduled posts', 'post-pay-counter' ), $current_settings['counting_allowed_post_statuses']['future'], 'checkbox', 'counting_count_future_scheduled_posts', __( 'While published posts are automatically counted, you can decide to include future planned ones or not.' , 'post-pay-counter') );
         echo PPC_HTML_functions::echo_p_field( __( 'Count private posts', 'post-pay-counter' ), $current_settings['counting_allowed_post_statuses']['private'], 'checkbox', 'counting_count_private_posts', __( 'While public published posts are automatically counted, you can decide to include private ones or not.' , 'post-pay-counter') );
         echo PPC_HTML_functions::echo_p_field( __( 'Exclude quoted content from word counting', 'post-pay-counter' ), $current_settings['counting_exclude_quotations'], 'checkbox', 'counting_exclude_quotations', sprintf( __( 'All the words contained into %1$sblockquote%2$s tags will not be taken into account when counting. Use this to prevent interviews and such stuff to be counted as normal words. Notice that words included in any HTML tag with class %1$sppc_exclude_words%2$s are automatically excluded from word counting (doesn\'t handle nested tags); see FAQ for more information.' , 'post-pay-counter'), '<em>', '</em>' ) );
-        echo '</div>';
-        echo '</div>';
         do_action( 'ppc_counting_settings_after_misc', $current_settings );
+        echo '</div>';
+        echo '</div>';
+
+        do_action( 'ppc_counting_settings_bottom', $current_settings );
 
         echo '<div class="ppc_save_success" id="ppc_counting_settings_success">'.__( 'Settings were successfully updated.' , 'post-pay-counter').'</div>';
         echo '<div class="ppc_save_error" id="ppc_counting_settings_error"></div>';

@@ -268,74 +268,76 @@ class PPC_HTML_functions {
 		$html = "";
 
 		if( is_array( $author ) ) {
-			list( $author, $author_stats ) = each( $formatted_stats['stats'] );
-			$user_settings = PPC_general_functions::get_settings( $author, true );
-			$counting_types = $ppc_global_settings['counting_types_object']->get_all_counting_types( 'post' );
+			foreach( $formatted_stats['stats'] as $author => $author_stats ) {
+			
+				$user_settings = PPC_general_functions::get_settings( $author, true );
+				$counting_types = $ppc_global_settings['counting_types_object']->get_all_counting_types( 'post' );
 
-			foreach( $author_stats as $post_id => $post_stats ) {
-				$post = $raw_stats[$author][$post_id];
+				foreach( $author_stats as $post_id => $post_stats ) {
+					$post = $raw_stats[$author][$post_id];
 
-				$tr_opacity = '';
-				if( $user_settings['counting_payment_only_when_total_threshold'] ) {
-					if( $post->ppc_misc['exceed_threshold'] == false )
-						$tr_opacity = ' style="opacity: 0.40;"';
-				}
-
-				$html .= '<tr'.$tr_opacity.'>';
-
-				foreach( $post_stats as $field_name => $field_value ) {
-					$maybe_skip = apply_filters( 'ppc_author_stats_'.$filter_name.'_skip_field', false, $field_name );
-					if( $maybe_skip ) continue;
-
-					$field_value = apply_filters( 'ppc_author_stats_'.$filter_name.'_each_field_value', $field_value, $field_name, $post );
-
-					switch( $field_name ) {
-						//Attach link to post title: if user can edit posts, attach edit link (faster), if not post permalink (slower)
-						case 'post_title':
-
-							if( $user_settings['stats_display_edit_post_link'] ) {
-								$post_link = get_edit_post_link( $post->ID );
-								if( $post_link == '' )
-									$post_link = get_permalink( $post->ID );
-
-								$field_value = '<a href="'.$post_link.'" title="'.$post->post_title.'">'.$field_value.'</a>';
-							}
-
-							break;
-
-						case 'post_total_payment':
-							$tooltip = PPC_counting_stuff::build_payment_details_tooltip( $post->ppc_count['normal_count'], $post->ppc_payment['normal_payment'], $counting_types );
-							if( $format_payment )
-								$field_value = '<abbr title="'.$tooltip.'" class="ppc_payment_column">'.PPC_general_functions::format_payment( $field_value ).'</abbr>';
-							else
-								$field_value = '<abbr title="'.$tooltip.'" class="ppc_payment_column">'.$field_value.'</abbr>';
-							break;
-
-						case 'post_words':
-						case 'post_visits':
-						case 'post_images':
-						case 'post_comments':
-							$count_field_value = substr( $field_name, 5, strlen( $field_name ) );
-							if( $post->ppc_count['normal_count'][$count_field_value]['real'] != $post->ppc_count['normal_count'][$count_field_value]['to_count'] )
-								$field_value = '<abbr title="'.sprintf( __( 'Total is %1$s. %2$s Displayed is what you\'ll be paid for.', 'post-pay-counter' ), $post->ppc_count['normal_count'][$count_field_value]['real'], '&#13;' ).'" class="ppc_count_column">'.$field_value.'</abbr>';
-
-							break;
+					$tr_opacity = '';
+					if( $user_settings['counting_payment_only_when_total_threshold'] ) {
+						if( $post->ppc_misc['exceed_threshold'] == false )
+							$tr_opacity = ' style="opacity: 0.40;"';
 					}
 
-					$html .= '<td class="'.$field_name.'">'.$field_value.'</td>';
-					$html = apply_filters( 'ppc_author_stats_'.$filter_name.'_after_'.$field_name, $html, $author, $formatted_stats, $post );
+					$html .= '<tr'.$tr_opacity.'>';
+
+					foreach( $post_stats as $field_name => $field_value ) {
+						$maybe_skip = apply_filters( 'ppc_author_stats_'.$filter_name.'_skip_field', false, $field_name );
+						if( $maybe_skip ) continue;
+
+						$field_value = apply_filters( 'ppc_author_stats_'.$filter_name.'_each_field_value', $field_value, $field_name, $post );
+
+						switch( $field_name ) {
+							//Attach link to post title: if user can edit posts, attach edit link (faster), if not post permalink (slower)
+							case 'post_title':
+
+								if( $user_settings['stats_display_edit_post_link'] ) {
+									$post_link = get_edit_post_link( $post->ID );
+									if( $post_link == '' )
+										$post_link = get_permalink( $post->ID );
+
+									$field_value = '<a href="'.$post_link.'" title="'.$post->post_title.'">'.$field_value.'</a>';
+								}
+
+								break;
+
+							case 'post_total_payment':
+								$tooltip = PPC_counting_stuff::build_payment_details_tooltip( $post->ppc_count['normal_count'], $post->ppc_payment['normal_payment'], $counting_types );
+								if( $format_payment )
+									$field_value = '<abbr title="'.$tooltip.'" class="ppc_payment_column">'.PPC_general_functions::format_payment( $field_value ).'</abbr>';
+								else
+									$field_value = '<abbr title="'.$tooltip.'" class="ppc_payment_column">'.$field_value.'</abbr>';
+								break;
+
+							case 'post_words':
+							case 'post_visits':
+							case 'post_images':
+							case 'post_comments':
+								$count_field_value = substr( $field_name, 5, strlen( $field_name ) );
+								if( $post->ppc_count['normal_count'][$count_field_value]['real'] != $post->ppc_count['normal_count'][$count_field_value]['to_count'] )
+									$field_value = '<abbr title="'.sprintf( __( 'Total is %1$s. %2$s Displayed is what you\'ll be paid for.', 'post-pay-counter' ), $post->ppc_count['normal_count'][$count_field_value]['real'], '&#13;' ).'" class="ppc_count_column">'.$field_value.'</abbr>';
+
+								break;
+						}
+
+						$html .= '<td class="'.$field_name.'">'.$field_value.'</td>';
+						$html = apply_filters( 'ppc_author_stats_'.$filter_name.'_after_'.$field_name, $html, $author, $formatted_stats, $post );
+					}
+
+					$html = apply_filters( 'ppc_author_stats_'.$filter_name.'_after_each_default_filter', $html, $author, $formatted_stats, $post );
+
+					//Bit entangled due to retro-compatibility with PRO versions <= 1.5.8.3, when this function echoed directly (thus using actions and not filters)
+					if( $echo_or_return == "echo" ) {
+						echo $html;
+						$html ="";
+						do_action( 'ppc_author_stats_'.$filter_name.'_after_each_default', $author, $formatted_stats, $post );
+					}
+
+					$html .= '</tr>';
 				}
-
-				$html = apply_filters( 'ppc_author_stats_'.$filter_name.'_after_each_default_filter', $html, $author, $formatted_stats, $post );
-
-				//Bit entangled due to retro-compatibility with PRO versions <= 1.5.8.3, when this function echoed directly (thus using actions and not filters)
-				if( $echo_or_return == "echo" ) {
-					echo $html;
-					$html ="";
-					do_action( 'ppc_author_stats_'.$filter_name.'_after_each_default', $author, $formatted_stats, $post );
-				}
-
-				$html .= '</tr>';
 			}
 
 		} else {
