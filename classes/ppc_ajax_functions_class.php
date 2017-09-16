@@ -259,23 +259,25 @@ class PPC_ajax_functions {
         global $ppc_global_settings;
         self::ppc_check_ajax_referer( 'ppc_import_settings' );
         
-        $to_import = unserialize( base64_decode( $_REQUEST['import_settings_content'] ) );
-
-        if( is_array( $to_import ) AND isset( $to_import['userid'] ) ) {
+        $to_import = json_decode( base64_decode( $_REQUEST['import_settings_content'] ), true );
+	
+        if( $to_import != NULL AND is_array( $to_import ) AND isset( $to_import['userid'] ) ) {
 
             $to_import['userid'] = $_REQUEST['userid'];
             $update = PPC_save_options::update_settings( $to_import['userid'], $to_import );
             
             if( is_wp_error( $update ) )
-                echo $update->get_error_message();
+				wp_send_json_error( array(
+					'message' => $update->get_error_message()
+				) );
             else
-                echo 'ok';
+                wp_send_json_success();
         
         } else {
-            _e( 'What are you importing, cows?', 'post-pay-counter' );
+			wp_send_json_error( array(
+				'message' => __( 'What are you importing, cows?', 'post-pay-counter' )
+			) );
         }
-        
-        exit;
     }
     
     /**

@@ -144,8 +144,8 @@ jQuery(document).ready(function($) {
         $.post(ajaxurl, data, function(response) {
             $('#ppc_import_settings_ajax_loader').css('display', 'none');
 
-            if(response.indexOf('ok') < 0) {
-                $('#ppc_import_settings_error').html(response);
+            if(! response.success) {
+                $('#ppc_import_settings_error').html(response.data.message);
                 $('#ppc_import_settings_error').css('display', 'inline');
             } else {
 				$('#ppc_import_settings_success').css('display', 'inline');

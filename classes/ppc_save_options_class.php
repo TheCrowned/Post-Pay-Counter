@@ -217,6 +217,10 @@ class PPC_save_options {
         global $ppc_global_settings;
         $current_general_settings = PPC_general_functions::get_settings( 'general' );
 
+		//"Always assume nonces can be compromised"
+		if( ! current_user_can( $ppc_global_settings['cap_manage_options'] ) )
+			return new WP_Error( 'save_settings_error', __( 'Are you sure you want to do this?' ) );
+
         if( is_numeric( $userid ) ) {
             $new_settings['userid'] = (int) $new_settings['userid'];
 
