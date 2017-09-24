@@ -101,7 +101,7 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
 						if( $post_link == '' )
 							$post_link = get_permalink( $post->ID );
 
-						$field_value = '<a href="'.$post_link.'" title="'.$post->post_title.'">'.$item[$column_name].'</a>';
+						$field_value = '<a href="'.$post_link.'" title="'.esc_html( $post->post_title ).'">'.esc_html( $item[$column_name] ).'</a>';
 					}
 
 					break;

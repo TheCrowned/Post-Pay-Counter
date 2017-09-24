@@ -50,6 +50,9 @@ class PPC_Error {
         //If logging enabled, push error with others
         if( PPC_DEBUG_LOG AND $log ) {
             $errors = get_option( $ppc_global_settings['option_errors'], array() );
+
+            if( ! is_array( $errors ) OR empty( $errors ) ) $errors = array(); //for unknown reasons some users ended up with a string as errors option
+            
             $errors[] = $error_details;
             
 			//Get rid of old errors - only run once a day, ensure this through an option

@@ -299,7 +299,7 @@ class PPC_HTML_functions {
 									if( $post_link == '' )
 										$post_link = get_permalink( $post->ID );
 
-									$field_value = '<a href="'.$post_link.'" title="'.$post->post_title.'">'.$field_value.'</a>';
+									$field_value = '<a href="'.$post_link.'" title="'.esc_html( $post->post_title ).'">'.esc_html( $field_value ).'</a>';
 								}
 
 								break;
@@ -357,7 +357,7 @@ class PPC_HTML_functions {
 						switch( $field_name ) {
 							case 'author_name':
 								if( ( $perm->can_see_others_detailed_stats() OR $author == $current_user->ID ) AND $filter_name == "html" )
-									$field_value = '<a href="'.PPC_general_functions::get_the_author_link( $author ).'" title="'.__( 'Go to detailed view' , 'post-pay-counter').'">'.$field_value.'</a>';
+									$field_value = '<a href="'.PPC_general_functions::get_the_author_link( $author ).'" title="'.__( 'Go to detailed view' , 'post-pay-counter').'">'.esc_html( $field_value ).'</a>';
 								break;
 
 							case 'author_total_payment':

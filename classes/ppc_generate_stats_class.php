@@ -126,7 +126,6 @@ class PPC_generate_stats {
      * @param   $join string the sql join
      * @return  string the sql join
      */
-
     static function grp_filter_user_roles( $join ) {
         global $wpdb;
 
@@ -147,7 +146,6 @@ class PPC_generate_stats {
 	 * @param	array $grp_args get_requested_posts WP_Query args
 	 * @return	array get_requested_posts WP_Query args
 	 */
-
 	static function filter_stats_by_user_role( $grp_args ) {
 		global $ppc_global_settings;
 
@@ -169,10 +167,8 @@ class PPC_generate_stats {
         global $ppc_global_settings;
 
 		$sorted_array = array();
-        foreach( $data as $post_id => $single ) {
-            $sorted_array[$single->post_author][$post_id] = $single;
-            //$user_settings = PPC_general_functions::get_settings( $single->post_author, true );
-        }
+        foreach( $data as $post_id => $single )
+            $sorted_array[$single->post_author][$post_id] = $single;        
 
         return apply_filters( 'ppc_grouped_by_author_stats', $sorted_array );
     }
@@ -185,12 +181,18 @@ class PPC_generate_stats {
      * @param   $data array the counting data grouped by author
      * @return  array the counting data, with totals
      */
-
     static function calculate_total_stats( $data ) {
         global $ppc_global_settings;
 
         foreach( $data as $author_id => $author_stats ) {
 			$user_settings = PPC_general_functions::get_settings( $author_id, true );
+
+			//Make sure stats arrays always exist in a complete form, even though empty
+			//if( ! isset( $author_stats['total']['ppc_payment']['normal_payment'] ) )
+				$data[$author_id]['total']['ppc_payment']['normal_payment'] = array();
+
+			//if( ! isset( $author_stats['total']['ppc_count']['normal_count'] ) )
+				$data[$author_id]['total']['ppc_count']['normal_count'] = array();
 			
 			foreach( $author_stats as $post_id => $single ) {
 
@@ -231,6 +233,7 @@ class PPC_generate_stats {
 			}
 		}
 
+		//AUTHOR COUNTING TYPES
         foreach( $data as $author => &$stats ) {
             $user_settings = PPC_general_functions::get_settings( $author, true );
 
@@ -240,11 +243,17 @@ class PPC_generate_stats {
 				$counting_type_count = 0;
 				if( ! isset( $single_counting['payment_only'] ) OR $single_counting['payment_only'] == false ) {
 					$counting_type_count = call_user_func( $single_counting['count_callback'], $stats, $author );
+
+					//The 'aux' index was added later to author counting types to allow them to store more complex counting data.
+					//For example, Publisher Bonus stores here visits/words data so that it can calculate a bonus for them with its class payment method.
+					if( ! isset( $counting_type_count['aux'] ) )
+						$counting_type_count['aux'] = array();
+					
 					$stats['total']['ppc_count']['normal_count'][$id] = $counting_type_count;
 				}
 
 				//Payment
-				$counting_type_payment = call_user_func( $single_counting['payment_callback'], $counting_type_count );
+				$counting_type_payment = call_user_func( $single_counting['payment_callback'], $counting_type_count, $author );
 				$stats['total']['ppc_payment']['normal_payment'][$id] = $counting_type_payment;
 
 				if( isset( $stats['total']['ppc_payment']['normal_payment']['total'] ) )
@@ -252,13 +261,6 @@ class PPC_generate_stats {
 				else
 					$stats['total']['ppc_payment']['normal_payment']['total'] = $counting_type_payment;
 			}
-
-			//Make sure stats arrays always exist in a complete form, even though empty
-			if( ! isset( $stats['total']['ppc_payment']['normal_payment'] ) )
-				$stats['total']['ppc_payment']['normal_payment'] = array();
-
-			if( ! isset( $stats['total']['ppc_count']['normal_count'] ) )
-				$stats['total']['ppc_count']['normal_count'] = array();
 
             //Check total threshold
             if( $user_settings['counting_payment_total_threshold'] != 0 AND isset( $stats['total']['ppc_payment']['normal_payment']['total'] ) ) {
@@ -274,6 +276,7 @@ class PPC_generate_stats {
 			}
 
 			$stats = apply_filters( 'ppc_sort_stats_by_author_foreach_author', $stats, $author );
+			//print_r($stats['total']);
 		}
 		
         return apply_filters( 'ppc_generated_raw_stats', $data );
