@@ -3,7 +3,7 @@ Contributors: Ste_95
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22
 Tags: counter, authors, payment, revenue sharing, stats, multi author, post management, post
 Tested up to: 4.8
-Stable tag: 2.731
+Stable tag: 2.732
 Requires at least: 3.7
 
 Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
@@ -77,6 +77,11 @@ From this: *define( 'PPC_DEBUG_LOG', true );*
 It must become: *define( 'PPC_DEBUG_LOG', false );*
 
 == Changelog ==
+= 2.732 (2017-09-29) =
+* Fixed: proper escaping of post title and author name in stats page.
+* Tweak: under the hood improvements/changes to stats processing (compatibility with Pulisher Bonus latest release).
+* Tweak: improved error handling.
+
 = 2.731 (2017-09-16) =
 * Fixed: minor security vulnerability (PHP Object Injection) in Import Settings feature (thanks *Plugin Vulnerabilities*).
 * Fixed: minor security vulnerability in update settings function, which didn't check for permissions (but did had nonce check).

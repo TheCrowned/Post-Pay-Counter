@@ -4,7 +4,7 @@ Plugin Name: Post Pay Counter
 Plugin URI: https://postpaycounter.com
 Description: Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
 Author: Stefano Ottolenghi
-Version: 2.731
+Version: 2.732
 Author URI: http://www.thecrowned.org/
 Text Domain: post-pay-counter
 */
