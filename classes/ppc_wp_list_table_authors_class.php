@@ -99,7 +99,7 @@ class Post_Pay_Counter_Authors_List_Table extends WP_List_Table {
 					else
 						$tooltip = '';
 
-						$field_value = '<abbr title="'.$tooltip.'" class="ppc_payment_column">'.PPC_general_functions::format_payment( $field_value ).'</abbr>';
+						$field_value = '<abbr title="'.$tooltip.'" class="ppc_payment_column">'.$field_value.'</abbr>';
 					break;
 
 				case 'author_words':

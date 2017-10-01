@@ -108,7 +108,7 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
 
 				case 'post_total_payment':
 					$tooltip = PPC_counting_stuff::build_payment_details_tooltip( $post->ppc_count['normal_count'], $post->ppc_payment['normal_payment'], $counting_types );
-					$field_value = '<abbr title="'.$tooltip.'" class="ppc_payment_column">'.PPC_general_functions::format_payment( $item[$column_name] ).'</abbr>';
+					$field_value = '<abbr title="'.$tooltip.'" class="ppc_payment_column">'.$item[$column_name].'</abbr>';
 					break;
 
 				case 'post_words':
@@ -294,7 +294,6 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
          */
         $per_page = $this->get_items_per_page( 'ppc_posts_per_page', 300 );
 
-
         /**
          * REQUIRED. Now we need to define our column headers. This includes a complete
          * array of columns to be displayed (slugs & titles), a list of columns
@@ -317,7 +316,6 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
          */
 		//$this->_column_headers = array( $columns, $hidden, $sortable );
         $this->_column_headers = $this->get_column_info();
-
 
         /**
          * Optional. You can handle your bulk actions however you see fit. In this
@@ -359,7 +357,6 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
 			usort($data, 'usort_reorder');
 			
 		}
-
 
         /**
          * REQUIRED for pagination. Let's figure out what page the user is currently
