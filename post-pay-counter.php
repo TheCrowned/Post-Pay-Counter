@@ -291,8 +291,8 @@ class post_pay_counter {
 
         wp_enqueue_style( 'jquery.tooltip.theme', $ppc_global_settings['folder_path'].'style/tipTip.css' );
         wp_enqueue_style( 'ppc_header_style', $ppc_global_settings['folder_path'].'style/ppc_header_style.css', array( 'wp-admin' ), filemtime( $ppc_global_settings['dir_path'].'style/ppc_header_style.css' ) );
+        wp_enqueue_style( 'ppc_options_style_old', $ppc_global_settings['folder_path'].'style/ppc_options_style_old.css', array( 'wp-admin' ), filemtime( $ppc_global_settings['dir_path'].'style/ppc_options_style_old.css' ) );
 		wp_enqueue_style( 'ppc_options_style', $ppc_global_settings['folder_path'].'style/ppc_options_style.css', array( 'wp-admin' ), filemtime( $ppc_global_settings['dir_path'].'style/ppc_options_style.css' ) );
-		wp_enqueue_style( 'ppc_options_style_old', $ppc_global_settings['folder_path'].'style/ppc_options_style_old.css', array( 'wp-admin' ), filemtime( $ppc_global_settings['dir_path'].'style/ppc_options_style_old.css' ) );
         wp_enqueue_script( 'jquery-tooltip-plugin', $ppc_global_settings['folder_path'].'js/jquery.tiptip.min.js', array( 'jquery' ) );
         wp_enqueue_script( 'ppc_options_ajax_stuff', $ppc_global_settings['folder_path'].'js/ppc_options_ajax_stuff.js', array( 'jquery' ), filemtime( $ppc_global_settings['dir_path'].'js/ppc_options_ajax_stuff.js' ) );
         wp_localize_script( 'ppc_options_ajax_stuff', 'ppc_options_ajax_stuff_vars', array(

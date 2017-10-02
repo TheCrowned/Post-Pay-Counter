@@ -1,19 +1,7 @@
-#side-info-column {
-	width: 49%;
-}
-.inner-sidebar #side-sortables {
-	width: 100%;
-}
-.has-right-sidebar #post-body-content {
-	width: 49%;
-	margin-right: 390px;
-}
-.has-right-sidebar #post-body {
-	margin-right: -50%;
-}
-#post-body #normal-sortables {
-	width: 100%;
-}
+/**
+ *  Deprecated styles. Use ppc- prefixed classes.
+ */
+
 .section {
     border-left-width: 1px;
     border-left-style: dashed;
@@ -39,14 +27,6 @@
 .section td {
     width: 50%;
 }
-/*.checkable_input {
-	width: 20px;
-}*/
-.ppc_tooltip {
-	float: right;
-	width: 20px;
-	text-align: right;
-}
 .save_settings {
     float: right;
     width: 30%;
@@ -54,37 +34,8 @@
 .save_settings input {
     float: right;
 }
-.ppc_align_right {
-	float: right;
-}
 .ajax_loader {
     display: none;
     float: left;
     margin-right: 5px;
-}
-.ppc_save_success {
-    display: none;
-    float: left;
-    width: 50%;
-    padding: 5px;
-    background: #BCED91;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #567E3A;
-}
-.ppc_save_error {
-    display: none;
-    float: left;
-    width: 50%;
-    padding: 5px;
-    background: #FF6060;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #C12B45;
-}
-#ppc_personalize_users {
-	height: 10em; 
-	overflow: auto; 
-	display: none;
-	margin-top: 10px;
 }
