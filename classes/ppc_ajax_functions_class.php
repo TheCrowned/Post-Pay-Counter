@@ -337,7 +337,7 @@ class PPC_ajax_functions {
         $license = apply_filters( 'ppcp_license_activate_object', $license, $_REQUEST['license_key'] );
         
         if( ! ( is_a( $license, 'PPC_license' ) OR is_a( $license, 'PPCP_license' ) ) )
-            die( __( 'Make sure the license you aretrying to activate is related to an addon that is both installed and active.', 'post-pay-counter' ).' '.__( 'You may be activating an old PRO version: in this case, try to use the other License status box you can find in the Options page. You may have to scroll the page to find it.', 'post-pay-counter' ).'<br />Error: License object is not a PPCP_license instance.' );
+            die( __( 'Make sure the license you are trying to activate is related to an addon that is both installed and active.', 'post-pay-counter' ).' '.__( 'You may be activating an old PRO version: in this case, try to use the other License status box you can find in the Options page. You may have to scroll the page to find it.', 'post-pay-counter' ).'<br />Error: License object is not a PPCP_license instance.' );
         
         $license_activate = $license->activate( $_REQUEST['license_key'] );
         if( is_wp_error( $license_activate ) ) die( $license_activate->get_error_message() );
