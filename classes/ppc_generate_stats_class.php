@@ -15,7 +15,6 @@ class PPC_generate_stats {
 	 * @var 	array $grp_args holds get_requested_posts WP_Query args.
 	 * @since	2.49
 	 */
-
 	public static $grp_args;
 
     /**
@@ -28,11 +27,13 @@ class PPC_generate_stats {
      * @param   $time_start int the start time range timestamp
      * @param   $time_end int the end time range timestamp
      * @param   $author array optional an array of users for detailed stats
+     * @param	$format bool whether output stats should include formatted stats
      * @return  array raw stats + formatted for output stats
      */
-    static function produce_stats( $time_start, $time_end, $author = NULL ) {
+    static function produce_stats( $time_start, $time_end, $author = NULL, $format = true ) {
         global $current_user, $ppc_global_settings;
 
+		$return = array();
         $perm = new PPC_permissions();
 
 		//If general stats & CU can't see others' general, behave as if detailed for him
@@ -52,10 +53,14 @@ class PPC_generate_stats {
 		$stats = PPC_generate_stats::calculate_total_stats( $stats );
 		if( is_wp_error( $stats ) ) return $stats;
 
-        $formatted_stats = PPC_generate_stats::format_stats_for_output( $stats, $author );
-        if( is_wp_error( $formatted_stats ) ) return $formatted_stats;
+		$return['raw_stats'] = $stats;
 
-        $return = array( 'raw_stats' => $stats, 'formatted_stats' => $formatted_stats );
+		if( $format ) {
+			$formatted_stats = PPC_generate_stats::format_stats_for_output( $stats, $author );
+			if( is_wp_error( $formatted_stats ) ) return $formatted_stats;
+
+			$return['formatted_stats'] = $formatted_stats;
+		}
         
         return $return;
     }
@@ -69,11 +74,8 @@ class PPC_generate_stats {
      * @param   $time_end int the end time range timestamp
      * @param   $author array optional an array of users for detailed stats
      * @return  array the array of WP posts object to be counted
-    */
-
+     */
     static function get_requested_posts( $time_start, $time_end, $author = NULL ) {
-        global $current_user;
-
 		$general_settings = PPC_general_functions::get_settings( 'general' );
 
         self::$grp_args = array(
@@ -164,9 +166,7 @@ class PPC_generate_stats {
      * @return  array the counting data, grouped by author id
      */
     static function group_stats_by_author( $data ) {
-        global $ppc_global_settings;
-
-		$sorted_array = array();
+        $sorted_array = array();
         foreach( $data as $post_id => $single )
             $sorted_array[$single->post_author][$post_id] = $single;        
 
@@ -242,7 +242,7 @@ class PPC_generate_stats {
 				//Counting
 				$counting_type_count = 0;
 				if( ! isset( $single_counting['payment_only'] ) OR $single_counting['payment_only'] == false ) {
-					$counting_type_count = call_user_func( $single_counting['count_callback'], $stats, $author );
+					$counting_type_count = call_user_func( $single_counting['count_callback'], $stats, $author, $data );
 
 					//The 'aux' index was added later to author counting types to allow them to store more complex counting data.
 					//For example, Publisher Bonus stores here visits/words data so that it can calculate a bonus for them with its class payment method.

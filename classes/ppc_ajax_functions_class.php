@@ -254,7 +254,6 @@ class PPC_ajax_functions {
      * @access  public
      * @since   2.1.3
      */
-    
     static function import_settings() {
         global $ppc_global_settings;
         self::ppc_check_ajax_referer( 'ppc_import_settings' );

@@ -68,11 +68,10 @@ class PPC_counting_types {
      *                               If no count_callback is given, a dummy method will assign 1 as value of the count.
      *              display - (optional) what you want to be displayed in the stats, possible values are 'count', 'payment', 'both', 'tooltip', 'none'. Default to 'both'. 
      * 				display_status_index - (optional) the name of the settings index of the plugin settings containing a display value. This is used to provide different display values to different users. If not given, the above 'display' will be used.
-     *              payment_callback - method to compute payment of the counted "how many". Will receive the counting output array as parameter.
+     *              payment_callback - method to compute payment of the counted "how many". Will receive the counting output array as parameter as well as the post ID or author ID.
      *              other_params - (optional) can contain whatever you want. Maybe you want to add custom checks to a counting type: then you can use this to register it with custom args and then hook to actions in the method and use this parameter.
      *              				# not_to_pay (bool) exclude counting from payments.
      */ 
-    
     function register_counting_type( $parameters ) {
         //Check everything needed has been given
         if( ! isset( $parameters['id'] ) OR ! isset( $parameters['label'] ) OR ! isset( $parameters['apply_to'] ) OR ! isset( $parameters['payment_callback'] ) ) {
@@ -153,7 +152,7 @@ class PPC_counting_types {
 			
 			foreach( self::$counting_types[$what] as $id => $single ) {
 				$counting_status = 0;
-				if( isset( $single['settings_status_index'] ) AND $settings[$single['settings_status_index']] )
+				if( isset( $single['settings_status_index'] ) AND isset( $settings[$single['settings_status_index']] ) AND $settings[$single['settings_status_index']] )
 					$counting_status = 1;
 				
 				//If you haven't given 'settings_status_index', this is your chance - the filter - to enable the counting type depending on custom checks! 

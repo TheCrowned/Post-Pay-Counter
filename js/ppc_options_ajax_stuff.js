@@ -145,6 +145,7 @@ jQuery(document).ready(function($) {
             $('#ppc_import_settings_ajax_loader').css('display', 'none');
 
             if(! response.success) {
+				
                 $('#ppc_import_settings_error').html(response.data.message);
                 $('#ppc_import_settings_error').css('display', 'inline');
             } else {

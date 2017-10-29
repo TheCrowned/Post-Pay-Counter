@@ -191,7 +191,7 @@ class Post_Pay_Counter_Authors_List_Table extends WP_List_Table {
 				$columns['author_payment_history'] = substr( $single, 16 );
 			}
 
-        return $columns;
+        return apply_filters( 'ppc_general_stats_html_cols_after_default_NEW', $columns );
     }
 
 

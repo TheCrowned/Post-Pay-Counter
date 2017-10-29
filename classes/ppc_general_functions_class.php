@@ -24,8 +24,7 @@ class PPC_general_functions {
 	 * @param 	bool whether can-see-other-users-personalized-settings permission should be checked
 	 * @param	bool whether user specific settings should be completed with general ones for options which are not cusomized for that user
      * @return  array the requested settings
-    */
-
+     */
     static function get_settings( $userid, $check_current_user_cap_special = FALSE, $complete_with_general = TRUE ) {
         global $ppc_global_settings;
 
@@ -64,7 +63,8 @@ class PPC_general_functions {
             $perm = new PPC_permissions();
 
 			//If user shouldn't see other users personalized settings, set the userid to their own
-            if( $check_current_user_cap_special == TRUE AND $current_user->ID != $userid AND ( ! $perm->can_see_countings_special_settings() ) )
+            if( isset( $current_user ) AND $current_user->ID != 0 AND
+				$check_current_user_cap_special == TRUE AND $current_user->ID != $userid AND ( ! $perm->can_see_countings_special_settings() ) )
                 $userid = $current_user->ID;
 
 			//Retrieve cached settings if available or from database if not

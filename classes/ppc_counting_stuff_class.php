@@ -281,8 +281,6 @@ class PPC_counting_stuff {
 
 		$purged_content = strip_tags( $post_content );
 
-//var_dump(str_word_count( $purged_content, 0));
-
 		if( self::$settings['counting_words_parse_spaces'] )
 			$purged_content = preg_replace( '/\'|&nbsp;|&#160;|\r|\n|\r\n|\s+/', ' ',  $purged_content );
 
@@ -450,7 +448,7 @@ class PPC_counting_stuff {
 
 				//Countings with only payment
 				if( isset( $counting_types[$id]['payment_only'] ) AND $counting_types[$id]['payment_only'] ) {
-					$tooltip .= ucfirst( $id ).': '.PPC_general_functions::format_payment( sprintf( '%.2f', $value ) ).'
+					$tooltip .= ucfirst( $id ).': '.PPC_general_functions::format_payment( $value ).'
 ';
 
 				//Countings with count and payment
@@ -458,7 +456,7 @@ class PPC_counting_stuff {
 					if( is_numeric( $countings[$id]['to_count'] ) )
 						$countings[$id]['to_count'] = round( $countings[$id]['to_count'], 3 );
 
-					$tooltip .= ucfirst( $id ).': '.$countings[$id]['to_count'].' => '.PPC_general_functions::format_payment( sprintf( '%.2f', $value ) ).'
+					$tooltip .= ucfirst( $id ).': '.$countings[$id]['to_count'].' => '.PPC_general_functions::format_payment( $value ).'
 ';
 				}
 			}
