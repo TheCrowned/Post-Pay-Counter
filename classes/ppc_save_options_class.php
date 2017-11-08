@@ -174,6 +174,9 @@ class PPC_save_options {
             }
         }
 
+		if( empty( $new_settings['can_see_options_user_roles'] ) )
+			return new WP_Error( 'ppc_save_options_misc_error', __( 'At least one role must be allowed to access the options page', 'post-pay-counter' ) );
+
         $new_settings = apply_filters( 'ppc_save_misc_settings', $new_settings, $settings );
 
         $update = self::update_settings( 'general', $new_settings );
