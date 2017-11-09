@@ -77,6 +77,16 @@ From this: *define( 'PPC_DEBUG_LOG', true );*
 It must become: *define( 'PPC_DEBUG_LOG', false );*
 
 == Changelog ==
+= 2.734 (2017-11-09) =
+* Fixed: tooltip payment amounts formatting issue.
+* Tweak: don't allow settings saving if no user roles allowed to access options are selected.
+* Fixed: if settings break, it was impossible to import settings.
+* Fixed: get_settings() works with non logged-in users as well.
+* Tweak: changes to produce_stats() function and author counting types call_user_func.
+* Fixed: more meaningful error when license activation fails (*not a PPCP_License object*)
+* Fixed: removed old stylesheet interfering with current one.
+* Tweak: language updates.
+
 = 2.733 (2017-10-01) =
 * Fixed: possible display issue with Total payment, showin as zero. This was just a display issue: stats and payments always recorded correct amounts.
 
