@@ -39,7 +39,6 @@ class PPC_auto_update {
     /**
      * Holds addon activation key option name and value.
      */
-
 	public $activation_key_name;
 	public $activation_key;
 
@@ -50,6 +49,14 @@ class PPC_auto_update {
      * @param string $plugin_slug
      */
     function __construct( $current_version, $update_path, $plugin_slug, $activation_key_name ) {
+		//Only check every six hours
+		$transient = get_site_transient( 'update_plugins' );
+		if( ! is_object( $transient ) ) return;
+		
+		$checked_plugins = $transient->checked;
+		if( $transient->last_checked > ( time() - 3600*6 ) AND isset( $checked_plugins[$plugin_slug] ) )
+			return;
+			
         // Set the class public variables
         $this->current_version = $current_version;
         $this->update_path = $update_path;
@@ -68,8 +75,9 @@ class PPC_auto_update {
         add_filter('plugins_api', array(&$this, 'check_info'), 10, 3);
 
         //Enqueue on WP cron event
-        add_action( 'wp_update_plugins', array( $this, 'check_update' ) );
+        add_action( 'wp_update_plugins', array( &$this, 'check_update' ) );
 
+		//Maybe display notice in plugin page if addon license is expired
         add_action( 'in_plugin_update_message-' . plugin_basename( $this->plugin_slug ), array( $this, 'plugin_row_license_missing' ), 10, 2 );
     }
 

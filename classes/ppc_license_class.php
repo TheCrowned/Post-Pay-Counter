@@ -15,26 +15,23 @@ class PPC_license {
     
 	/**
      * Holds current local license activation status.
+     * Addons can only be updated if a VALID license is active.
      */ 
-	
 	public $local_status;
 	
     /**
      * Holds URL for remote license features (activation, deactivation, regular license check).
      */ 
-	
 	public $remote_URL;
     
     /**
      * Holds addon version.
      */ 
-	
 	public $addon_version;
     
     /**
      * Holds addon activation key option name.
      */ 
-	
 	public $activation_key_name;
 	
     /**
@@ -48,9 +45,9 @@ class PPC_license {
      * @param   $addon_version string
      * @param   $activation_key string
      */
-    
     public function __construct( $check_local_status_function, $remote_URL, $addon_version, $activation_key_name ) {
         $local_status = call_user_func( $check_local_status_function );
+        
         if( ! is_bool( $local_status ) ) {
             $error = new PPC_Error( 'ppcp_not_bool_license_status', 'License status function must return a boolean value.', array(
                 'check_local_status_function' => $check_local_status_function
@@ -72,7 +69,6 @@ class PPC_license {
 	 * @param	$parameters array http request parameters
      * @return 	array request result details
      */
-	 
     function license_request( $parameters ) {
         global $ppc_global_settings;
         
@@ -132,7 +128,6 @@ class PPC_license {
      * 
      * @param   $license key string license key
      */
-	
     function activate( $license_key ) {
         if( $this->local_status ) {
             $error = new PPC_Error( 'ppcp_already_pro', __( 'You already have a license for this addon active.', 'ppc' ), array(
@@ -165,7 +160,6 @@ class PPC_license {
      * @access  public
      * @since   2.511
      */
-	 
     function deactivate() {
         if( ! $this->local_status ) {
             $error = new PPC_Error( 'ppcp_not_pro', __( 'You don\'t have a license for this addon active', 'ppc' ), array(
@@ -192,7 +186,6 @@ class PPC_license {
      * @access  public
      * @since   2.511
      */
-	 
     function check_activation() {
         if( ! $this->local_status ) {
             $error = new PPC_Error( 'ppcp_not_pro', __( 'You don\'t have a license for this addon active', 'ppc' ), array(
