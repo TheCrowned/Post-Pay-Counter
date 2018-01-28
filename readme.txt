@@ -2,8 +2,8 @@
 Contributors: Ste_95
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22
 Tags: counter, authors, payment, revenue sharing, stats, multi author, post management, post
-Tested up to: 4.8
-Stable tag: 2.733
+Tested up to: 4.9
+Stable tag: 2.735
 Requires at least: 3.7
 
 Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
@@ -77,6 +77,9 @@ From this: *define( 'PPC_DEBUG_LOG', true );*
 It must become: *define( 'PPC_DEBUG_LOG', false );*
 
 == Changelog ==
+= 2.735 (2018-01-28) =
+* Tweak: autoupdate (for addons) checks for updates every 6 hours.
+
 = 2.734 (2017-11-09) =
 * Fixed: tooltip payment amounts formatting issue.
 * Tweak: don't allow settings saving if no user roles allowed to access options are selected.
