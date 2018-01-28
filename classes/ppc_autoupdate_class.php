@@ -51,7 +51,7 @@ class PPC_auto_update {
     function __construct( $current_version, $update_path, $plugin_slug, $activation_key_name ) {
 		//Only check every six hours
 		$transient = get_site_transient( 'update_plugins' );
-		if( ! is_object( $transient ) ) return;
+		if( ! is_object( $transient ) OR ! isset( $transient->last_checked ) OR ! isset( $transient->checked ) ) return;
 		
 		$checked_plugins = $transient->checked;
 		if( $transient->last_checked > ( time() - 3600*6 ) AND isset( $checked_plugins[$plugin_slug] ) )
