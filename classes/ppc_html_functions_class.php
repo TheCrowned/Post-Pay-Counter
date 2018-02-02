@@ -351,7 +351,7 @@ class PPC_HTML_functions {
 
 					if( isset( $author_stats[$field_name] ) ) {
 						$field_value = $author_stats[$field_name];
-						$field_value = apply_filters( 'ppc_general_stats_'.$filter_name.'_each_field_value', $field_value, $field_name, $raw_stats[$author] );
+						$field_value = apply_filters( 'ppc_general_stats_'.$filter_name.'_each_field_value', $field_value, $field_name, $raw_stats[$author], $author );
 
 						//Cases in which other stuff needs to be added to the output
 						switch( $field_name ) {
