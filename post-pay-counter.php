@@ -213,6 +213,8 @@ class post_pay_counter {
      */
     function on_load_stats_page() {
         global $ppc_global_settings;
+
+		add_thickbox();
 		
 		//If an author is given, put that in an array
         if( isset( $_REQUEST['author'] ) AND is_numeric( $_REQUEST['author'] ) AND get_userdata( $_REQUEST['author'] ) ) {

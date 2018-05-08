@@ -432,8 +432,6 @@ class PPC_counting_stuff {
      * @return  string tooltip
      */
     static function build_payment_details_tooltip( $countings, $payment, $counting_types = array() ) {
-        global $ppc_global_settings;
-
         $tooltip = '';
 
 		if( ! self::$settings['enable_stats_payments_tooltips'] )

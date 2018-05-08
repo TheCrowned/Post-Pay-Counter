@@ -62,6 +62,12 @@ class PPC_addons {
 					'link' => 'https://postpaycounter.com/request-payment-require-authors-reach-threshold-request-paid/',
 					'campaign' => 'ppc_rp'
 				),
+				'Referral Visits' => array(
+					'description' => 'Pay authors for the visitors they bring to your site.',
+					'image' => 'https://postpaycounter.com/wp-content/uploads/2018/02/ppc-referral-2.png',
+					'link' => 'https://postpaycounter.com/referral-visits-pay-users-visitors-bring-site/',
+					'campaign' => 'ppc_ref_vis'
+				),
 				'Author Payment Bonus' => array(
 					'description' => 'Award a bonus to writers before paying: personally tweak the payroll, giving authors a little reward.',
 					'image' => 'https://postpaycounter.com/ppc_apb/features/images/payment_confirm_crop.png',

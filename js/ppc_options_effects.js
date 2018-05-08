@@ -54,10 +54,6 @@ function ppc_zones_manager(counting_type, zones_count) {
     jQuery("#counting_"+counting_type+"_more_zones").click(function(e) {
         e.preventDefault();
         
-        if(zones_count > 9){
-            alert(ppc_options_effects_vars.localized_too_many_zones);
-            return false;
-        }
 		zones_count++;
     
         jQuery('<tr><td><input type="text" size="15" name="'+counting_type+'_'+zones_count+'_zone_threshold" id="'+counting_type+'_'+zones_count+'_zone_threshold" /></td><td><input type="text" size="15" name="'+counting_type+'_'+zones_count+'_zone_payment" id="'+counting_type+'_'+zones_count+'_zone_payment" /></td></tr>').appendTo(jQuery("#counting_"+counting_type+"_system_zonal_content").find("#"+counting_type+"_0_zone_threshold").parent().parent().parent());
