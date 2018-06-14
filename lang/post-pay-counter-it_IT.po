@@ -1,29 +1,29 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Post Pay Counter\n"
-"POT-Creation-Date: 2017-10-02 06:35+0200\n"
-"PO-Revision-Date: 2017-10-02 06:36+0200\n"
+"POT-Creation-Date: 2018-05-21 19:08+0200\n"
+"PO-Revision-Date: 2018-05-21 19:09+0200\n"
 "Last-Translator: Stefano Ottolenghi <webmaster@thecrowned.org>\n"
 "Language-Team: Stefano Ottolenghi <webmaster@thecrowned.org>\n"
 "Language: it_IT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.1\n"
+"X-Generator: Poedit 2.0.6\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: __;_e;_x\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: classes/ppc_addons_class.php:144
+#: classes/ppc_addons_class.php:150
 msgid "Addons for Post Pay Counter"
 msgstr "Estensioni per Post Pay Counter"
 
-#: classes/ppc_addons_class.php:145
+#: classes/ppc_addons_class.php:151
 msgid "Browse All Extensions"
 msgstr "Guarda tutte le estensioni"
 
-#: classes/ppc_addons_class.php:147
+#: classes/ppc_addons_class.php:153
 msgid "These addons add more features to Post Pay Counter."
 msgstr "Queste estensioni espandono le funzioni di Post Pay Counter."
 
@@ -45,15 +45,15 @@ msgstr "Nessun utente trovato."
 msgid "Any"
 msgstr "Qualunque"
 
-#: classes/ppc_ajax_functions_class.php:278
+#: classes/ppc_ajax_functions_class.php:277
 msgid "What are you importing, cows?"
 msgstr "Cosa stai importando, mucche?"
 
-#: classes/ppc_ajax_functions_class.php:298
+#: classes/ppc_ajax_functions_class.php:297
 msgid "Error: could not clear error log."
 msgstr "Errore: non è stato possibile pulire il log degli errori."
 
-#: classes/ppc_ajax_functions_class.php:340
+#: classes/ppc_ajax_functions_class.php:339
 msgid ""
 "Make sure the license you are trying to activate is related to an addon that "
 "is both installed and active."
@@ -61,7 +61,7 @@ msgstr ""
 "Assicurati che la licenza che stai cercando di attivare sia relativa a "
 "un'estensione che è installata e attiva."
 
-#: classes/ppc_ajax_functions_class.php:340
+#: classes/ppc_ajax_functions_class.php:339
 msgid ""
 "You may be activating an old PRO version: in this case, try to use the other "
 "License status box you can find in the Options page. You may have to scroll "
@@ -71,36 +71,36 @@ msgstr ""
 "l'altro box Stato licenza che può trovare nella pagin delle opzioni. "
 "Potresti dover scorrere la pagina per trovarlo."
 
-#: classes/ppc_autoupdate_class.php:202
+#: classes/ppc_autoupdate_class.php:210
 msgid "Enter a valid, non-expired license key for automatic updates."
 msgstr ""
 "Inserisci una licenza valida e non scaduta per gli aggiornamenti automatici."
 
 #: classes/ppc_counting_stuff_class.php:123
-#: classes/ppc_generate_stats_class.php:114
+#: classes/ppc_generate_stats_class.php:116
 msgid ""
 "Your query resulted in an empty result. Try to select a wider time range!"
 msgstr ""
 "La tua richiesta ha avuto risultato vuoto. Prova a selezionare un intervallo "
 "di tempo più ampio."
 
-#: classes/ppc_counting_types_class.php:236
+#: classes/ppc_counting_types_class.php:235
 msgid "Basic"
 msgstr "Base"
 
-#: classes/ppc_counting_types_class.php:247
+#: classes/ppc_counting_types_class.php:246
 msgid "Words"
 msgstr "Parole"
 
-#: classes/ppc_counting_types_class.php:259
+#: classes/ppc_counting_types_class.php:258
 msgid "Visits"
 msgstr "Visite"
 
-#: classes/ppc_counting_types_class.php:270
+#: classes/ppc_counting_types_class.php:269
 msgid "Images"
 msgstr "Immagini"
 
-#: classes/ppc_counting_types_class.php:281
+#: classes/ppc_counting_types_class.php:280
 msgid "Comments"
 msgstr "Commenti"
 
@@ -117,7 +117,7 @@ msgid "Type"
 msgstr "Tipo"
 
 #: classes/ppc_generate_stats_class.php:318
-#: classes/ppc_meta_boxes_class.php:620
+#: classes/ppc_meta_boxes_class.php:622
 msgid "Status"
 msgstr "Stato"
 
@@ -135,12 +135,12 @@ msgid "No posts reach the threshold. Check your settings at %1$s"
 msgstr "Nessun post raggiunge la soglia. Controlla le tue impostazioni in %1$s"
 
 #: classes/ppc_generate_stats_class.php:446 post-pay-counter.php:167
-#: post-pay-counter.php:499
+#: post-pay-counter.php:501
 msgid "Options"
 msgstr "Opzioni"
 
 #: classes/ppc_generate_stats_class.php:446
-#: classes/ppc_meta_boxes_class.php:203 post-pay-counter.php:275
+#: classes/ppc_meta_boxes_class.php:203 post-pay-counter.php:277
 msgid "Counting Settings"
 msgstr "Opzione di conteggio"
 
@@ -216,7 +216,7 @@ msgid "User"
 msgstr "Utente"
 
 #: classes/ppc_html_functions_class.php:152
-#: classes/ppc_html_functions_class.php:156 post-pay-counter.php:519
+#: classes/ppc_html_functions_class.php:156 post-pay-counter.php:521
 msgid "Back to general"
 msgstr "Indietro a generale"
 
@@ -266,26 +266,26 @@ msgid "Could not update general settings option."
 msgstr ""
 "Non è stato possibile aggiornare l'opzione delle impostazioni generali."
 
-#: classes/ppc_license_class.php:96 classes/ppc_license_class.php:103
+#: classes/ppc_license_class.php:92 classes/ppc_license_class.php:99
 msgid "Error"
 msgstr "Errore"
 
-#: classes/ppc_license_class.php:110
+#: classes/ppc_license_class.php:106
 msgid ""
 "Error: something went wrong on the remote server. This should be reported."
 msgstr ""
 "Errore: qualcosa è andato storto sul server remoto. Questo dovrebbee essere "
 "segnalato."
 
-#: classes/ppc_license_class.php:138
+#: classes/ppc_license_class.php:133
 msgid "You already have a license for this addon active."
 msgstr "Ha già una licenza attiva per questo addon."
 
-#: classes/ppc_license_class.php:152
+#: classes/ppc_license_class.php:147
 msgid "Error: could not store license details."
 msgstr "Errore: impossibile salvare i dettagli della licenza."
 
-#: classes/ppc_license_class.php:171 classes/ppc_license_class.php:198
+#: classes/ppc_license_class.php:165 classes/ppc_license_class.php:191
 msgid "You don't have a license for this addon active"
 msgstr "Non hai una licenza attiva per questo addon."
 
@@ -382,7 +382,7 @@ msgstr ""
 "Manca qualcosa che vorresti? Completa il %1$ssondaggio sulle funzionalità"
 "%2$s e facci sapere quali dovrebbero essere le nostre priorità!"
 
-#: classes/ppc_meta_boxes_class.php:38 post-pay-counter.php:501
+#: classes/ppc_meta_boxes_class.php:38 post-pay-counter.php:503
 msgid "Features survey"
 msgstr "Sondaggio delle funzionalità"
 
@@ -394,7 +394,7 @@ msgstr ""
 "Se ti piace Post Pay Counter, ci sono un paio di cose cruciali che puoi fare "
 "per supportare il suo sviluppo"
 
-#: classes/ppc_meta_boxes_class.php:52 post-pay-counter.php:466
+#: classes/ppc_meta_boxes_class.php:52 post-pay-counter.php:468
 msgid "Go PRO"
 msgstr "Diventa PRO"
 
@@ -438,10 +438,12 @@ msgstr "Prestazioni"
 #: classes/ppc_meta_boxes_class.php:75
 msgid ""
 "Stats generation can become very slow on big sites. Uncheck all these "
-"options to get best performance."
+"options to get best performance. Caching is the only thing that you should "
+"keep active."
 msgstr ""
 "L'elaborazione delle statistiche può diventare molto lenta su siti grandi. "
-"Disabilita tutte queste opzioni per prestazioni migliori."
+"Disabilita tutte queste opzioni per prestazioni migliori. Il caching è "
+"l'unica cosa che dovresti tenere attiva."
 
 #: classes/ppc_meta_boxes_class.php:76
 msgid "Enable post stats caching"
@@ -529,7 +531,7 @@ msgstr ""
 "normali. Spuntando quest'opzione renderà gli amministratori capaci di tutto, "
 "a meno che non dai loro permessi speciali attraverso il box %1$s."
 
-#: classes/ppc_meta_boxes_class.php:90 post-pay-counter.php:279
+#: classes/ppc_meta_boxes_class.php:90 post-pay-counter.php:281
 msgid "Personalize Settings"
 msgstr "Personalizza impostazioni"
 
@@ -673,14 +675,14 @@ msgid "Time range (days)"
 msgstr "Intervallo di tempo (giorni)"
 
 #: classes/ppc_meta_boxes_class.php:214 classes/ppc_meta_boxes_class.php:358
-#: classes/ppc_meta_boxes_class.php:391 classes/ppc_meta_boxes_class.php:425
+#: classes/ppc_meta_boxes_class.php:391 classes/ppc_meta_boxes_class.php:427
 msgid "Settings were successfully updated."
 msgstr "Le impostazioni sono state aggiornate con successo."
 
 #: classes/ppc_meta_boxes_class.php:217 classes/ppc_meta_boxes_class.php:361
-#: classes/ppc_meta_boxes_class.php:394 classes/ppc_meta_boxes_class.php:428
-#: classes/ppc_meta_boxes_class.php:520 classes/ppc_meta_boxes_class.php:562
-#: classes/ppc_meta_boxes_class.php:596
+#: classes/ppc_meta_boxes_class.php:394 classes/ppc_meta_boxes_class.php:430
+#: classes/ppc_meta_boxes_class.php:522 classes/ppc_meta_boxes_class.php:564
+#: classes/ppc_meta_boxes_class.php:598
 msgid "Loading"
 msgstr "Caricamento"
 
@@ -1075,7 +1077,7 @@ msgstr ""
 "generali). Tuttavia, gli utenti potranno vedere le proprie impostazioni "
 "personalizzate, se le hanno."
 
-#: classes/ppc_meta_boxes_class.php:416
+#: classes/ppc_meta_boxes_class.php:418
 #, php-format
 msgid ""
 "Have more than website but use the same settings? You can transfer settings "
@@ -1099,20 +1101,20 @@ msgstr ""
 "non sappia cosa sono base64 e la serializzazione e sei sicuro di quello che "
 "stai facendo!"
 
-#: classes/ppc_meta_boxes_class.php:416 classes/ppc_meta_boxes_class.php:430
+#: classes/ppc_meta_boxes_class.php:418 classes/ppc_meta_boxes_class.php:432
 msgid "Import settings"
 msgstr "Importa impostazioni"
 
-#: classes/ppc_meta_boxes_class.php:461
+#: classes/ppc_meta_boxes_class.php:463
 msgid "The following users have different settings, click to edit them."
 msgstr ""
 "Gli utenti seguenti hanno impostazioni diversi, clicca per modificarle."
 
-#: classes/ppc_meta_boxes_class.php:471
+#: classes/ppc_meta_boxes_class.php:473
 msgid "View and edit special settings for user"
 msgstr "Visualizza e modifica impostazioni speciali per utente"
 
-#: classes/ppc_meta_boxes_class.php:481
+#: classes/ppc_meta_boxes_class.php:483
 msgid ""
 "No users have different settings. Learn how to personalize settings from the "
 "section below."
@@ -1120,11 +1122,11 @@ msgstr ""
 "Nessun utente ha impostazioni diverse. Scopri come personalizzare le "
 "impostazioni dalla sezione sottostante."
 
-#: classes/ppc_meta_boxes_class.php:492
+#: classes/ppc_meta_boxes_class.php:494
 msgid "Personalize single user settings"
 msgstr "Personalizza impostazioni di un utente"
 
-#: classes/ppc_meta_boxes_class.php:493
+#: classes/ppc_meta_boxes_class.php:495
 msgid ""
 "Some people's posts are better than somebody others'? You can adjust "
 "settings for each user, so that they will have different permissions and "
@@ -1134,7 +1136,7 @@ msgstr ""
 "impostazioni per ogni utente, così che avranno permessi differenti e i loro "
 "post saranno pagati in modo diverso."
 
-#: classes/ppc_meta_boxes_class.php:494
+#: classes/ppc_meta_boxes_class.php:496
 msgid ""
 "First, select a user role. You will see all users from that role: clicking "
 "on one you will be headed to the settings page for that specific user."
@@ -1143,15 +1145,15 @@ msgstr ""
 "quel ruolo: cliccando su di uno sarai rimandato alla pagina delle "
 "impostazioni specifica per quell'utente."
 
-#: classes/ppc_meta_boxes_class.php:496
+#: classes/ppc_meta_boxes_class.php:498
 msgid "User roles"
 msgstr "Ruoli utente"
 
-#: classes/ppc_meta_boxes_class.php:515
+#: classes/ppc_meta_boxes_class.php:517
 msgid "Available users"
 msgstr "Utenti disponibili"
 
-#: classes/ppc_meta_boxes_class.php:541
+#: classes/ppc_meta_boxes_class.php:543
 #, php-format
 msgid ""
 "Errors which may happen during the plugin execution are logged and showed "
@@ -1166,30 +1168,30 @@ msgstr ""
 "ogni tanto, ma lo puoi svuotare manualmente con il pulsante sottostante. Se "
 "non vuoi che gli errori siano registrati, vedi le %1$sDomande frequenti%2$s."
 
-#: classes/ppc_meta_boxes_class.php:541
+#: classes/ppc_meta_boxes_class.php:543
 msgid "Frequently asked questions"
 msgstr "Domande frequenti"
 
-#: classes/ppc_meta_boxes_class.php:542
+#: classes/ppc_meta_boxes_class.php:544
 msgid ""
 "To copy the error log, click below then press Ctrl + C (PC) or Cmd + C (Mac)."
 msgstr ""
 "Per copiare il log degli errori, clicca qui sotto e premi Ctrl + C (PC) o "
 "Cmd + C (Mac)."
 
-#: classes/ppc_meta_boxes_class.php:551
+#: classes/ppc_meta_boxes_class.php:553
 msgid "That's great, nothing has gone wrong so far!"
 msgstr "Fantastico, niente è andato storto finora!"
 
-#: classes/ppc_meta_boxes_class.php:557
+#: classes/ppc_meta_boxes_class.php:559
 msgid "Clear error log"
 msgstr "Svuota il log degli errori"
 
-#: classes/ppc_meta_boxes_class.php:559
+#: classes/ppc_meta_boxes_class.php:561
 msgid "Log was successfully cleared."
 msgstr "Il log è stato svuotato con successo."
 
-#: classes/ppc_meta_boxes_class.php:586
+#: classes/ppc_meta_boxes_class.php:588
 #, php-format
 msgid ""
 "Whatever of our %1$splenty of addons%2$s you may have bought, this is the "
@@ -1202,7 +1204,7 @@ msgstr ""
 "dell'addon, di averlo attivato, e incolla la chiave di licenza che hai "
 "ricevuto per email nel campo sottostante."
 
-#: classes/ppc_meta_boxes_class.php:587
+#: classes/ppc_meta_boxes_class.php:589
 msgid ""
 "To activate your license key, the following data will be sent to the "
 "activation page: license key, website URL, blog language, plugin version. "
@@ -1214,25 +1216,25 @@ msgstr ""
 "versione del plugin. Due volte al mese il plugin contatterà il server remoto "
 "per controllare la validità della licenza senza chiedere il permesso."
 
-#: classes/ppc_meta_boxes_class.php:590
+#: classes/ppc_meta_boxes_class.php:592
 msgid "Submit"
 msgstr "Invia"
 
-#: classes/ppc_meta_boxes_class.php:593
+#: classes/ppc_meta_boxes_class.php:595
 msgid "Your license was successfully activated. Reload this page and enjoy!"
 msgstr ""
 "La tua licenza è stata attivata con successo. Ricarica questa pagina e "
 "goditela!"
 
-#: classes/ppc_meta_boxes_class.php:601
+#: classes/ppc_meta_boxes_class.php:603
 msgid "Your licenses"
 msgstr "Le tue licenze"
 
-#: classes/ppc_meta_boxes_class.php:611
+#: classes/ppc_meta_boxes_class.php:613
 msgid "No licenses to display."
 msgstr "Nessuna licenza da mostrare."
 
-#: classes/ppc_meta_boxes_class.php:615
+#: classes/ppc_meta_boxes_class.php:617
 msgid ""
 "Your licenses status is listed below, along with their details. You may want "
 "to deactivate one to use it on other websites (but you won't be able to use "
@@ -1242,37 +1244,37 @@ msgstr ""
 "Potresti volerne disattivare una per usarla su altri siti (non potrai puoi "
 "fruire delle sue funzionalità su questo sito)."
 
-#: classes/ppc_meta_boxes_class.php:619
+#: classes/ppc_meta_boxes_class.php:621
 msgid "Addon"
 msgstr "Addon"
 
-#: classes/ppc_meta_boxes_class.php:622
+#: classes/ppc_meta_boxes_class.php:624
 msgid "Deactivate"
 msgstr "Disattiva"
 
-#: classes/ppc_meta_boxes_class.php:635
+#: classes/ppc_meta_boxes_class.php:637
 msgid "Unknown"
 msgstr "Sconosciuto"
 
-#: classes/ppc_meta_boxes_class.php:637
+#: classes/ppc_meta_boxes_class.php:639
 #, php-format
 msgid "Awfully sad - Expired | %1$sRenew%2$s"
 msgstr "Terribilmente triste - Scaduta | %1$sRinnova%2$s"
 
-#: classes/ppc_meta_boxes_class.php:637 classes/ppc_meta_boxes_class.php:639
+#: classes/ppc_meta_boxes_class.php:639 classes/ppc_meta_boxes_class.php:641
 msgid "Renew!"
 msgstr "Rinnova!"
 
-#: classes/ppc_meta_boxes_class.php:639
+#: classes/ppc_meta_boxes_class.php:641
 #, php-format
 msgid "Anxious - In expiration | %1$sRenew%2$s"
 msgstr "Ansiosa - In scadenza | %1$sRinnova%2$s"
 
-#: classes/ppc_meta_boxes_class.php:641
+#: classes/ppc_meta_boxes_class.php:643
 msgid "Astonishingly happy"
 msgstr "Sorprendentemente felice"
 
-#: classes/ppc_meta_boxes_class.php:653
+#: classes/ppc_meta_boxes_class.php:655
 msgid "Deactivate license"
 msgstr "DIsattiva licenza"
 
@@ -1382,12 +1384,16 @@ msgstr ""
 "Il callback inserito ha ritornato NULL per un post a caso - sei sicuro sia "
 "corretto?"
 
-#: classes/ppc_save_options_class.php:222
+#: classes/ppc_save_options_class.php:178
+msgid "At least one role must be allowed to access the options page"
+msgstr "Almeno un ruolo utente deve poter accedere alla pagina delle opzioni"
+
+#: classes/ppc_save_options_class.php:225
 msgid "Are you sure you want to do this?"
 msgstr "Sei sicuro di volerlo fare?"
 
-#: classes/ppc_save_options_class.php:241
-#: classes/ppc_save_options_class.php:248 classes/ppc_update_class.php:107
+#: classes/ppc_save_options_class.php:244
+#: classes/ppc_save_options_class.php:251 classes/ppc_update_class.php:107
 msgid "Error: could not update settings."
 msgstr "Errore: non è stato possibile aggiornare le impostazioni."
 
@@ -1659,7 +1665,7 @@ msgstr ""
 msgid "No valid changelog was found."
 msgstr "Non è stato trovato un changelog valido."
 
-#: post-pay-counter.php:166 post-pay-counter.php:660
+#: post-pay-counter.php:166 post-pay-counter.php:662
 msgid "Stats"
 msgstr "Statistiche"
 
@@ -1667,46 +1673,46 @@ msgstr "Statistiche"
 msgid "System Info"
 msgstr "Informazioni di sistema"
 
-#: post-pay-counter.php:169 post-pay-counter.php:467
+#: post-pay-counter.php:169 post-pay-counter.php:469
 msgid "Addons"
 msgstr "Estensioni"
 
-#: post-pay-counter.php:276
+#: post-pay-counter.php:278
 msgid "Permissions"
 msgstr "Permessi"
 
-#: post-pay-counter.php:280
+#: post-pay-counter.php:282
 msgid "License status"
 msgstr "Stato della licenza"
 
-#: post-pay-counter.php:281
+#: post-pay-counter.php:283
 msgid "Miscellanea"
 msgstr "Varie"
 
-#: post-pay-counter.php:284
+#: post-pay-counter.php:286
 msgid "Import/Export Settings"
 msgstr "Importa/Esporta impostazioni"
 
-#: post-pay-counter.php:285
+#: post-pay-counter.php:287
 msgid "Everything you're missing by not being PRO"
 msgstr "Tutto quello che ti stai perdendo non essendo PRO"
 
-#: post-pay-counter.php:286
+#: post-pay-counter.php:288
 msgid "Support the author"
 msgstr "Supporta l'autore"
 
-#: post-pay-counter.php:289
+#: post-pay-counter.php:291
 msgid "Error log"
 msgstr "Log errori"
 
-#: post-pay-counter.php:308
+#: post-pay-counter.php:310
 msgid ""
 "Your license was successfully deactivated, you can now use it on other "
 "websites."
 msgstr ""
 "La licenza è stata disattivata con successo, puoi ora usarla su altri siti."
 
-#: post-pay-counter.php:309
+#: post-pay-counter.php:311
 msgid ""
 "Are you sure you want to deactivate your license on this website? You will "
 "be able to unlock the addon features on another website, but you will not be "
@@ -1716,7 +1722,7 @@ msgstr ""
 "sbloccare le funzionalità di questo addon su un altro sito, ma non potrai "
 "più fruirne su questo."
 
-#: post-pay-counter.php:310
+#: post-pay-counter.php:312
 msgid ""
 "User's settings successfully deleted. You will be redirected to the general "
 "options page."
@@ -1724,47 +1730,47 @@ msgstr ""
 "Le impostazioni utente sono stato eliminate con successo. Sarai rediretto "
 "alla pagina delle impostazioni generali."
 
-#: post-pay-counter.php:319
+#: post-pay-counter.php:321
 msgid "No more than 10 zones are allowed."
 msgstr "Non più di 10 zone consentite."
 
-#: post-pay-counter.php:320
+#: post-pay-counter.php:322
 msgid "No less than 2 zones are allowed."
 msgstr "Non meno di 2 zone sono consentite."
 
-#: post-pay-counter.php:321
+#: post-pay-counter.php:323
 msgid "A payment threshold must first be set."
 msgstr "Deve prima essere impostata una soglia di pagamento."
 
-#: post-pay-counter.php:350
+#: post-pay-counter.php:352
 msgid "The requested user does not exist."
 msgstr "L'utente richiesto non esiste."
 
-#: post-pay-counter.php:450
+#: post-pay-counter.php:452
 msgid "Settings"
 msgstr "Impostazioni"
 
-#: post-pay-counter.php:465
+#: post-pay-counter.php:467
 msgid "Donate"
 msgstr "Donazione"
 
-#: post-pay-counter.php:495
+#: post-pay-counter.php:497
 msgid "Installed version"
 msgstr "Versione installata"
 
-#: post-pay-counter.php:495
+#: post-pay-counter.php:497
 msgid "Support"
 msgstr "Assistenza"
 
-#: post-pay-counter.php:495
+#: post-pay-counter.php:497
 msgid "Tutorials"
 msgstr "Guide"
 
-#: post-pay-counter.php:495
+#: post-pay-counter.php:497
 msgid "Questions & Answers"
 msgstr "Domande & Risposte"
 
-#: post-pay-counter.php:500
+#: post-pay-counter.php:502
 msgid ""
 "The Post Pay Counter plugin is ready to make handling authors' payments "
 "much, much easier, starting from... now! From this page you can set the "
@@ -1782,7 +1788,7 @@ msgstr ""
 "plugin e, per la maggior parte di esse, maggiori dettagli ed esempi sono "
 "disponibili cliccando sull'icona info sulla destra."
 
-#: post-pay-counter.php:501
+#: post-pay-counter.php:503
 #, php-format
 msgid ""
 "Don't forget to take our %1$sfeatures survey%2$s to let us know what "
@@ -1795,30 +1801,30 @@ msgstr ""
 "Inoltre, se ti piace questo plugin, potresti essere interessato alla "
 "%3$sversione PRO%2$s, contenente una gran quantità di utili caratteristiche."
 
-#: post-pay-counter.php:519
+#: post-pay-counter.php:521
 msgid "Go back to general settings"
 msgstr "Torna alle impostazioni generali"
 
-#: post-pay-counter.php:520
+#: post-pay-counter.php:522
 msgid "Delete user's settings"
 msgstr "Rimuovi impostazioni utente"
 
-#: post-pay-counter.php:521
+#: post-pay-counter.php:523
 msgid "Currently editing user:"
 msgstr "Modificando l'utente:"
 
-#: post-pay-counter.php:597
+#: post-pay-counter.php:599
 msgid "You do not have sufficient permissions to access this page"
 msgstr "Non hai sufficienti permessi per accedere a questa pagina"
 
-#: post-pay-counter.php:691
+#: post-pay-counter.php:693
 msgid ""
 "Displayed data is cached. You may have to wait 24 hours for updated data."
 msgstr ""
 "I dati mostrati provengono dalla cache. Potresti dover attendere 24 ore "
 "affinché siano aggiornati."
 
-#: post-pay-counter.php:726
+#: post-pay-counter.php:728
 msgid "General"
 msgstr "Generale"
 
