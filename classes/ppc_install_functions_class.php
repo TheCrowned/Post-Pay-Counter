@@ -204,13 +204,6 @@ class PPC_install_functions {
                 'enable_stats_payments_tooltips' => 1,
                 'payment_display_round_digits' => 2,
                 'save_stats_order' => 1
-            ),
-
-            'admin' => array(
-                'userid' => $current_user->ID,
-                'can_see_others_general_stats' => 1,
-    			'can_see_others_detailed_stats' => 1,
-    			'can_see_countings_special_settings' => 1
             )
 		);
 
@@ -239,11 +232,6 @@ class PPC_install_functions {
 				}
             }
         }
-
-        //Grant current user all permissions by personalizing his user (if not already)
-        $admin_settings = PPC_general_functions::get_settings( $current_user->ID );
-        if( $admin_settings['userid'] == 'general' )
-            update_user_option( $current_user->ID, $ppc_global_settings['option_name'], $default_settings['admin'], true );
 
 		//Add error log option
 		if( ! get_option( $ppc_global_settings['option_errors'] ) )
