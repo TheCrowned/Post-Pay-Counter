@@ -50,7 +50,9 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
 
 		$this->perm = new PPC_permissions();
 
-		list( $this->author_id, $this->data ) = each( $stats_data['formatted_stats']['stats'] );
+		$this->author_id = key( $stats_data['formatted_stats']['stats'] );
+		$this->data = current( $stats_data['formatted_stats']['stats'] );
+		
 		$this->columns = $stats_data['formatted_stats']['cols'];
 		$this->raw_data = $stats_data['raw_stats'];
     }
