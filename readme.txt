@@ -3,7 +3,7 @@ Contributors: Ste_95
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22
 Tags: counter, authors, payment, revenue sharing, stats, multi author, post management, post
 Tested up to: 4.9
-Stable tag: 2.740
+Stable tag: 2.741
 Requires at least: 3.7
 
 Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
@@ -77,6 +77,10 @@ From this: *define( 'PPC_DEBUG_LOG', true );*
 It must become: *define( 'PPC_DEBUG_LOG', false );*
 
 == Changelog ==
+= 2.741 (2019-01-05) =
+* Fix: PHP warning in function get_cal_days_in_month being called with 0 instead of 12, happening with "Last Month" stats.
+* Fix: removed deprecated `each`.
+
 = 2.740 (2018-06-27) =
 * Fix: slight issue with word counting and punctuation (for ex. "Hello world . " being counted as 3 words.)
 * Fix: removed legacy code that would explicitly grant all permissions to admin user on install.
