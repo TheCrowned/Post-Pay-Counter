@@ -281,7 +281,8 @@ class PPC_general_functions {
             $ppc_global_settings['stats_tstart'] = strtotime( '00:00:00' ) - ( ( date( 'z' ) )*24*60*60 ); //starts from timestamp of current day and subtracts seconds for enough days (depending on what day of the year is today)
             $ppc_global_settings['stats_tend'] = strtotime( '23:59:59' );
         } else if( $settings['default_stats_time_range_last_month'] ) {
-            $ppc_global_settings['stats_tstart'] = strtotime( '00:00:00' ) - ( ( date( 'j' )-1 + cal_days_in_month( CAL_GREGORIAN, date( 'm' ) - 1, date( 'Y' ) ) )*24*60*60 );
+			$prev_month = ( date( 'm' ) > 1 ) ? date( 'm' ) - 1 : 12;
+            $ppc_global_settings['stats_tstart'] = strtotime( '00:00:00' ) - ( ( date( 'j' )-1 + cal_days_in_month( CAL_GREGORIAN, $prev_month, date( 'Y' ) ) )*24*60*60 );
             $ppc_global_settings['stats_tend'] = strtotime( '23:59:59' ) - ( date( 'j' )*24*60*60 );
         } else if( $settings['default_stats_time_range_all_time'] ) {
             $ppc_global_settings['stats_tstart'] = $ppc_global_settings['first_available_post_time'];
