@@ -115,14 +115,14 @@ class PPC_HTML_functions {
 			echo '<select name="author" id="ppc_stats_user">';
 			echo '<option value="ppc_any">'.__( 'Any', 'post-pay-counter' ).'</option>';
 
-			$all_users = get_users( array( 'orderby' => 'nicename', 'role__in' => $general_settings['counting_allowed_user_roles'], 'fields' => array( 'ID', 'user_nicename' ) ) );
+			$all_users = get_users( array( 'orderby' => 'nicename', 'role__in' => $general_settings['counting_allowed_user_roles'], 'fields' => array( 'ID', 'display_name' ) ) );
 			foreach( $all_users as $user ) {
 				$checked = '';
 
 				if( isset( $ppc_global_settings['stats_user'] ) AND $key == $ppc_global_settings['stats_user'] )
 					$checked = 'selected="selected"';
 
-				echo '<option value="'.$user->ID.'" '.$checked.' />'.$user->user_nicename.'</option>';
+				echo '<option value="'.$user->ID.'" '.$checked.' />'.$user->display_name.'</option>';
 			}
 
 			echo '</select>';
