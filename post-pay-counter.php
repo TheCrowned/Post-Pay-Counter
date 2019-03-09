@@ -4,7 +4,7 @@ Plugin Name: Post Pay Counter
 Plugin URI: https://postpaycounter.com
 Description: Easily handle authors' payments on a multi-author blog by computing posts' pay basing on admin defined rules.
 Author: Stefano Ottolenghi
-Version: 2.742
+Version: 2.743
 Author URI: http://www.thecrowned.org/
 Text Domain: post-pay-counter
 */
@@ -60,7 +60,7 @@ class post_pay_counter {
         global $ppc_global_settings;
 
         $ppc_global_settings['current_version'] = get_option( 'ppc_current_version' );
-        $ppc_global_settings['newest_version'] = '2.742';
+        $ppc_global_settings['newest_version'] = '2.743';
         $ppc_global_settings['option_name'] = 'ppc_settings';
         $ppc_global_settings['option_errors'] = 'ppc_errors';
         $ppc_global_settings['option_stats_cache_incrementor'] = 'ppc_stats_cache_incrementor';
@@ -215,7 +215,7 @@ class post_pay_counter {
         global $ppc_global_settings;
 
 		add_thickbox();
-		
+
 		//If an author is given, put that in an array
         if( isset( $_REQUEST['author'] ) AND is_numeric( $_REQUEST['author'] ) AND get_userdata( $_REQUEST['author'] ) ) {
             $ppc_global_settings['current_page'] = 'stats_detailed';
@@ -224,7 +224,7 @@ class post_pay_counter {
             $ppc_global_settings['current_page'] = 'stats_general';
 			$this->author = NULL;
 		}
-		
+
 		//Store and maybe_redirect to ordered stats
 		PPC_general_functions::default_stats_order();
 
@@ -691,7 +691,7 @@ class post_pay_counter {
 			<?php
 			if( $general_settings['enable_post_stats_caching'] )
 				echo '<div style="float: left; margin-bottom: -20px; font-style: italic;">'.__( 'Displayed data is cached. You may have to wait 24 hours for updated data.', 'post-pay-counter' ).'</div>';
-			
+
 			if( isset( $this->stats_table ) AND ! is_wp_error( $this->stats_table ) ) {
 				$this->stats_table->prepare_items();
 				$this->stats_table->display();
@@ -748,7 +748,7 @@ class post_pay_counter {
 			<?php
 			if( $general_settings['enable_post_stats_caching'] )
 				echo '<div style="float: left; margin-bottom: -20px; font-style: italic;">Displayed data is cached. You may have to wait 24 hours for updated data.</div>';
-				
+
 			if( isset( $this->stats_table ) AND ! is_wp_error( $this->stats_table ) ) {
 				$this->stats_table->prepare_items();
 				$this->stats_table->display();

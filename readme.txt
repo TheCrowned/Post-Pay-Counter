@@ -3,7 +3,7 @@ Contributors: Ste_95
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22
 Tags: counter, authors, payment, revenue sharing, stats, multi author, post management, post
 Tested up to: 5.0
-Stable tag: 2.742
+Stable tag: 2.743
 Requires at least: 3.7
 
 Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
@@ -77,6 +77,9 @@ From this: *define( 'PPC_DEBUG_LOG', true );*
 It must become: *define( 'PPC_DEBUG_LOG', false );*
 
 == Changelog ==
+= 2.743 (2019-03-09) =
+* Tweak: allow post status to be localized.
+
 = 2.742 (2019-02-06) =
 * Tweak: user choice dropdown in stats page now lists by display_name (which is consistent with other stats features) rather than nicename.
 
