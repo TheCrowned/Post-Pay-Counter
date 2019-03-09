@@ -61,7 +61,7 @@ class PPC_generate_stats {
 
 			$return['formatted_stats'] = $formatted_stats;
 		}
-        
+
         return $return;
     }
 
@@ -168,7 +168,7 @@ class PPC_generate_stats {
     static function group_stats_by_author( $data ) {
         $sorted_array = array();
         foreach( $data as $post_id => $single )
-            $sorted_array[$single->post_author][$post_id] = $single;        
+            $sorted_array[$single->post_author][$post_id] = $single;
 
         return apply_filters( 'ppc_grouped_by_author_stats', $sorted_array );
     }
@@ -193,7 +193,7 @@ class PPC_generate_stats {
 
 			//if( ! isset( $author_stats['total']['ppc_count']['normal_count'] ) )
 				$data[$author_id]['total']['ppc_count']['normal_count'] = array();
-			
+
 			foreach( $author_stats as $post_id => $single ) {
 
 				//Written posts count
@@ -248,7 +248,7 @@ class PPC_generate_stats {
 					//For example, Publisher Bonus stores here visits/words data so that it can calculate a bonus for them with its class payment method.
 					if( ! isset( $counting_type_count['aux'] ) )
 						$counting_type_count['aux'] = array();
-					
+
 					$stats['total']['ppc_count']['normal_count'][$id] = $counting_type_count;
 				}
 
@@ -278,7 +278,7 @@ class PPC_generate_stats {
 			$stats = apply_filters( 'ppc_sort_stats_by_author_foreach_author', $stats, $author );
 			//print_r($stats['total']);
 		}
-		
+
         return apply_filters( 'ppc_generated_raw_stats', $data );
     }
 
@@ -324,7 +324,7 @@ class PPC_generate_stats {
             // BUG: if random post has different counting types (for example because of category custom settings, then the whole thing is screwed up)
             // It doesnt work even if in the whole page there is just on different post, because then on line 357 we use this var to foreach cnt types
             */
-            
+
 			unset( $data_merge['total'] );
 
 			//Add column labels for counting types
@@ -339,13 +339,14 @@ class PPC_generate_stats {
                 $formatted_stats['stats'][$author_id][$post->ID]['post_title'] = $post->post_title;
                 $formatted_stats['stats'][$author_id][$post->ID]['post_type'] = $post->post_type;
                 $formatted_stats['stats'][$author_id][$post->ID]['post_status'] = $post->post_status;
+
                 $formatted_stats['stats'][$author_id][$post->ID]['post_publication_date'] = $post_date[0];
 
 				$data_merge = array_merge( $post->ppc_count['normal_count'], $post->ppc_payment['normal_payment'] ); //get counting types for this post
 
 				//Add column labels for counting types, if new ones are there
 				self::get_detailed_stats_columns( $formatted_stats['cols'], $data_merge );
-			
+
 				foreach( $data_merge as $id => $value ) { //foreach counting types in $post->ppc_* vars
 					if( isset( $counting_types[$id] ) ) {
 
@@ -353,7 +354,7 @@ class PPC_generate_stats {
 							$display = $user_settings[$counting_types[$id]['display_status_index']];
 						else
 							$display = $counting_types[$id]['display'];
-						
+
 						switch( $display ) {
 							case 'both':
 								$formatted_stats['stats'][$author_id][$post->ID]['post_'.$id] = $post->ppc_count['normal_count'][$id]['to_count'].' ('.PPC_general_functions::format_payment( sprintf( '%.2f', $post->ppc_payment['normal_payment'][$id] ) ).')';
@@ -412,7 +413,7 @@ class PPC_generate_stats {
 							$display = $user_settings[$counting_types[$id]['display_status_index']];
 						else
 							$display = $counting_types[$id]['display'];
-						
+
 						switch( $display ) {
 							case 'both':
 								$formatted_stats['stats'][$author_id]['author_'.$id] = $posts['total']['ppc_count']['normal_count'][$id]['to_count'].' ('.PPC_general_functions::format_payment( $posts['total']['ppc_payment']['normal_payment'][$id] ).')';
@@ -474,7 +475,7 @@ class PPC_generate_stats {
 
 	/**
 	 * Builds detailed stats columns array incrementally.
-	 * 
+	 *
 	 * Since each post can have different cnt types enabled (for example
 	 * because of Category custom settings), every post must be able to
 	 * contribute to the table columns.
@@ -483,13 +484,13 @@ class PPC_generate_stats {
 	 * @param 	&$columns array current columns
 	 * @param	$maybe_add array columns current post contributes
 	 * @return	void
-	 */ 
+	 */
     static function get_detailed_stats_columns( &$columns, $maybe_add ) {
 		global $ppc_global_settings;
 
 		$cols = array();
 		$counting_types = $ppc_global_settings['counting_types_object']->get_all_counting_types( 'post' );
-		
+
 		foreach( $maybe_add as $id => $value ) {
 			if( isset( $counting_types[$id] ) ) {
 				switch( $counting_types[$id]['display'] ) {

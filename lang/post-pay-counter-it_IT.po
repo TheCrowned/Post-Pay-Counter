@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Post Pay Counter\n"
-"POT-Creation-Date: 2018-05-21 19:08+0200\n"
-"PO-Revision-Date: 2018-05-21 19:09+0200\n"
+"POT-Creation-Date: 2019-03-09 11:33+0100\n"
+"PO-Revision-Date: 2019-03-09 11:33+0100\n"
 "Last-Translator: Stefano Ottolenghi <webmaster@thecrowned.org>\n"
 "Language-Team: Stefano Ottolenghi <webmaster@thecrowned.org>\n"
 "Language: it_IT\n"
@@ -125,46 +125,46 @@ msgstr "Stato"
 msgid "Pub. Date"
 msgstr "Data pubblicazione"
 
-#: classes/ppc_generate_stats_class.php:384
+#: classes/ppc_generate_stats_class.php:385
 msgid "Total Pay"
 msgstr "Pagamento totale"
 
-#: classes/ppc_generate_stats_class.php:446
+#: classes/ppc_generate_stats_class.php:447
 #, php-format
 msgid "No posts reach the threshold. Check your settings at %1$s"
 msgstr "Nessun post raggiunge la soglia. Controlla le tue impostazioni in %1$s"
 
-#: classes/ppc_generate_stats_class.php:446 post-pay-counter.php:167
+#: classes/ppc_generate_stats_class.php:447 post-pay-counter.php:167
 #: post-pay-counter.php:501
 msgid "Options"
 msgstr "Opzioni"
 
-#: classes/ppc_generate_stats_class.php:446
+#: classes/ppc_generate_stats_class.php:447
 #: classes/ppc_meta_boxes_class.php:203 post-pay-counter.php:277
 msgid "Counting Settings"
 msgstr "Opzione di conteggio"
 
-#: classes/ppc_generate_stats_class.php:446
+#: classes/ppc_generate_stats_class.php:447
 msgid "Total Payment"
 msgstr "Pagamento totale"
 
-#: classes/ppc_generate_stats_class.php:446
+#: classes/ppc_generate_stats_class.php:447
 msgid "Pay only when the total payment threshold is reached"
 msgstr "Paga solo quando viene raggiunta la soglia massima di pagamento"
 
-#: classes/ppc_generate_stats_class.php:451
+#: classes/ppc_generate_stats_class.php:452
 msgid "Author ID"
 msgstr "ID autore"
 
-#: classes/ppc_generate_stats_class.php:452
+#: classes/ppc_generate_stats_class.php:453
 msgid "Author Name"
 msgstr "Nome autore"
 
-#: classes/ppc_generate_stats_class.php:453
+#: classes/ppc_generate_stats_class.php:454
 msgid "Written posts"
 msgstr "Post scritti"
 
-#: classes/ppc_generate_stats_class.php:468
+#: classes/ppc_generate_stats_class.php:469
 #: classes/ppc_meta_boxes_class.php:336
 msgid "Total payment"
 msgstr "Pagamento totale"
@@ -229,39 +229,54 @@ msgid "Get current view permalink"
 msgstr "Ottieni permalink della vista corrente"
 
 #: classes/ppc_html_functions_class.php:321
-#: classes/ppc_wp_list_table_posts_class.php:120
+#: classes/ppc_wp_list_table_posts_class.php:122
 #, php-format
 msgid "Total is %1$s. %2$s Displayed is what you'll be paid for."
 msgstr "Il totale è %1$s. %2$s Visualizzato è ciò che ti sarà pagato."
 
-#: classes/ppc_html_functions_class.php:360
+#: classes/ppc_html_functions_class.php:328
+#: classes/ppc_wp_list_table_posts_class.php:129
+msgid "Publish"
+msgstr "Pubblicato"
+
+#: classes/ppc_html_functions_class.php:330
+#: classes/ppc_wp_list_table_posts_class.php:131
+msgid "Pending"
+msgstr "In attesa"
+
+#: classes/ppc_html_functions_class.php:332
+#: classes/ppc_wp_list_table_posts_class.php:133
+msgid "Future"
+msgstr "Programmato"
+
+#: classes/ppc_html_functions_class.php:371
 #: classes/ppc_wp_list_table_authors_class.php:92
 msgid "Go to detailed view"
 msgstr "Vai alla visualizzazione dettagliata"
 
-#: classes/ppc_html_functions_class.php:382
+#: classes/ppc_html_functions_class.php:393
 #: classes/ppc_wp_list_table_authors_class.php:111
 msgid "Displayed is what you'll be paid for."
 msgstr "Ciò che vedi è ciò per cui sarai pagato."
 
-#: classes/ppc_html_functions_class.php:427
+#: classes/ppc_html_functions_class.php:438
 msgid "Total displayed posts:"
 msgstr "Totale post mostrati:"
 
-#: classes/ppc_html_functions_class.php:429
+#: classes/ppc_html_functions_class.php:440
 msgid "Total displayed payment:"
 msgstr "Totale pagamento mostrato:"
 
-#: classes/ppc_html_functions_class.php:438
+#: classes/ppc_html_functions_class.php:449
 msgid "Totals"
 msgstr "Totali"
 
-#: classes/ppc_install_functions_class.php:224
+#: classes/ppc_install_functions_class.php:217
 msgid "Could not add general settings option."
 msgstr ""
 "Non è stato possibile aggiungere l'opzione delle impostazioni generali."
 
-#: classes/ppc_install_functions_class.php:233
+#: classes/ppc_install_functions_class.php:226
 msgid "Could not update general settings option."
 msgstr ""
 "Non è stato possibile aggiornare l'opzione delle impostazioni generali."

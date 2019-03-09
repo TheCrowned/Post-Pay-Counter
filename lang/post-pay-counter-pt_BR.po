@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Post Pay Counter\n"
-"POT-Creation-Date: 2014-06-22 09:48+0100\n"
+"POT-Creation-Date: 2018-08-03 09:05+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Stefano Ottolenghi <webmaster@thecrowned.org>\n"
 "Language-Team: Marco Dantas <contato@marcodantas.com>\n"
@@ -9,12 +9,24 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.5\n"
+"X-Generator: Poedit 2.0.6\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: classes/ppc_ajax_functions_class.php:22
+#: classes/ppc_addons_class.php:150
+msgid "Addons for Post Pay Counter"
+msgstr ""
+
+#: classes/ppc_addons_class.php:151
+msgid "Browse All Extensions"
+msgstr ""
+
+#: classes/ppc_addons_class.php:153
+msgid "These addons add more features to Post Pay Counter."
+msgstr ""
+
+#: classes/ppc_ajax_functions_class.php:26
 msgid ""
 "Error: Seems like AJAX request was not recognised as coming from the right "
 "page. Maybe hacking around..?"
@@ -22,164 +34,286 @@ msgstr ""
 "Erro: parece que o pedido AJAX não foi reconhecido como vindo da direita da "
 "página. Talvez, pequenos hackers ..?"
 
-#: classes/ppc_ajax_functions_class.php:113
+#: classes/ppc_ajax_functions_class.php:124
 msgid "No users found."
 msgstr "Nenhum usuário encontrado."
 
-#: classes/ppc_ajax_functions_class.php:183
+#: classes/ppc_ajax_functions_class.php:206
+#: classes/ppc_html_functions_class.php:100
+#: classes/ppc_html_functions_class.php:116
+msgid "Any"
+msgstr ""
+
+#: classes/ppc_ajax_functions_class.php:277
 msgid "What are you importing, cows?"
 msgstr "O que você está importando, vacas?"
 
-#: classes/ppc_ajax_functions_class.php:202
+#: classes/ppc_ajax_functions_class.php:297
 msgid "Error: could not clear error log."
 msgstr "Erro: o log de erros não pode ser apagado."
 
-#: classes/ppc_counting_stuff_class.php:339
-#: classes/ppc_meta_boxes_class.php:207
-msgid "Basic payment"
-msgstr "Pagamento básico"
+#: classes/ppc_ajax_functions_class.php:339
+msgid ""
+"Make sure the license you are trying to activate is related to an addon that "
+"is both installed and active."
+msgstr ""
 
-#: classes/ppc_counting_stuff_class.php:342
-msgid "Words payment"
-msgstr "Pagamento por palavra"
+#: classes/ppc_ajax_functions_class.php:339
+msgid ""
+"You may be activating an old PRO version: in this case, try to use the other "
+"License status box you can find in the Options page. You may have to scroll "
+"the page to find it."
+msgstr ""
 
-#: classes/ppc_counting_stuff_class.php:345
-msgid "Visits payment"
-msgstr "Pagamento por visita"
+#: classes/ppc_autoupdate_class.php:210
+msgid "Enter a valid, non-expired license key for automatic updates."
+msgstr ""
 
-#: classes/ppc_counting_stuff_class.php:348
-msgid "Images payment"
-msgstr "Pagamento por imagem"
+#: classes/ppc_counting_stuff_class.php:123
+#: classes/ppc_generate_stats_class.php:116
+msgid ""
+"Your query resulted in an empty result. Try to select a wider time range!"
+msgstr ""
 
-#: classes/ppc_counting_stuff_class.php:351
-msgid "Comments payment"
-msgstr "Pagamento por comentário"
+#: classes/ppc_counting_types_class.php:235
+msgid "Basic"
+msgstr ""
 
-#: classes/ppc_generate_stats_class.php:105
-msgid "Error: no posts were selected"
-msgstr "Erro: nenhum post selecionado"
-
-#: classes/ppc_generate_stats_class.php:230
-msgid "ID"
-msgstr "ID"
-
-#: classes/ppc_generate_stats_class.php:231
-msgid "Title"
-msgstr "Título"
-
-#: classes/ppc_generate_stats_class.php:232
-msgid "Type"
-msgstr "Tipo"
-
-#: classes/ppc_generate_stats_class.php:233
-msgid "Status"
-msgstr "Estatísticas"
-
-#: classes/ppc_generate_stats_class.php:234
-msgid "Pub. Date"
-msgstr "Data de Pub."
-
-#: classes/ppc_generate_stats_class.php:237
+#: classes/ppc_counting_types_class.php:246
 msgid "Words"
 msgstr "Palavras"
 
-#: classes/ppc_generate_stats_class.php:239
+#: classes/ppc_counting_types_class.php:258
 msgid "Visits"
 msgstr "Visitas"
 
-#: classes/ppc_generate_stats_class.php:241
+#: classes/ppc_counting_types_class.php:269
+#, fuzzy
+#| msgid "images"
+msgid "Images"
+msgstr "imagens"
+
+#: classes/ppc_counting_types_class.php:280
 msgid "Comments"
 msgstr "Comentários"
 
-#: classes/ppc_generate_stats_class.php:243
-msgid "Imgs"
-msgstr "Imagens"
+#: classes/ppc_generate_stats_class.php:315
+msgid "ID"
+msgstr "ID"
 
-#: classes/ppc_generate_stats_class.php:245
+#: classes/ppc_generate_stats_class.php:316
+msgid "Title"
+msgstr "Título"
+
+#: classes/ppc_generate_stats_class.php:317
+msgid "Type"
+msgstr "Tipo"
+
+#: classes/ppc_generate_stats_class.php:318
+#: classes/ppc_meta_boxes_class.php:622
+msgid "Status"
+msgstr "Estatísticas"
+
+#: classes/ppc_generate_stats_class.php:319
+msgid "Pub. Date"
+msgstr "Data de Pub."
+
+#: classes/ppc_generate_stats_class.php:384
 msgid "Total Pay"
 msgstr "Total Pago"
 
-#: classes/ppc_generate_stats_class.php:277
+#: classes/ppc_generate_stats_class.php:446
+#, php-format
+msgid "No posts reach the threshold. Check your settings at %1$s"
+msgstr ""
+
+#: classes/ppc_generate_stats_class.php:446 post-pay-counter.php:167
+#: post-pay-counter.php:501
+msgid "Options"
+msgstr "Opções"
+
+#: classes/ppc_generate_stats_class.php:446
+#: classes/ppc_meta_boxes_class.php:203 post-pay-counter.php:277
+msgid "Counting Settings"
+msgstr "Configurações de contagem"
+
+#: classes/ppc_generate_stats_class.php:446
+#, fuzzy
+#| msgid "Total payment"
+msgid "Total Payment"
+msgstr "Pagamento Total"
+
+#: classes/ppc_generate_stats_class.php:446
+msgid "Pay only when the total payment threshold is reached"
+msgstr "Pague somente quando o limite de pagamento total é atingido"
+
+#: classes/ppc_generate_stats_class.php:451
 msgid "Author ID"
 msgstr "ID do Autor"
 
-#: classes/ppc_generate_stats_class.php:278
+#: classes/ppc_generate_stats_class.php:452
 msgid "Author Name"
 msgstr "Nome do Autor"
 
-#: classes/ppc_generate_stats_class.php:279
+#: classes/ppc_generate_stats_class.php:453
 msgid "Written posts"
 msgstr "Posts enviados"
 
-#: classes/ppc_generate_stats_class.php:280
-#: classes/ppc_meta_boxes_class.php:288
+#: classes/ppc_generate_stats_class.php:468
+#: classes/ppc_meta_boxes_class.php:336
 msgid "Total payment"
 msgstr "Pagamento Total"
 
-#: classes/ppc_html_functions_class.php:30
+#: classes/ppc_html_functions_class.php:25
 #, php-format
-msgid "Showing stats from %1$s to %2$s"
+msgid "A %1$spengu-ins%2$s production"
+msgstr ""
+
+#: classes/ppc_html_functions_class.php:50
+msgid "Showing posts for"
+msgstr ""
+
+#: classes/ppc_html_functions_class.php:52 classes/ppc_meta_boxes_class.php:200
+msgid "This Month"
+msgstr ""
+
+#: classes/ppc_html_functions_class.php:53 classes/ppc_meta_boxes_class.php:202
+msgid "Last Month"
+msgstr ""
+
+#: classes/ppc_html_functions_class.php:54 classes/ppc_meta_boxes_class.php:201
+msgid "This Year"
+msgstr ""
+
+#: classes/ppc_html_functions_class.php:55 classes/ppc_meta_boxes_class.php:199
+msgid "This Week"
+msgstr ""
+
+#: classes/ppc_html_functions_class.php:56 classes/ppc_meta_boxes_class.php:203
+msgid "All Time"
+msgstr ""
+
+#: classes/ppc_html_functions_class.php:57
+msgid "Custom"
+msgstr ""
+
+#: classes/ppc_html_functions_class.php:92
+#, fuzzy, php-format
+#| msgid "Showing stats from %1$s to %2$s"
+msgid "From %1$s to %2$s"
 msgstr "Mostrar estatísticas de %1$s a %2$s"
 
-#: classes/ppc_html_functions_class.php:36 post-pay-counter.php:395
+#: classes/ppc_html_functions_class.php:98
+#, fuzzy
+#| msgid "Allowed user roles"
+msgid "Filter by user role"
+msgstr "Funções de usuário permitidas"
+
+#: classes/ppc_html_functions_class.php:114
+msgid "User"
+msgstr ""
+
+#: classes/ppc_html_functions_class.php:152
+#: classes/ppc_html_functions_class.php:156 post-pay-counter.php:521
 msgid "Back to general"
 msgstr "Voltar para o painel"
 
-#: classes/ppc_html_functions_class.php:41
-msgid "Update time range"
+#: classes/ppc_html_functions_class.php:164
+#, fuzzy
+#| msgid "Update time range"
+msgid "Update view"
 msgstr "Atualizar intervalo de tempo"
 
-#: classes/ppc_html_functions_class.php:43
+#: classes/ppc_html_functions_class.php:166
 msgid "Get current view permalink"
 msgstr "Link da vista atual"
 
-#: classes/ppc_html_functions_class.php:166
+#: classes/ppc_html_functions_class.php:321
+#: classes/ppc_wp_list_table_posts_class.php:120
+#, php-format
+msgid "Total is %1$s. %2$s Displayed is what you'll be paid for."
+msgstr ""
+
+#: classes/ppc_html_functions_class.php:360
+#: classes/ppc_wp_list_table_authors_class.php:92
 msgid "Go to detailed view"
 msgstr "Acessar vista detalhada"
 
-#: classes/ppc_html_functions_class.php:205
+#: classes/ppc_html_functions_class.php:382
+#: classes/ppc_wp_list_table_authors_class.php:111
+msgid "Displayed is what you'll be paid for."
+msgstr ""
+
+#: classes/ppc_html_functions_class.php:427
 msgid "Total displayed posts:"
 msgstr "Total de posts:"
 
-#: classes/ppc_html_functions_class.php:207
+#: classes/ppc_html_functions_class.php:429
 msgid "Total displayed payment:"
 msgstr "Total de pagamentos:"
 
-#: classes/ppc_html_functions_class.php:211
-msgid "Total words count:"
-msgstr "Total de palavras:"
+#: classes/ppc_html_functions_class.php:438
+#, fuzzy
+#| msgid "Total Pay"
+msgid "Totals"
+msgstr "Total Pago"
 
-#: classes/ppc_html_functions_class.php:213
-msgid "Total visits count:"
-msgstr "Total de visitas:"
-
-#: classes/ppc_html_functions_class.php:217
-msgid "Total images count:"
-msgstr "Total de imagens:"
-
-#: classes/ppc_html_functions_class.php:219
-msgid "Total comments count:"
-msgstr "Total de comentários:"
-
-#: classes/ppc_install_functions_class.php:268
+#: classes/ppc_install_functions_class.php:217
 msgid "Could not add general settings option."
 msgstr "Não foi possível adicionar a opção às configurações."
 
-#: classes/ppc_install_functions_class.php:277
+#: classes/ppc_install_functions_class.php:226
 msgid "Could not update general settings option."
 msgstr "Não foi possível atualizar as configurações."
 
-#: classes/ppc_meta_boxes_class.php:21
+#: classes/ppc_license_class.php:92 classes/ppc_license_class.php:99
+#, fuzzy
+#| msgid "Error log"
+msgid "Error"
+msgstr "Log de erros"
+
+#: classes/ppc_license_class.php:106
+msgid ""
+"Error: something went wrong on the remote server. This should be reported."
+msgstr ""
+
+#: classes/ppc_license_class.php:133
+msgid "You already have a license for this addon active."
+msgstr ""
+
+#: classes/ppc_license_class.php:147
+#, fuzzy
+#| msgid "Error: could not update settings."
+msgid "Error: could not store license details."
+msgstr "Erro: não foi possível atualizar as configurações"
+
+#: classes/ppc_license_class.php:165 classes/ppc_license_class.php:191
+msgid "You don't have a license for this addon active"
+msgstr ""
+
+#: classes/ppc_meta_boxes_class.php:20
 msgid "Google Analytics"
 msgstr "Google Analytics"
 
-#: classes/ppc_meta_boxes_class.php:21
+#: classes/ppc_meta_boxes_class.php:20
 msgid ""
 "use your account on the world-leading website visits tracking system to pay "
 "writers per visit."
 msgstr ""
 "use a sua conta do maior sistema de rastreamento de visitas para pagar "
 "escritores por visita."
+
+#: classes/ppc_meta_boxes_class.php:21
+#, fuzzy
+#| msgid "Google Analytics"
+msgid "Google Adsense"
+msgstr "Google Analytics"
+
+#: classes/ppc_meta_boxes_class.php:21
+msgid ""
+"share a percentage of your ads revenues with writers, depending on how much "
+"their posts earn."
+msgstr ""
 
 #: classes/ppc_meta_boxes_class.php:22
 msgid "PayPal"
@@ -251,11 +385,11 @@ msgstr ""
 "Ainda falta alguma coisa? Complete nosso %1$sformulário de recursos%2$s e "
 "deixe-nos saber quais devem ser nossas prioridades!"
 
-#: classes/ppc_meta_boxes_class.php:38
+#: classes/ppc_meta_boxes_class.php:38 post-pay-counter.php:503
 msgid "Features survey"
 msgstr "Formulário de recursos"
 
-#: classes/ppc_meta_boxes_class.php:51
+#: classes/ppc_meta_boxes_class.php:50
 msgid ""
 "If you like the Post Pay Counter, there are a couple of crucial things you "
 "can do to support its development"
@@ -263,19 +397,19 @@ msgstr ""
 "Se você gostou do Post Pay Counter, existem algumas coisas importantes que "
 "você pode fazer para dar suporte ao desenvolvimento"
 
-#: classes/ppc_meta_boxes_class.php:53 post-pay-counter.php:334
+#: classes/ppc_meta_boxes_class.php:52 post-pay-counter.php:468
 msgid "Go PRO"
 msgstr "Adquira a versão PRO"
 
-#: classes/ppc_meta_boxes_class.php:53
+#: classes/ppc_meta_boxes_class.php:52
 msgid "Try the PRO version: more functions, more stuff!"
 msgstr "Conheça a versão PRO: mais recursos, mais novidades!"
 
-#: classes/ppc_meta_boxes_class.php:54
+#: classes/ppc_meta_boxes_class.php:53
 msgid "Donate money"
 msgstr "Doe dinheiro"
 
-#: classes/ppc_meta_boxes_class.php:54
+#: classes/ppc_meta_boxes_class.php:53
 msgid ""
 "Plugins do not write themselves: they need time and effort, and I give all "
 "of that free of charge. Donations of every amount are absolutely welcome."
@@ -284,19 +418,14 @@ msgstr ""
 "e eu faço isso gratuitamente. Doações de qualquer quantia são muito bem-"
 "vindas."
 
-#: classes/ppc_meta_boxes_class.php:55
-#, php-format
-msgid "Give me something from my %1$sAmazon Wishlist%2$s."
-msgstr "Me dê algo da minha %1$sLista de Presentes da Amazon%2$s."
-
-#: classes/ppc_meta_boxes_class.php:56
+#: classes/ppc_meta_boxes_class.php:54
 #, php-format
 msgid ""
 "Rate it in the %1$sWordpress Directory%3$s and share the %2$sofficial page"
 "%3$s."
 msgstr "Vote no %1$sWordpress%3$s e compartilhe o %2$ssite oficial%3$s."
 
-#: classes/ppc_meta_boxes_class.php:57
+#: classes/ppc_meta_boxes_class.php:55
 msgid ""
 "Have a blog or write on some website? Write about the plugin and email me "
 "the review!"
@@ -304,45 +433,159 @@ msgstr ""
 "Você tem um blog ou escreve para algum website? Escreva sobre o plugin e me "
 "envie sua opinião!"
 
+#: classes/ppc_meta_boxes_class.php:73
+msgid "Performance"
+msgstr ""
+
+#: classes/ppc_meta_boxes_class.php:75
+msgid ""
+"Stats generation can become very slow on big sites. Uncheck all these "
+"options to get best performance. Caching is the only thing that you should "
+"keep active."
+msgstr ""
+
 #: classes/ppc_meta_boxes_class.php:76
+msgid "Enable post stats caching"
+msgstr ""
+
+#: classes/ppc_meta_boxes_class.php:76
+msgid ""
+"Post stats will be cached for one day. This can dramatically reduce stats "
+"page loading time."
+msgstr ""
+
+#: classes/ppc_meta_boxes_class.php:77
+msgid "Display overall stats"
+msgstr ""
+
+#: classes/ppc_meta_boxes_class.php:77
+msgid ""
+"Overall stats are displayed at the bottom of regular stats. They show all-"
+"time overall stats, from the first published post ever to the latest one. "
+"Although they are quite interesting, their processing may slow down the page "
+"loading on big sites."
+msgstr ""
+
+#: classes/ppc_meta_boxes_class.php:78
+msgid "Make post titles clickable in stats"
+msgstr ""
+
+#: classes/ppc_meta_boxes_class.php:78
+msgid ""
+"Allows to make post titles links that point to the post editing page or, if "
+"the user doesn't have permission to edit, to the public post."
+msgstr ""
+
+#: classes/ppc_meta_boxes_class.php:79
+msgid "Display payment tooltips in stats"
+msgstr ""
+
+#: classes/ppc_meta_boxes_class.php:79
+msgid ""
+"By default, tooltips are displayed on hover on payment amounts and show all "
+"the details of a payment."
+msgstr ""
+
+#: classes/ppc_meta_boxes_class.php:80
+msgid "Make super cautious space parsing when computing word count"
+msgstr ""
+
+#: classes/ppc_meta_boxes_class.php:80
+msgid ""
+"This does an extra, super-cautious parsing of blank spaces when computing "
+"word count for word payment. This is usually unnedeed (turns all kind of "
+"blank spaces into normal spaces)."
+msgstr ""
+
+#: classes/ppc_meta_boxes_class.php:88
+#, fuzzy
+#| msgid "Permissions"
+msgid "Admin permissions"
+msgstr "Permissões"
+
+#: classes/ppc_meta_boxes_class.php:90
+#, fuzzy
+#| msgid "Options page permissions"
+msgid "Admins override all permissions"
+msgstr "Acesso às configurações"
+
+#: classes/ppc_meta_boxes_class.php:90
+#, php-format
+msgid ""
+"By default, admins are subject to the same permissions as normal users. "
+"Checking this will make admins capable of anything, unless you give them "
+"special permissions through the %1$s box."
+msgstr ""
+
+#: classes/ppc_meta_boxes_class.php:90 post-pay-counter.php:281
+msgid "Personalize Settings"
+msgstr "Personalizar Configurações"
+
+#: classes/ppc_meta_boxes_class.php:97
 msgid "Allowed post types"
 msgstr "Tipos de post permitidos"
 
-#: classes/ppc_meta_boxes_class.php:78
+#: classes/ppc_meta_boxes_class.php:99
 msgid "Choose the post types you would like to be included in countings."
 msgstr "Escolha o tipo de post que você gostaria de incluir aos contadores."
 
-#: classes/ppc_meta_boxes_class.php:102
+#: classes/ppc_meta_boxes_class.php:122
 msgid "Allowed user roles"
 msgstr "Funções de usuário permitidas"
 
-#: classes/ppc_meta_boxes_class.php:104
+#: classes/ppc_meta_boxes_class.php:124
 msgid ""
 "Choose the user roles whose posts you would like to be included in countings."
 msgstr "Escolha quais funções você gostaria de incluir aos contadores."
 
-#: classes/ppc_meta_boxes_class.php:124
+#: classes/ppc_meta_boxes_class.php:143
 msgid "Options page permissions"
 msgstr "Acesso às configurações"
 
-#: classes/ppc_meta_boxes_class.php:126
+#: classes/ppc_meta_boxes_class.php:145
 msgid "Choose the user roles who are allowed to view and edit plugin settings."
 msgstr ""
 "Escolha quais funções poderão acessar a página de configurações do plugin."
 
-#: classes/ppc_meta_boxes_class.php:144
+#: classes/ppc_meta_boxes_class.php:165
 msgid "Stats page permissions"
 msgstr "Acesso às estatísticas"
 
-#: classes/ppc_meta_boxes_class.php:146
+#: classes/ppc_meta_boxes_class.php:167
 msgid "Choose the user roles who are allowed to view the stats page."
 msgstr "Escolha quais funções poderão acessar a página de estatísticas."
 
-#: classes/ppc_meta_boxes_class.php:164
+#: classes/ppc_meta_boxes_class.php:185
+#, fuzzy
+#| msgid "Total displayed posts:"
+msgid "Stats display settings"
+msgstr "Total de posts:"
+
+#: classes/ppc_meta_boxes_class.php:187
+msgid "Remember stats order"
+msgstr ""
+
+#: classes/ppc_meta_boxes_class.php:187
+msgid ""
+"This will ensure that you always see stats ordered by the column you picked "
+"the last time."
+msgstr ""
+
+#: classes/ppc_meta_boxes_class.php:188
+msgid ""
+"By default, payment figures are rounded to two decimal digits. You may "
+"customize this in the field below."
+msgstr ""
+
+#: classes/ppc_meta_boxes_class.php:189
+msgid "Round to decimal digit #"
+msgstr ""
+
+#: classes/ppc_meta_boxes_class.php:196
 msgid "Default stats time range"
 msgstr "Intervalo de tempo padrão"
 
-#: classes/ppc_meta_boxes_class.php:166
+#: classes/ppc_meta_boxes_class.php:198
 msgid ""
 "When you open up the stats page, the time range here selected will be shown. "
 "This will be the default setting: you will still be able to change the time "
@@ -352,11 +595,7 @@ msgstr ""
 "selecionado abaixo será exibido. Esta será a configuração padrão: você ainda "
 "será capaz de alterar o intervalo de tempo do jeito que sempre que desejar."
 
-#: classes/ppc_meta_boxes_class.php:167
-msgid "Current week"
-msgstr "Semana atual"
-
-#: classes/ppc_meta_boxes_class.php:167
+#: classes/ppc_meta_boxes_class.php:199
 msgid ""
 "Posts from the beginning of the week to the current day (week starts on "
 "Monday) will be displayed. You should select this if you usually pay your "
@@ -366,11 +605,7 @@ msgstr ""
 "serão exibidos. Você deve selecionar esta opção se você costuma pagar seus "
 "escritores semanalmente."
 
-#: classes/ppc_meta_boxes_class.php:168
-msgid "Current month"
-msgstr "Mês atual"
-
-#: classes/ppc_meta_boxes_class.php:168
+#: classes/ppc_meta_boxes_class.php:200
 msgid ""
 "Posts from the beginning of the month to the current day will be displayed. "
 "You should select this if you usually pay your writers monthly."
@@ -378,11 +613,40 @@ msgstr ""
 "Posts do início da mês ao dia atual serão exibidos. Você deve selecionar "
 "esta opção se você costuma pagar seus escritores mensalmente."
 
-#: classes/ppc_meta_boxes_class.php:169
+#: classes/ppc_meta_boxes_class.php:201
+#, fuzzy
+#| msgid ""
+#| "Posts from the beginning of the month to the current day will be "
+#| "displayed. You should select this if you usually pay your writers monthly."
+msgid ""
+"Posts from the beginning of the current year will be displayed. You should "
+"select this if you usually pay your writers yearly."
+msgstr ""
+"Posts do início da mês ao dia atual serão exibidos. Você deve selecionar "
+"esta opção se você costuma pagar seus escritores mensalmente."
+
+#: classes/ppc_meta_boxes_class.php:202
+#, fuzzy
+#| msgid ""
+#| "Posts from the beginning of the month to the current day will be "
+#| "displayed. You should select this if you usually pay your writers monthly."
+msgid ""
+"Posts from the beginning of last month to the end of it will be displayed. "
+"You should select this if you usually pay your writers monthly."
+msgstr ""
+"Posts do início da mês ao dia atual serão exibidos. Você deve selecionar "
+"esta opção se você costuma pagar seus escritores mensalmente."
+
+#: classes/ppc_meta_boxes_class.php:203
+#, php-format
+msgid "All posts satisfying %s criteria will be displayed."
+msgstr ""
+
+#: classes/ppc_meta_boxes_class.php:204
 msgid "This custom number of days"
 msgstr "Intervalo de dias personalizado"
 
-#: classes/ppc_meta_boxes_class.php:169
+#: classes/ppc_meta_boxes_class.php:204
 msgid ""
 "You can manually customize the time range for the posts that will be "
 "displayed. So, for example, if you set this to 365 days, in the stats page "
@@ -394,37 +658,42 @@ msgstr ""
 "estatísticas exibirá um intervalo de tempo do dia atual até os últimos 365 "
 "dias."
 
-#: classes/ppc_meta_boxes_class.php:171
+#: classes/ppc_meta_boxes_class.php:206
 msgid "Time range (days)"
 msgstr "Intervalo de tempo (dias)"
 
-#: classes/ppc_meta_boxes_class.php:179 classes/ppc_meta_boxes_class.php:307
-#: classes/ppc_meta_boxes_class.php:339 classes/ppc_meta_boxes_class.php:373
+#: classes/ppc_meta_boxes_class.php:214 classes/ppc_meta_boxes_class.php:358
+#: classes/ppc_meta_boxes_class.php:391 classes/ppc_meta_boxes_class.php:427
 msgid "Settings were successfully updated."
 msgstr "Configurações atualizadas com sucesso!"
 
-#: classes/ppc_meta_boxes_class.php:182 classes/ppc_meta_boxes_class.php:310
-#: classes/ppc_meta_boxes_class.php:342 classes/ppc_meta_boxes_class.php:376
-#: classes/ppc_meta_boxes_class.php:461 classes/ppc_meta_boxes_class.php:502
+#: classes/ppc_meta_boxes_class.php:217 classes/ppc_meta_boxes_class.php:361
+#: classes/ppc_meta_boxes_class.php:394 classes/ppc_meta_boxes_class.php:430
+#: classes/ppc_meta_boxes_class.php:522 classes/ppc_meta_boxes_class.php:564
+#: classes/ppc_meta_boxes_class.php:598
 msgid "Loading"
 msgstr "Carregando"
 
-#: classes/ppc_meta_boxes_class.php:183 classes/ppc_meta_boxes_class.php:312
-#: classes/ppc_meta_boxes_class.php:344
+#: classes/ppc_meta_boxes_class.php:218 classes/ppc_meta_boxes_class.php:363
+#: classes/ppc_meta_boxes_class.php:396
 msgid "Save options"
 msgstr "Guardar configurações"
 
-#: classes/ppc_meta_boxes_class.php:202
+#: classes/ppc_meta_boxes_class.php:236
 msgid ""
 "Here you can define the criteria which post payments will be computed with."
 msgstr ""
 "Aqui você pode definir os critérios com que os pagamentos serão computados."
 
-#: classes/ppc_meta_boxes_class.php:209
+#: classes/ppc_meta_boxes_class.php:242
+msgid "Basic payment"
+msgstr "Pagamento básico"
+
+#: classes/ppc_meta_boxes_class.php:244
 msgid "Basic, assured payment"
 msgstr "Básico, pagamento garantido"
 
-#: classes/ppc_meta_boxes_class.php:209
+#: classes/ppc_meta_boxes_class.php:244
 msgid ""
 "You may define a starting value for post payment. This means that each post "
 "will earn at least this amount, to which all the other credits will be "
@@ -437,19 +706,27 @@ msgstr ""
 "pode ter certeza de que nenhum post receberá menos do que um valor "
 "determinado, mas que apenas posts destacados irão receberão mais."
 
-#: classes/ppc_meta_boxes_class.php:212
+#: classes/ppc_meta_boxes_class.php:247
 msgid "Basic payment fixed value"
 msgstr "Pagamento básico com valor fixo"
 
-#: classes/ppc_meta_boxes_class.php:219
-msgid "Payment on word counting"
+#: classes/ppc_meta_boxes_class.php:248 classes/ppc_meta_boxes_class.php:263
+#: classes/ppc_meta_boxes_class.php:291 classes/ppc_meta_boxes_class.php:307
+#: classes/ppc_meta_boxes_class.php:326
+msgid "Counting options"
+msgstr "Opções de contagem"
+
+#: classes/ppc_meta_boxes_class.php:256
+#, fuzzy
+#| msgid "Words payment"
+msgid "Words Payment"
 msgstr "Pagamento por palavra"
 
-#: classes/ppc_meta_boxes_class.php:221
+#: classes/ppc_meta_boxes_class.php:258
 msgid "Words contribute to payment computation"
 msgstr "Cada palavra será computada no pagamento"
 
-#: classes/ppc_meta_boxes_class.php:221
+#: classes/ppc_meta_boxes_class.php:258
 msgid ""
 "You may define a post value basing on the number of words that make it up as "
 "well. The longer a post is, the more time is supposed to have taken the "
@@ -461,33 +738,38 @@ msgstr ""
 "escrever, e por isso ele receberá mais. Você pode escolher quanto cada "
 "palavra vale."
 
-#: classes/ppc_meta_boxes_class.php:224 classes/ppc_meta_boxes_class.php:245
-#: classes/ppc_meta_boxes_class.php:260 classes/ppc_meta_boxes_class.php:277
+#: classes/ppc_meta_boxes_class.php:261 classes/ppc_meta_boxes_class.php:289
+#: classes/ppc_meta_boxes_class.php:305 classes/ppc_meta_boxes_class.php:324
 msgid "Counting system"
 msgstr "Sistema de contagem"
 
-#: classes/ppc_meta_boxes_class.php:225
+#: classes/ppc_meta_boxes_class.php:262
 msgid "words"
 msgstr "palavras"
 
-#: classes/ppc_meta_boxes_class.php:226 classes/ppc_meta_boxes_class.php:247
-#: classes/ppc_meta_boxes_class.php:262 classes/ppc_meta_boxes_class.php:279
-msgid "Counting options"
-msgstr "Opções de contagem"
-
-#: classes/ppc_meta_boxes_class.php:227
+#: classes/ppc_meta_boxes_class.php:264
 msgid "Stop counting words after word # (0 = infinite)"
 msgstr "Parar de computar palavras após # (0 = infinito)"
 
-#: classes/ppc_meta_boxes_class.php:234
-msgid "Payment on visit counting"
+#: classes/ppc_meta_boxes_class.php:266
+#, fuzzy
+#| msgid ""
+#| "Determines whether the featured image will be included in image counting."
+msgid ""
+"Determines whether post excerpt text should be included in words counting."
+msgstr "Determine se a imagem de destaque do post será incluída na contagem."
+
+#: classes/ppc_meta_boxes_class.php:273
+#, fuzzy
+#| msgid "Visits payment"
+msgid "Visits Payment"
 msgstr "Pagamento por visita"
 
-#: classes/ppc_meta_boxes_class.php:236
+#: classes/ppc_meta_boxes_class.php:275
 msgid "Visits contribute to payment computation"
 msgstr "Cada visita será computada no pagamento"
 
-#: classes/ppc_meta_boxes_class.php:236
+#: classes/ppc_meta_boxes_class.php:275
 msgid ""
 "You may define a post value basing on the number of visits that it registers "
 "as well. The more people see a post, the more interesting the post is "
@@ -498,15 +780,23 @@ msgstr ""
 "mais visitas um post tiver, mais interessante ele é, e, por isso receberá "
 "mais. Você pode escolher quanto cada visita vale."
 
-#: classes/ppc_meta_boxes_class.php:239
+#: classes/ppc_meta_boxes_class.php:278
+#, php-format
+msgid ""
+"How to setup visits payment? Have a look at our %1$svisits tutorials%2$s."
+msgstr ""
+
+#: classes/ppc_meta_boxes_class.php:279
 msgid "Counting method"
 msgstr "Método de contagem"
 
-#: classes/ppc_meta_boxes_class.php:240
-msgid "I have my own visit counter"
+#: classes/ppc_meta_boxes_class.php:280
+#, fuzzy
+#| msgid "I have my own visit counter"
+msgid "I have my own visit counter (postmeta)"
 msgstr "Eu tenho um contador de visitas próprio"
 
-#: classes/ppc_meta_boxes_class.php:240
+#: classes/ppc_meta_boxes_class.php:280
 #, php-format
 msgid ""
 "If you already have some plugin counting visits, and you know the "
@@ -518,27 +808,49 @@ msgstr ""
 "para calcular pagamentos. Ative essa configuração e coloque o postmeta no "
 "campo abaixo."
 
-#: classes/ppc_meta_boxes_class.php:242
+#: classes/ppc_meta_boxes_class.php:282
 msgid "The postmeta holding the visits"
 msgstr "O postmeta das visitas"
 
-#: classes/ppc_meta_boxes_class.php:246
+#: classes/ppc_meta_boxes_class.php:284
+#, fuzzy
+#| msgid "I have my own visit counter"
+msgid "I have my own visit counter (callback)"
+msgstr "Eu tenho um contador de visitas próprio"
+
+#: classes/ppc_meta_boxes_class.php:284
+#, php-format
+msgid ""
+"If you already have some plugin counting visits, and it provides a PHP "
+"%1$scallback%2$s which accepts as input the $post WP object and outputs an "
+"integer number of visits, you can use those data to compute payments. If the "
+"callback is a class method, specify it in the form of %1$sclassname, "
+"methodname%2$s. This is NOT user-personalizable."
+msgstr ""
+
+#: classes/ppc_meta_boxes_class.php:286
+msgid "Callback name"
+msgstr ""
+
+#: classes/ppc_meta_boxes_class.php:290
 msgid "visits"
 msgstr "visitas"
 
-#: classes/ppc_meta_boxes_class.php:248
+#: classes/ppc_meta_boxes_class.php:292
 msgid "Stop counting visits after visit # (0 = infinite)"
 msgstr "Parar de computar visitas após # (0 = infinito)"
 
-#: classes/ppc_meta_boxes_class.php:255
-msgid "Payment on images counting"
+#: classes/ppc_meta_boxes_class.php:300
+#, fuzzy
+#| msgid "Images payment"
+msgid "Images Payment"
 msgstr "Pagamento por imagem"
 
-#: classes/ppc_meta_boxes_class.php:257
+#: classes/ppc_meta_boxes_class.php:302
 msgid "Images contribute to payment computation"
 msgstr "Cada imagem será computada no pagamento"
 
-#: classes/ppc_meta_boxes_class.php:257
+#: classes/ppc_meta_boxes_class.php:302
 #, php-format
 msgid ""
 "You may define a post value basing on the number of images it contains. "
@@ -560,32 +872,40 @@ msgstr ""
 "forma: %s. O pagamento por imagem será 1.0 porque a 3ª e a 4ª imagem serão "
 "computadas."
 
-#: classes/ppc_meta_boxes_class.php:261
+#: classes/ppc_meta_boxes_class.php:306
 msgid "images"
 msgstr "imagens"
 
-#: classes/ppc_meta_boxes_class.php:263
+#: classes/ppc_meta_boxes_class.php:308
 msgid "Start paying per image after image #"
 msgstr "Começar a pagar por imagem a partir de #"
 
-#: classes/ppc_meta_boxes_class.php:264
+#: classes/ppc_meta_boxes_class.php:309
 msgid "Stop paying per image after image #"
 msgstr "Parar de pagar por imagem após #"
 
-#: classes/ppc_meta_boxes_class.php:265
+#: classes/ppc_meta_boxes_class.php:310
 msgid ""
 "Determines whether the featured image will be included in image counting."
 msgstr "Determine se a imagem de destaque do post será incluída na contagem."
 
-#: classes/ppc_meta_boxes_class.php:272
-msgid "Payment on comments counting"
+#: classes/ppc_meta_boxes_class.php:311
+msgid ""
+"Determines whether images in galleries should be included in image counting "
+"(may slow down stats page loading due to additional post content parsing)."
+msgstr ""
+
+#: classes/ppc_meta_boxes_class.php:319
+#, fuzzy
+#| msgid "Comments payment"
+msgid "Comments Payment"
 msgstr "Pagamento por comentário"
 
-#: classes/ppc_meta_boxes_class.php:274
+#: classes/ppc_meta_boxes_class.php:321
 msgid "Comments contribute to payment computation"
 msgstr "Cada comentário será computado no pagamento"
 
-#: classes/ppc_meta_boxes_class.php:274
+#: classes/ppc_meta_boxes_class.php:321
 #, php-format
 msgid ""
 "You may define a post value basing on the number of comments it receives. "
@@ -605,27 +925,27 @@ msgstr ""
 "seguinte forma: %s. O pagamento por comentário será de 2.5 porque os "
 "comentários do 11º ao 25º serão computadas."
 
-#: classes/ppc_meta_boxes_class.php:278
+#: classes/ppc_meta_boxes_class.php:325
 msgid "comments"
 msgstr "comentários"
 
-#: classes/ppc_meta_boxes_class.php:280
+#: classes/ppc_meta_boxes_class.php:327
 msgid "Start paying per comment after comment #"
 msgstr "Começar a pagar por comentário a partir de #"
 
-#: classes/ppc_meta_boxes_class.php:281
+#: classes/ppc_meta_boxes_class.php:328
 msgid "Stop paying per comment after comment #"
 msgstr "Parar de pagar por comentário após #"
 
-#: classes/ppc_meta_boxes_class.php:290
+#: classes/ppc_meta_boxes_class.php:338
 msgid "Set payment maximum (0 = infinite)"
 msgstr "Determine o pagamento máximo (0 = infinito)"
 
-#: classes/ppc_meta_boxes_class.php:291
-msgid "Pay only when the total payment threshold is reached"
-msgstr "Pague somente quando o limite de pagamento total é atingido"
+#: classes/ppc_meta_boxes_class.php:339
+msgid "Hide posts that do not reach the threshold"
+msgstr ""
 
-#: classes/ppc_meta_boxes_class.php:291
+#: classes/ppc_meta_boxes_class.php:339
 msgid ""
 "Check this if you want to pay items only when they reach the max payment "
 "threshold. Other items will appear grayed out."
@@ -634,15 +954,15 @@ msgstr ""
 "máximo for atingido. Os itens que não atingirem este valor, serão exibidos "
 "em cinza na lista."
 
-#: classes/ppc_meta_boxes_class.php:298
+#: classes/ppc_meta_boxes_class.php:346
 msgid "Miscellanea counting settings"
 msgstr "Configurações de contagem"
 
-#: classes/ppc_meta_boxes_class.php:300
+#: classes/ppc_meta_boxes_class.php:348
 msgid "Count pending revision posts"
 msgstr "Computar posts em revisão"
 
-#: classes/ppc_meta_boxes_class.php:300
+#: classes/ppc_meta_boxes_class.php:348
 msgid ""
 "While published posts are automatically counted, you can decide to include "
 "pending revision ones or not."
@@ -650,11 +970,11 @@ msgstr ""
 "Embora os posts sejam computados automaticamente, você pode decidir incluir "
 "aqueles que aguardam revisão ou não."
 
-#: classes/ppc_meta_boxes_class.php:301
+#: classes/ppc_meta_boxes_class.php:349
 msgid "Count future scheduled posts"
 msgstr "Computador posts programados"
 
-#: classes/ppc_meta_boxes_class.php:301
+#: classes/ppc_meta_boxes_class.php:349
 msgid ""
 "While published posts are automatically counted, you can decide to include "
 "future planned ones or not."
@@ -662,22 +982,46 @@ msgstr ""
 "Embora os posts sejam computados automaticamente, você pode decidir incluir "
 "ou não os posts programados."
 
-#: classes/ppc_meta_boxes_class.php:302
+#: classes/ppc_meta_boxes_class.php:350
+#, fuzzy
+#| msgid "Count pending revision posts"
+msgid "Count private posts"
+msgstr "Computar posts em revisão"
+
+#: classes/ppc_meta_boxes_class.php:350
+#, fuzzy
+#| msgid ""
+#| "While published posts are automatically counted, you can decide to "
+#| "include future planned ones or not."
+msgid ""
+"While public published posts are automatically counted, you can decide to "
+"include private ones or not."
+msgstr ""
+"Embora os posts sejam computados automaticamente, você pode decidir incluir "
+"ou não os posts programados."
+
+#: classes/ppc_meta_boxes_class.php:351
 msgid "Exclude quoted content from word counting"
 msgstr "Excluir o conteúdo citado pela contagem de palavras"
 
-#: classes/ppc_meta_boxes_class.php:302
-#, php-format
+#: classes/ppc_meta_boxes_class.php:351
+#, fuzzy, php-format
+#| msgid ""
+#| "All the words contained into %1$sblockquote%2$s tags will not be taken "
+#| "into account when counting. Use this to prevent interviews and such stuff "
+#| "to be counted as normal words."
 msgid ""
 "All the words contained into %1$sblockquote%2$s tags will not be taken into "
 "account when counting. Use this to prevent interviews and such stuff to be "
-"counted as normal words."
+"counted as normal words. Notice that words included in any HTML tag with "
+"class %1$sppc_exclude_words%2$s are automatically excluded from word "
+"counting (doesn't handle nested tags); see FAQ for more information."
 msgstr ""
 "Todas as palavras que conterem tags %1$sblockquote%2$s não serão computadas. "
 "Use esta opção para prevenir que entrevistas ou coisas assim sejam "
 "computadas como palavras normais."
 
-#: classes/ppc_meta_boxes_class.php:332
+#: classes/ppc_meta_boxes_class.php:383
 msgid ""
 "Just a few fields to help you preventing users from seeing things they "
 "should not see. Administrators are subject to the same permissions; if you "
@@ -688,11 +1032,11 @@ msgstr ""
 "se você gostaria que eles não vejam, personalize suas configurações de "
 "usuário."
 
-#: classes/ppc_meta_boxes_class.php:333
+#: classes/ppc_meta_boxes_class.php:384
 msgid "Users can see other users' general stats"
 msgstr "Usuários podem ver estatísticas gerais"
 
-#: classes/ppc_meta_boxes_class.php:333
+#: classes/ppc_meta_boxes_class.php:384
 msgid ""
 "If unchecked, users will only be able to see their stats in the general "
 "page. Other users' names, posts and pay counts will not be displayed."
@@ -701,11 +1045,11 @@ msgstr ""
 "na página geral. Nomes, posts e estatísticas de pagamento de outros usuários "
 "não serão exibidos."
 
-#: classes/ppc_meta_boxes_class.php:334
+#: classes/ppc_meta_boxes_class.php:385
 msgid "Users can see other users' detailed stats"
 msgstr "Usuários podem ver estatísticas detalhadas de outros usuários"
 
-#: classes/ppc_meta_boxes_class.php:334
+#: classes/ppc_meta_boxes_class.php:385
 msgid ""
 "If unchecked, users will not be able to see other users' detailed stats but "
 "will still able to see general ones. "
@@ -714,12 +1058,12 @@ msgstr ""
 "estatísticas detalhadas de outros usuários, mas ainda será possível ver as  "
 "estatísticas gerais."
 
-#: classes/ppc_meta_boxes_class.php:335
+#: classes/ppc_meta_boxes_class.php:386
 msgid "Let users know if other users have personalized settings"
 msgstr ""
 "Permita que os usuários saibam quando outros tem configurações personalizadas"
 
-#: classes/ppc_meta_boxes_class.php:335
+#: classes/ppc_meta_boxes_class.php:386
 msgid ""
 "If you personalize settings by user, do not overlook this. If unchecked, "
 "users will not see personalized settings in countings, they will believe "
@@ -732,18 +1076,29 @@ msgstr ""
 "suas configurações (ou os gerais). No entanto, os usuários verão suas "
 "configurações personalizadas, se as tiver."
 
-#: classes/ppc_meta_boxes_class.php:364
-#, php-format
+#: classes/ppc_meta_boxes_class.php:418
+#, fuzzy, php-format
+#| msgid ""
+#| "Have more than website but use the same settings? You can transfer "
+#| "settings from one installation of the plugin to another. If you are also "
+#| "running the PRO version, its settings will be taken as well. It works "
+#| "both for general and for user personalized settings, depending on what "
+#| "page you are. If you want to export this website's settings, copy the "
+#| "code below. If you want to import another website's settings, paste its "
+#| "settings code in the field below and click %s. Once you import settings, "
+#| "it will not be possible to go back to the previous settings. Do not edit "
+#| "settings code unless you know what base64 and serialization are and are "
+#| "sure of what you are doing!"
 msgid ""
 "Have more than website but use the same settings? You can transfer settings "
-"from one installation of the plugin to another. If you are also running the "
-"PRO version, its settings will be taken as well. It works both for general "
-"and for user personalized settings, depending on what page you are. If you "
-"want to export this website's settings, copy the code below. If you want to "
-"import another website's settings, paste its settings code in the field "
-"below and click %s. Once you import settings, it will not be possible to go "
-"back to the previous settings. Do not edit settings code unless you know "
-"what base64 and serialization are and are sure of what you are doing!"
+"from one installation of the plugin to another. All addons settings will be "
+"taken as well. It works both for general and for user personalized settings, "
+"depending on what page you are. If you want to export this website's "
+"settings, copy the code below. If you want to import another website's "
+"settings, paste its settings code in the field below and click %s. Once you "
+"import settings, it will not be possible to go back to the previous "
+"settings. Do not edit settings code unless you know what base64 and "
+"serialization are and are sure of what you are doing!"
 msgstr ""
 "Você tem mais de um site, mas usa as mesmas configurações? Você pode "
 "transferir as configurações de uma instalação para outro plugin. Se você "
@@ -756,20 +1111,20 @@ msgstr ""
 "anteriores. Não altere suas configurações, a menos que você realmente sabe o "
 "que são e serialização base64 e ter certeza do que você faz!"
 
-#: classes/ppc_meta_boxes_class.php:364 classes/ppc_meta_boxes_class.php:378
+#: classes/ppc_meta_boxes_class.php:418 classes/ppc_meta_boxes_class.php:432
 msgid "Import settings"
 msgstr "Importar configurações"
 
-#: classes/ppc_meta_boxes_class.php:409
+#: classes/ppc_meta_boxes_class.php:463
 msgid "The following users have different settings, click to edit them."
 msgstr ""
 "Os seguintes usuários tem diferentes configurações, clique para editá-los."
 
-#: classes/ppc_meta_boxes_class.php:420
+#: classes/ppc_meta_boxes_class.php:473
 msgid "View and edit special settings for user"
 msgstr "Ver e alterar as configurações especiais para o usuário"
 
-#: classes/ppc_meta_boxes_class.php:430
+#: classes/ppc_meta_boxes_class.php:483
 msgid ""
 "No users have different settings. Learn how to personalize settings from the "
 "section below."
@@ -777,21 +1132,26 @@ msgstr ""
 "Nenhum membro tem configurações diferentes. Aprenda a personalizar as "
 "configurações na seção abaixo."
 
-#: classes/ppc_meta_boxes_class.php:433
+#: classes/ppc_meta_boxes_class.php:494
 msgid "Personalize single user settings"
 msgstr "Personalizar configurações para um usuário"
 
-#: classes/ppc_meta_boxes_class.php:434
+#: classes/ppc_meta_boxes_class.php:495
+#, fuzzy
+#| msgid ""
+#| "Some people's posts are better than somebody others'? You can adjust "
+#| "settings for each user, so that they will have different permissions and "
+#| "their posts will be payed differently."
 msgid ""
 "Some people's posts are better than somebody others'? You can adjust "
 "settings for each user, so that they will have different permissions and "
-"their posts will be payed differently."
+"their posts will be paid differently."
 msgstr ""
 "Algumas autores são melhores que outros? Você pode alterar as configurações "
 "para cada usuário, de modo que eles terão diferentes permissões e seus posts "
 "serão pagos de uma maneira diferente."
 
-#: classes/ppc_meta_boxes_class.php:435
+#: classes/ppc_meta_boxes_class.php:496
 msgid ""
 "First, select a user role. You will see all users from that role: clicking "
 "on one you will be headed to the settings page for that specific user."
@@ -800,15 +1160,15 @@ msgstr ""
 "esta função: clicando em um, você será redirecionado para a página de "
 "configurações específicas para esse usuário."
 
-#: classes/ppc_meta_boxes_class.php:437
+#: classes/ppc_meta_boxes_class.php:498
 msgid "User roles"
 msgstr "Funções de usuário"
 
-#: classes/ppc_meta_boxes_class.php:456
+#: classes/ppc_meta_boxes_class.php:517
 msgid "Available users"
 msgstr "Usuários disponíveis"
 
-#: classes/ppc_meta_boxes_class.php:481
+#: classes/ppc_meta_boxes_class.php:543
 #, php-format
 msgid ""
 "Errors which may happen during the plugin execution are logged and showed "
@@ -823,34 +1183,112 @@ msgstr ""
 "enquando, mas você pode deletá-lo manualmente com o botão abaixo. Se você "
 "não quer que os erros são registrados, consulte nosso %1$sFAQ%2$s."
 
-#: classes/ppc_meta_boxes_class.php:481
+#: classes/ppc_meta_boxes_class.php:543
 msgid "Frequently asked questions"
 msgstr "Perguntas frequentes"
 
-#: classes/ppc_meta_boxes_class.php:482
+#: classes/ppc_meta_boxes_class.php:544
 msgid ""
 "To copy the error log, click below then press Ctrl + C (PC) or Cmd + C (Mac)."
 msgstr ""
 "Para copiar o log de erros, clique abaixo e aperte Ctrl + C (PC) ou Cmd + C "
 "(Mac)."
 
-#: classes/ppc_meta_boxes_class.php:490
+#: classes/ppc_meta_boxes_class.php:553
 msgid "That's great, nothing has gone wrong so far!"
 msgstr "Que bom! Nenhum erro foi encontrado!"
 
-#: classes/ppc_meta_boxes_class.php:497
+#: classes/ppc_meta_boxes_class.php:559
 msgid "Clear error log"
 msgstr "Apagar log de erros"
 
-#: classes/ppc_meta_boxes_class.php:499
+#: classes/ppc_meta_boxes_class.php:561
 msgid "Log was successfully cleared."
 msgstr "Log de erros apagado com sucesso."
 
-#: classes/ppc_options_fields_class.php:87
+#: classes/ppc_meta_boxes_class.php:588
+#, php-format
+msgid ""
+"Whatever of our %1$splenty of addons%2$s you may have bought, this is the "
+"place to activate your license. Make sure you have already uploaded the "
+"addon files, activated it, and paste the license key you have received by "
+"email in the field below."
+msgstr ""
+
+#: classes/ppc_meta_boxes_class.php:589
+msgid ""
+"To activate your license key, the following data will be sent to the "
+"activation page: license key, website URL, blog language, plugin version. "
+"Twice a month the plugin will call home to check that your license is "
+"genuine and valid without asking for permission."
+msgstr ""
+
+#: classes/ppc_meta_boxes_class.php:592
+msgid "Submit"
+msgstr ""
+
+#: classes/ppc_meta_boxes_class.php:595
+msgid "Your license was successfully activated. Reload this page and enjoy!"
+msgstr ""
+
+#: classes/ppc_meta_boxes_class.php:603
+msgid "Your licenses"
+msgstr ""
+
+#: classes/ppc_meta_boxes_class.php:613
+msgid "No licenses to display."
+msgstr ""
+
+#: classes/ppc_meta_boxes_class.php:617
+msgid ""
+"Your licenses status is listed below, along with their details. You may want "
+"to deactivate one to use it on other websites (but you won't be able to use "
+"its features on this site anymore)."
+msgstr ""
+
+#: classes/ppc_meta_boxes_class.php:621
+msgid "Addon"
+msgstr ""
+
+#: classes/ppc_meta_boxes_class.php:624
+msgid "Deactivate"
+msgstr ""
+
+#: classes/ppc_meta_boxes_class.php:637
+msgid "Unknown"
+msgstr ""
+
+#: classes/ppc_meta_boxes_class.php:639
+#, php-format
+msgid "Awfully sad - Expired | %1$sRenew%2$s"
+msgstr ""
+
+#: classes/ppc_meta_boxes_class.php:639 classes/ppc_meta_boxes_class.php:641
+msgid "Renew!"
+msgstr ""
+
+#: classes/ppc_meta_boxes_class.php:641
+#, php-format
+msgid "Anxious - In expiration | %1$sRenew%2$s"
+msgstr ""
+
+#: classes/ppc_meta_boxes_class.php:643
+msgid "Astonishingly happy"
+msgstr ""
+
+#: classes/ppc_meta_boxes_class.php:655
+msgid "Deactivate license"
+msgstr ""
+
+#: classes/ppc_notifications_class.php:33
+msgid "Dismiss"
+msgstr ""
+
+#: classes/ppc_options_fields_class.php:57
 msgid "Use the zonal system"
 msgstr "Usar sistema de quantidades"
 
-#: classes/ppc_options_fields_class.php:87
+#: classes/ppc_options_fields_class.php:57
 #, php-format
 msgid ""
 "With this system you can define up to how many zones of retribution you "
@@ -863,23 +1301,25 @@ msgstr ""
 "300 %1$s serão pagos 2.00). Não importa quantos %1$s tem um post, apenas o "
 "valor atribuído a esta quantidade será pago."
 
-#: classes/ppc_options_fields_class.php:93
+#: classes/ppc_options_fields_class.php:63
+#: classes/ppc_options_fields_class.php:110
+#: classes/ppc_options_fields_class.php:116
 msgid "Payment"
 msgstr "Pagamento"
 
-#: classes/ppc_options_fields_class.php:111
+#: classes/ppc_options_fields_class.php:81
 msgid "Add one more zone"
 msgstr "Adicionar mais quantidades"
 
-#: classes/ppc_options_fields_class.php:112
+#: classes/ppc_options_fields_class.php:82
 msgid "Delete last zone"
 msgstr "Apagar quantidade"
 
-#: classes/ppc_options_fields_class.php:116
+#: classes/ppc_options_fields_class.php:86
 msgid "Use the incremental payment system"
 msgstr "Usar sistema de pagamentos incrementáveis"
 
-#: classes/ppc_options_fields_class.php:116
+#: classes/ppc_options_fields_class.php:86
 #, php-format
 msgid ""
 "With this system, every %1$s has a value: more %1$s => higher pay. Just "
@@ -892,13 +1332,64 @@ msgstr ""
 "incrementável, por isso, se um post tiver 300 %1$s e você definiu o valor do "
 "pagamento incrementável 0.01, o escritor receberá 3."
 
-#: classes/ppc_options_fields_class.php:118
+#: classes/ppc_options_fields_class.php:88
 msgid "Incremental payment value"
 msgstr "Valor do pagamento incrmentável"
 
-#: classes/ppc_save_options_class.php:192
-#: classes/ppc_save_options_class.php:196 classes/ppc_update_class.php:81
-#: classes/ppc_update_class.php:98
+#: classes/ppc_options_fields_class.php:110
+#, php-format
+msgid ""
+"This controls what is displayed in the stats page for this payment criteria. "
+"%1$s will only display the counting value (es. 50 words), %2$s only the "
+"payment value (es. $0.50), %3$s will display them both side to side (es. "
+"$0.50 (50)), %4$s will hide the whole column in stats and only display data "
+"in the tooltip of the payment, %5$s will hide everything of the payment "
+"altogether, preserving the payment value just as part of the total payment "
+"value."
+msgstr ""
+
+#: classes/ppc_options_fields_class.php:110
+#: classes/ppc_options_fields_class.php:115
+msgid "Count"
+msgstr ""
+
+#: classes/ppc_options_fields_class.php:110
+#: classes/ppc_options_fields_class.php:114
+msgid "Both"
+msgstr ""
+
+#: classes/ppc_options_fields_class.php:110
+#: classes/ppc_options_fields_class.php:117
+msgid "Tooltip"
+msgstr ""
+
+#: classes/ppc_options_fields_class.php:110
+#: classes/ppc_options_fields_class.php:118
+msgid "None"
+msgstr ""
+
+#: classes/ppc_options_fields_class.php:112
+msgid "Payment display status"
+msgstr ""
+
+#: classes/ppc_save_options_class.php:86
+msgid ""
+"The specified visits callback returned NULL for a random post - are you sure "
+"it is correct?"
+msgstr ""
+
+#: classes/ppc_save_options_class.php:178
+#, fuzzy
+#| msgid "Choose the user roles who are allowed to view the stats page."
+msgid "At least one role must be allowed to access the options page"
+msgstr "Escolha quais funções poderão acessar a página de estatísticas."
+
+#: classes/ppc_save_options_class.php:225
+msgid "Are you sure you want to do this?"
+msgstr ""
+
+#: classes/ppc_save_options_class.php:244
+#: classes/ppc_save_options_class.php:251 classes/ppc_update_class.php:107
 msgid "Error: could not update settings."
 msgstr "Erro: não foi possível atualizar as configurações"
 
@@ -914,72 +1405,284 @@ msgstr ""
 "Para copiar as informações do sistema, clique abaixo e aperte Ctrl + C (PC) "
 "ou Cmd + C (Mac)."
 
-#: classes/ppc_system_info_class.php:123
+#: classes/ppc_system_info_class.php:121
 msgid "Download System Info File"
 msgstr "Download das Informações do Sistema"
 
-#: post-pay-counter.php:118 post-pay-counter.php:471
+#: classes/ppc_update_class.php:139
+#, fuzzy
+#| msgid "Error: could not update settings."
+msgid "Error: could not update user's settings."
+msgstr "Erro: não foi possível atualizar as configurações"
+
+#: classes/ppc_welcome_class.php:23 classes/ppc_welcome_class.php:24
+msgid "Welcome to Post Pay Counter"
+msgstr ""
+
+#: classes/ppc_welcome_class.php:32 classes/ppc_welcome_class.php:33
+msgid "Post Pay Counter Changelog"
+msgstr ""
+
+#: classes/ppc_welcome_class.php:83
+#, fuzzy
+#| msgid "Features survey"
+msgid "Features"
+msgstr "Formulário de recursos"
+
+#: classes/ppc_welcome_class.php:86
+#, fuzzy
+#| msgid "Go to changelog"
+msgid "Changelog"
+msgstr "Acessar Log de mudanças"
+
+#: classes/ppc_welcome_class.php:105 classes/ppc_welcome_class.php:186
+#, php-format
+msgid "Welcome to Post Pay Counter Version %s"
+msgstr ""
+
+#: classes/ppc_welcome_class.php:106 classes/ppc_welcome_class.php:187
+msgid ""
+"You got the latest release of Post Pay Counter, which is going to make "
+"handling authors' payments much, much easier! The menu on the left provides "
+"access to all the plugin features."
+msgstr ""
+
+#: classes/ppc_welcome_class.php:111
+msgid "A powerful payment manager"
+msgstr ""
+
+#: classes/ppc_welcome_class.php:116
+msgid "Pay per post, word, visit, image and comment"
+msgstr ""
+
+#: classes/ppc_welcome_class.php:117
+msgid ""
+"Basically everything in a post can define its overall value. You can pay a "
+"fixed fee, add something depending on the number of words, maybe some more "
+"for visits, and then take care of images and comments as well. You can set a "
+"limit on the maximum number of each counting category and a total payment "
+"one too."
+msgstr ""
+
+#: classes/ppc_welcome_class.php:119
+msgid "A zonal system, or an incremental one"
+msgstr ""
+
+#: classes/ppc_welcome_class.php:120
+msgid ""
+"Every time there is a number of something to be paid (a number of words, a "
+"number of visits...) you can choose whether you want to use an incremental "
+"system (e.g. each word is worth $0.01 => 100 words are worth $1.00) or a "
+"zonal one (e.g. between 100 and 200 words pay $1.20 => 190 words are worth "
+"$1.20) with as many zones you want."
+msgstr ""
+
+#: classes/ppc_welcome_class.php:122
+msgid "Define what is paid and what is not"
+msgstr ""
+
+#: classes/ppc_welcome_class.php:123
+msgid ""
+"Include or exclude posts from stats depending on their post type (the plugin "
+"works with custom post types, yeah!), the user's role who wrote the it and "
+"its post status."
+msgstr ""
+
+#: classes/ppc_welcome_class.php:128
+#, fuzzy
+#| msgid "Stats page permissions"
+msgid "Stats page with calculations"
+msgstr "Acesso às estatísticas"
+
+#: classes/ppc_welcome_class.php:133
+msgid "The general view"
+msgstr ""
+
+#: classes/ppc_welcome_class.php:134
+msgid ""
+"General stats display all users in the same page, showing how much each of "
+"them should be paid basing on the number and value of their posts."
+msgstr ""
+
+#: classes/ppc_welcome_class.php:136
+#, fuzzy
+#| msgid "Go to detailed view"
+msgid "The detailed view"
+msgstr "Acessar vista detalhada"
+
+#: classes/ppc_welcome_class.php:137
+msgid ""
+"Detailed stats display an in-depth view for an author. You'll see how the "
+"total amount has been calculated, with details for each post (number of "
+"words, visits, images and comments)."
+msgstr ""
+
+#: classes/ppc_welcome_class.php:139
+msgid "Get old stats too"
+msgstr ""
+
+#: classes/ppc_welcome_class.php:140
+msgid ""
+"View posts calculations since the first written post, regardless of the "
+"plugin install date. A fancy date picker lets you shift between days and "
+"select the desired time range."
+msgstr ""
+
+#: classes/ppc_welcome_class.php:142
+msgid "Overall stats"
+msgstr ""
+
+#: classes/ppc_welcome_class.php:143
+msgid ""
+"Fond of stats and numbers? At the bottom of regular stats an overall stats "
+"box displays your all-time overall stats, from the first post ever to the "
+"latest one."
+msgstr ""
+
+#: classes/ppc_welcome_class.php:148
+msgid "Juicy additions"
+msgstr ""
+
+#: classes/ppc_welcome_class.php:153
+#, fuzzy
+#| msgid "Delete user's settings"
+msgid "Prevent users envy"
+msgstr "Deletar configurações do usuário"
+
+#: classes/ppc_welcome_class.php:154
+msgid ""
+"Want users to be able to see only their own stats and not other users' ones? "
+"Yes you can! There's a whole set of permission settings to define what users "
+"should and shouldn't see."
+msgstr ""
+
+#: classes/ppc_welcome_class.php:156
+#, fuzzy
+#| msgid "Personalize Settings"
+msgid "Personalize settings by user"
+msgstr "Personalizar Configurações"
+
+#: classes/ppc_welcome_class.php:157
+msgid ""
+"Some users may deserve more or less than others: they can have custom "
+"settings for what concerns payments and permissions."
+msgstr ""
+
+#: classes/ppc_welcome_class.php:159
+#, fuzzy
+#| msgid "Import/Export Settings"
+msgid "Import/Export settings"
+msgstr "Importar/Exportar Configurações"
+
+#: classes/ppc_welcome_class.php:160
+msgid ""
+"Exporting and importing settings makes duplicating settings easy! You can "
+"copy them from a user to another or even from different websites."
+msgstr ""
+
+#: classes/ppc_welcome_class.php:167 classes/ppc_welcome_class.php:200
+msgid "Go to Post Pay Counter Settings"
+msgstr ""
+
+#: classes/ppc_welcome_class.php:192
+msgid "Version changes"
+msgstr ""
+
+#: classes/ppc_welcome_class.php:218
+msgid "The springboard for the PRO"
+msgstr ""
+
+#: classes/ppc_welcome_class.php:223
+msgid "Analytics and Adsense integration"
+msgstr ""
+
+#: classes/ppc_welcome_class.php:224
+msgid ""
+"Use your account on the world-leading website visits tracking system to pay "
+"writers basing on reliable visits data, and/or share Adsense revenues with "
+"your writers. Use pageviews or unique pageviews as you like and stop the "
+"counting after a certain number of days."
+msgstr ""
+
+#: classes/ppc_welcome_class.php:226
+msgid "Pay with Paypal"
+msgstr ""
+
+#: classes/ppc_welcome_class.php:227
+msgid "Pay your writers directly from the stats page with Adaptive Payments."
+msgstr ""
+
+#: classes/ppc_welcome_class.php:229
+msgid "Tons of other features"
+msgstr ""
+
+#: classes/ppc_welcome_class.php:230
+#, php-format
+msgid ""
+"The %1$sPRO version%2$s includes a damn more lot of interesting features, "
+"among which but not only: payment manager and payment history to keep track "
+"of past transactions, award payment bonus to single posts, shortcode for "
+"stats, stats exporting... see? There's not enough space to list them all!"
+msgstr ""
+
+#: classes/ppc_welcome_class.php:252
+msgid "No valid changelog was found."
+msgstr ""
+
+#: post-pay-counter.php:166 post-pay-counter.php:662
 msgid "Stats"
 msgstr "Estatísticas"
 
-#: post-pay-counter.php:119 post-pay-counter.php:385
-msgid "Options"
-msgstr "Opções"
-
-#: post-pay-counter.php:120
+#: post-pay-counter.php:168
 msgid "System Info"
 msgstr "Informações do sistema"
 
-#: post-pay-counter.php:148
-#, php-format
-msgid ""
-"Post Pay Counter was successfully updated to version %1$s. Want to have a "
-"look at the %2$sOptions page%3$s, or at the %4$schangelog%3$s?"
+#: post-pay-counter.php:169 post-pay-counter.php:469
+msgid "Addons"
 msgstr ""
-"Post Pay Counter foi atualizado para a versão %1$s. Quer dar uma olhada nas "
-"%2$sConfigurações %3$s, ou nos %4$slogs de mudança%3$s?"
 
-#: post-pay-counter.php:148
-msgid "Go to Options page"
-msgstr "Acessar Página de Configurações"
-
-#: post-pay-counter.php:148
-msgid "Go to changelog"
-msgstr "Acessar Log de mudanças"
-
-#: post-pay-counter.php:196
-msgid "Counting Settings"
-msgstr "Configurações de contagem"
-
-#: post-pay-counter.php:197
+#: post-pay-counter.php:278
 msgid "Permissions"
 msgstr "Permissões"
 
-#: post-pay-counter.php:198
-msgid "Support the author"
-msgstr "Ajude o autor"
+#: post-pay-counter.php:282
+msgid "License status"
+msgstr ""
 
-#: post-pay-counter.php:199
-msgid "Everything you're missing by not being PRO"
-msgstr "Tudo que você está perdendo por não obter a versão PRO"
-
-#: post-pay-counter.php:202
-msgid "Personalize Settings"
-msgstr "Personalizar Configurações"
-
-#: post-pay-counter.php:203
+#: post-pay-counter.php:283
 msgid "Miscellanea"
 msgstr "Configurações Extras"
 
-#: post-pay-counter.php:207
+#: post-pay-counter.php:286
 msgid "Import/Export Settings"
 msgstr "Importar/Exportar Configurações"
 
-#: post-pay-counter.php:208
+#: post-pay-counter.php:287
+msgid "Everything you're missing by not being PRO"
+msgstr "Tudo que você está perdendo por não obter a versão PRO"
+
+#: post-pay-counter.php:288
+msgid "Support the author"
+msgstr "Ajude o autor"
+
+#: post-pay-counter.php:291
 msgid "Error log"
 msgstr "Log de erros"
 
-#: post-pay-counter.php:222
+#: post-pay-counter.php:310
+msgid ""
+"Your license was successfully deactivated, you can now use it on other "
+"websites."
+msgstr ""
+
+#: post-pay-counter.php:311
+msgid ""
+"Are you sure you want to deactivate your license on this website? You will "
+"be able to unlock the addon features on another website, but you will not be "
+"able to use them on this one anymore."
+msgstr ""
+
+#: post-pay-counter.php:312
 msgid ""
 "User's settings successfully deleted. You will be redirected to the general "
 "options page."
@@ -987,68 +1690,149 @@ msgstr ""
 "Configurações de usuário excluídas com sucesso. Você será redirecionado para "
 "a página de configurações gerais."
 
-#: post-pay-counter.php:231
+#: post-pay-counter.php:321
 msgid "No more than 10 zones are allowed."
 msgstr "10 quantidades são permitidas."
 
-#: post-pay-counter.php:232
+#: post-pay-counter.php:322
 msgid "No less than 2 zones are allowed."
 msgstr "Pelo menos 2 quantidades são necessárias"
 
-#: post-pay-counter.php:233
+#: post-pay-counter.php:323
 msgid "A payment threshold must first be set."
 msgstr "Um limite de pagamento deve ser definido."
 
-#: post-pay-counter.php:261
+#: post-pay-counter.php:352
 msgid "The requested user does not exist."
 msgstr "O usuário solicitado não existe."
 
-#: post-pay-counter.php:317
+#: post-pay-counter.php:452
 msgid "Settings"
 msgstr "Configurações"
 
-#: post-pay-counter.php:333
+#: post-pay-counter.php:467
 msgid "Donate"
 msgstr "Doar"
 
-#: post-pay-counter.php:384
+#: post-pay-counter.php:497
 msgid "Installed version"
 msgstr "Versão instalada"
 
-#: post-pay-counter.php:384
+#: post-pay-counter.php:497
 msgid "Support"
 msgstr "Suporte"
 
-#: post-pay-counter.php:387
-msgid ""
-"From this page you can configure the Post Pay Counter plugin. You will find "
-"all the information you need inside each following box and, for every "
-"available function, clicking on the info icon on the right of them."
+#: post-pay-counter.php:497
+msgid "Tutorials"
 msgstr ""
-"Nesta página você poderá configurar o plugin Post Pay Counter. Você "
-"encontrará todas as informações necessárias dentro de cada campo, e para "
-"todos os recursos disponíveis clicando no ícone de informação no lado "
-"direito de cada opção."
 
-#: post-pay-counter.php:395
+#: post-pay-counter.php:497
+msgid "Questions & Answers"
+msgstr ""
+
+#: post-pay-counter.php:502
+msgid ""
+"The Post Pay Counter plugin is ready to make handling authors' payments "
+"much, much easier, starting from... now! From this page you can set the "
+"plugin up, customizing each possible feature to best suit your needs. "
+"Options are divided into groups, and for each of the following boxes you "
+"will find details of all the features of the plugin and, for most of them, "
+"additional details and examples are available by clicking on the info icon "
+"on the right of them."
+msgstr ""
+
+#: post-pay-counter.php:503
+#, php-format
+msgid ""
+"Don't forget to take our %1$sfeatures survey%2$s to let us know what "
+"functions you'd like to see in future releases of the plugin! Also, if you "
+"like this plugin, you may be interested in trying the shiny %3$sPRO version"
+"%2$s, containing a whole lot of useful features!"
+msgstr ""
+
+#: post-pay-counter.php:521
 msgid "Go back to general settings"
 msgstr "Voltar para as configurações gerais"
 
-#: post-pay-counter.php:396
+#: post-pay-counter.php:522
 msgid "Delete user's settings"
 msgstr "Deletar configurações do usuário"
 
-#: post-pay-counter.php:397
+#: post-pay-counter.php:523
 msgid "Currently editing user:"
 msgstr "Atualmente editando o usuário:"
 
-#: post-pay-counter.php:478
+#: post-pay-counter.php:599
 msgid "You do not have sufficient permissions to access this page"
 msgstr "Você não tem permissões para acessar esta página"
 
-#: post-pay-counter.php:498
+#: post-pay-counter.php:693
+msgid ""
+"Displayed data is cached. You may have to wait 24 hours for updated data."
+msgstr ""
+
+#: post-pay-counter.php:728
 msgid "General"
 msgstr "Geral"
+
+#~ msgid "Error: no posts were selected"
+#~ msgstr "Erro: nenhum post selecionado"
+
+#~ msgid "Imgs"
+#~ msgstr "Imagens"
+
+#~ msgid "Total words count:"
+#~ msgstr "Total de palavras:"
+
+#~ msgid "Total visits count:"
+#~ msgstr "Total de visitas:"
+
+#~ msgid "Total images count:"
+#~ msgstr "Total de imagens:"
+
+#~ msgid "Total comments count:"
+#~ msgstr "Total de comentários:"
+
+#~ msgid "Give me something from my %1$sAmazon Wishlist%2$s."
+#~ msgstr "Me dê algo da minha %1$sLista de Presentes da Amazon%2$s."
+
+#~ msgid "Current week"
+#~ msgstr "Semana atual"
+
+#~ msgid "Current month"
+#~ msgstr "Mês atual"
+
+#~ msgid "Payment on word counting"
+#~ msgstr "Pagamento por palavra"
+
+#~ msgid "Payment on visit counting"
+#~ msgstr "Pagamento por visita"
+
+#~ msgid "Payment on images counting"
+#~ msgstr "Pagamento por imagem"
+
+#~ msgid "Payment on comments counting"
+#~ msgstr "Pagamento por comentário"
+
+#~ msgid ""
+#~ "Post Pay Counter was successfully updated to version %1$s. Want to have a "
+#~ "look at the %2$sOptions page%3$s, or at the %4$schangelog%3$s?"
+#~ msgstr ""
+#~ "Post Pay Counter foi atualizado para a versão %1$s. Quer dar uma olhada "
+#~ "nas %2$sConfigurações %3$s, ou nos %4$slogs de mudança%3$s?"
+
+#~ msgid "Go to Options page"
+#~ msgstr "Acessar Página de Configurações"
+
+#~ msgid ""
+#~ "From this page you can configure the Post Pay Counter plugin. You will "
+#~ "find all the information you need inside each following box and, for "
+#~ "every available function, clicking on the info icon on the right of them."
+#~ msgstr ""
+#~ "Nesta página você poderá configurar o plugin Post Pay Counter. Você "
+#~ "encontrará todas as informações necessárias dentro de cada campo, e para "
+#~ "todos os recursos disponíveis clicando no ícone de informação no lado "
+#~ "direito de cada opção."
 
 #~ msgid ""
 #~ "User's settings deleted successfully. You will be redirected to the "

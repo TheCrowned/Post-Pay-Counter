@@ -52,7 +52,7 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
 
 		$this->author_id = key( $stats_data['formatted_stats']['stats'] );
 		$this->data = current( $stats_data['formatted_stats']['stats'] );
-		
+
 		$this->columns = $stats_data['formatted_stats']['cols'];
 		$this->raw_data = $stats_data['raw_stats'];
     }
@@ -120,6 +120,17 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
 					$label_field_value = substr( $column_name, 5, strlen( $column_name ) );
 					if( $post->ppc_count['normal_count'][$label_field_value]['real'] != $post->ppc_count['normal_count'][$label_field_value]['to_count'] )
 						$field_value = '<abbr title="'.sprintf( __( 'Total is %1$s. %2$s Displayed is what you\'ll be paid for.', 'post-pay-counter' ), $post->ppc_count['normal_count'][$label_field_value]['real'], '&#13;' ).'" class="ppc_count_column">'.$item[$column_name].'</abbr>';
+
+					break;
+
+				//Terrible hack to localize at least some post statuses
+				case 'post_status':
+					if( $field_value == 'publish' )
+						$field_value = __( 'Publish', 'post-pay-counter' );
+					else if( $field_value == 'pending' )
+						$field_value = __( 'Pending', 'post-pay-counter' );
+					else if( $field_value == 'future' )
+						$field_value = __( 'Future', 'post-pay-counter' );
 
 					break;
 			}
@@ -346,18 +357,18 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
          * sorting technique would be unnecessary.
          */
         $sortable_cols = $this->get_sortable_columns();
-        if( isset( $_REQUEST['orderby'] ) AND isset( $_REQUEST['order'] ) 
-		AND isset( $sortable_cols[$_REQUEST['orderby']] ) 
-		AND ( $_REQUEST['order'] == 'desc' OR $_REQUEST['order'] == 'asc' ) 
-		AND ! ( $_REQUEST['orderby'] == 'post_publication_date' AND $_REQUEST['order'] == 'desc' ) ) 
+        if( isset( $_REQUEST['orderby'] ) AND isset( $_REQUEST['order'] )
+		AND isset( $sortable_cols[$_REQUEST['orderby']] )
+		AND ( $_REQUEST['order'] == 'desc' OR $_REQUEST['order'] == 'asc' )
+		AND ! ( $_REQUEST['orderby'] == 'post_publication_date' AND $_REQUEST['order'] == 'desc' ) )
 		{ //don't sort if post_publication_date desc, it's already sorted
-			
+
         	function usort_reorder($a, $b) {
 				$result = strnatcasecmp( $a[$_REQUEST['orderby']], $b[$_REQUEST['orderby']] ); //Determine sort order
 				return ( $_REQUEST['order'] === 'asc' ) ? $result : -$result; //Send final sort direction to usort
 			}
 			usort($data, 'usort_reorder');
-			
+
 		}
 
         /**

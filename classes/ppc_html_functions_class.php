@@ -101,7 +101,7 @@ class PPC_HTML_functions {
 
 			foreach( $wp_roles->role_names as $key => $value ) {
 				if( ! in_array( $key, $general_settings['counting_allowed_user_roles'] ) ) continue; //skip non-allowed roles
-				
+
 				$checked = '';
 
 				if( isset( $ppc_global_settings['stats_role'] ) AND $key == $ppc_global_settings['stats_role'] )
@@ -269,7 +269,7 @@ class PPC_HTML_functions {
 
 		if( is_array( $author ) ) {
 			foreach( $formatted_stats['stats'] as $author => $author_stats ) {
-			
+
 				$user_settings = PPC_general_functions::get_settings( $author, true );
 				$counting_types = $ppc_global_settings['counting_types_object']->get_all_counting_types( 'post' );
 
@@ -319,6 +319,17 @@ class PPC_HTML_functions {
 								$count_field_value = substr( $field_name, 5, strlen( $field_name ) );
 								if( $post->ppc_count['normal_count'][$count_field_value]['real'] != $post->ppc_count['normal_count'][$count_field_value]['to_count'] )
 									$field_value = '<abbr title="'.sprintf( __( 'Total is %1$s. %2$s Displayed is what you\'ll be paid for.', 'post-pay-counter' ), $post->ppc_count['normal_count'][$count_field_value]['real'], '&#13;' ).'" class="ppc_count_column">'.$field_value.'</abbr>';
+
+								break;
+
+							//Terrible hack to localize at least some post statuses
+							case 'post_status':
+								if( $field_value == 'publish' )
+									$field_value = __( 'Publish', 'post-pay-counter' );
+								else if( $field_value == 'pending' )
+									$field_value = __( 'Pending', 'post-pay-counter' );
+								else if( $field_value == 'future' )
+									$field_value = __( 'Future', 'post-pay-counter' );
 
 								break;
 						}
@@ -392,7 +403,7 @@ class PPC_HTML_functions {
 				}
 
 				$html = apply_filters( 'ppc_general_stats_'.$filter_name.'_after_each_default_filter', $html, $author, $formatted_stats, $raw_stats );
-				
+
 				//Bit entangled due to retro-compatibility with PRO versions <= 1.5.8.3, when this function echoed directly (thus using actions and not filters)
 				if( $echo_or_return == "echo" ) {
 					echo $html;
@@ -402,7 +413,7 @@ class PPC_HTML_functions {
 
 				$html .= '</tr>';
 			}
-			
+
 		}
 
 		return $html;
@@ -445,11 +456,11 @@ class PPC_HTML_functions {
 
 			if( isset( $counting_types[$id] ) ) {
 
-				if( isset( $counting_types[$id]['display_status_index'] ) AND isset( $general_settings[$counting_types[$id]['display_status_index']] ) ) 
+				if( isset( $counting_types[$id]['display_status_index'] ) AND isset( $general_settings[$counting_types[$id]['display_status_index']] ) )
 					$display = $general_settings[$counting_types[$id]['display_status_index']];
 				else
 					$display = $counting_types[$id]['display'];
-						
+
 				switch( $display ) {
 					case 'both':
 						$disp = $overall_stats['count'][$id].' ('.PPC_general_functions::format_payment( $overall_stats['payment'][$id] ).')';
