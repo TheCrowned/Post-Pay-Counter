@@ -83,7 +83,8 @@ class PPC_update_class {
 			'default_stats_time_range_all_time' => 0,
 			'enable_post_stats_caching' => 1,
 			'payment_display_round_digits' => 2,
-			'save_stats_order' => 1
+			'save_stats_order' => 1,
+			'hide_column_total_payment' => 0,
         );
 
         foreach( $new_settings as $setting => $value ) {

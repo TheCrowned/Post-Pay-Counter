@@ -37,6 +37,7 @@ class PPC_save_options {
         $new_settings['counting_comments'] = @PPC_options_fields::get_checkbox_value( $settings['counting_comments'] );
         $new_settings['counting_payment_only_when_total_threshold'] = @PPC_options_fields::get_checkbox_value( $settings['counting_payment_only_when_total_threshold'] );
         $new_settings['counting_exclude_quotations'] = @PPC_options_fields::get_checkbox_value( $settings['counting_exclude_quotations'] );
+        $new_settings['hide_column_total_payment'] = @PPC_options_fields::get_checkbox_value( $settings['hide_column_total_payment'] );
 
         if( @PPC_options_fields::get_checkbox_value( $settings['counting_count_pending_revision_posts'] ) )
             $new_settings['counting_allowed_post_statuses']['pending'] = 1;
@@ -141,7 +142,7 @@ class PPC_save_options {
         $new_settings = array_merge( $new_settings, $default_stats_time_range );
         $new_settings['default_stats_time_range_custom_value'] = (int) $settings['default_stats_time_range_custom_value'];
         $new_settings['payment_display_round_digits'] = (int) $settings['payment_display_round_digits'];
-        
+
 		$new_settings['admins_override_permissions'] = @PPC_options_fields::get_checkbox_value( $settings['admins_override_permissions'] );
 		$new_settings['display_overall_stats'] = @PPC_options_fields::get_checkbox_value( $settings['display_overall_stats'] );
 		$new_settings['stats_display_edit_post_link'] = @PPC_options_fields::get_checkbox_value( $settings['stats_display_edit_post_link'] );

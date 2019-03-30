@@ -376,13 +376,15 @@ class PPC_generate_stats {
 					}
 				}
 
-                $formatted_stats['stats'][$author_id][$post->ID]['post_total_payment'] = PPC_general_functions::format_payment( $post->ppc_payment['normal_payment']['total'] );
+				if( ! $user_settings['hide_column_total_payment'] )
+					$formatted_stats['stats'][$author_id][$post->ID]['post_total_payment'] = PPC_general_functions::format_payment( $post->ppc_payment['normal_payment']['total'] );
 
                 $formatted_stats['stats'][$author_id][$post->ID] = apply_filters( 'ppc_author_stats_format_stats_after_each_default', $formatted_stats['stats'][$author_id][$post->ID], $author_id, $post );
             }
 
 			//Cols bottom, so that Payment cols are always at the end
-			$formatted_stats['cols']['post_total_payment'] = __( 'Total Pay', 'post-pay-counter');
+			if( ! $user_settings['hide_column_total_payment'] )
+				$formatted_stats['cols']['post_total_payment'] = __( 'Total Pay', 'post-pay-counter');
 
 			$formatted_stats['cols'] = apply_filters( 'ppc_author_stats_format_stats_after_cols_default', $formatted_stats['cols'] );
 
@@ -438,7 +440,8 @@ class PPC_generate_stats {
 					}
 				}
 
-				$formatted_stats['stats'][$author_id]['author_total_payment'] = PPC_general_functions::format_payment( $posts['total']['ppc_payment']['normal_payment']['total'] );
+				if( ! $user_settings['hide_column_total_payment'] )
+					$formatted_stats['stats'][$author_id]['author_total_payment'] = PPC_general_functions::format_payment( $posts['total']['ppc_payment']['normal_payment']['total'] );
 
                 $formatted_stats['stats'][$author_id] = apply_filters( 'ppc_general_stats_format_stats_after_each_default', $formatted_stats['stats'][$author_id], $author_id, $posts );
             }
@@ -466,7 +469,9 @@ class PPC_generate_stats {
 				}
 			}
 
-			$formatted_stats['cols']['author_total_payment'] = __( 'Total payment' , 'post-pay-counter');
+			if( ! $user_settings['hide_column_total_payment'] )
+				$formatted_stats['cols']['author_total_payment'] = __( 'Total payment' , 'post-pay-counter');
+
 			$formatted_stats['cols'] = apply_filters( 'ppc_general_stats_format_stats_after_cols_default', $formatted_stats['cols'] );
         }
 

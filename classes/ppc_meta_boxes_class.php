@@ -337,6 +337,7 @@ class PPC_meta_boxes {
         echo '<div class="main">';
         echo PPC_HTML_functions::echo_text_field( 'counting_payment_total_threshold', $current_settings['counting_payment_total_threshold'], __( 'Set payment maximum (0 = infinite)' , 'post-pay-counter') );
         echo PPC_HTML_functions::echo_p_field( __( 'Hide posts that do not reach the threshold', 'post-pay-counter'), $current_settings['counting_payment_only_when_total_threshold'], 'checkbox', 'counting_payment_only_when_total_threshold', __( 'Check this if you want to pay items only when they reach the max payment threshold. Other items will appear grayed out.' , 'post-pay-counter'), 'counting_payment_only_when_total_threshold', 'counting_payment_only_when_total_threshold' );
+		echo PPC_HTML_functions::echo_p_field( sprintf( __( 'Hide %s column', 'post-pay-counter' ), __( 'Total payment', 'post-pay-counter' ) ), $current_settings['hide_column_total_payment'], 'checkbox', 'hide_column_total_payment', sprintf( __( 'Check this if you want the %s column to be hidden in the stats table.' , 'post-pay-counter' ), __( 'Total payment', 'post-pay-counter' ) ), 'hide_column_total_payment', 'hide_column_total_payment' );
         echo '</div>';
         echo '</div>';
         do_action( 'ppc_counting_settings_after_total_payment', $current_settings );
@@ -632,7 +633,7 @@ class PPC_meta_boxes {
 
 				if( isset( $single['license_key'] ) )
 					$single['renewal_url'] .= '&license_key='.$single['license_key']; //attach license key to renew URL
-				
+
                 if( ! isset( $single['expiration'] ) )
 					$status = '<span style="color: gray;">'.__( 'Unknown', 'post-pay-counter' ).'</span>';
 				else if( $single['expiration'] - current_time( 'timestamp' ) < 0 )
