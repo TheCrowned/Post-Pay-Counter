@@ -76,7 +76,7 @@ class PPC_counting_stuff {
 			self::$settings = PPC_general_functions::get_settings( $author_id, TRUE );
 			self::$current_active_counting_types_post = $ppc_global_settings['counting_types_object']->get_active_counting_types( 'post', $author_id );
 			self::$current_active_counting_types_author = $ppc_global_settings['counting_types_object']->get_active_counting_types( 'author', $author_id );
-			
+
 			$data_arr = array();
 
 			foreach( $author_stats as $single ) {
@@ -87,10 +87,10 @@ class PPC_counting_stuff {
 
 				//Use cached data if available
 				$post_stats = PPC_cache_functions::get_post_stats( $single->ID );
-				
+
 				if( $post_stats !== false ) {
 					$processed_data[$author_id][$single->ID] = $post_stats;
-					
+
 				} else {
 					do_action( 'ppc_data2cash_single_before', $single );
 
@@ -389,7 +389,7 @@ class PPC_counting_stuff {
             }
         }
 
-        return apply_filters( 'ppc_get_post_payment', array( 'ppc_payment' => $ppc_payment, 'ppc_misc' => $ppc_misc ) );
+        return apply_filters( 'ppc_get_post_payment', array( 'ppc_payment' => $ppc_payment, 'ppc_misc' => $ppc_misc ), $post_countings, $post );
     }
 
     /**
@@ -438,7 +438,7 @@ class PPC_counting_stuff {
 
 		if( ! self::$settings['enable_stats_payments_tooltips'] )
 			return $tooltip;
-			
+
         if( ! empty( $payment ) ) {
 			foreach( $payment as $id => $value ) {
 				if( $id == 'total' ) continue;
