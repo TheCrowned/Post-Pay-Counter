@@ -340,7 +340,7 @@ class PPC_counting_stuff {
         else
             $post_visits['to_count'] = $post_visits['real'];
 
-        return apply_filters( 'ppc_counted_post_visits', $post_visits );
+        return apply_filters( 'ppc_counted_post_visits', $post_visits, $post->ID );
     }
 
     /**
