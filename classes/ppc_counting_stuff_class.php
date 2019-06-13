@@ -381,6 +381,8 @@ class PPC_counting_stuff {
 
 		$ppc_payment['normal_payment']['total'] = array_sum( $ppc_payment['normal_payment'] );
 
+		$ppc_payment = self::are_countings_above_thresholds( $ppc_payment, $post_countings, $post );
+
         $ppc_misc['exceed_threshold'] = false;
         if( self::$settings['counting_payment_total_threshold'] != 0 ) {
             if( $ppc_payment['normal_payment']['total'] > self::$settings['counting_payment_total_threshold'] ) {
@@ -391,6 +393,27 @@ class PPC_counting_stuff {
 
         return apply_filters( 'ppc_get_post_payment', array( 'ppc_payment' => $ppc_payment, 'ppc_misc' => $ppc_misc ), $post_countings, $post );
     }
+
+    /**
+     * Checks whether post qualifies for payment with respect to thresholds for each counting type.
+     *
+     * @since	2.750
+     * @param	$ppc_payment array
+     * @param	$countings array
+     * @param 	$post WP_Post Object
+     * @return 	array ppc_payment
+     */
+    static function are_countings_above_thresholds( $ppc_payment, $countings, $post ) {
+
+		foreach( $countings as $counting_type => $single ) {
+			if( isset( PPC_counting_stuff::$settings['counting_'.$counting_type.'_global_threshold'] ) ) {
+				if( $single['real'] < PPC_counting_stuff::$settings['counting_'.$counting_type.'_global_threshold'] )
+					$ppc_payment['normal_payment']['total'] = 0;
+			}
+		}
+
+		return $ppc_payment;
+	}
 
     /**
      * Computes payment data for the given items.

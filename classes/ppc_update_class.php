@@ -85,6 +85,10 @@ class PPC_update_class {
 			'payment_display_round_digits' => 2,
 			'save_stats_order' => 1,
 			'hide_column_total_payment' => 0,
+			'counting_words_global_threshold' => 0,
+			'counting_visits_global_threshold' => 0,
+			'counting_comments_global_threshold' => 0,
+			'counting_images_global_threshold' => 0,
         );
 
         foreach( $new_settings as $setting => $value ) {

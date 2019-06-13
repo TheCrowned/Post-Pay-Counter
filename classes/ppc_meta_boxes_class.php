@@ -264,6 +264,7 @@ class PPC_meta_boxes {
         echo PPC_HTML_functions::echo_text_field( 'counting_words_threshold_max', $current_settings['counting_words_threshold_max'], __( 'Stop counting words after word # (0 = infinite)' , 'post-pay-counter') );
         echo PPC_options_fields::echo_counting_type_display_dropdown( 'counting_words', $current_settings['counting_words_display_status'] );
         echo PPC_HTML_functions::echo_p_field( 'Include post excerpt in words counting', $current_settings['counting_words_include_excerpt'], 'checkbox', 'counting_words_include_excerpt', __( 'Determines whether post excerpt text should be included in words counting.' , 'post-pay-counter') );
+        echo PPC_HTML_functions::echo_text_field( 'counting_words_global_threshold', $current_settings['counting_words_global_threshold'], sprintf( __( 'Require at least # %s to qualify for (any) payment', 'post-pay-counter'), __( 'words', 'post-pay-counter' ) ) );
         echo '</div>';
         echo '</div>';
         do_action( 'ppc_counting_settings_after_words_payment', $current_settings );
@@ -290,6 +291,7 @@ class PPC_meta_boxes {
         echo PPC_options_fields::echo_payment_systems( 'visits', __( 'visits', 'post-pay-counter' ), array( 'counting_visits_system_zonal' => $current_settings['counting_visits_system_zonal'], 'counting_visits_system_zonal_value' => $current_settings['counting_visits_system_zonal_value'], 'counting_visits_system_incremental' => $current_settings['counting_visits_system_incremental'], 'counting_visits_system_incremental_value' => $current_settings['counting_visits_system_incremental_value'] ) );
         echo '<div class="ppc_title">'.__( 'Counting options' , 'post-pay-counter').'</div>';
         echo PPC_HTML_functions::echo_text_field( 'counting_visits_threshold_max', $current_settings['counting_visits_threshold_max'], __( 'Stop counting visits after visit # (0 = infinite)' , 'post-pay-counter') );
+        echo PPC_HTML_functions::echo_text_field( 'counting_visits_global_threshold', $current_settings['counting_visits_global_threshold'], sprintf( __( 'Require at least # %s to qualify for (any) payment', 'post-pay-counter'), __( 'visits', 'post-pay-counter' ) ) );
         echo PPC_options_fields::echo_counting_type_display_dropdown( 'counting_visits', $current_settings['counting_visits_display_status'] );
         echo '</div>';
         echo '</div>';
@@ -309,6 +311,7 @@ class PPC_meta_boxes {
         echo PPC_HTML_functions::echo_text_field( 'counting_images_threshold_max', $current_settings['counting_images_threshold_max'], __( 'Stop paying per image after image #' , 'post-pay-counter') );
         echo PPC_HTML_functions::echo_p_field( 'Include featured image in counting', $current_settings['counting_images_include_featured'], 'checkbox', 'counting_images_include_featured', __( 'Determines whether the featured image will be included in image counting.' , 'post-pay-counter') );
 		echo PPC_HTML_functions::echo_p_field( 'Include gallery images in counting', $current_settings['counting_images_include_galleries'], 'checkbox', 'counting_images_include_galleries', __( 'Determines whether images in galleries should be included in image counting (may slow down stats page loading due to additional post content parsing).' , 'post-pay-counter') );
+		echo PPC_HTML_functions::echo_text_field( 'counting_images_global_threshold', $current_settings['counting_images_global_threshold'], sprintf( __( 'Require at least # %s to qualify for (any) payment', 'post-pay-counter'), __( 'images', 'post-pay-counter' ) ) );
 		echo PPC_options_fields::echo_counting_type_display_dropdown( 'counting_images', $current_settings['counting_images_display_status'] );
         echo '</div>';
         echo '</div>';
@@ -326,6 +329,7 @@ class PPC_meta_boxes {
         echo '<div class="ppc_title">'.__( 'Counting options' , 'post-pay-counter').'</div>';
         echo PPC_HTML_functions::echo_text_field( 'counting_comments_threshold_min', $current_settings['counting_comments_threshold_min'], __( 'Start paying per comment after comment #' , 'post-pay-counter') );
         echo PPC_HTML_functions::echo_text_field( 'counting_comments_threshold_max', $current_settings['counting_comments_threshold_max'], __( 'Stop paying per comment after comment #' , 'post-pay-counter') );
+        echo PPC_HTML_functions::echo_text_field( 'counting_comments_global_threshold', $current_settings['counting_comments_global_threshold'], sprintf( __( 'Require at least # %s to qualify for (any) payment', 'post-pay-counter'), __( 'comments', 'post-pay-counter' ) ) );
         echo PPC_options_fields::echo_counting_type_display_dropdown( 'counting_comments', $current_settings['counting_comments_display_status'] );
         echo '</div>';
         echo '</div>';
