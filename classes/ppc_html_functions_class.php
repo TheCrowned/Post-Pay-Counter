@@ -554,8 +554,8 @@ class PPC_HTML_functions {
 			$placeholder = ' placeholder="'.$placeholder.'"';
 
 		$html = '<p>';
+		$html .= '<input type="text" name="'.$field_name.'" id="'.$field_name.'" size="'.$size.'" value="'.$field_value.'" class="ppc_align_right"'.$placeholder.' />';
         $html .= '<label for="'.$field_name.'">'.$label_text.'</label>';
-        $html .= '<input type="text" name="'.$field_name.'" id="'.$field_name.'" size="'.$size.'" value="'.$field_value.'" class="ppc_align_right"'.$placeholder.' />';
         $html .= '</p>';
 
         return apply_filters( 'text_field_generation', $html );

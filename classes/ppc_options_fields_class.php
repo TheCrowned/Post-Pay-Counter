@@ -85,7 +85,7 @@ class PPC_options_fields {
 
         $html .= PPC_HTML_functions::echo_p_field( __( 'Use the incremental payment system' , 'post-pay-counter'), $settings['counting_'.$counting_type.'_system_incremental'], 'radio', 'counting_'.$counting_type.'_system', sprintf( __( 'With this system, every %1$s has a value: more %1$s => higher pay. Just think that the %1$s number will be multiplied for the incremental payment value, so that is a post has 300 %1$s and you set the incremental payment value to 0.01, the writer will be credited with 3.' , 'post-pay-counter'), $counting_type_localized ), 'counting_'.$counting_type.'_system_incremental', 'counting_'.$counting_type.'_system_incremental' );
         $html .= '<div id="counting_'.$counting_type.'_system_incremental_content" class="field_value">';
-        $html .= PPC_HTML_functions::echo_text_field( 'counting_'.$counting_type.'_system_incremental_value', $settings['counting_'.$counting_type.'_system_incremental_value'], __( 'Incremental payment value' , 'post-pay-counter'), 15 );
+        $html .= PPC_HTML_functions::echo_text_field( 'counting_'.$counting_type.'_system_incremental_value', $settings['counting_'.$counting_type.'_system_incremental_value'], __( 'Incremental payment value' , 'post-pay-counter'), 2 );
         $html .= '</div>';
         $html .= '</div>';
 
