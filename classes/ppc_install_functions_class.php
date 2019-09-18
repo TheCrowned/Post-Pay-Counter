@@ -103,6 +103,7 @@ class PPC_install_functions {
                 'counting_words_display_status' => 'count',
 				'counting_words_parse_spaces' => 0,
 				'counting_words_include_excerpt' => 0,
+				'counting_words_exclude_pre' => 0,
 				'counting_words_global_threshold' => 0,
                 'counting_visits' => 0,
                 'counting_visits_postmeta' => 1,

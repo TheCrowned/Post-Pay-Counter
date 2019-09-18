@@ -89,6 +89,7 @@ class PPC_update_class {
 			'counting_visits_global_threshold' => 0,
 			'counting_comments_global_threshold' => 0,
 			'counting_images_global_threshold' => 0,
+			'counting_words_exclude_pre' => 0,
         );
 
         foreach( $new_settings as $setting => $value ) {

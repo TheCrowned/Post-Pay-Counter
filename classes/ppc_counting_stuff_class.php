@@ -97,9 +97,6 @@ class PPC_counting_stuff {
 					$post_countings = self::get_post_countings( $single );
 					$post_payment = self::get_post_payment( $post_countings['normal_count'], $single );
 
-					//var_dump($post_countings['normal_count']['comments']);
-					//$data_arr[] = array( $post_countings['normal_count']['adsense_revenues']['real'], $post_countings['normal_count']['visits']['real'], $post_countings['normal_count']['facebook_shares']['real'] );
-
 					if( count( $post_countings['normal_count'] ) == 0 AND count( $post_payment['ppc_payment']['normal_payment'] ) == 0 ) continue;
 
 					$single->ppc_count = $post_countings;
@@ -113,9 +110,6 @@ class PPC_counting_stuff {
 				}
 			}
         }
-
-        //var_dump($data_arr);
-        //print_r(serialize($data_arr));
 
         do_action( 'ppc_data2cash_processed_data', $processed_data ); //@since 2.605
 
@@ -278,6 +272,9 @@ class PPC_counting_stuff {
 
         if( self::$settings['counting_exclude_quotations'] )
             $post_content = preg_replace( '/<(blockquote|q)>(.*?)<\/(blockquote|q)>/s', '', $post_content );
+
+        if( self::$settings['counting_words_exclude_pre'] )
+            $post_content = preg_replace( '/<(pre)>(.*?)<\/(pre)>/s', '', $post_content );
 
 		$purged_content = strip_tags( $post_content );
 
