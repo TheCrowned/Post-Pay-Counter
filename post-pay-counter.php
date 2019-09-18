@@ -162,7 +162,7 @@ class post_pay_counter {
     function admin_menus() {
         global $ppc_global_settings;
 
-        add_menu_page( 'Post Pay Counter', apply_filters( "ppc_admin_menu_name", "Post Pay Counter" ), $ppc_global_settings['cap_access_stats'], 'ppc-stats', array( $this, 'show_stats' ) );
+        add_menu_page( 'Post Pay Counter', apply_filters( "ppc_admin_menu_name", "Post Pay Counter" ), $ppc_global_settings['cap_access_stats'], 'ppc-stats', array( $this, 'show_stats' ), plugin_dir_url( __FILE__ ).'style/images/dollar.png' );
         add_submenu_page( 'ppc-stats', 'Post Pay Counter Stats', __( 'Stats', 'post-pay-counter' ), $ppc_global_settings['cap_access_stats'], 'ppc-stats', array( $this, 'show_stats' ) );
         $ppc_global_settings['options_menu_slug'] = add_submenu_page( 'ppc-stats', 'Post Pay Counter Options', __( 'Options', 'post-pay-counter' ), $ppc_global_settings['cap_manage_options'], 'ppc-options', array( $this, 'show_options' ) );
         add_submenu_page( 'ppc-stats', 'Post Pay Counter System Info', __( 'System Info', 'post-pay-counter' ), $ppc_global_settings['cap_manage_options'], 'ppc-system-info', array( 'PPC_system_info', 'system_info' ) );
