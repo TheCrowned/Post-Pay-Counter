@@ -2,8 +2,8 @@
 Contributors: Ste_95
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22
 Tags: counter, authors, payment, revenue sharing, stats, multi author, post management, post
-Tested up to: 5.2
-Stable tag: 2.746
+Tested up to: 5.3
+Stable tag: 2.747
 Requires at least: 3.7
 
 Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
@@ -77,15 +77,21 @@ From this: *define( 'PPC_DEBUG_LOG', true );*
 It must become: *define( 'PPC_DEBUG_LOG', false );*
 
 == Changelog ==
-= 7.45 (2019-06-18) =
+= 7.747 (2019-09-18) =
+* Feature: allow to exclude text in *pre* tags from word counting.
+* Tweak: added custom icon to admin menu entry.
+* Tweak: improved layout in options page.
+* Tweak: updated localizations.
+
+= 7.746 (2019-06-18) =
 * Feature: added global thresholds for counting types. You can set a threshold (for visits, for example) so that unless that threshold is met, the post does not earn any money at all, even from other payment criteria.
 * Tweak: translation updates.
 
-= 7.45 (2019-04-30) =
+= 7.745 (2019-04-30) =
 * Feature: added Spanish translation (thanks to [Alexey](https://www.traductions.es)).
 * Tweak: added params to filter *ppc_get_post_payment*.
 
-= 7.44 (2019-03-30) =
+= 7.744 (2019-03-30) =
 * Feature: allow to hide the Total payment column.
 
 = 2.743 (2019-03-09) =
