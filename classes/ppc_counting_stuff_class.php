@@ -261,7 +261,7 @@ class PPC_counting_stuff {
 
 		//Handle input parameter
         if( is_a( $post, 'WP_Post' ) )
-			$post_content = apply_filters( 'ppc_count_post_words_post_content_start', $post->post_content );
+			$post_content = apply_filters( 'ppc_count_post_words_post_content_start', $post->post_content, $post->ID );
 		else if( is_string( $post ) )
 			$post_content = apply_filters( 'ppc_count_post_words_post_content_start', $post );
 		else
