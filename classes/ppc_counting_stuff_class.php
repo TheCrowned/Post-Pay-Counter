@@ -268,15 +268,18 @@ class PPC_counting_stuff {
 			return new WP_Error( 'ppc_invalid_argument', 'count_post_words only accepts a WP_post istance or a text string', array( $post ) );
 
 		//Strip tags & content with class="ppc_exclude_words" (doesn't handle nested tags, ie <div class="ppc_exclude_posts">some content <div class="nested">nested content</div> this will already be counted</div>
-		$post_content = preg_replace( '/<([^>]*) [^>]*class=("|\')ppc_exclude_words("|\')[^>]*>(.*?)<\/\1>/s', '', $post_content );
+		$purged_content = preg_replace( '/<([^>]*) [^>]*class=("|\')ppc_exclude_words("|\')[^>]*>(.*?)<\/\1>/s', '', $post_content );
 
         if( self::$settings['counting_exclude_quotations'] )
-            $post_content = preg_replace( '/<(blockquote|q)>(.*?)<\/(blockquote|q)>/s', '', $post_content );
+            $purged_content = preg_replace( '/<(blockquote|q)>(.*?)<\/(blockquote|q)>/s', '', $purged_content );
 
         if( self::$settings['counting_words_exclude_pre'] )
-            $post_content = preg_replace( '/<(pre)>(.*?)<\/(pre)>/s', '', $post_content );
+            $purged_content = preg_replace( '/<(pre)>(.*?)<\/(pre)>/s', '', $purged_content );
 
-		$purged_content = strip_tags( $post_content );
+		if( ! has_shortcode( $post_content, 'ppc' ) AND self::$settings['counting_words_apply_shortcodes'] ) //avoid nested calls of functions due to ppc shortcode
+			$purged_content = do_shortcode( $purged_content );
+
+		$purged_content = strip_tags( $purged_content );
 
 		if( self::$settings['counting_words_parse_spaces'] )
 			$purged_content = preg_replace( '/\'|&nbsp;|&#160;|\r|\n|\r\n|\s+/', ' ',  $purged_content );
@@ -284,6 +287,7 @@ class PPC_counting_stuff {
 		$purged_content = preg_replace( '/\.|,|:|;|\(|\)|"|\'/', '',  $purged_content );
 
 		$purged_content = apply_filters( 'ppc_clean_post_content_word_count', trim( $purged_content ) ); //need to trim to remove final new lines
+
 		$post_words['real'] = count( preg_split( '/\s+/', $purged_content, -1, PREG_SPLIT_NO_EMPTY ) );
 
 		//Include excerpt text if needed
