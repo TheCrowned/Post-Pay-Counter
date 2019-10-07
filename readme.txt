@@ -3,7 +3,7 @@ Contributors: Ste_95
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22
 Tags: counter, authors, payment, revenue sharing, stats, multi author, post management, post
 Tested up to: 5.3
-Stable tag: 2.748
+Stable tag: 2.749
 Requires at least: 3.7
 
 Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
@@ -77,6 +77,9 @@ From this: *define( 'PPC_DEBUG_LOG', true );*
 It must become: *define( 'PPC_DEBUG_LOG', false );*
 
 == Changelog ==
+= 7.749 (2019-10-07) =
+* Fix: WP-CLI tets code breaking WP-CLI setups.
+
 = 7.748 (2019-09-28) =
 * Feature: ability to apply shortcodes before word count.
 * Tweak: added post ID to word count filter.
