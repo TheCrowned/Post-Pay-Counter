@@ -210,15 +210,17 @@ class Post_Pay_Counter_Authors_List_Table extends WP_List_Table {
      * @return array An associative array containing all the columns that should be sortable: 'slugs'=>array('data_values',bool)
      **************************************************************************/
     function get_sortable_columns() {
-
-		//return array();
-
         $sortable_columns = array(
-            'author_id'     => array('author_id',false),     //true means it's already sorted
-            'author_name'    => array('author_name',false),
-            'author_written_posts'    => array('author_written_posts',false),
-            'author_total_payment'  => array('author_total_payment',false)
+            'author_id'             => array( 'author_id', false ), //true = already sorted
+            'author_name'           => array( 'author_name', false ),
+            'author_words'          => array( 'author_words', false ),
+            'author_visits'         => array( 'author_visits', false ),
+            'author_images'         => array( 'author_images', false ),
+            'author_comments'       => array( 'author_comments', false ),
+            'author_written_posts'  => array( 'author_written_posts', false ),
+            'author_total_payment'  => array( 'author_total_payment', false ),
         );
+        
         return apply_filters( 'ppc_stats_general_sortable_columns', $sortable_columns );
     }
 

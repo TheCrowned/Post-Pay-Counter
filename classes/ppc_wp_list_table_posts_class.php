@@ -235,11 +235,16 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
     function get_sortable_columns() {
 
         $sortable_columns = array(
-			'post_id'     			=> array('post_id', false),
-            'post_title'     		=> array('post_title', false),
-            'post_publication_date' => array('post_publication_date', true), //true means it's already sorted
-            'post_total_payment'    => array('post_total_payment', false)
-
+			'post_id'     			=> array( 'post_id', false ),
+            'post_title'     		=> array( 'post_title', false ),
+            'post_type'     		=> array( 'post_type', false ),
+            'post_status'     		=> array( 'post_status', false ),
+            'post_publication_date' => array( 'post_publication_date', true ), //true = already sorted
+            'post_words'            => array( 'post_words', false ),
+            'post_visits'           => array( 'post_visits', false ),
+            'post_images'           => array( 'post_images', false ),
+            'post_comments'         => array( 'post_comments', false ),
+            'post_total_payment'    => array( 'post_total_payment', false ),
         );
         return apply_filters( 'ppc_stats_author_sortable_columns', $sortable_columns );
     }
