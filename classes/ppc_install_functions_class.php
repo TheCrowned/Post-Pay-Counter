@@ -126,6 +126,7 @@ class PPC_install_functions {
                 'counting_visits_system_incremental_value' => 0.01,
                 'counting_visits_threshold_max' => 0,
                 'counting_visits_global_threshold' => 0,
+                'counting_visits_display_percentage' => 100,
                 'counting_visits_display_status' => 'count',
                 'counting_images' => 1,
                 'counting_images_system_zonal' => 0,

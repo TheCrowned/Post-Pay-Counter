@@ -295,6 +295,7 @@ class PPC_meta_boxes {
         echo '<div class="ppc_title">'.__( 'Counting options' , 'post-pay-counter').'</div>';
         echo PPC_HTML_functions::echo_text_field( 'counting_visits_threshold_max', $current_settings['counting_visits_threshold_max'], __( 'Stop counting visits after visit # (0 = infinite)' , 'post-pay-counter'), 2 );
         echo PPC_HTML_functions::echo_text_field( 'counting_visits_global_threshold', $current_settings['counting_visits_global_threshold'], sprintf( __( 'Require at least # %s to qualify for (any) payment', 'post-pay-counter'), __( 'visits', 'post-pay-counter' ) ), 2 );
+        echo PPC_HTML_functions::echo_text_field( 'counting_visits_display_percentage', $current_settings['counting_visits_display_percentage'], __( 'Only show and pay per #% of visits (100 = all)' , 'post-pay-counter'), 2 );
         echo PPC_options_fields::echo_counting_type_display_dropdown( 'counting_visits', $current_settings['counting_visits_display_status'] );
         echo '</div>';
         echo '</div>';

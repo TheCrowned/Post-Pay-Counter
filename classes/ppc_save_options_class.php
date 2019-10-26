@@ -69,6 +69,7 @@ class PPC_save_options {
 		$new_settings['counting_visits_system_incremental_value'] = (float) str_replace( ',', '.', $settings['counting_visits_system_incremental_value'] );
         $new_settings['counting_visits_threshold_max'] = (int) $settings['counting_visits_threshold_max'];
         $new_settings['counting_visits_global_threshold'] = (int) $settings['counting_visits_global_threshold'];
+        $new_settings['counting_visits_display_percentage'] = (int) $settings['counting_visits_display_percentage'];
         $new_settings['counting_visits_display_status'] = $settings['counting_visits_display_status'];
         $new_settings['counting_images_threshold_min'] = (int) $settings['counting_images_threshold_min'];
         $new_settings['counting_images_threshold_max'] = (int) $settings['counting_images_threshold_max'];

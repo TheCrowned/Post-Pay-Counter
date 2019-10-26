@@ -91,6 +91,7 @@ class PPC_update_class {
 			'counting_images_global_threshold' => 0,
 			'counting_words_exclude_pre' => 0,
 			'counting_words_apply_shortcodes' => 0,
+			'counting_visits_display_percentage' => 100,
         );
 
         foreach( $new_settings as $setting => $value ) {

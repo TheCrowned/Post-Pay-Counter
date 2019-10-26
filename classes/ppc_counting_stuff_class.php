@@ -335,6 +335,8 @@ class PPC_counting_stuff {
 			$visits_postmeta = apply_filters( 'ppc_counting_visits_postmeta', self::$settings['counting_visits_postmeta_value'] );
 			$post_visits['real'] = (int) get_post_meta( $post->ID, $visits_postmeta, TRUE );
 		}
+		
+		$post_visits['to_count'] *= self::$settings['counting_visits_display_percentage']/100;
 
         if( self::$settings['counting_visits_threshold_max'] > 0 AND $post_visits['real'] > self::$settings['counting_visits_threshold_max'] )
             $post_visits['to_count'] = self::$settings['counting_visits_threshold_max'];
