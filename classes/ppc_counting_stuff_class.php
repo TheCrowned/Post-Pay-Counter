@@ -336,12 +336,10 @@ class PPC_counting_stuff {
 			$post_visits['real'] = (int) get_post_meta( $post->ID, $visits_postmeta, TRUE );
 		}
 		
-		$post_visits['to_count'] *= self::$settings['counting_visits_display_percentage']/100;
+		$post_visits['to_count'] = (int) ($post_visits['real']*self::$settings['counting_visits_display_percentage']/100);
 
-        if( self::$settings['counting_visits_threshold_max'] > 0 AND $post_visits['real'] > self::$settings['counting_visits_threshold_max'] )
+        if( self::$settings['counting_visits_threshold_max'] > 0 AND $post_visits['to_count'] > self::$settings['counting_visits_threshold_max'] )
             $post_visits['to_count'] = self::$settings['counting_visits_threshold_max'];
-        else
-            $post_visits['to_count'] = $post_visits['real'];
 
         return apply_filters( 'ppc_counted_post_visits', $post_visits, $post->ID );
     }
