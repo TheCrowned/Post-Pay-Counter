@@ -273,6 +273,18 @@ class PPC_HTML_functions {
 				$user_settings = PPC_general_functions::get_settings( $author, true );
 				$counting_types = $ppc_global_settings['counting_types_object']->get_all_counting_types( 'post' );
 
+				//Handle sorting
+				if( isset( $_REQUEST['orderby'] ) AND isset( $_REQUEST['order'] )
+				AND ( $_REQUEST['order'] == 'desc' OR $_REQUEST['order'] == 'asc' )
+				AND ! ( $_REQUEST['orderby'] == 'post_publication_date' AND $_REQUEST['order'] == 'desc' ) ) { //don't sort if post_publication_date desc, it's already sorted
+
+					function usort_reorder($a, $b) {
+						$result = strnatcasecmp( $a[$_REQUEST['orderby']], $b[$_REQUEST['orderby']] ); //Determine sort order
+						return ( $_REQUEST['order'] === 'asc' ) ? $result : -$result; //Send final sort direction to usort
+					}
+					uasort( $author_stats, 'usort_reorder' );
+				}
+
 				foreach( $author_stats as $post_id => $post_stats ) {
 					$post = $raw_stats[$author][$post_id];
 
@@ -352,6 +364,17 @@ class PPC_HTML_functions {
 			}
 
 		} else {
+
+		//Handle sorting
+		if( isset( $_REQUEST['orderby'] ) AND isset( $_REQUEST['order'] )
+		AND ( $_REQUEST['order'] == 'desc' OR $_REQUEST['order'] == 'asc' ) ) {
+
+			function usort_reorder($a, $b) {
+				$result = strnatcasecmp( $a[$_REQUEST['orderby']], $b[$_REQUEST['orderby']] ); //Determine sort order
+				return ( $_REQUEST['order'] === 'asc' ) ? $result : -$result; //Send final sort direction to usort
+			}
+			uasort( $formatted_stats['stats'], 'usort_reorder' );
+		}
 
 			foreach( $formatted_stats['stats'] as $author => $author_stats ) {
 				$html .= '<tr>';
