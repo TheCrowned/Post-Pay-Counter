@@ -365,15 +365,8 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
         if( isset( $_REQUEST['orderby'] ) AND isset( $_REQUEST['order'] )
 		AND isset( $sortable_cols[$_REQUEST['orderby']] )
 		AND ( $_REQUEST['order'] == 'desc' OR $_REQUEST['order'] == 'asc' )
-		AND ! ( $_REQUEST['orderby'] == 'post_publication_date' AND $_REQUEST['order'] == 'desc' ) )
-		{ //don't sort if post_publication_date desc, it's already sorted
-
-        	function usort_reorder($a, $b) {
-				$result = strnatcasecmp( $a[$_REQUEST['orderby']], $b[$_REQUEST['orderby']] ); //Determine sort order
-				return ( $_REQUEST['order'] === 'asc' ) ? $result : -$result; //Send final sort direction to usort
-			}
-			usort($data, 'usort_reorder');
-
+		AND ! ( $_REQUEST['orderby'] == 'post_publication_date' AND $_REQUEST['order'] == 'desc' ) ) { //don't sort if post_publication_date desc, it's already sorted
+			usort( $data, 'ppc_uasort_stats_sort' );
 		}
 
         /**

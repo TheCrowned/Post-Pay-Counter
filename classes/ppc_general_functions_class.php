@@ -292,36 +292,36 @@ class PPC_general_functions {
             $ppc_global_settings['stats_tend'] = strtotime( '23:59:59' );
 		}
     }
-    
+
     /**
      * Checks if there is a saved ordering for stats and redirects to the apt ordered stats page in case.
      * Stores current ordering, if any.
-     * 
+     *
      * @since	2.725
-     * 
-     */ 
+     *
+     */
     static function default_stats_order() {
 		global $ppc_global_settings;
-		
+
 		//Exit if disabled
 		$general_settings = PPC_general_functions::get_settings( 'general' );
 		if( ! $general_settings['save_stats_order'] ) return;
-		
+
 		//If there is a saved sorting, use it
 		if( ! isset( $_GET['orderby'] ) AND isset( $_COOKIE['ppc_'.$ppc_global_settings['current_page'].'_orderby'] ) ) {
 			$redirect_url = admin_url( 'admin.php' ).'?'.$_SERVER['QUERY_STRING'].'&orderby='.$_COOKIE['ppc_'.$ppc_global_settings['current_page'].'_orderby'];
-			
+
 			if( isset( $_COOKIE['ppc_'.$ppc_global_settings['current_page'].'_order'] ) )
 				$redirect_url .= '&order='.$_COOKIE['ppc_'.$ppc_global_settings['current_page'].'_order'];
-			
+
 			wp_safe_redirect( $redirect_url );
-			
+
 		}
 
 		//Store stats sorting settings, cookies expire in 6 months
 		if( isset( $_GET['orderby'] ) ) {
 			setcookie( 'ppc_'.$ppc_global_settings['current_page'].'_orderby', htmlentities( $_GET['orderby'] ), time()+(86400*180) );
-			
+
 			if( isset( $_GET['order'] ) )
 				setcookie( 'ppc_'.$ppc_global_settings['current_page'].'_order', htmlentities( $_GET['order'] ), time()+(86400*180) );
 		}
@@ -339,7 +339,7 @@ class PPC_general_functions {
 
 	static function format_payment( $payment ) {
 		$general_settings = PPC_general_functions::get_settings( 'general' );
-		
+
 		return apply_filters( 'ppc_format_payment', sprintf( '%.'.$general_settings['payment_display_round_digits'].'f', $payment ) );
 	}
 }
@@ -358,4 +358,10 @@ if( ! function_exists( "array_column" ) ) {
 			return $element[$column_name];
 		}, $array );
     }
+}
+
+//Callback for stats sorting
+function ppc_uasort_stats_sort( $a, $b ) {
+	$result = strnatcasecmp( $a[$_REQUEST['orderby']], $b[$_REQUEST['orderby']] ); //Determine sort order
+	return ( $_REQUEST['order'] === 'asc' ) ? $result : -$result; //Send final sort direction to usort
 }

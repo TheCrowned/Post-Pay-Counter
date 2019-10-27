@@ -220,7 +220,7 @@ class Post_Pay_Counter_Authors_List_Table extends WP_List_Table {
             'author_written_posts'  => array( 'author_written_posts', false ),
             'author_total_payment'  => array( 'author_total_payment', false ),
         );
-        
+
         return apply_filters( 'ppc_stats_general_sortable_columns', $sortable_columns );
     }
 
@@ -338,17 +338,10 @@ class Post_Pay_Counter_Authors_List_Table extends WP_List_Table {
          * sorting technique would be unnecessary.
          */
         $sortable_cols = $this->get_sortable_columns();
-        if( isset( $_REQUEST['orderby'] ) AND isset( $_REQUEST['order'] ) 
-		AND isset( $sortable_cols[$_REQUEST['orderby']] ) 
-		AND ( $_REQUEST['order'] == 'desc' OR $_REQUEST['order'] == 'asc' ) )
-		{
-			
-			function usort_reorder($a, $b) {
-				$result = strnatcasecmp( $a[$_REQUEST['orderby']], $b[$_REQUEST['orderby']] ); //Determine sort order
-				return ( $_REQUEST['order'] === 'asc' ) ? $result : -$result; //Send final sort direction to usort
-			}
-			usort($data, 'usort_reorder');
-			
+        if( isset( $_REQUEST['orderby'] ) AND isset( $_REQUEST['order'] )
+		AND isset( $sortable_cols[$_REQUEST['orderby']] )
+		AND ( $_REQUEST['order'] == 'desc' OR $_REQUEST['order'] == 'asc' ) ) {
+			usort( $data, 'ppc_uasort_stats_sort' );
 		}
 
         /**

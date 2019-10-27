@@ -335,8 +335,9 @@ class PPC_counting_stuff {
 			$visits_postmeta = apply_filters( 'ppc_counting_visits_postmeta', self::$settings['counting_visits_postmeta_value'] );
 			$post_visits['real'] = (int) get_post_meta( $post->ID, $visits_postmeta, TRUE );
 		}
-		
-		$post_visits['to_count'] = (int) ($post_visits['real']*self::$settings['counting_visits_display_percentage']/100);
+
+		$post_visits['real'] = (int) ($post_visits['real']*self::$settings['counting_visits_display_percentage']/100); //we cannot do this in to_count or it would create issues for already paid posts if the percentage is changed
+		$post_visits['to_count'] = $post_visits['real'];
 
         if( self::$settings['counting_visits_threshold_max'] > 0 AND $post_visits['to_count'] > self::$settings['counting_visits_threshold_max'] )
             $post_visits['to_count'] = self::$settings['counting_visits_threshold_max'];
