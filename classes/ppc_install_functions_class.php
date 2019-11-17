@@ -212,6 +212,7 @@ class PPC_install_functions {
                 'payment_display_round_digits' => 2,
                 'save_stats_order' => 1,
                 'hide_column_total_payment' => 0,
+                'stats_show_all_users' => 0,
             )
 		);
 

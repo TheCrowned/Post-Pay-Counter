@@ -92,6 +92,7 @@ class PPC_update_class {
 			'counting_words_exclude_pre' => 0,
 			'counting_words_apply_shortcodes' => 0,
 			'counting_visits_display_percentage' => 100,
+			'stats_show_all_users' => 0,
         );
 
         foreach( $new_settings as $setting => $value ) {

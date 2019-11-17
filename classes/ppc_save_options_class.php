@@ -157,6 +157,7 @@ class PPC_save_options {
 		$new_settings['counting_words_parse_spaces'] = @PPC_options_fields::get_checkbox_value( $settings['counting_words_parse_spaces'] );
 		$new_settings['enable_post_stats_caching'] = @PPC_options_fields::get_checkbox_value( $settings['enable_post_stats_caching'] );
 		$new_settings['save_stats_order'] = @PPC_options_fields::get_checkbox_value( $settings['save_stats_order'] );
+		$new_settings['stats_show_all_users'] = @PPC_options_fields::get_checkbox_value( $settings['stats_show_all_users'] );
 
         foreach( $settings as $option => $value ) {
 

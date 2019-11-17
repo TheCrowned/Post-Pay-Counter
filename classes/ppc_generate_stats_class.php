@@ -184,6 +184,8 @@ class PPC_generate_stats {
     static function calculate_total_stats( $data ) {
         global $ppc_global_settings;
 
+        $general_settings = PPC_general_functions::get_settings( 'general' );
+
         foreach( $data as $author_id => $author_stats ) {
 			$user_settings = PPC_general_functions::get_settings( $author_id, true );
 
@@ -230,6 +232,37 @@ class PPC_generate_stats {
 				}
 
 				$data[$author_id] = apply_filters( 'ppc_sort_stats_by_author_foreach_post', $data[$author_id], $single );
+			}
+		}
+
+		//Add all users to stats so that author payment criteria may be applied even with no written posts
+		if( $general_settings['stats_show_all_users'] ) {
+			$all_users = get_users( array( 'fields' => array( 'ID' ), 'number' => -1 ) );
+
+			foreach( $all_users as $user ) {
+				$ID = $user->ID;
+
+				if( isset( $data[$ID] ) ) continue; //already in stats, don't override!
+
+				//Set up empty total record
+				$data[$ID]['total'] = array(
+					'ppc_count' => array(
+						'normal_count' => array()
+					),
+					'ppc_payment' => array(
+						'normal_payment' => array( 'total' => 0 )
+					),
+					'ppc_misc' => array( 'posts' => 0 ),
+				);
+
+				//remove all payment information so they show up as N.A. in stats instead of 0
+				foreach( $data[$ID]['total']['ppc_count']['normal_count'] as $key => $single )
+					unset($data[$ID]['total']['ppc_count']['normal_count'][$key]);
+
+				foreach( $data[$ID]['total']['ppc_payment']['normal_payment'] as $key => $single )
+					unset($data[$ID]['total']['ppc_payment']['normal_payment'][$key]);
+
+				$data[$ID]['total']['ppc_misc']['posts'] = 0;
 			}
 		}
 
@@ -473,6 +506,7 @@ class PPC_generate_stats {
 				$formatted_stats['cols']['author_total_payment'] = __( 'Total payment' , 'post-pay-counter');
 
 			$formatted_stats['cols'] = apply_filters( 'ppc_general_stats_format_stats_after_cols_default', $formatted_stats['cols'] );
+
         }
 
         return apply_filters( 'ppc_formatted_stats', $formatted_stats );
