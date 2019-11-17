@@ -134,7 +134,7 @@ class PPC_cache_functions {
 
 			$file_content = fread( $open, filesize( $path ) );
 			if( $file_content !== false ) {
-				$cached_data = unserialize( base64_decode( $file_content ) );
+				$cached_data = unserialize( $file_content );
 				PPC_counting_stuff::$settings = PPC_general_functions::get_settings( 'general' ); //put some settings there (hack!), since we never go through data2cash()
 				return $cached_data;
 			}

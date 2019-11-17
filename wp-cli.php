@@ -85,7 +85,7 @@ class Post_Pay_Counter_CLI extends WP_CLI_Command {
 					'stats' => $stats,
 					'time' => current_time( 'timestamp' ),
 				);
-				$cache_outcome = (bool) file_put_contents( $ppc_global_settings['dir_path'].'cache/'.$cache_slug, base64_encode( serialize( $cache_data ) ) );
+				$cache_outcome = (bool) file_put_contents( $ppc_global_settings['dir_path'].'cache/'.$cache_slug, serialize( $cache_data ) );
 				$cache_size = round( strlen( serialize( $stats ) ) / 1024 );
 				WP_CLI::line( "Cached stats with slug $cache_slug, size $cache_size KB, outcome $cache_outcome" );
 			}
