@@ -36,6 +36,22 @@ class PPC_generate_stats {
 		$return = array();
         $perm = new PPC_permissions();
 
+		//If there are full-cache stats available, use them. These can be generated only through WP-CLI
+		if( ! is_array( $author ) AND ! $perm->can_see_others_general_stats() )
+			$cache_slug = 'ppc_stats-tstart_'.$time_start.'-tend_'.$time_end.'-author_'.$current_user->ID;
+		else if( is_array( $author ) )
+			$cache_slug = 'ppc_stats-tstart_'.$time_start.'-tend_'.$time_end.'-author_'.$author[0];
+		else
+			$cache_slug = 'ppc_stats-tstart_'.$time_start.'-tend_'.$time_end;
+
+		if( isset( $_GET['cache-full'] ) ) {
+			$cached_data = PPC_cache_functions::get_full_stats( $cache_slug );
+			if( is_array( $cached_data ) ) {
+				set_transient( 'ppc_full_stats_snapshot_time', $cached_data['time'], 60 );
+				return $cached_data['stats'];
+			}
+		}
+
 		//If general stats & CU can't see others' general, behave as if detailed for him
 		if( ! is_array( $author ) AND ! $perm->can_see_others_general_stats() )
 			$requested_posts = PPC_generate_stats::get_requested_posts( $time_start, $time_end, array( $current_user->ID ) );
@@ -236,7 +252,7 @@ class PPC_generate_stats {
 		}
 
 		//Add all users to stats so that author payment criteria may be applied even with no written posts
-		if( $general_settings['stats_show_all_users'] ) {
+		if( $ppc_global_settings['current_page'] == 'stats_general' AND $general_settings['stats_show_all_users'] ) {
 			$all_users = get_users( array( 'fields' => array( 'ID' ), 'number' => -1 ) );
 
 			foreach( $all_users as $user ) {

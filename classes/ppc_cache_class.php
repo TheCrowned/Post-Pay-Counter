@@ -2,7 +2,7 @@
 
 /**
  * Caching functions.
- * 
+ *
  * @author Stefano Ottolenghi
  * @copyright 2013
  * @package	PPC
@@ -44,12 +44,12 @@ class PPC_cache_functions {
 	 * @since	2.720
 	 * @param	$post_id int
 	 * @return	mixed cache content or false
-	 */ 
+	 */
 	static function get_post_stats( $post_id ) {
 		$general_settings = PPC_general_functions::get_settings( 'general' );
 
 		$cache_salt = PPC_cache_functions::get_stats_incrementor();
-		
+
 		if( $general_settings['enable_post_stats_caching'] )
 			return wp_cache_get( 'ppc_stats_post_ID-'.$post_id.'-'.$cache_salt, 'ppc_stats' );
 		else
@@ -58,7 +58,7 @@ class PPC_cache_functions {
 
 	static function set_post_stats( $post_id, $data ) {
 		$cache_salt = PPC_cache_functions::get_stats_incrementor();
-		
+
 		wp_cache_set( 'ppc_stats_post_ID-'.$post_id.'-'.$cache_salt, $data, 'ppc_stats', 86400 );
 	}
 
@@ -88,13 +88,13 @@ class PPC_cache_functions {
 	 *
 	 * @since	2.720
 	 * @return 	void
-	 */ 
+	 */
 	static function clear_post_stats_old_addons() {
 		global $ppcp_global_settings;
         if( isset( $ppcp_global_settings['current_version'] ) AND version_compare( $ppcp_global_settings['current_version'], '1.7.2' ) ) {
 			add_action( 'ppcp_updated_post_payment_history', array( 'PPC_cache_functions', 'clear_post_stats' ), 10, 1 );
 		}
-		
+
         global $ppcp_fb_global_settings;
         if( isset( $ppcp_fb_global_settings['current_version'] ) AND version_compare( $ppcp_fb_global_settings['current_version'], '1.4.1' ) ) {
 			add_action( 'ppcp_fb_updated_post_data', array( 'PPC_cache_functions', 'clear_post_stats' ), 10, 1 );
@@ -109,18 +109,35 @@ class PPC_cache_functions {
 	 * @since	2.720
 	 * @param	$refresh bool whether to refresh the incrementor
 	 * @return 	string incrementor current value
-	 */ 
+	 */
 	static function get_stats_incrementor( $refresh = false ) {
 		global $ppc_global_settings;
-		
+
 		$incrementor_key = $ppc_global_settings['option_stats_cache_incrementor'];
 		$incrementor_value = get_option( $incrementor_key );
-	 
+
 		if( $incrementor_value === false OR $refresh === true ) {
 			$incrementor_value = time();
 			update_option( $incrementor_key, $incrementor_value );
 		}
-	 
+
 		return $incrementor_value;
+	}
+
+	static function get_full_stats( $slug ) {
+		global $ppc_global_settings;
+
+		$path = $ppc_global_settings['dir_path'].'cache/'.$slug;
+
+		if( is_file( $path ) AND filesize( $path ) != 0 ) {
+			$open = fopen( $path, "r" );
+
+			$file_content = fread( $open, filesize( $path ) );
+			if( $file_content !== false ) {
+				$cached_data = unserialize( base64_decode( $file_content ) );
+				PPC_counting_stuff::$settings = PPC_general_functions::get_settings( 'general' ); //put some settings there (hack!), since we never go through data2cash()
+				return $cached_data;
+			}
+		}
 	}
 }
