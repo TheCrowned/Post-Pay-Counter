@@ -4,7 +4,7 @@ Plugin Name: Post Pay Counter
 Plugin URI: https://postpaycounter.com
 Description: Easily handle authors' payments on a multi-author blog by computing posts' pay basing on admin defined rules.
 Author: Stefano Ottolenghi
-Version: 2.750
+Version: 2.751
 Author URI: http://www.thecrowned.org/
 Text Domain: post-pay-counter
 */
@@ -62,7 +62,7 @@ class post_pay_counter {
         global $ppc_global_settings;
 
         $ppc_global_settings['current_version'] = get_option( 'ppc_current_version' );
-        $ppc_global_settings['newest_version'] = '2.750';
+        $ppc_global_settings['newest_version'] = '2.751';
         $ppc_global_settings['option_name'] = 'ppc_settings';
         $ppc_global_settings['option_errors'] = 'ppc_errors';
         $ppc_global_settings['option_stats_cache_incrementor'] = 'ppc_stats_cache_incrementor';
@@ -691,7 +691,7 @@ class post_pay_counter {
 		<div id="ppc_stats_table"> <!-- PRO mark as paid retrocompatibility -->
 
 			<?php
-			if( isset( $_GET['cache-full'] ) ) {
+			if( apply_filters( 'ppc_cache_full_stats_always_show', isset( $_GET['cache-full'] ) ) ) {
 				$cache_time = get_transient( 'ppc_full_stats_snapshot_time' );
 				echo '<div style="float: left; margin-bottom: -20px; font-style: italic;">'.sprintf( __( 'Displayed data comes from a cached snapshot taken in %1$s at %2$s.', 'post-pay-counter' ), date_i18n( get_option( 'date_format' ), $cache_time ), date( 'H:i:s', $cache_time ) ).'</div>';
 			} else if( $general_settings['enable_post_stats_caching'] ) {
@@ -752,7 +752,7 @@ class post_pay_counter {
 		<div id="ppc_stats_table"> <!-- PRO mark as paid retrocompatibility -->
 
 			<?php
-			if( isset( $_GET['cache-full'] ) ) {
+			if( apply_filters( 'ppc_cache_full_stats_always_show', isset( $_GET['cache-full'] ) ) ) {
 				$cache_time = get_transient( 'ppc_full_stats_snapshot_time' );
 				echo '<div style="float: left; margin-bottom: -20px; font-style: italic;">'.sprintf( __( 'Displayed data comes from a cached snapshot taken in %1$s at %2$s.', 'post-pay-counter' ), date_i18n( get_option( 'date_format' ), $cache_time ), date( 'H:i:s', $cache_time ) ).'</div>';
 			} else if( $general_settings['enable_post_stats_caching'] ) {
