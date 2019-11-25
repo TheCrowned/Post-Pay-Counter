@@ -263,20 +263,13 @@ class PPC_generate_stats {
 				//Set up empty total record
 				$data[$ID]['total'] = array(
 					'ppc_count' => array(
-						'normal_count' => array()
+						'normal_count' => array( )
 					),
 					'ppc_payment' => array(
 						'normal_payment' => array( 'total' => 0 )
 					),
 					'ppc_misc' => array( 'posts' => 0 ),
 				);
-
-				//remove all payment information so they show up as N.A. in stats instead of 0
-				foreach( $data[$ID]['total']['ppc_count']['normal_count'] as $key => $single )
-					unset($data[$ID]['total']['ppc_count']['normal_count'][$key]);
-
-				foreach( $data[$ID]['total']['ppc_payment']['normal_payment'] as $key => $single )
-					unset($data[$ID]['total']['ppc_payment']['normal_payment'][$key]);
 
 				$data[$ID]['total']['ppc_misc']['posts'] = 0;
 			}
