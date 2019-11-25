@@ -347,7 +347,6 @@ class PPC_generate_stats {
         if( is_array( $author ) ) {
 			foreach( $data as $author_id_foreach => $author_stats_foreach ) { $author_id = $author_id_foreach; $author_stats = $author_stats_foreach; } //list alternative
 			$user_settings = PPC_general_functions::get_settings( $author_id, TRUE );
-            //list( $author_id, $author_stats ) = each( $data );
 
 			//if( empty( $author_stats ) ) return;
 			$post_stats = current( $author_stats );
