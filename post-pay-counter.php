@@ -577,7 +577,7 @@ class post_pay_counter {
         //Validate time range values (start and end), if set. They must be isset, numeric and positive. If something's wrong, start and end time are taken from the default publication time range
         if( ( isset( $_REQUEST['tstart'] ) AND ( ! is_numeric( $_REQUEST['tstart'] ) OR $_REQUEST['tstart'] < 0 ) )
         OR ( isset( $_REQUEST['tend'] ) AND ( ! is_numeric( $_REQUEST['tend'] ) OR $_REQUEST['tend'] < 0 ) ) ) {
-            $_REQUEST['tstart'] = strtotime( $_REQUEST['tstart'].' 00:00:01' );
+            $_REQUEST['tstart'] = strtotime( $_REQUEST['tstart'].' 00:00:00' );
             $_REQUEST['tend']   = strtotime( $_REQUEST['tend'].' 23:59:59' );
         } else if ( ! isset( $_REQUEST['tstart'] ) OR ! isset( $_REQUEST['tend'] ) ) {
             $_REQUEST['tstart'] = $ppc_global_settings['stats_tstart'];

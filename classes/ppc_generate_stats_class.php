@@ -38,14 +38,15 @@ class PPC_generate_stats {
 
 		//If there are full-cache stats available, use them. These can be generated only through WP-CLI
 		if( ! is_array( $author ) AND ! $perm->can_see_others_general_stats() )
-			$cache_slug = 'ppc_stats-tstart_'.$time_start.'-tend_'.$time_end.'-author_'.$current_user->ID;
+			$cache_slug = 'ppc_stats-tstart_'.$time_start.'-tend_'.$time_end.'-author_'.$current_user->ID.'-as-user'.$current_user->ID;
 		else if( is_array( $author ) )
-			$cache_slug = 'ppc_stats-tstart_'.$time_start.'-tend_'.$time_end.'-author_'.$author[0];
+			$cache_slug = 'ppc_stats-tstart_'.$time_start.'-tend_'.$time_end.'-author_'.$author[0].'-as-user_'.$author[0];
 		else
-			$cache_slug = 'ppc_stats-tstart_'.$time_start.'-tend_'.$time_end;
+			$cache_slug = 'ppc_stats-tstart_'.$time_start.'-tend_'.$time_end.'-as-user_'.$current_user->ID;
 
 		if( apply_filters( 'ppc_cache_full_stats_always_show', isset( $_GET['cache-full'] ) ) ) {
 			$cached_data = PPC_cache_functions::get_full_stats( $cache_slug );
+
 			if( is_array( $cached_data ) ) {
 				set_transient( 'ppc_full_stats_snapshot_time', $cached_data['time'], 60 );
 				return $cached_data['stats'];

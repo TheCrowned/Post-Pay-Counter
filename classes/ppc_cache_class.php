@@ -124,6 +124,13 @@ class PPC_cache_functions {
 		return $incrementor_value;
 	}
 
+	/**
+	 * Get full cache snapshot if available.
+	 *
+	 * @since 	2.755
+	 * @param 	$slug string cache slug (also file name)
+	 * @return 	$cached_data array unserialized cache file content (whole of it!)
+	 */
 	static function get_full_stats( $slug ) {
 		global $ppc_global_settings;
 
