@@ -206,6 +206,10 @@ class PPC_meta_boxes {
         echo '<div id="default_stats_time_range_custom_content" class="ppc_section">';
         echo PPC_HTML_functions::echo_text_field( 'default_stats_time_range_custom_value', $current_settings['default_stats_time_range_custom_value'], __( 'Time range (days)' , 'post-pay-counter') );
         echo '</div>';
+        echo PPC_HTML_functions::echo_p_field( __( 'Starting from this day', 'post-pay-counter' ), $current_settings['default_stats_time_range_start_day'], 'radio', 'default_stats_time_range', __( 'Define the day starting from which you would like to see stats for.' , 'post-pay-counter'), 'default_stats_time_range_start_day', 'default_stats_time_range_start_day' );
+        echo '<div id="default_stats_time_range_start_day_content" class="ppc_section">';
+        echo PPC_HTML_functions::echo_text_field( 'default_stats_time_range_start_day_value', $current_settings['default_stats_time_range_start_day_value'], __( 'Day (format YYYY-MM-DD)' , 'post-pay-counter') );
+        echo '</div>';
         echo '</div>';
         echo '</div>';
 

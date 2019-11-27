@@ -206,6 +206,8 @@ class PPC_install_functions {
                 'default_stats_time_range_all_time' => 0,
                 'default_stats_time_range_custom' => 0,
                 'default_stats_time_range_custom_value' => 100,
+                'default_stats_time_range_start_day' => 0,
+                'default_stats_time_range_start_day_value' => '1605-11-05',
                 'admins_override_permissions' => 1,
                 'stats_display_edit_post_link' => 0,
                 'enable_stats_payments_tooltips' => 1,

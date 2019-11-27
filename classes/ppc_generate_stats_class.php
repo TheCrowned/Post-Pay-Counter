@@ -2,7 +2,7 @@
 
 /**
  * Stats generation.
-
+ *
  * @package		PPC
  * @since		2.0
  * @author 		Stefano Ottolenghi

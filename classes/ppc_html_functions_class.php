@@ -60,7 +60,7 @@ class PPC_HTML_functions {
 					$checked = 'selected="selected"';
 				else if( $general_settings['default_stats_time_range_all_time'] AND $key == 'all_time' )
 					$checked = 'selected="selected"';
-				else if( $general_settings['default_stats_time_range_custom'] AND $key == 'custom' )
+				else if( ( $general_settings['default_stats_time_range_custom'] OR $general_settings['default_stats_time_range_start_day'] ) AND $key == 'custom' )
 					$checked = 'selected="selected"';
 			}
 

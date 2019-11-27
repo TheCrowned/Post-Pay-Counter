@@ -290,6 +290,9 @@ class PPC_general_functions {
         } else if( $settings['default_stats_time_range_custom'] ) {
             $ppc_global_settings['stats_tstart'] = strtotime( '00:00:00' ) - ( $settings['default_stats_time_range_custom_value']*24*60*60 );
             $ppc_global_settings['stats_tend'] = strtotime( '23:59:59' );
+        } else if( $settings['default_stats_time_range_start_day'] ) {
+            $ppc_global_settings['stats_tstart'] = strtotime( $settings['default_stats_time_range_start_day_value'].' 00:00:00' );
+            $ppc_global_settings['stats_tend'] = strtotime( '23:59:59' );
 		}
     }
 

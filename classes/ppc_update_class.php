@@ -81,6 +81,8 @@ class PPC_update_class {
 			'default_stats_time_range_last_month' => 0,
 			'default_stats_time_range_this_year' => 0,
 			'default_stats_time_range_all_time' => 0,
+			'default_stats_time_range_start_day' => 0,
+			'default_stats_time_range_start_day_value' => '1605-11-05',
 			'enable_post_stats_caching' => 1,
 			'payment_display_round_digits' => 2,
 			'save_stats_order' => 1,
