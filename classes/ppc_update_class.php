@@ -116,6 +116,8 @@ class PPC_update_class {
         if( $general_settings != $general_settings_old ) {
             if( ! update_option( $ppc_global_settings['option_name'], $general_settings ) ) {
                 $error = new PPC_Error( 'ppcp_update_settings_error', __( 'Error: could not update settings.', 'post-pay-counter' ), array(
+                    'count_before' => count( $general_settings_old ),
+                    'count_after' => count( $general_settings ),
                     'settings' => $general_settings,
                     'settings_start' => $general_settings_old
                 ) );
