@@ -164,11 +164,11 @@ class post_pay_counter {
     function admin_menus() {
         global $ppc_global_settings;
 
-        add_menu_page( 'Post Pay Counter', apply_filters( "ppc_admin_menu_name", "Post Pay Counter" ), $ppc_global_settings['cap_access_stats'], 'ppc-stats', array( $this, 'show_stats' ), plugin_dir_url( __FILE__ ).'style/images/dollar.png' );
-        add_submenu_page( 'ppc-stats', 'Post Pay Counter Stats', __( 'Stats', 'post-pay-counter' ), $ppc_global_settings['cap_access_stats'], 'ppc-stats', array( $this, 'show_stats' ) );
-        $ppc_global_settings['options_menu_slug'] = add_submenu_page( 'ppc-stats', 'Post Pay Counter Options', __( 'Options', 'post-pay-counter' ), $ppc_global_settings['cap_manage_options'], 'ppc-options', array( $this, 'show_options' ) );
-        add_submenu_page( 'ppc-stats', 'Post Pay Counter System Info', __( 'System Info', 'post-pay-counter' ), $ppc_global_settings['cap_manage_options'], 'ppc-system-info', array( 'PPC_system_info', 'system_info' ) );
-		add_submenu_page( 'ppc-stats', 'Post Pay Counter Addons', __( 'Addons', 'post-pay-counter' ), $ppc_global_settings['cap_manage_options'], 'ppc-addons', array( 'PPC_addons', 'addons_page' ) );
+        add_menu_page( apply_filters( "ppc_admin_menu_name", "Post Pay Counter" ), apply_filters( "ppc_admin_menu_name", "Post Pay Counter" ), $ppc_global_settings['cap_access_stats'], 'ppc-stats', array( $this, 'show_stats' ), plugin_dir_url( __FILE__ ).'style/images/dollar.png' );
+        add_submenu_page( 'ppc-stats', apply_filters( "ppc_admin_menu_name", "Post Pay Counter" ).' - '.__( 'Stats', 'post-pay-counter' ), __( 'Stats', 'post-pay-counter' ), $ppc_global_settings['cap_access_stats'], 'ppc-stats', array( $this, 'show_stats' ) );
+        $ppc_global_settings['options_menu_slug'] = add_submenu_page( 'ppc-stats', apply_filters( "ppc_admin_menu_name", "Post Pay Counter" ).' - '.__( 'Options', 'post-pay-counter' ), __( 'Options', 'post-pay-counter' ), $ppc_global_settings['cap_manage_options'], 'ppc-options', array( $this, 'show_options' ) );
+        add_submenu_page( 'ppc-stats', apply_filters( "ppc_admin_menu_name", "Post Pay Counter" ).' - '.__( 'System Info', 'post-pay-counter' ), __( 'System Info', 'post-pay-counter' ), $ppc_global_settings['cap_manage_options'], 'ppc-system-info', array( 'PPC_system_info', 'system_info' ) );
+		add_submenu_page( 'ppc-stats', apply_filters( "ppc_admin_menu_name", "Post Pay Counter" ).' - '.__( 'Addons', 'post-pay-counter' ), __( 'Addons', 'post-pay-counter' ), $ppc_global_settings['cap_manage_options'], 'ppc-addons', array( 'PPC_addons', 'addons_page' ) );
     }
 
     //Adds first level side menu (network admin)
@@ -500,7 +500,7 @@ class post_pay_counter {
 
 			?>
 			</div>
-			<h2>Post Pay Counter - <?php _e( 'Options', 'post-pay-counter' ); ?></h2>
+			<h2><?php echo apply_filters( "ppc_admin_menu_name", "Post Pay Counter" ).' - '.__( 'Options', 'post-pay-counter' ); ?></h2>
 			<p><?php _e( 'The Post Pay Counter plugin is ready to make handling authors\' payments much, much easier, starting from... now! From this page you can set the plugin up, customizing each possible feature to best suit your needs. Options are divided into groups, and for each of the following boxes you will find details of all the features of the plugin and, for most of them, additional details and examples are available by clicking on the info icon on the right of them.', 'post-pay-counter' ); ?></p>
 			<p><?php printf( __( 'Don\'t forget to take our %1$sfeatures survey%2$s to let us know what functions you\'d like to see in future releases of the plugin! Also, if you like this plugin, you may be interested in trying the shiny %3$sPRO version%2$s, containing a whole lot of useful features!', 'post-pay-counter' ), '<a href="https://postpaycounter.com/post-pay-counter-pro/post-pay-counter-pro-features-survey" title="'.__( 'Features survey', 'post-pay-counter' ).'" target="_blank">', '</a>', '<a href="https://postpaycounter.com/post-pay-counter-pro?utm_source=users_site&utm_medium=options_description&utm_campaign=ppcp" title="Post Pay Counter PRO" target="_blank">' ); ?></p>
 		</div>
