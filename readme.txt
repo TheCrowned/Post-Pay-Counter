@@ -78,7 +78,12 @@ From this: *define( 'PPC_DEBUG_LOG', true );*
 It must become: *define( 'PPC_DEBUG_LOG', false );*
 
 == Changelog ==
-= 2.755 (2019-11-23) =
+= 2.756 (2019-12-21) =
+* Tweak: consistency with page names when custom menu name is set.
+* Fix: prevent all users from showing up if "Display all users" is ticked but user has no permission to see other people's stats.
+
+
+= 2.755 (2019-11-30) =
 * Feature: allow to cache full stats table through WP-CLI, see [our tutorial](https://postpaycounter.com/post-pay-counter-support-caching/).
 * Feature: ability to show all users in stats regardless of whether they have published posts in given time range.
 * Feature: only pay for a percentage of total visits.
