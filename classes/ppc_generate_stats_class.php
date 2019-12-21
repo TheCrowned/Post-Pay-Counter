@@ -253,7 +253,8 @@ class PPC_generate_stats {
 		}
 
 		//Add all users to stats so that author payment criteria may be applied even with no written posts
-		if( $ppc_global_settings['current_page'] == 'stats_general' AND $general_settings['stats_show_all_users'] ) {
+		$perm = new PPC_Permissions();
+		if( $ppc_global_settings['current_page'] == 'stats_general' AND $general_settings['stats_show_all_users'] AND $perm->can_see_others_general_stats() ) {
 			$all_users = get_users( array( 'fields' => array( 'ID' ), 'number' => -1 ) );
 
 			foreach( $all_users as $user ) {
