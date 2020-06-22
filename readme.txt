@@ -3,7 +3,7 @@ Contributors: Ste_95
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22
 Tags: counter, authors, payment, revenue sharing, stats, multi author, post management, post
 Tested up to: 5.3
-Stable tag: 2.755
+Stable tag: 2.757
 Requires at least: 3.7
 
 Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
@@ -44,7 +44,7 @@ Post Pay Counter has been translated into the following languages:
 * Dutch (Elza van Swieten)
 * Italian (Stefano Ottolenghi)
 * Portoguese (Marco Dantas)
-* Turkish (Kamer DINC)
+* Turkish (A. Bilgen)
 * Czech (Jiří Kučera)
 * Russian (Azat Seyitmuhammedov)
 
@@ -78,10 +78,14 @@ From this: *define( 'PPC_DEBUG_LOG', true );*
 It must become: *define( 'PPC_DEBUG_LOG', false );*
 
 == Changelog ==
+= 2.757 (2020-06-22) =
+* New: turkish locale.
+* Fixed: fatal in welcome page.
+* Fixed: unlocalized string "Displayed data is cached. ...".
+
 = 2.756 (2019-12-21) =
 * Tweak: consistency with page names when custom menu name is set.
 * Fix: prevent all users from showing up if "Display all users" is ticked but user has no permission to see other people's stats.
-
 
 = 2.755 (2019-11-30) =
 * Feature: allow to cache full stats table through WP-CLI, see [our tutorial](https://postpaycounter.com/post-pay-counter-support-caching/).
