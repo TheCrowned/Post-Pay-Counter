@@ -2,8 +2,8 @@
 Contributors: Ste_95
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22
 Tags: counter, authors, payment, revenue sharing, stats, multi author, post management, post
-Tested up to: 5.3
-Stable tag: 2.757
+Tested up to: 5.5
+Stable tag: 2.759
 Requires at least: 3.7
 
 Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
@@ -78,6 +78,12 @@ From this: *define( 'PPC_DEBUG_LOG', true );*
 It must become: *define( 'PPC_DEBUG_LOG', false );*
 
 == Changelog ==
+= 2.759 (2020-08-17) =
+* Fixed: excluding from words count *blockquote* and *pre* tags would not work if tag had some html attributes.
+
+= 2.758 (2020-06-30) =
+* Fixed: debug data shown on stats page.
+
 = 2.757 (2020-06-22) =
 * New: turkish locale.
 * Fixed: fatal in welcome page.
