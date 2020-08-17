@@ -271,10 +271,10 @@ class PPC_counting_stuff {
 		$purged_content = preg_replace( '/<([^>]*) [^>]*class=("|\')ppc_exclude_words("|\')[^>]*>(.*?)<\/\1>/s', '', $post_content );
 
         if( self::$settings['counting_exclude_quotations'] )
-            $purged_content = preg_replace( '/<(blockquote|q)>(.*?)<\/(blockquote|q)>/s', '', $purged_content );
+            $purged_content = preg_replace( '/<(blockquote|q)[^>]*>(.*?)<\/(blockquote|q)>/s', '', $purged_content );
 
         if( self::$settings['counting_words_exclude_pre'] )
-            $purged_content = preg_replace( '/<(pre)>(.*?)<\/(pre)>/s', '', $purged_content );
+            $purged_content = preg_replace( '/<(pre)[^>]*>(.*?)<\/(pre)>/s', '', $purged_content );
 
 		if( ! has_shortcode( $post_content, 'ppc' ) AND self::$settings['counting_words_apply_shortcodes'] ) //avoid nested calls of functions due to ppc shortcode
 			$purged_content = do_shortcode( $purged_content );

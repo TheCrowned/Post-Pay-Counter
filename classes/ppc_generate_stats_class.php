@@ -199,7 +199,7 @@ class PPC_generate_stats {
      * @return  array the counting data, with totals
      */
     static function calculate_total_stats( $data ) {
-        global $ppc_global_settings;
+        global $ppc_global_settings, $current_user;
 
         $general_settings = PPC_general_functions::get_settings( 'general' );
 
@@ -254,8 +254,13 @@ class PPC_generate_stats {
 
 		//Add all users to stats so that author payment criteria may be applied even with no written posts
 		$perm = new PPC_Permissions();
-		if( $ppc_global_settings['current_page'] == 'stats_general' AND $general_settings['stats_show_all_users'] AND $perm->can_see_others_general_stats() ) {
-			$all_users = get_users( array( 'fields' => array( 'ID' ), 'number' => -1 ) );
+
+		if( $ppc_global_settings['current_page'] == 'stats_general' AND $general_settings['stats_show_all_users'] ) {
+			$args = array( 'fields' => array( 'ID' ), 'number' => -1 );
+			if( ! $perm->can_see_others_general_stats() ) //only maybe add current user if user can't see others' stats
+				$args['include'] = $current_user->ID;
+
+			$all_users = get_users( $args );
 
 			foreach( $all_users as $user ) {
 				$ID = $user->ID;
