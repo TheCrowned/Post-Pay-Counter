@@ -279,6 +279,9 @@ class PPC_counting_stuff {
 		if( ! has_shortcode( $post_content, 'ppc' ) AND self::$settings['counting_words_apply_shortcodes'] ) //avoid nested calls of functions due to ppc shortcode
 			$purged_content = do_shortcode( $purged_content );
 
+		if( self::$settings['counting_words_exclude_captions'] )
+            $purged_content = preg_replace( '/<(figcaption)[^>]*>(.*?)<\/(figcaption)>/s', '', $purged_content );
+
 		$purged_content = strip_tags( $purged_content );
 
 		if( self::$settings['counting_words_parse_spaces'] )

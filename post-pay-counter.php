@@ -136,6 +136,9 @@ class post_pay_counter {
 
         //Caching compatibility hooks with old PRO version and other addons
         PPC_cache_functions::clear_post_stats_old_addons();
+
+        //Clear post stats cache on post update
+		add_action( 'post_updated', array( 'PPC_cache_functions' , 'clear_post_stats' ), 10, 1 );
     }
 
 	/**
