@@ -78,6 +78,10 @@ From this: *define( 'PPC_DEBUG_LOG', true );*
 It must become: *define( 'PPC_DEBUG_LOG', false );*
 
 == Changelog ==
+= 2.760 (2020-08-25) =
+* Feature: allow to exclude figure captions from word count.
+* Fix: word count would not get immediately updated if post cache was enabled and post was edited.
+
 = 2.759 (2020-08-17) =
 * Fixed: excluding from words count *blockquote* and *pre* tags would not work if tag had some html attributes.
 
