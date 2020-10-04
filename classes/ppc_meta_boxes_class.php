@@ -551,14 +551,15 @@ class PPC_meta_boxes {
         global $ppc_global_settings;
         $current_settings = $current_settings['args'];
 
-        $errors = get_option( $ppc_global_settings['option_errors'], array() );
+        $errors = file_get_contents( $ppc_global_settings['file_errors'] );
         ?>
 
         <p><?php printf( __( 'Errors which may happen during the plugin execution are logged and showed here. If something is not working properly, please send this list along with your support request. The log is cleared every now and then, but you can empty it manually with the button below. If you do not want errors to be logged at all, see the %1$sFAQ%2$s.', 'post-pay-counter' ), '<a href="http://wordpress.org/plugins/post-pay-counter/faq/" title="'.__( 'Frequently asked questions' ).'">', '</a>' ); ?></p>
         <textarea readonly="readonly" onclick="this.focus();this.select()" style="width: 100%; height: 150px;" name="ppc_error_log" title="<?php _e( 'To copy the error log, click below then press Ctrl + C (PC) or Cmd + C (Mac).', 'post-pay-counter' ); ?>"><?php
 
 
-        if( is_array( $errors) AND count( $errors ) > 0 ) {
+        if( $errors !== false ) {
+			$errors = unserialize( $errors );
             foreach( $errors as $error ) {
                 echo date_i18n( get_option( 'date_format' ), $error['time'] ).' '.date( 'H:i:s', $error['time'] )."\n";
                 echo $error['debug_message']."\n\n";

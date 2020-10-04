@@ -168,6 +168,9 @@ class PPC_update_class {
 		//Insert default addons list
         PPC_addons::add_addons_list();
 
+        //Delete old errors wp_option, moved to a file
+        delete_option( $ppc_global_settings['option_errors'] );
+
         update_option( 'ppc_current_version', $ppc_global_settings['newest_version'] );
 
         //PRO gets deactivated as soon as PPC is deactivated - if it was active before, reactivate if now
