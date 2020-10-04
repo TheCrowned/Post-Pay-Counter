@@ -246,7 +246,7 @@ class PPC_general_functions {
         );
         $first_available_post = new WP_Query( $args );
 
-		if( $first_available_post->found_posts == 0 )
+		if( $first_available_post->no_found_rows === false )
             $first_available_post_time = current_time( 'timestamp' );
         else
             $first_available_post_time = strtotime( $first_available_post->posts[0]->post_date );
@@ -262,7 +262,7 @@ class PPC_general_functions {
         );
         $last_available_post = new WP_Query( $args ); //for future scheduled posts
 
-		if( $last_available_post->found_posts !== 0 )
+		if( $last_available_post->no_found_rows === false )
 			$last_available_post_time = strtotime( $last_available_post->posts[0]->post_date );
 
 		if( ! isset( $last_available_post_time ) OR $last_available_post_time < current_time( 'timestamp' ) )

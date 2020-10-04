@@ -129,7 +129,7 @@ class PPC_generate_stats {
 
 		do_action( 'ppc_got_requested_posts', $requested_posts );
 
-        if( $requested_posts->found_posts == 0 ) {
+        if( $requested_posts->no_found_rows === false ) {
             $error = new PPC_Error( 'ppc_empty_selection', __( 'Your query resulted in an empty result. Try to select a wider time range!' , 'post-pay-counter' ), self::$grp_args, false );
             return $error->return_error();
         }
