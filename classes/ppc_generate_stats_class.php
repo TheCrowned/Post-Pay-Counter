@@ -157,24 +157,6 @@ class PPC_generate_stats {
     }
 
 	/**
-	 * Applies stats filter by user role.
-	 *
-	 * Hooks to ppc_get_requested_posts_args - PPC_generate_stats::get_requested_posts().
-	 *
-	 * @since	2.49
-	 * @param	array $grp_args get_requested_posts WP_Query args
-	 * @return	array get_requested_posts WP_Query args
-	 */
-	static function filter_stats_by_user_role( $grp_args ) {
-		global $ppc_global_settings;
-
-		if( isset( $grp_args['ppc_allowed_user_roles'] ) )
-			$grp_args['ppc_allowed_user_roles'] = array( $ppc_global_settings['stats_role'] );
-
-		return $grp_args;
-	}
-
-	/**
      * Groups posts array by their authors.
      *
      * @access  public

@@ -58,7 +58,8 @@
 #ppc_stats_header_features {
 	float: right; 
 	text-align: right;
-	width: 50%;
+	width: 20%;
+	min-width: 30em;
 }
 #ppc_stats_header_features a {
 	font-size: smaller;

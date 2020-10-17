@@ -74,7 +74,7 @@ class PPC_HTML_functions {
 		echo sprintf( __( 'From %1$s to %2$s', 'post-pay-counter'), '<input type="text" name="tstart" id="post_pay_counter_time_start" class="mydatepicker" value="'.date( 'Y-m-d', $ppc_global_settings['stats_tstart'] ).'" accesskey="'.$ppc_global_settings['stats_tstart'].'" size="8" />', '<input type="text" name="tend" id="post_pay_counter_time_end" class="mydatepicker" value="'.date( 'Y-m-d', $ppc_global_settings['stats_tend'] ).'" accesskey="'.$ppc_global_settings['stats_tend'].'" size="8" />' );
 		echo '</div>';
 
-		//Display filter by user role field in general stats
+		//Display filter by user role, user and/or category in general stats
 		if( $ppc_global_settings['current_page'] == 'stats_general' AND $perm->can_see_others_general_stats() ) {
 			echo '<div style="margin-top: 10px;">';
 			echo __( 'Filter by user role', 'post-pay-counter' ). ' ';
@@ -93,6 +93,7 @@ class PPC_HTML_functions {
 			}
 
 			echo '</select>';
+			
 			echo ' - '.__( 'User', 'post-pay-counter' ).' ';
 			echo '<select name="author" id="ppc_stats_user">';
 			echo '<option value="ppc_any">'.__( 'Any', 'post-pay-counter' ).'</option>';
@@ -105,6 +106,22 @@ class PPC_HTML_functions {
 					$checked = 'selected="selected"';
 
 				echo '<option value="'.$user->ID.'" '.$checked.' />'.$user->display_name.'</option>';
+			}
+
+			echo '</select>';
+
+			echo ' - '.__( 'Category', 'post-pay-counter' ).' ';
+			echo '<select name="category" id="ppc_stats_category">';
+			echo '<option value="ppc_any">'.__( 'Any', 'post-pay-counter' ).'</option>';
+
+			$all_categories = get_categories( array( 'orderby' => 'name', 'order' => 'ASC' ) );
+			foreach( $all_categories as $cat ) {
+				$checked = '';
+
+				if( isset( $ppc_global_settings['stats_category'] ) AND $cat->term_id == $ppc_global_settings['stats_category'] )
+					$checked = 'selected="selected"';
+
+				echo '<option value="'.$cat->term_id.'" '.$checked.' />'.$cat->name.'</option>';
 			}
 
 			echo '</select>';

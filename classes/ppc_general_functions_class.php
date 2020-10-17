@@ -158,10 +158,13 @@ class PPC_general_functions {
 		$link = admin_url( $ppc_global_settings['stats_menu_link'].'&amp;author='.$author_id.'&amp;tstart='.$ppc_global_settings['stats_tstart'].'&amp;tend='.$ppc_global_settings['stats_tend'] );
 
         if( isset( $_REQUEST['ppc-time-range'] ) AND ! empty( $_REQUEST['ppc-time-range'] ) )
-			$link .= '&amp;ppc-time-range='.$_REQUEST['ppc-time-range'];
+			$link .= '&amp;ppc-time-range='.sanitize_text_field( $_REQUEST['ppc-time-range'] );
+			
+        if( isset( $ppc_global_settings['stats_category'] ) AND ! empty( $ppc_global_settings['stats_category'] ) )
+			$link .= '&amp;category='.$ppc_global_settings['stats_category'];
 
         if( isset( $_REQUEST['paged'] ) AND ! empty( $_REQUEST['paged'] ) )
-			$link .= '&amp;paged='.$_REQUEST['paged'];
+			$link .= '&amp;paged='.sanitize_text_field( $_REQUEST['paged'] );
 
 		return apply_filters( 'ppc_get_author_link', $link );
     }

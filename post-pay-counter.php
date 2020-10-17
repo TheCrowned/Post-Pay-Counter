@@ -71,6 +71,7 @@ class post_pay_counter {
 		$ppc_global_settings['transient_update_redirect'] = '_ppc_update_redirect';
         $ppc_global_settings['folder_path'] = plugins_url( '/', __FILE__ );
 		$ppc_global_settings['dir_path'] = plugin_dir_path( __FILE__ );
+		$ppc_global_settings['file_errors'] = $ppc_global_settings['dir_path'].'errors.log';
 		$ppc_global_settings['current_page'] = '';
         $ppc_global_settings['options_menu_link'] = 'admin.php?page=ppc-options';
         $ppc_global_settings['stats_menu_link'] = 'admin.php?page=ppc-stats';
@@ -588,16 +589,39 @@ class post_pay_counter {
         }
         //else the values are correct and valid
 
-		//If empty role, or any role, or invalud role => get rid of role param
+		//If empty role, or any role, or invalid role => get rid of role param
 		if( isset( $_REQUEST['role'] ) AND ( $_REQUEST['role'] == 'ppc_any' OR $_REQUEST['role'] == '' OR ! isset( $wp_roles->role_names[$_REQUEST['role']] ) ) )
 			unset( $_REQUEST['role'] );
+		if( isset( $_REQUEST['category'] ) and $_REQUEST['category'] == 'ppc_any' )
+			unset( $_REQUEST['category'] );
 
 		//Assign to global var
-		$ppc_global_settings['stats_tstart'] = $_REQUEST['tstart'];
-        $ppc_global_settings['stats_tend'] = $_REQUEST['tend'];
+		$ppc_global_settings['stats_tstart'] = sanitize_text_field( $_REQUEST['tstart'] );
+        $ppc_global_settings['stats_tend'] = sanitize_text_field( $_REQUEST['tend'] );
 
 		if( isset( $_REQUEST['role'] ) )
-			$ppc_global_settings['stats_role'] = $_REQUEST['role'];
+			$ppc_global_settings['stats_role'] = sanitize_text_field( $_REQUEST['role'] );
+		if( isset( $_REQUEST['category'] ) )
+			$ppc_global_settings['stats_category'] = sanitize_text_field( $_REQUEST['category'] );
+		
+		//If filtered by user role, add filter to stats generation args and complete page permalink
+		if( isset( $ppc_global_settings['stats_role'] ) ) {
+			add_filter( 'ppc_get_requested_posts_args', function( $grp_args ) { 
+				global $ppc_global_settings;
+				$grp_args['ppc_allowed_user_roles'] = array( $ppc_global_settings['stats_role'] );
+
+				return $grp_args;
+			} );
+		}
+		//If filtered by category, add filter to stats generation args and complete page permalink
+		if( isset( $ppc_global_settings['stats_category'] ) ) {
+			add_filter( 'ppc_get_requested_posts_args', function( $grp_args ) {
+				global $ppc_global_settings;
+				$grp_args['category__in'] = array( $ppc_global_settings['stats_category'] );
+
+				return $grp_args;
+			} );
+		}
 
 		if( is_array( $this->author ) ) {
 
@@ -729,10 +753,12 @@ class post_pay_counter {
 				$page_permalink .= '&amp;order='.$_REQUEST['order'];
 
 			//If filtered by user role, add filter to stats generation args and complete page permalink
-			if( isset( $_REQUEST['role'] ) ) {
+			if( isset( $_REQUEST['role'] ) )
 				$page_permalink .= '&amp;role='.$ppc_global_settings['stats_role'];
-				add_filter( 'ppc_get_requested_posts_args', array( 'PPC_generate_stats', 'filter_stats_by_user_role' ) );
-			}
+			
+			//If filtered by category, add filter to stats generation args and complete page permalink
+			if( isset( $_REQUEST['category'] ) )
+				$page_permalink .= '&amp;category='.$ppc_global_settings['stats_category'];
 
             echo PPC_HTML_functions::show_stats_page_header( __( 'General' , 'post-pay-counter'), admin_url( $page_permalink ) );
 
