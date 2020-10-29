@@ -170,7 +170,7 @@ class PPC_update_class {
 
         //Delete old errors wp_option, moved to a file
         $old_errors = get_option( $ppc_global_settings['option_errors'] );
-        if( $old_errors !== false AND ! empty( $old_errors ) ) {
+        if( $old_errors !== false AND ! empty( $old_errors ) )
 			file_put_contents( $ppc_global_settings['file_errors'], serialize( $old_errors ) );
 			
 		delete_option( $ppc_global_settings['option_errors'] );
