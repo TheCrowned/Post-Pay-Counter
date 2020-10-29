@@ -292,10 +292,8 @@ class PPC_ajax_functions {
         global $ppc_global_settings;
         self::ppc_check_ajax_referer( 'ppc_clear_error_log' );
         
-        if( get_option( $ppc_global_settings['option_errors'] ) ) {
-            if( ! update_option( $ppc_global_settings['option_errors'], array() ) )
-                die( __( 'Error: could not clear error log.', 'post-pay-counter' ) );
-        }
+        if( ! file_put_contents( $ppc_global_settings['file_errors'], serialize( array() ) ) )
+			die( __( 'Error: could not clear error log.', 'post-pay-counter' ) );
         
         die( 'ok' );
     }

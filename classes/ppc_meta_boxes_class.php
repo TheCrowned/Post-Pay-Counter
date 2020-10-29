@@ -558,7 +558,7 @@ class PPC_meta_boxes {
         <textarea readonly="readonly" onclick="this.focus();this.select()" style="width: 100%; height: 150px;" name="ppc_error_log" title="<?php _e( 'To copy the error log, click below then press Ctrl + C (PC) or Cmd + C (Mac).', 'post-pay-counter' ); ?>"><?php
 
 
-        if( $errors !== false ) {
+        if( $errors !== false and ! empty( unserialize( $errors ) )) {
 			$errors = unserialize( $errors );
             foreach( $errors as $error ) {
                 echo date_i18n( get_option( 'date_format' ), $error['time'] ).' '.date( 'H:i:s', $error['time'] )."\n";
