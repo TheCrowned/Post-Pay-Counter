@@ -169,6 +169,7 @@ class PPC_update_class {
         PPC_addons::add_addons_list();
 
         //Delete old errors wp_option, moved to a file
+        file_put_contents( $ppc_global_settings['file_errors'], serialize( get_option( $ppc_global_settings['option_errors'] ) ) );
         delete_option( $ppc_global_settings['option_errors'] );
 
         update_option( 'ppc_current_version', $ppc_global_settings['newest_version'] );

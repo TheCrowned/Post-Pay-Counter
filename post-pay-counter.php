@@ -592,8 +592,6 @@ class post_pay_counter {
 		//If empty role, or any role, or invalid role => get rid of role param
 		if( isset( $_REQUEST['role'] ) AND ( $_REQUEST['role'] == 'ppc_any' OR $_REQUEST['role'] == '' OR ! isset( $wp_roles->role_names[$_REQUEST['role']] ) ) )
 			unset( $_REQUEST['role'] );
-		if( isset( $_REQUEST['category'] ) and $_REQUEST['category'] == 'ppc_any' )
-			unset( $_REQUEST['category'] );
 
 		//Assign to global var
 		$ppc_global_settings['stats_tstart'] = sanitize_text_field( $_REQUEST['tstart'] );
@@ -601,23 +599,12 @@ class post_pay_counter {
 
 		if( isset( $_REQUEST['role'] ) )
 			$ppc_global_settings['stats_role'] = sanitize_text_field( $_REQUEST['role'] );
-		if( isset( $_REQUEST['category'] ) )
-			$ppc_global_settings['stats_category'] = sanitize_text_field( $_REQUEST['category'] );
 		
 		//If filtered by user role, add filter to stats generation args and complete page permalink
 		if( isset( $ppc_global_settings['stats_role'] ) ) {
 			add_filter( 'ppc_get_requested_posts_args', function( $grp_args ) { 
 				global $ppc_global_settings;
 				$grp_args['ppc_allowed_user_roles'] = array( $ppc_global_settings['stats_role'] );
-
-				return $grp_args;
-			} );
-		}
-		//If filtered by category, add filter to stats generation args and complete page permalink
-		if( isset( $ppc_global_settings['stats_category'] ) ) {
-			add_filter( 'ppc_get_requested_posts_args', function( $grp_args ) {
-				global $ppc_global_settings;
-				$grp_args['category__in'] = array( $ppc_global_settings['stats_category'] );
 
 				return $grp_args;
 			} );

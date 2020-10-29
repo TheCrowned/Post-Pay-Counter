@@ -25,7 +25,7 @@ class PPC_HTML_functions {
 		?>
 
 <form action="" method="post">
-	<div id="ppc_stats_header">
+	<div id="ppc_stats_header" style="direction: ltr;">
 		<div id="ppc_stats_header_datepicker">
 			<h3>
 
@@ -75,8 +75,8 @@ class PPC_HTML_functions {
 		echo '</div>';
 
 		//Display filter by user role, user and/or category in general stats
+		echo '<div style="margin-top: 10px;">';
 		if( $ppc_global_settings['current_page'] == 'stats_general' AND $perm->can_see_others_general_stats() ) {
-			echo '<div style="margin-top: 10px;">';
 			echo __( 'Filter by user role', 'post-pay-counter' ). ' ';
 			echo '<select name="role" id="ppc_stats_role">';
 			echo '<option value="ppc_any">'.__( 'Any', 'post-pay-counter' ).'</option>';
@@ -109,24 +109,9 @@ class PPC_HTML_functions {
 			}
 
 			echo '</select>';
-
-			echo ' - '.__( 'Category', 'post-pay-counter' ).' ';
-			echo '<select name="category" id="ppc_stats_category">';
-			echo '<option value="ppc_any">'.__( 'Any', 'post-pay-counter' ).'</option>';
-
-			$all_categories = get_categories( array( 'orderby' => 'name', 'order' => 'ASC' ) );
-			foreach( $all_categories as $cat ) {
-				$checked = '';
-
-				if( isset( $ppc_global_settings['stats_category'] ) AND $cat->term_id == $ppc_global_settings['stats_category'] )
-					$checked = 'selected="selected"';
-
-				echo '<option value="'.$cat->term_id.'" '.$checked.' />'.$cat->name.'</option>';
-			}
-
-			echo '</select>';
-			echo '</div>';
 		}
+		
+		echo '</div>';
 
 		/**
 		 * Fires after the HTML display of "Showing stats from ... to ... - "General|User" - Role" in stats page heading.
