@@ -3,7 +3,7 @@ Contributors: Ste_95
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22
 Tags: counter, authors, payment, revenue sharing, stats, multi author, post management, post
 Tested up to: 5.5
-Stable tag: 2.760
+Stable tag: 2.762
 Requires at least: 3.7
 
 Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
@@ -78,6 +78,10 @@ From this: *define( 'PPC_DEBUG_LOG', true );*
 It must become: *define( 'PPC_DEBUG_LOG', false );*
 
 == Changelog ==
+= 2.762 (2020-12-15) =
+* Fix: no users showing up if nobody had posts to be displayed (although **Display all users** was enabled).
+* New: polish locale.
+
 = 2.761 (2020-10-29) =
 * Fix: farthest starting date in stats would sometimes not correspond to first published post.
 * Fix: stats could show empty even if there were posts to show in the selected time range.
