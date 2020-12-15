@@ -16,8 +16,8 @@ class PPC_counting_stuff {
 	/**
 	 * Holds being-processed-post active counting types.
 	 */
-	public static $current_active_counting_types_post;
-	public static $current_active_counting_types_author;
+	public static $current_active_counting_types_post = array(); //so that when author counting types are enforced alone, the array merge between post and author counting types does not crash
+	public static $current_active_counting_types_author = array();
 
 	/**
 	 * Holds user ID whose posts are currently being processed.
@@ -113,10 +113,11 @@ class PPC_counting_stuff {
 
         do_action( 'ppc_data2cash_processed_data', $processed_data ); //@since 2.605
 
-		if( empty( $processed_data ) ) {
+		//This breaks the "Display all users feature" if no post is found
+		/*if( empty( $processed_data ) ) {
 			$error = new PPC_Error( 'ppc_empty_selection_after_all', __( 'Your query resulted in an empty result. Try to select a wider time range!', 'post-pay-counter' ), array(), false );
 			return $error->return_error();
-		}
+		}*/
 
         return $processed_data;
     }

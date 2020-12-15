@@ -70,6 +70,11 @@ class PPC_generate_stats {
 		$stats = PPC_generate_stats::calculate_total_stats( $stats );
 		if( is_wp_error( $stats ) ) return $stats;
 
+		if( empty( $stats ) ) { //data2cash can exclude posts
+			$error = new PPC_Error( 'ppc_empty_selection_after_all', __( 'Your query resulted in an empty result. Try to select a wider time range!', 'post-pay-counter' ), array(), false );
+			return $error->return_error();
+		}
+
 		$return['raw_stats'] = $stats;
 
 		if( $format ) {
