@@ -2,8 +2,8 @@
 Contributors: Ste_95
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22
 Tags: counter, authors, payment, revenue sharing, stats, multi author, post management, post
-Tested up to: 5.5
-Stable tag: 2.762
+Tested up to: 5.7
+Stable tag: 2.763
 Requires at least: 3.7
 
 Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
@@ -78,6 +78,9 @@ From this: *define( 'PPC_DEBUG_LOG', true );*
 It must become: *define( 'PPC_DEBUG_LOG', false );*
 
 == Changelog ==
+= 2.763 (2021-04-07) =
+* Tweak: improved addons update mechanism.
+
 = 2.762 (2020-12-15) =
 * Fix: no users showing up if nobody had posts to be displayed (although **Display all users** was enabled).
 * New: polish locale.
