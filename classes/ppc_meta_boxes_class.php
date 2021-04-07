@@ -600,6 +600,7 @@ class PPC_meta_boxes {
 			wp_schedule_event( time(), 'weekly2', 'ppcp_cron_check_activation' );
         ?>
 
+        <a id="license-status"></a>
         <p><?php printf( __( 'Whatever of our %1$splenty of addons%2$s you may have bought, this is the place to activate your license. Make sure you have already uploaded the addon files, activated it, and paste the license key you have received by email in the field below.', 'post-pay-counter' ), '<a target="_blank" href="'.admin_url( add_query_arg( array( 'page' => 'ppc-addons' ), 'admin.php' ) ).'" title="Post Pay Counter Addons">', '</a>' ); ?></p>
 		<p><em><?php _e( 'To activate your license key, the following data will be sent to the activation page: license key, website URL, blog language, plugin version. Twice a month the plugin will call home to check that your license is genuine and valid without asking for permission.', 'post-pay-counter'); ?></em></p>
         <p>

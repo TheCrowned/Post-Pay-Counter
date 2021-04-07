@@ -51,12 +51,13 @@ class PPC_auto_update {
     function __construct( $current_version, $update_path, $plugin_slug, $activation_key_name ) {
 		//Only check every six hours
 		$transient = get_site_transient( 'update_plugins' );
+
 		if( ! is_object( $transient ) OR ! isset( $transient->last_checked ) OR ! isset( $transient->checked ) ) return;
-		
+
 		$checked_plugins = $transient->checked;
-		if( $transient->last_checked > ( time() - 3600*6 ) AND isset( $checked_plugins[$plugin_slug] ) )
-			return;
-			
+		//if( $transient->last_checked > ( time() - 3600*6 ) AND isset( $checked_plugins[$plugin_slug] ) )
+			//return;
+
         // Set the class public variables
         $this->current_version = $current_version;
         $this->update_path = $update_path;
@@ -88,6 +89,8 @@ class PPC_auto_update {
      * @return object $ transient
      */
     public function check_update($transient = array()) {
+		global $ppc_global_settings;
+
         if (empty($transient))
             $transient = get_site_transient( 'update_plugins' );
 
@@ -102,12 +105,21 @@ class PPC_auto_update {
 
 			if( ! is_object( $information ) ) return;
 
+			$icon_url = 'https://postpaycounter.com/ppc/icon-256x256.png';
+			if( isset( $information->icon_url ) AND $information->icon_url != '' )
+				$icon_url = $information->icon_url;
+
             $obj = new stdClass();
             $obj->slug = $this->slug;
             $obj->new_version = $remote_version;
             $obj->url = $this->update_path;
             $obj->package = $information->download_link;
+            $obj->requires_php = $information->requires;
+            $obj->tested = $information->tested;
+            $obj->plugin = $this->plugin_slug;
+            $obj->icons = array( '1x' => $icon_url );
             $transient->response[$this->plugin_slug] = $obj;
+            $transient->checked[$this->plugin_slug] = $obj->new_version;
         }
 
         return $transient;
@@ -201,14 +213,8 @@ class PPC_auto_update {
 	 * @from 	EDD
 	 */
 	public function plugin_row_license_missing( $plugin_data, $version_info ) {
-		static $showed_imissing_key_message;
-
 		$license = get_option( $this->activation_key_name );
-
-		if( ( is_array( $license ) AND $license['expiration_time'] < current_time( 'timestamp' ) ) AND empty( $showed_imissing_key_message[ $this->plugin_slug ] ) ) {
-
-			echo '&nbsp;<strong><a href="' . esc_url( admin_url( 'admin.php?page=ppc-options' ) ) . '">' . __( 'Enter a valid, non-expired license key for automatic updates.', 'post-pay-counter' ) . '</a></strong>';
-			$showed_imissing_key_message[ $this->plugin_slug ] = true;
-		}
+		if( ( is_array( $license ) AND $license['expiration_time'] < current_time( 'timestamp' ) ) )
+			echo '<br /> <strong><a href="'.esc_url( admin_url( 'admin.php?page=ppc-options#license-status' ) ).'">'.__( 'Your license has expired, so you may no longer update to newer versions nor receive support. Renew your license!' ).'</a></strong>';
 	}
 }
