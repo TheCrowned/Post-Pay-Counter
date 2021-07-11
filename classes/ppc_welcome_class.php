@@ -5,7 +5,6 @@
  * @copyright   2013
  * @since       2.34
  */
-
 class PPC_welcome {
 
 	/**
@@ -14,7 +13,6 @@ class PPC_welcome {
 	 * @access public
 	 * @since  2.34
 	 */
-
 	public static function add_pages() {
 	   global $ppc_global_settings;
 
@@ -43,7 +41,6 @@ class PPC_welcome {
 	 * @access public
 	 * @since  2.34
 	 */
-
 	public static function admin_head() {
 		remove_submenu_page( 'index.php', 'ppc-about' );
         remove_submenu_page( 'index.php', 'ppc-changelog' );
@@ -55,11 +52,9 @@ class PPC_welcome {
 	 * @access	public
 	 * @since	2.36
 	 */
-
 	static function custom_css() {
 		global $ppc_global_settings;
 
-		wp_enqueue_style( 'ppc_header_style', $ppc_global_settings['folder_path'].'style/ppc_header_style.css', array( 'wp-admin' ) );
 		wp_enqueue_style( 'ppc_about_style', $ppc_global_settings['folder_path'].'style/ppc_welcome_style.css', array( 'wp-admin' ) );
 	}
 
@@ -70,7 +65,6 @@ class PPC_welcome {
 	 * @access public
 	 * @since  2.34
 	 */
-
 	public static function print_tabs() {
 		if( isset( $_GET['page'] ) )
             $selected =  (string) $_GET['page'];
@@ -95,13 +89,12 @@ class PPC_welcome {
 	 * @access public
 	 * @since  2.34
 	 */
-
 	public static function about_screen() {
         global $ppc_global_settings;
 		?>
 
 		<div class="wrap about-wrap">
-			<?php PPC_HTML_functions::display_header_logo(); ?>
+			<?php //PPC_HTML_functions::display_header_logo(); ?>
 			<h1><?php printf( __( 'Welcome to Post Pay Counter Version %s', 'post-pay-counter' ), $ppc_global_settings['newest_version'] ); ?></h1>
 			<div class="about-text"><?php _e( 'You got the latest release of Post Pay Counter, which is going to make handling authors\' payments much, much easier! The menu on the left provides access to all the plugin features.', 'post-pay-counter' ) ?></div>
 
@@ -176,7 +169,6 @@ class PPC_welcome {
 	 * @access public
 	 * @since  2.34
 	 */
-
 	public static function changelog_screen() {
         global $ppc_global_settings;
 		?>
@@ -208,7 +200,6 @@ class PPC_welcome {
      * @access  public
      * @since   2.34
      */
-
     public static function display_pro_features() {
         global $ppc_global_settings;
         ?>
@@ -220,10 +211,10 @@ class PPC_welcome {
 					<img src="<?php echo $ppc_global_settings['folder_path'].'style/images/screenshots/pro_stats.png'; ?>" class="ppc-welcome-screenshots"/>
 
 					<h4><?php _e( 'Analytics and Adsense integration', 'post-pay-counter' );?></h4>
-					<p><?php _e( 'Use your account on the world-leading website visits tracking system to pay writers basing on reliable visits data, and/or share Adsense revenues with your writers. Use pageviews or unique pageviews as you like and stop the counting after a certain number of days.' );?></p>
+					<p><?php printf( __( 'Use your account on the world-leading website visits tracking system to pay writers basing on reliable visits data, and/or share Adsense revenues with your writers. Use pageviews or unique pageviews as you like and stop the counting after a certain number of days. %1$sLearn more >>%2$s' ), '<a href="https://postpaycounter.com/ppcp-set-up-analytics/" title="Google Analytics tutorial">', '</a>' );?></p>
 
-                    <h4><?php _e( 'Pay with Paypal', 'post-pay-counter' );?></h4>
-					<p><?php _e( 'Pay your writers directly from the stats page with Adaptive Payments.' );?></p>
+                    <h4><?php _e( 'Mark as paid and pay with Paypal', 'post-pay-counter' );?></h4>
+					<p><?php printf( __( 'Pay your writers directly from the stats page with PayPal, or mark them as paid and use your own external payment method. %1$sLearn more >>%2$s' ), '<a href="https://postpaycounter.com/how-to-mark-posts-as-paid-and-pay-with-paypal/" title="Mark as paid tutorial">', '</a>' );?></p>
 
                     <h4><?php _e( 'Tons of other features', 'post-pay-counter' );?></h4>
 					<p><?php printf( __( 'The %1$sPRO version%2$s includes a damn more lot of interesting features, among which but not only: payment manager and payment history to keep track of past transactions, award payment bonus to single posts, shortcode for stats, stats exporting... see? There\'s not enough space to list them all!', 'post-pay-counter' ), '<a href="http://postpaycounter.com/post-pay-counter-pro?utm_source=users_site&utm_medium=welcome_page&utm_campaign=ppcp" title="Post Pay Counter PRO">', '</a>' );?></p>
@@ -241,7 +232,6 @@ class PPC_welcome {
      * @author  Pippin Williamson (Easy Digital Downloads)
 	 * @return  string $readme HTML formatted readme file
 	 */
-
     public static function parse_readme_changelog() {
 		global $ppc_global_settings;
 
@@ -253,7 +243,8 @@ class PPC_welcome {
 			$readme = file_get_contents( $file );
 			$readme = nl2br( esc_html( $readme ) );
 
-			$readme = end( explode( '== Changelog ==', $readme ) );
+			$parts = explode( '== Changelog ==', $readme );
+			$readme = end( $parts );
 
 			$readme = preg_replace( '/`(.*?)`/', '<code>\\1</code>', $readme );
 			$readme = preg_replace( '/[\040]\*\*(.*?)\*\*/', ' <strong>\\1</strong>', $readme );
@@ -271,7 +262,6 @@ class PPC_welcome {
 	 * @access public
 	 * @since  2.34
 	 */
-
     public static function welcome() {
 		global $ppc_global_settings;
 
