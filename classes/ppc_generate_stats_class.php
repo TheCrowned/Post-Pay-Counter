@@ -272,6 +272,7 @@ class PPC_generate_stats {
 		//AUTHOR COUNTING TYPES
         foreach( $data as $author => &$stats ) {
             $user_settings = PPC_general_functions::get_settings( $author, true );
+            PPC_counting_stuff::$settings = $user_settings;
 
 			$author_counting_types = $ppc_global_settings['counting_types_object']->get_active_counting_types( 'author', $author );
 			foreach( $author_counting_types as $id => $single_counting ) {

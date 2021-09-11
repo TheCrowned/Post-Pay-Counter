@@ -40,15 +40,14 @@ class PPC_counting_stuff {
             $system_value = 'counting_'.$counting_type.'_system_'.$single.'_value';
 
             if( self::$settings[$system] ) {
-                $return = array(
+                return array(
 					'counting_system' => 'counting_system_'.$single,
 					'counting_system_value' => self::$settings[$system_value]
 				);
-                break;
             }
         }
 
-        return $return;
+        return false;
     }
 
     /**
