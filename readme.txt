@@ -3,7 +3,7 @@ Contributors: Ste_95
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22
 Tags: counter, authors, payment, revenue sharing, stats, multi author, post management, post
 Tested up to: 5.8
-Stable tag: 2.765
+Stable tag: 2.766
 Requires at least: 3.7
 
 Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
@@ -78,6 +78,9 @@ From this: *define( 'PPC_DEBUG_LOG', true );*
 It must become: *define( 'PPC_DEBUG_LOG', false );*
 
 == Changelog ==
+= 2.766 (2021-11-19) =
+* Fixed: error with PHP 8 when filtering per post type in post edit page.
+
 = 2.765 (2021-09-11) =
 * Fixed: issue with Publisher Bonus (and potentially other author payment criteria) where stats would not be computed if no posts were to be displayed (but some author had author payments).
 * Fixed: broken Javascript effects in options page.
