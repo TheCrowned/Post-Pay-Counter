@@ -368,3 +368,19 @@ function ppc_uasort_stats_sort( $a, $b ) {
 	$result = strnatcasecmp( $a[$_REQUEST['orderby']], $b[$_REQUEST['orderby']] ); //Determine sort order
 	return ( $_REQUEST['order'] === 'asc' ) ? $result : -$result; //Send final sort direction to usort
 }
+
+//Get a list with how settings should be prioritized (for addons)
+//Assumes that every action has a different priority
+function ppc_get_settings_priority( $setting_type ) {
+	global $wp_filter;
+	
+	$settings_priority = array();
+	foreach( $wp_filter['ppc_get_settings']->callbacks as $priority => $callbacks ) {
+		#$settings_priority[key($callbacks)] = $priority;
+		if( strpos( key( $callbacks ), $setting_type ) !== false )
+			return $priority;
+	}
+	
+	return false;
+	#return $settings_priority;
+}
