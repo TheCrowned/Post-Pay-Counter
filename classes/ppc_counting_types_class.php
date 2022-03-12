@@ -136,7 +136,7 @@ class PPC_counting_types {
      * @return  array counting types
      */ 
     
-    function get_active_counting_types( $what, $userid = 'general' ) {
+    function get_active_counting_types( $what, $userid = 'general', $settings = false ) {
 //		$userid = apply_filters( 'ppc_get_active_counting_types_settings_userid', $userid, $what );
 
         //Try to retrieve them from "cache"
@@ -145,7 +145,8 @@ class PPC_counting_types {
 
 		//If no cache available, need to build the data first
         if( $cache === false ) {
-			$settings = PPC_general_functions::get_settings( $userid, TRUE );
+			if( $settings === false )
+				$settings = PPC_general_functions::get_settings( $userid, TRUE );
 			
 			//See which ones are active
 			$active_user_counting_types = array();
