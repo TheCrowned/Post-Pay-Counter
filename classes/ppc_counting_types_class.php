@@ -71,6 +71,7 @@ class PPC_counting_types {
      *              payment_callback - method to compute payment of the counted "how many". Will receive the counting output array as parameter as well as the post ID or author ID.
      *              other_params - (optional) can contain whatever you want. Maybe you want to add custom checks to a counting type: then you can use this to register it with custom args and then hook to actions in the method and use this parameter.
      *              				# not_to_pay (bool) exclude counting from payments.
+     * 								# payment_only (bool) whether payment criteria is not based on any 'count' method, but rather a standalone payment.
      */ 
     function register_counting_type( $parameters ) {
         //Check everything needed has been given

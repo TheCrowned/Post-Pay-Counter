@@ -384,7 +384,7 @@ class PPC_counting_stuff {
         global $ppc_global_settings;
 
         $ppc_misc = array();
-        $ppc_payment['normal_payment'] = self::get_countings_payment( $post_countings, $post->post_author );
+        $ppc_payment['normal_payment'] = self::get_countings_payment( $post_countings, $post->post_author, $post->ID );
 
         $counting_types = self::$current_active_counting_types_post;
         foreach( $counting_types as $id => $value ) {
@@ -438,7 +438,7 @@ class PPC_counting_stuff {
      * @param   $countings array the countings to be paid
      * @return  array the payment data
      */
-    static function get_countings_payment( $countings, $author = 'general' ) {
+    static function get_countings_payment( $countings, $author = 'general', $post_ID = NULL ) {
         global $ppc_global_settings;
 
         $ppc_payment = array();
@@ -451,7 +451,7 @@ class PPC_counting_stuff {
                     if( isset( $counting_types[$id]['payment_only'] ) AND $counting_types[$id]['payment_only'] == true ) continue; //these are dealt with in get_post_payment
                     if( isset( $counting_types[$id]['other_params']['not_to_pay'] ) AND $counting_types[$id]['other_params']['not_to_pay'] ) continue;
 
-                    $counting_type_payment = call_user_func( $counting_types[$id]['payment_callback'], $value, $author );
+                    $counting_type_payment = call_user_func( $counting_types[$id]['payment_callback'], $value, $author, $post_ID );
                     $ppc_payment[$id] = $counting_type_payment;
                 }
             }
