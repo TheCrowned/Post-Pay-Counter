@@ -153,10 +153,10 @@ class PPC_generate_stats {
     static function grp_filter_user_roles( $join ) {
         global $wpdb;
 
-		$join .= 'INNER JOIN '.$wpdb->usermeta.'
-                    ON '.$wpdb->usermeta.'.user_id = '.$wpdb->posts.'.post_author
-                    AND '.$wpdb->usermeta.'.meta_key = "'.$wpdb->get_blog_prefix().'capabilities"
-                    AND '.$wpdb->usermeta.'.meta_value REGEXP ("'.implode( '|', self::$grp_args['ppc_allowed_user_roles'] ).'")';
+		$join .= "INNER JOIN ".$wpdb->usermeta."
+                    ON ".$wpdb->usermeta.".user_id = ".$wpdb->posts.".post_author
+                    AND ".$wpdb->usermeta.".meta_key = '".$wpdb->get_blog_prefix()."capabilities'
+                    AND ".$wpdb->usermeta.".meta_value REGEXP ('".implode( '|', self::$grp_args['ppc_allowed_user_roles'] )."')";
 
         return $join;
     }
@@ -338,7 +338,7 @@ class PPC_generate_stats {
             'cols' => array(),
             'stats' => array()
         );
-		
+
         if( is_array( $author ) and ! empty( $author ) ) {
 			foreach( $data as $author_id_foreach => $author_stats_foreach ) { $author_id = $author_id_foreach; $author_stats = $author_stats_foreach; } //list alternative
 			$user_settings = PPC_general_functions::get_settings( $author_id, TRUE );
@@ -483,7 +483,7 @@ class PPC_generate_stats {
             }
 
 			if( count( $formatted_stats['stats'] ) == 0 ) {
-				$error = new PPC_Error( 'no_author_with_total_payment', sprintf( __( 'No posts reach the threshold. Check your settings at %1$s', 'ppc' ), '<em>'.__( 'Options', 'post-pay-counter' ).' > '.__( 'Counting Settings', 'post-pay-counter' ).' > '.__( 'Total Payment', 'post-pay-counter' ).' > '.__( 'Pay only when the total payment threshold is reached', 'post-pay-counter' ).'.</em>' ), false );
+				$error = new PPC_Error( 'no_author_with_total_payment', sprintf( __( 'No posts reach the threshold. Check your settings at %1$s', 'ppc' ), '<em>'.__( 'Options', 'post-pay-counter' ).' > '.__( 'Counting Settings', 'post-pay-counter' ).' > '.__( 'Total Payment', 'post-pay-counter' ).' > '.__( 'Pay only when the total payment threshold is reached', 'post-pay-counter' ).'.</em>' ), array(), false );
 				return $error->return_error();
 			}
 
