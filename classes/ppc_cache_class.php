@@ -147,4 +147,47 @@ class PPC_cache_functions {
 			}
 		}
 	}
+
+    /**
+     * Retrieve cached stats snapshot, if available.
+     * 
+     * Cache snapshots can only be generated through WP-CLI command `wp ppc stats --cache-full`.
+     * 
+     * @since   2.770
+     * @param   $time_start int
+     * @param   $time_end int
+     * @param   $author ID int
+     * @return  stats_array|false
+     */
+    static function get_stats_snapshot( $time_start, $time_end, $author ) {
+        // Disable cache snapshot with GET arg `no-cache`, or by hooking to this filter
+        if( apply_filters( 'ppc_cache_snapshots_default_noload', isset( $_GET['no-cache'] ) ) )
+            return false;
+
+        global $ppc_global_settings, $current_user;
+        $perm = new PPC_permissions();
+
+        // Build snapshot slug, used as cache filename
+		if( ! is_array( $author ) AND ! $perm->can_see_others_general_stats() )
+			$cache_slug = 'ppc_stats-tstart_'.$time_start.'-tend_'.$time_end.'-author_'.$current_user->ID.'-as-user'.$current_user->ID;
+		else if( is_array( $author ) )
+			$cache_slug = 'ppc_stats-tstart_'.$time_start.'-tend_'.$time_end.'-author_'.$author[0].'-as-user_'.$author[0];
+		else
+			$cache_slug = 'ppc_stats-tstart_'.$time_start.'-tend_'.$time_end.'-as-user_'.$current_user->ID;
+
+        // Load cached snapshot from file
+        $path = $ppc_global_settings['dir_path'].'cache/'.$cache_slug;
+		if( is_file( $path ) AND filesize( $path ) != 0 ) {
+			$open = fopen( $path, "r" );
+			$file_content = fread( $open, filesize( $path ) );
+			if( $file_content !== false ) {
+				$cached_data = unserialize( $file_content );
+				PPC_counting_stuff::$settings = PPC_general_functions::get_settings( 'general' ); // put some settings there (hack!), since we never go through data2cash()
+				set_transient( 'ppc_full_stats_snapshot_time', $cached_data['time'], 5 ); // for stats page header to know data is from cache, hacky
+                return $cached_data;
+			}
+		}
+
+        return false;
+    }
 }

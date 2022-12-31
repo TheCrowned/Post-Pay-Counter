@@ -94,13 +94,13 @@ function ppc_cli_stats( $args, $assoc_args ) {
 				'args' => $assoc_args
 			);
 			$cache_outcome = (bool) file_put_contents( $ppc_global_settings['dir_path'].'cache/'.$cache_slug, serialize( $cache_data ) );
-			$cache_size = round( strlen( serialize( $stats ) ) / 1024 );
-			WP_CLI::line( "Cached stats with slug $cache_slug, size $cache_size KB, outcome $cache_outcome" );
+			$cache_size = round( strlen( serialize( $stats ) ) / 1024 / 1024, 2 );
+			WP_CLI::line( "Cached stats with slug $cache_slug, size $cache_size MB, outcome $cache_outcome" );
 		}
 
 		$duration = time() - $begin;
 
-		WP_CLI::success( "Stats generated in $duration seconds. \nVisit them at: ".admin_url( $ppc_global_settings['stats_menu_link']."&tstart=".$assoc_args['time-start']."&tend=".$assoc_args['time-end']."&cache-full&author=".$assoc_args['author'][0] ) );
+		@WP_CLI::success( "Stats generated in $duration seconds. \nVisit them at: ".admin_url( $ppc_global_settings['stats_menu_link']."&tstart=".$assoc_args['time-start']."&tend=".$assoc_args['time-end']."&cache-full&author=".$assoc_args['author'][0] ) );
 	} else {
 		WP_CLI::line( "Error: ".$stats->get_error_message() );
 	}

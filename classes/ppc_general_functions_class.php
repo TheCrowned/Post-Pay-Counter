@@ -266,7 +266,7 @@ class PPC_general_functions {
 			$last_available_post_time = strtotime( $last_available_post->posts[0]->post_date );
 
 		if( ! isset( $last_available_post_time ) OR $last_available_post_time < current_time( 'timestamp' ) )
-            $last_available_post_time = current_time( 'timestamp' ); //Pub Bonus needs to select even days without posts in the future, maybe there are publishings
+			$last_available_post_time = strtotime( '23:59:59' ); //Pub Bonus needs to select even days without posts in the future, maybe there are publishings
 
 		$ppc_global_settings['last_available_post_time'] = $last_available_post_time;
 
