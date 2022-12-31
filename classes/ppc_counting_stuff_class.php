@@ -87,7 +87,6 @@ class PPC_counting_stuff {
             self::$current_active_counting_types_post = $ppc_global_settings['counting_types_object']->get_active_counting_types( 'post', $author_id, self::$settings );
             self::$current_active_counting_types_author = $ppc_global_settings['counting_types_object']->get_active_counting_types( 'author', $author_id, self::$settings );
 
-            $data_arr = array();
             foreach( $author_stats as $single ) {
 
                 //Skip posts with non allowed post status
@@ -112,7 +111,15 @@ class PPC_counting_stuff {
                     $single->ppc_payment = $post_payment['ppc_payment'];
                     $single->ppc_misc = apply_filters( 'ppc_stats_post_misc', $post_payment['ppc_misc'], $single->ID );
 
-                    $processed_data[$author_id][$single->ID] = apply_filters( 'ppc_post_counting_payment_data', $single, $author );
+                    $processed_post = apply_filters( 'ppc_post_counting_payment_data', $single, $author );
+                    unset( $processed_post->post_content );
+                    /*$clean_processed_post = new stdClass(); // not an array to avoid rewriting all implementations that read this value...
+                    $attr_to_keep = array( 'ID', 'post_author', 'post_date', 'post_title', 'post_status', 'post_type', 'ppc_count', 'ppc_payment', 'ppc_misc' );
+                    foreach( $attr_to_keep as $attr ) {
+                        $clean_processed_post->{$attr} = $processed_post->{$attr};
+                    }*/
+                    //var_dump($clean_processed_post);
+                    $processed_data[$author_id][$processed_post->ID] = $processed_post;
 
                     //Cache post stats for one day
                     PPC_cache_functions::set_post_stats( $single->ID, $processed_data[$author_id][$single->ID] );

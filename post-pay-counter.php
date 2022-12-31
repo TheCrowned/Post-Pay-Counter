@@ -706,7 +706,7 @@ class post_pay_counter {
 
 			<?php
             $cache_time = get_transient( 'ppc_full_stats_snapshot_time' );
-            if( apply_filters( 'ppc_cache_full_stats_always_show', ! isset( $_GET['no-cache'] ) ) ) {
+            if( $cache_time ) {
 				echo '<div style="float: left; margin-bottom: -20px; font-style: italic;">'.sprintf( __( 'Displayed data comes from a cached snapshot taken in %1$s at %2$s.', 'post-pay-counter' ), date_i18n( get_option( 'date_format' ), $cache_time ), date( 'H:i:s', $cache_time ) ).'</div>';
 			} else if( $general_settings['enable_post_stats_caching'] ) {
 				echo '<div style="float: left; margin-bottom: -20px; font-style: italic;">'.__( 'Displayed data is cached. You may have to wait 24 hours for updated data.', 'post-pay-counter' ).'</div>';

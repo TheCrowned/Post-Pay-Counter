@@ -30,6 +30,11 @@ WP_CLI::add_command( 'ppc stats', 'ppc_cli_stats' );
 function ppc_cli_stats( $args, $assoc_args ) {
 	global $ppc_global_settings;
 
+    if( isset( $assoc_args['cache-full'] ) ) {
+        global $CLI_PPC_CACHE;
+        $CLI_PPC_CACHE = true; // read by cache retrieval to ignore existing cache when building anew
+    }
+
 	$begin = time();
 
 	WP_CLI::line( "Now loading stats..." );

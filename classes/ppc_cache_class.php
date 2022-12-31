@@ -160,8 +160,9 @@ class PPC_cache_functions {
      * @return  stats_array|false
      */
     static function get_stats_snapshot( $time_start, $time_end, $author ) {
-        // Disable cache snapshot with GET arg `no-cache`, or by hooking to this filter
-        if( apply_filters( 'ppc_cache_snapshots_default_noload', isset( $_GET['no-cache'] ) ) )
+        // Disable cache snapshot with GET arg `no-cache`, or by hooking to this filter, or when creating snapshots through WP-CLI
+        global $CLI_PPC_CACHE;
+        if( isset( $CLI_PPC_CACHE ) OR apply_filters( 'ppc_cache_snapshots_default_noload', isset( $_GET['no-cache'] ) ) )
             return false;
 
         global $ppc_global_settings, $current_user;
