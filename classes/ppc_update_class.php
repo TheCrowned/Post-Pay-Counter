@@ -72,6 +72,7 @@ class PPC_update_class {
 			'basic_payment_display_status' => 'tooltip',
 			'counting_words_display_status' => 'count',
 			'counting_words_include_excerpt' => 0,
+			'counting_words_legacy' => 1,
 			'counting_visits_display_status' => 'count',
 			'counting_images_display_status' => 'count',
 			'counting_comments_display_status' => 'count',

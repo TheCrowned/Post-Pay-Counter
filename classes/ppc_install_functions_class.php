@@ -101,6 +101,7 @@ class PPC_install_functions {
                 'counting_words_system_incremental_value' => 0.01,
                 'counting_words_threshold_max' => 0,
                 'counting_words_display_status' => 'count',
+				'counting_words_legacy' => 0,
 				'counting_words_parse_spaces' => 0,
 				'counting_words_include_excerpt' => 0,
 				'counting_words_exclude_pre' => 0,

@@ -304,15 +304,18 @@ class PPC_counting_stuff {
 
         $purged_content = strip_tags( $purged_content );
 
-        if( self::$settings['counting_words_parse_spaces'] )
-            $purged_content = preg_replace( '/\'|&nbsp;|&#160;|\r|\n|\r\n|\s+/', ' ',  $purged_content );
-
-        $purged_content = preg_replace( '/\.|,|:|;|\(|\)|"|\'/', '',  $purged_content ); // trim punctuation
-
-        $purged_content = apply_filters( 'ppc_clean_post_content_word_count', trim( $purged_content ) ); //need to trim to remove final new lines
-
-        $post_words['real'] = count( preg_split( '/\s+/', $purged_content, -1, PREG_SPLIT_NO_EMPTY ) );
-
+        if( self::$settings['counting_words_legacy'] ) {
+            if( self::$settings['counting_words_parse_spaces'] ) {
+                $purged_content = preg_replace( '/\'|&nbsp;|&#160;|\r|\n|\r\n|\s+/', ' ',  $purged_content );
+            }
+            $purged_content = preg_replace( '/\.|,|:|;|\(|\)|"|\'/', '',  $purged_content ); // trim punctuation
+            $purged_content = apply_filters( 'ppc_clean_post_content_word_count', trim( $purged_content ) ); //need to trim to remove final new lines
+            $post_words['real'] = count( preg_split( '/\s+/', $purged_content, -1, PREG_SPLIT_NO_EMPTY ) );
+        } else {
+            $purged_content = apply_filters( 'ppc_clean_post_content_word_count', trim( $purged_content ) ); //need to trim to remove final new lines
+            $post_words['real'] = str_word_count( $purged_content );
+        }
+        
         //Include excerpt text if needed
         if( self::$settings['counting_words_include_excerpt'] AND is_a( $post, 'WP_Post' ) AND ! empty( $post->post_excerpt ) ) {
             $excerpt_words = self::count_post_words( $post->post_excerpt );
