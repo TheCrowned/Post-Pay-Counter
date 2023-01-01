@@ -50,7 +50,9 @@ class PPC_HTML_functions {
 				if( $_REQUEST['ppc-time-range'] == $key )
 					$checked = 'selected="selected"';
 			} else {
-				if( $general_settings['default_stats_time_range_week'] AND $key == 'this_week' )
+				if( ( $general_settings['default_stats_time_range_custom'] OR $general_settings['default_stats_time_range_start_day'] OR isset( $_GET['tstart'] ) ) AND $key == 'custom' )
+					$checked = 'selected="selected"';
+				else if( $general_settings['default_stats_time_range_week'] AND $key == 'this_week' )
 					$checked = 'selected="selected"';
 				else if( $general_settings['default_stats_time_range_month'] AND $key == 'this_month' )
 					$checked = 'selected="selected"';
@@ -59,8 +61,6 @@ class PPC_HTML_functions {
 				else if( $general_settings['default_stats_time_range_this_year'] AND $key == 'this_year' )
 					$checked = 'selected="selected"';
 				else if( $general_settings['default_stats_time_range_all_time'] AND $key == 'all_time' )
-					$checked = 'selected="selected"';
-				else if( ( $general_settings['default_stats_time_range_custom'] OR $general_settings['default_stats_time_range_start_day'] ) AND $key == 'custom' )
 					$checked = 'selected="selected"';
 			}
 
