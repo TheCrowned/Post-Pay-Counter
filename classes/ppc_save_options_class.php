@@ -34,6 +34,7 @@ class PPC_save_options {
         $new_settings['counting_words_exclude_captions'] = @PPC_options_fields::get_checkbox_value( $settings['counting_words_exclude_captions'] );
         $new_settings['counting_words_apply_shortcodes'] = @PPC_options_fields::get_checkbox_value( $settings['counting_words_apply_shortcodes'] );
 		$new_settings['counting_words_parse_spaces'] = @PPC_options_fields::get_checkbox_value( $settings['counting_words_parse_spaces'] );
+		$new_settings['counting_words_legacy'] = @PPC_options_fields::get_checkbox_value( $settings['counting_words_legacy'] );
         $new_settings['counting_visits'] = @PPC_options_fields::get_checkbox_value( $settings['counting_visits'] );
         $new_settings['counting_images'] = @PPC_options_fields::get_checkbox_value( $settings['counting_images'] );
         $new_settings['counting_images_include_featured'] = @PPC_options_fields::get_checkbox_value( $settings['counting_images_include_featured'] );
