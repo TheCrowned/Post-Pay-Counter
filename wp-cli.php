@@ -78,7 +78,6 @@ function ppc_cli_stats( $args, $assoc_args ) {
 		else
 			$assoc_args['as-user'] = 1;
 	}
-
 	$cache_slug .= '-as-user_'.$assoc_args['as-user'];
 
 	WP_CLI::line( 'As user: '.get_userdata( $assoc_args['as-user'] )->display_name.' (ID: '.$assoc_args['as-user'].')' );

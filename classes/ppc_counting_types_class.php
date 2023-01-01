@@ -24,12 +24,6 @@ class PPC_counting_types {
 	
 	public static $active_counting_types;
 	public static $user_counting_types;
-	
-	/**
-	 * Holds general visits callback function (mixed: string/array).
-	 */
-	 
-	public static $visits_callback_function;
     
     /**
      * Initiliazes class var.
@@ -43,9 +37,6 @@ class PPC_counting_types {
             'post' => array(),
             'author' => array()
         );
-		
-		//Stores visits callback function into class variable as caching
-		self::$visits_callback_function = self::get_visits_callback_function();
     }
     
     /**
@@ -293,50 +284,4 @@ class PPC_counting_types {
         
         do_action( 'ppc_registered_built_in_counting_types' );
     }
-	
-	/*static function counting_type_visits_callback( $counting_types, $userid ) {
-		if( isset( $counting_types['post']['visits'] ) ) {
-			$user_settings = PPC_general_functions::get_settings( $userid );
-			
-			if( $user_settings['counting_visits_callback'] )
-				$counting_types['post']['visits']['count_callback'] = self::get_visits_callback_function();
-		}
-		
-		return $counting_types;
-	}*/
-	
-	/**
-	 * Builds visits callback function, parsing stored one if available.
-	 *
-	 * @access 	public
-	 * @since	1.4.7
-	 * @param	(optional) callback to be parsed
-	 * @return 	mixed (string/array) visits count callback
-	 */
-	
-	static function get_visits_callback_function( $callback = '' ) {
-		//If cache is available, return that
-		if( ! empty( self::$visits_callback_function ) )
-			return self::$visits_callback_function;
-		
-		$general_settings = PPC_general_functions::get_settings( 'general' );
-		
-		//Allow function to work with input - if none, fallback on settings (and cache it)
-		if( empty( $callback ) ) {
-			if ( empty( $general_settings['counting_visits_callback_value'] ) )
-				return false;
-			else
-				$callback = $general_settings['counting_visits_callback_value'];
-		}
-			
-				
-		$explode = explode( ',', $callback );
-		
-		if( count( $explode ) == 2 ) //if callback is in the form classname, methodname
-			$count_callback = array( trim( $explode[0] ), trim( $explode[1] ) );
-		else 
-			$count_callback = $callback;
-		
-		return $count_callback;
-	}
  }

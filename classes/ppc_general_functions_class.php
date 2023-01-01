@@ -345,6 +345,24 @@ class PPC_general_functions {
 
 		return apply_filters( 'ppc_format_payment', sprintf( '%.'.$general_settings['payment_display_round_digits'].'f', $payment ) );
 	}
+
+    /**
+	 * Parses visits callback function.
+	 *
+	 * @access 	public
+	 * @since	2.770
+	 * @param	callback to be parsed
+	 * @return 	mixed (string/array) visits count PHP callable
+	 */
+    static function parse_visits_callback_function( $callback = '' ) {
+        $explode = explode( ',', $callback );
+
+        $return = $callback;
+		if( count( $explode ) == 2 ) //if callback is in the form classname, methodname
+			$return = array( trim( $explode[0] ), trim( $explode[1] ) );
+
+        return $return;
+    }
 }
 
 //Compatibility for people who lack the PHP calendar plugin

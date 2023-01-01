@@ -8,8 +8,10 @@
  * @package	PPC
  * @since 2.720
  */
-
 class PPC_cache_functions {
+
+	// Little cache help
+	public static $incrementor_value;
 
 	/**
      * Clears cache of all settings-dependent objects.
@@ -111,8 +113,10 @@ class PPC_cache_functions {
 	 * @return 	string incrementor current value
 	 */
 	static function get_stats_incrementor( $refresh = false ) {
+		if( self::$incrementor_value AND ! $refresh )
+			return self::$incrementor_value;
+        
 		global $ppc_global_settings;
-
 		$incrementor_key = $ppc_global_settings['option_stats_cache_incrementor'];
 		$incrementor_value = get_option( $incrementor_key );
 
@@ -120,7 +124,8 @@ class PPC_cache_functions {
 			$incrementor_value = time();
 			update_option( $incrementor_key, $incrementor_value );
 		}
-
+        
+		self::$incrementor_value = $incrementor_value;
 		return $incrementor_value;
 	}
 

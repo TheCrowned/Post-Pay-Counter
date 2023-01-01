@@ -91,7 +91,7 @@ class PPC_save_options {
 
 			//Check if callback is valid
 			$rand_post = get_posts( array( 'posts_per_page' => 1, 'orderby' => 'rand' ) );
-			if( call_user_func( PPC_counting_types::get_visits_callback_function( $settings['counting_visits_callback_value'] ), current( $rand_post ) ) === NULL )
+			if( call_user_func( PPC_general_functions::parse_visits_callback_function( $settings['counting_visits_callback_value'] ), current( $rand_post ) ) === NULL )
 				return new WP_Error( 'ppc_invalid_visits_callback', __( 'The specified visits callback returned NULL for a random post - are you sure it is correct?', 'post-pay-counter' ), array( $settings['counting_visits_callback_value'] ) );
 
 			$new_settings['counting_visits_callback_value'] = $settings['counting_visits_callback_value'];

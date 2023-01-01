@@ -293,7 +293,7 @@ class PPC_counting_stuff {
         if( self::$settings['counting_words_exclude_pre'] )
             $purged_content = preg_replace( '/<(pre)[^>]*>(.*?)<\/(pre)>/s', '', $purged_content );
 
-        if( ! has_shortcode( $post_content, 'ppc' ) AND self::$settings['counting_words_apply_shortcodes'] ) //avoid nested calls of functions due to ppc shortcode
+        if( self::$settings['counting_words_apply_shortcodes'] AND ! has_shortcode( $post_content, 'ppc' ) ) //avoid nested calls of functions due to ppc shortcode
             $purged_content = do_shortcode( $purged_content );
 
         if( self::$settings['counting_words_exclude_captions'] )
@@ -304,7 +304,7 @@ class PPC_counting_stuff {
         if( self::$settings['counting_words_parse_spaces'] )
             $purged_content = preg_replace( '/\'|&nbsp;|&#160;|\r|\n|\r\n|\s+/', ' ',  $purged_content );
 
-        $purged_content = preg_replace( '/\.|,|:|;|\(|\)|"|\'/', '',  $purged_content );
+        $purged_content = preg_replace( '/\.|,|:|;|\(|\)|"|\'/', '',  $purged_content ); // trim punctuation
 
         $purged_content = apply_filters( 'ppc_clean_post_content_word_count', trim( $purged_content ) ); //need to trim to remove final new lines
 
@@ -344,7 +344,7 @@ class PPC_counting_stuff {
         );
 
         if( self::$settings['counting_visits_callback'] ) {
-            $visits_callback = apply_filters( 'ppc_counting_visits_callback', PPC_counting_types::get_visits_callback_function() );
+            $visits_callback = apply_filters( 'ppc_counting_visits_callback', self::$settings['counting_visits_callback_value'] );
 
             if( is_callable( $visits_callback ) )
                 $post_visits['real'] = (int) call_user_func( $visits_callback, $post );
