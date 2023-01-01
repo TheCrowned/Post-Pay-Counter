@@ -48,19 +48,19 @@ class PPC_cache_functions {
 	 * @return	mixed cache content or false
 	 */
 	static function get_post_stats( $post_id ) {
-		$general_settings = PPC_general_functions::get_settings( 'general' );
-
 		$cache_salt = PPC_cache_functions::get_stats_incrementor();
-
-		if( $general_settings['enable_post_stats_caching'] )
-			return wp_cache_get( 'ppc_stats_post_ID-'.$post_id.'-'.$cache_salt, 'ppc_stats' );
-		else
-			return false;
+        return wp_cache_get( 'ppc_stats_post_ID-'.$post_id.'-'.$cache_salt, 'ppc_stats' );
 	}
 
+	/**
+	 * Stores post stats, if caching is enabled.
+	 *
+	 * @since	2.720
+	 * @param	$post_id int
+	 * @return	mixed cache content or false
+	 */
 	static function set_post_stats( $post_id, $data ) {
 		$cache_salt = PPC_cache_functions::get_stats_incrementor();
-
 		wp_cache_set( 'ppc_stats_post_ID-'.$post_id.'-'.$cache_salt, $data, 'ppc_stats', 86400 );
 	}
 

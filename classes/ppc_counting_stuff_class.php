@@ -93,12 +93,13 @@ class PPC_counting_stuff {
                 if( ! ( isset( $single->post_status, self::$settings['counting_allowed_post_statuses'] ) AND self::$settings['counting_allowed_post_statuses'][$single->post_status] ) )
                     continue;
 
-                //Use cached data if available, but not if regular settings should be overridden
-                $post_stats = PPC_cache_functions::get_post_stats( $single->ID );
-
+                // Maybe use cached data...
+                if( self::$settings['enable_post_stats_caching'] ) {
+                    $post_stats = PPC_cache_functions::get_post_stats( $single->ID );
+                }
                 if( $post_stats !== false AND $settings_override == false ) {
                     $processed_data[$author_id][$single->ID] = $post_stats;
-
+                // ...but not if regular settings should be overridden
                 } else {
                     do_action( 'ppc_data2cash_single_before', $single, $settings_override );
 
@@ -113,7 +114,9 @@ class PPC_counting_stuff {
 
                     $processed_post = apply_filters( 'ppc_post_counting_payment_data', $single, $author );
                     unset( $processed_post->post_content );
-                    /*$clean_processed_post = new stdClass(); // not an array to avoid rewriting all implementations that read this value...
+                    /* unsure as to what is best. post_content is the largest, but there's gain in taking away all that we don't use later.
+                     * however, it is a foreach run on ~10 attrs PER EACH post, heavy on many...
+                    $clean_processed_post = new stdClass(); // not an array to avoid rewriting all implementations that read this value...
                     $attr_to_keep = array( 'ID', 'post_author', 'post_date', 'post_title', 'post_status', 'post_type', 'ppc_count', 'ppc_payment', 'ppc_misc' );
                     foreach( $attr_to_keep as $attr ) {
                         $clean_processed_post->{$attr} = $processed_post->{$attr};
