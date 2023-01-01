@@ -130,7 +130,7 @@ class PPC_license {
      */
     function activate( $license_key ) {
         if( $this->local_status ) {
-            $error = new PPC_Error( 'ppcp_already_pro', __( 'You already have a license for this addon active.', 'ppc' ), array(
+            $error = new PPC_Error( 'ppcp_already_pro', __( 'You already have an active license for this addon.', 'ppc' ), array(
                 'remote_url' => $this->remote_URL
             ) );
             return $error->return_error();
@@ -162,7 +162,7 @@ class PPC_license {
      */
     function deactivate() {
         if( ! $this->local_status ) {
-            $error = new PPC_Error( 'ppcp_not_pro', __( 'You don\'t have a license for this addon active', 'ppc' ), array(
+            $error = new PPC_Error( 'ppcp_not_pro', __( 'You do not have an active license for this addon.', 'ppc' ), array(
                 'remote_url' => $this->remote_URL
             ) );
             return $error->return_error();
@@ -188,7 +188,7 @@ class PPC_license {
      */
     function check_activation() {
         if( ! $this->local_status ) {
-            $error = new PPC_Error( 'ppcp_not_pro', __( 'You don\'t have a license for this addon active', 'ppc' ), array(
+            $error = new PPC_Error( 'ppcp_not_pro', __( 'You do not have an active license for this addon.', 'ppc' ), array(
                 'remote_url' => $this->remote_URL
             ) );
             return $error->return_error();
