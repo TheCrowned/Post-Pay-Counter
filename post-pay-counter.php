@@ -612,7 +612,8 @@ class post_pay_counter {
 
 		if( is_array( $this->author ) ) {
 
-            if( ! $perm->can_see_others_detailed_stats() AND $current_user->ID != $this->author[0] ) return _e( 'You do not have sufficient permissions to access this page' );
+            if( ! $perm->can_see_others_detailed_stats() AND $current_user->ID != $this->author[0] )
+                wp_die( __( 'You do not have sufficient permissions to access this page' ) );
 
             $this->stats = PPC_generate_stats::produce_stats( $ppc_global_settings['stats_tstart'], $ppc_global_settings['stats_tend'], $this->author );
 

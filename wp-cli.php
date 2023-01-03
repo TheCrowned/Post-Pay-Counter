@@ -29,6 +29,7 @@ WP_CLI::add_command( 'ppc stats', 'ppc_cli_stats' );
  */
 function ppc_cli_stats( $args, $assoc_args ) {
 	global $ppc_global_settings;
+    $perm = new PPC_permissions();
 
     if( isset( $assoc_args['cache-full'] ) ) {
         global $CLI_PPC_CACHE;
@@ -72,17 +73,15 @@ function ppc_cli_stats( $args, $assoc_args ) {
 	}
 
 	//Set current user. Needed for personalized settings & the like
+    // Only set `as-user` in slug if user has less permissive permissions than admin.
 	if( ! isset( $assoc_args['as-user'] ) ) {
-		if( $assoc_args['author'] != null )
-			$assoc_args['as-user'] = current( $assoc_args['author'] );
-		else
-			$assoc_args['as-user'] = 1;
+        $assoc_args['as-user'] = 1;
 	}
-	$cache_slug .= '-as-user_'.$assoc_args['as-user'];
-
-	WP_CLI::line( 'As user: '.get_userdata( $assoc_args['as-user'] )->display_name.' (ID: '.$assoc_args['as-user'].')' );
-
-	wp_set_current_user( (int) $assoc_args['as-user'] );
+    wp_set_current_user( (int) $assoc_args['as-user'] );
+    WP_CLI::line( 'As user: '.get_userdata( $assoc_args['as-user'] )->display_name.' (ID: '.$assoc_args['as-user'].')' );
+    if( ! $perm->can_see_countings_special_settings() OR ! $perm->can_see_others_general_stats() ) {
+        $cache_slug .= '-as-user_'.$assoc_args['as-user'];
+    }
 
 	WP_CLI::line( "\nThis may take a while... \n" );
 	$stats = PPC_generate_stats::produce_stats( (int) $assoc_args['time-start'], (int) $assoc_args['time-end'], $assoc_args['author'] );
@@ -100,11 +99,13 @@ function ppc_cli_stats( $args, $assoc_args ) {
 			$cache_outcome = (bool) file_put_contents( $ppc_global_settings['dir_path'].'cache/'.$cache_slug, serialize( $cache_data ) );
 			$cache_size = round( strlen( serialize( $stats ) ) / 1024 / 1024, 2 );
 			WP_CLI::line( "Cached stats with slug $cache_slug, size $cache_size MB, outcome $cache_outcome" );
-		}
+		} else {
+            var_dump( $stats );
+        }
 
 		$duration = time() - $begin;
 
-		@WP_CLI::success( "Stats generated in $duration seconds. \nVisit them at: ".admin_url( $ppc_global_settings['stats_menu_link']."&tstart=".$assoc_args['time-start']."&tend=".$assoc_args['time-end']."&cache-full&author=".$assoc_args['author'][0] ) );
+		@WP_CLI::success( "Stats generated in $duration seconds. \nVisit them at: ".admin_url( $ppc_global_settings['stats_menu_link']."&tstart=".$assoc_args['time-start']."&tend=".$assoc_args['time-end']."&author=".$assoc_args['author'][0] ) );
 	} else {
 		WP_CLI::line( "Error: ".$stats->get_error_message() );
 	}

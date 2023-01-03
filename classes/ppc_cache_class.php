@@ -161,7 +161,7 @@ class PPC_cache_functions {
      * @since   2.770
      * @param   $time_start int
      * @param   $time_end int
-     * @param   $author ID int
+     * @param   $author array|NULL
      * @return  stats_array|false
      */
     static function get_stats_snapshot( $time_start, $time_end, $author ) {
@@ -174,12 +174,11 @@ class PPC_cache_functions {
         $perm = new PPC_permissions();
 
         // Build snapshot slug, used as cache filename
-		if( ! is_array( $author ) AND ! $perm->can_see_others_general_stats() )
-			$cache_slug = 'ppc_stats-tstart_'.$time_start.'-tend_'.$time_end.'-author_'.$current_user->ID.'-as-user'.$current_user->ID;
-		else if( is_array( $author ) )
-			$cache_slug = 'ppc_stats-tstart_'.$time_start.'-tend_'.$time_end.'-author_'.$author[0].'-as-user_'.$author[0];
-		else
-			$cache_slug = 'ppc_stats-tstart_'.$time_start.'-tend_'.$time_end.'-as-user_'.$current_user->ID;
+        $cache_slug = 'ppc_stats-tstart_'.$time_start.'-tend_'.$time_end;
+		if( ! $perm->can_see_countings_special_settings() )
+			$cache_slug .= '-as-user_'.$current_user->ID;
+		if( is_array( $author ) )
+			$cache_slug .= '-author_'.$author[0];
 
         // Load cached snapshot from file
         $path = $ppc_global_settings['dir_path'].'cache/'.$cache_slug;
