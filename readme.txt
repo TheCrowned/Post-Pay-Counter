@@ -1,7 +1,7 @@
 ﻿=== Post Pay Counter ===
 Contributors: Ste_95
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22
-Tags: counter, authors, payment, revenue sharing, stats, multi author, post management, post
+Tags: earnings, authors, payments, revenue sharing, stats
 Tested up to: 6.2
 Stable tag: 2.770
 Requires at least: 3.7
