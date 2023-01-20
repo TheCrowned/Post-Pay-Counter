@@ -3,7 +3,7 @@ Contributors: Ste_95
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22
 Tags: earnings, authors, payments, revenue sharing, stats
 Tested up to: 6.2
-Stable tag: 2.770
+Stable tag: 2.771
 Requires at least: 3.7
 
 Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
@@ -76,6 +76,9 @@ From this: *define( 'PPC_DEBUG_LOG', true );*
 It must become: *define( 'PPC_DEBUG_LOG', false );*
 
 == Changelog ==
+= 2.771 (2023-01-20) = 
+* Fix regression.
+
 = 2.770 (2023-01-20) =
 * Improv: **performance**! Reduce memory usage, loading time, and cache snapshots size (by dropping post_content from output).
 * Improv: use PHP native word counting function instead of slower legacy method. New installs get this by default, otherwise you have to enable it in words payment settings.
