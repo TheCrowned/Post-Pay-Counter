@@ -2,14 +2,14 @@
 Contributors: Ste_95
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22
 Tags: counter, authors, payment, revenue sharing, stats, multi author, post management, post
-Tested up to: 5.9
-Stable tag: 2.768
+Tested up to: 6.2
+Stable tag: 2.770
 Requires at least: 3.7
 
 Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
 
 == Description ==
-Easily calculate and handle authors' pay on a multi-author blog. Set up the wished payment criteria and let the plugin compute posts payment. Stats are immediately be viewable. Both a general view with all users and a specific one for each author are possible. It can easily help you implement a revenue sharing/paid to write model for your business.
+Easily calculate and handle authors' pay on a multi-author blog. Set up payment criteria and let the plugin compute posts payment. Stats are immediately viewable. Both a general view with all users and a specific one for each author are possible. It can easily help you implement a revenue sharing/paid to write model for your business.
 
 [Plugin HOMEPAGE](https://postpaycounter.com)
 
@@ -28,7 +28,7 @@ Easily calculate and handle authors' pay on a multi-author blog. Set up the wish
 [GitHub repository](https://github.com/TheCrowned/Post-Pay-Counter/) (wanna join us coding?)
 
 = Integrate with Analytics/Adsense and pay with PayPal =
-The [PRO version](https://postpaycounter.com/post-pay-counter-pro?utm_source=wprep&utm_medium=link&utm_campaign=ppcp) includes Analytics visits payment, Adsense Revenues sharing, payments management and PayPal payments. Among other stuff, it also allows to keep a convenient log of past payments and to display stats in public pages through a shortcode. 
+The [PRO version](https://postpaycounter.com/post-pay-counter-pro?utm_source=wprep&utm_medium=link&utm_campaign=ppcp) includes Analytics visits payment, Adsense Revenues sharing, payments management and PayPal payments. Among other stuff, it also allows to keep a convenient log of past payments and to display stats in public pages through a shortcode.
 
 = Integrate with Facebook =
 The [Facebook addon](https://postpaycounter.com/facebook-pay-per-social-interactions-shares-likes-and-comments?utm_source=wprep&utm_medium=link&utm_campaign=ppcp_fb) allows to pay posts for the Facebook shares and comments they receive.
@@ -48,7 +48,7 @@ Post Pay Counter has been translated into the following languages:
 * Czech (Jiří Kučera)
 * Russian (Azat Seyitmuhammedov)
 
-If you want to **translate it in your own language** and get a discount on the PRO version, [contact us](http://www.thecrowned.org/contact-me)!
+If you want to **translate it in your own language** and get a discount on the PRO version, [contact us](http://www.thecrowned.org/)!
 
 [youtube https://www.youtube.com/watch?v=mSFjvR-2zCI]
 
@@ -60,15 +60,13 @@ If you want to **translate it in your own language** and get a discount on the P
 
 == Frequently Asked Questions ==
 = You said I could pay per visit. How do I do that? =
-There's an [apt tutorial here](http://postpaycounter.com/pay-writers-per-visit-wordpress). However, note that Post Pay Counter does not keep track of visits, it can only keep it in mind when computing the payment. You either need to have a plugin who keeps track of visits, and put the post_meta name of the field in which it stores the visits (must be a number), or get the PRO version of Post Pay Counter and use your Google Analytics account to get visits data.
+There's a [tutorial about that](http://postpaycounter.com/pay-writers-per-visit-wordpress). However, note that Post Pay Counter does not keep track of visits itself, and requires an external visits tracking system to be active. PPC supports a number of popular analytics services.
 
 = I installed the plugin but it does not show up in the menu. Also, if I go to the settings page, it says I am not authorized =
-That is probably due to a permissions manager plugin you have on your blog. Check that capabilities *post_pay_counter_access_stats* and *post_pay_counter_manage_options* are correctly assigned and working.
+That is probably due to a permissions manager plugin active on your site. Check that capabilities *post_pay_counter_access_stats* and *post_pay_counter_manage_options* are correctly assigned and working.
 
 = Can I pay for BBPress contents? =
-It is indeed possible to pay for BBPress topics and replies with Post Pay Counter.
-
-In *Post Pay Counter > Options > Miscellanea > Allowed post types*, make sure you have *Topic* and *Reply* ticked, and those types of contents will be included in countings.
+Yes! In *Post Pay Counter > Options > Miscellanea > Allowed post types*, make sure you have *Topic* and *Reply* ticked, and those types of contents will be included in countings.
 
 You can have a look at the [apt tutorial](https://postpaycounter.com/how-to-pay-per-bbpress-topics-and-replies/) for more details.
 
@@ -78,6 +76,19 @@ From this: *define( 'PPC_DEBUG_LOG', true );*
 It must become: *define( 'PPC_DEBUG_LOG', false );*
 
 == Changelog ==
+= 2.770 (2023-01-20) =
+* Improv: **performance**! Reduce memory usage, loading time, and cache snapshots size (by dropping post_content from output).
+* Improv: use PHP native word counting function instead of slower legacy method. New installs get this by default, otherwise you have to enable it in words payment settings.
+* Improv: performance of visits payment (a PRO update will make Analytics more efficient).
+* Improv: use [stats cache snapshots](https://postpaycounter.com/docs/caching-features-and-stats-snapshots/#stats-snapshots) by default, and use parameter to deactivate that.
+* Improv: make cache snapshots applicable to as many users as possible.
+* Fix: stop logging `ppc_empty_selection_error`.
+* Fix: properly exit if user visits another user's stats page without appropriate permissions.
+* Fix: possible concatenation issue in `grp_filter_user_roles`.
+* Fix: auto select `Custom` in stats date picker when appropriate.
+* Fix: hide visits counting method in user settings (only general).
+* Various minor fixes and improvements, especially performance-wise.
+
 = 2.768 (2022-03-12) =
 * Tweak: support for settings overriding in payment computation - this mostly addresses an issue with the Publisher Bonus addon, see here for details https://postpaycounter.com/fixed-a-publisher-bonus-issue-with-complicated-settings-setups/.
 
@@ -183,7 +194,7 @@ It must become: *define( 'PPC_DEBUG_LOG', false );*
 
 = 2.737 (2018-05-08) =
 * Fix: allow to have more than 10 zones.
-* New: addon [Referral Visits](https://postpaycounter.com/referral-visits-pay-users-visitors-bring-site/) 
+* New: addon [Referral Visits](https://postpaycounter.com/referral-visits-pay-users-visitors-bring-site/)
 
 = 2.736 (2018-02-02) =
 * Tweak: minor improvements (needed for addons compatibility).
@@ -265,7 +276,7 @@ It must become: *define( 'PPC_DEBUG_LOG', false );*
 * Tweak: improved performance when clearing cache.
 * Tweak: minor improvements.
 
-= 2.714 (2017/02/11) = 
+= 2.714 (2017/02/11) =
 * Fixed: future days not pickable in stats date picker (even if there were future scheduled posts).
 
 = 2.713 (2017/02/09) =
@@ -300,7 +311,7 @@ It must become: *define( 'PPC_DEBUG_LOG', false );*
 * Fixed: improved error handling.
 * Tweak: updated French translation.
 * Tweak: improved *Payment systems* section layout for payment criteria.
-* New: addon [BuddyPress](https://postpaycounter.com/buddypress/) 
+* New: addon [BuddyPress](https://postpaycounter.com/buddypress/)
 
 = 2.705 (2016/12/08) =
 * Fixed: compatibility with PHP < 5.5 (array_column() error).
@@ -345,11 +356,11 @@ It must become: *define( 'PPC_DEBUG_LOG', false );*
 * New: time range dropdown choice in stats page to quickly pick the desired time frame.
 * New: added *All time* to default time range choices.
 * New: added *Last month* to default time range choices.
-* New: added *This year* to default time range choices. 
+* New: added *This year* to default time range choices.
 
 = 2.610 (2016/08/19) =
 * Fixed: PHP7 issues as found by WPEngine compatibility checker.
-* New: addon [Pay Per Character](https://postpaycounter.com/pay-per-character/) 
+* New: addon [Pay Per Character](https://postpaycounter.com/pay-per-character/)
 
 = 2.609 (2016/08/03) =
 * Fixed: notices in stats page when no payment criteria were enabled for some users.
@@ -471,7 +482,7 @@ It must become: *define( 'PPC_DEBUG_LOG', false );*
 * Fixed: correctly handling of &nbsp; that wouldn't be counted as spaces as resulting from strange behavior of the editor.
 * New: install procedure now grants by default all permissions to administrator by personalizing their settings (the user id of the user who installs the plugin is taken).
 * Tweak: new PHP method that generates stats table tbody. That's a public one that can by used by any implementation (for example, is used several times in the PRO).
-* Fixed: layout broken in user settings page, with links at the top being smushed in the upper-right corner. 
+* Fixed: layout broken in user settings page, with links at the top being smushed in the upper-right corner.
 * New: added pot files to translate plugin in whatever language.
 * Tweak: hiding the *Filter by user role* feature in stats page if user doesn't have the permission to see other people's stats.
 * Tweak: on install, notifications issued before install date are all hidden in bulk.
