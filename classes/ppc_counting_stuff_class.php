@@ -93,10 +93,12 @@ class PPC_counting_stuff {
                 if( ! ( isset( $single->post_status, self::$settings['counting_allowed_post_statuses'] ) AND self::$settings['counting_allowed_post_statuses'][$single->post_status] ) )
                     continue;
 
+                $post_stats = false;
                 // Maybe use cached data...
                 if( self::$settings['enable_post_stats_caching'] ) {
                     $post_stats = PPC_cache_functions::get_post_stats( $single->ID );
                 }
+
                 if( $post_stats !== false AND $settings_override == false ) {
                     $processed_data[$author_id][$single->ID] = $post_stats;
                 // ...but not if regular settings should be overridden
