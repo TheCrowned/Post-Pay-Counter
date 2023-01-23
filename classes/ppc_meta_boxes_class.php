@@ -300,7 +300,7 @@ class PPC_meta_boxes {
             echo '</div>';
             do_action( 'ppc_counting_settings_after_visits_counting_method', $current_settings );
         }
-        
+
         echo '<div class="ppc_title">'.__( 'Counting system' , 'post-pay-counter').'</div>';
         echo PPC_options_fields::echo_payment_systems( 'visits', __( 'visits', 'post-pay-counter' ), array( 'counting_visits_system_zonal' => $current_settings['counting_visits_system_zonal'], 'counting_visits_system_zonal_value' => $current_settings['counting_visits_system_zonal_value'], 'counting_visits_system_incremental' => $current_settings['counting_visits_system_incremental'], 'counting_visits_system_incremental_value' => $current_settings['counting_visits_system_incremental_value'] ) );
         echo '<div class="ppc_title">'.__( 'Counting options' , 'post-pay-counter').'</div>';
@@ -556,12 +556,13 @@ class PPC_meta_boxes {
         global $ppc_global_settings;
         $current_settings = $current_settings['args'];
 
-        $errors = file_get_contents( $ppc_global_settings['file_errors'] );
+        $errors = array()
+        if( file_exists( $ppc_global_settings['file_errors'] ) )
+            $errors = file_get_contents( $ppc_global_settings['file_errors'] );
         ?>
 
         <p><?php printf( __( 'Errors which may happen during the plugin execution are logged and showed here. If something is not working properly, please send this list along with your support request. The log is cleared every now and then, but you can empty it manually with the button below. If you do not want errors to be logged at all, see the %1$sFAQ%2$s.', 'post-pay-counter' ), '<a href="http://wordpress.org/plugins/post-pay-counter/faq/" title="'.__( 'Frequently asked questions' ).'">', '</a>' ); ?></p>
         <textarea readonly="readonly" onclick="this.focus();this.select()" style="width: 100%; height: 150px;" name="ppc_error_log" title="<?php _e( 'To copy the error log, click below then press Ctrl + C (PC) or Cmd + C (Mac).', 'post-pay-counter' ); ?>"><?php
-
 
         if( $errors !== false and ! empty( unserialize( $errors ) )) {
 			$errors = unserialize( $errors );
