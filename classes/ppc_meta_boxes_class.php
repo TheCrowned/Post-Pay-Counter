@@ -556,7 +556,7 @@ class PPC_meta_boxes {
         global $ppc_global_settings;
         $current_settings = $current_settings['args'];
 
-        $errors = array()
+        $errors = array();
         if( file_exists( $ppc_global_settings['file_errors'] ) )
             $errors = file_get_contents( $ppc_global_settings['file_errors'] );
         ?>
