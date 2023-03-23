@@ -157,6 +157,7 @@ class PPC_options_fields {
 		//New method: handles more than 3 options
 		if( $options_array !== false ) {
 			$return = array();
+
 			foreach( $options_array as $single ) {
 				if( $radio == $single )
 					$return[$single] = 1;
@@ -164,7 +165,7 @@ class PPC_options_fields {
 					$return[$single] = 0;
 			}
 
-			$radio = null;
+			//$radio = null; // commented cause visits method are split among free and pro
 			return $return;
 		}
 
@@ -191,7 +192,7 @@ class PPC_options_fields {
                 break;
         }
 
-        $radio = null;
+        //$radio = null; // commented cause visits method are split among free and pro
         return $return;
     }
 }
