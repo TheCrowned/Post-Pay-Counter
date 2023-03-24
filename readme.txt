@@ -3,13 +3,13 @@ Contributors: Ste_95
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22
 Tags: earnings, authors, payments, revenue sharing, stats
 Tested up to: 6.2
-Stable tag: 2.771
+Stable tag: 2.772
 Requires at least: 3.7
 
 Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
 
 == Description ==
-Easily calculate and handle authors' pay on a multi-author blog. Set up payment criteria and let the plugin compute posts payment. Stats are immediately viewable. Both a general view with all users and a specific one for each author are possible. It can easily help you implement a revenue sharing/paid to write model for your business.
+Easily calculate and handle authors' pay on a multi-author blog. Set up payment criteria and let the plugin compute posts payment. Stats are immediately viewable. Both a general view with all users and a specific one for each author are available. It can easily help you implement a revenue sharing/paid to write model for your business.
 
 [Plugin HOMEPAGE](https://postpaycounter.com)
 
@@ -27,8 +27,8 @@ Easily calculate and handle authors' pay on a multi-author blog. Set up payment 
 
 [GitHub repository](https://github.com/TheCrowned/Post-Pay-Counter/) (wanna join us coding?)
 
-= Integrate with Analytics/Adsense and pay with PayPal =
-The [PRO version](https://postpaycounter.com/post-pay-counter-pro?utm_source=wprep&utm_medium=link&utm_campaign=ppcp) includes Analytics visits payment, Adsense Revenues sharing, payments management and PayPal payments. Among other stuff, it also allows to keep a convenient log of past payments and to display stats in public pages through a shortcode.
+= Payment management, more visits tracking methods, and pay with PayPal =
+The [PRO version](https://postpaycounter.com/post-pay-counter-pro?utm_source=wprep&utm_medium=link&utm_campaign=ppcp) includes integration with Google Analytics, Matomo Analytics, Plausible Analytics, Adsense Revenues sharing, payments management and PayPal payments. Among other stuff, it also allows to keep a convenient log of past payments and to display stats in public pages through a shortcode.
 
 = Integrate with Facebook =
 The [Facebook addon](https://postpaycounter.com/facebook-pay-per-social-interactions-shares-likes-and-comments?utm_source=wprep&utm_medium=link&utm_campaign=ppcp_fb) allows to pay posts for the Facebook shares and comments they receive.
@@ -36,7 +36,7 @@ The [Facebook addon](https://postpaycounter.com/facebook-pay-per-social-interact
 Browse [all extensions](https://postpaycounter.com/addons?utm_source=wprep&utm_medium=description&utm_campaign=ppc_addons).
 
 = Available languages =
-Post Pay Counter has been translated into the following languages:
+Post Pay Counter is available in:
 
 * English
 * French (Alexandre Mark)
@@ -76,8 +76,12 @@ From this: *define( 'PPC_DEBUG_LOG', true );*
 It must become: *define( 'PPC_DEBUG_LOG', false );*
 
 == Changelog ==
-= 2.771 (2023-01-20) = 
-* Fix regression.
+= 2.772 (2023-03-24) =
+* Fix: ensure log file exists before opening it.
+* Fix: settings saving for PRO version 1.9.
+
+= 2.771 (2023-01-20) =
+* Fix: regression.
 
 = 2.770 (2023-01-20) =
 * Improv: **performance**! Reduce memory usage, loading time, and cache snapshots size (by dropping post_content from output).

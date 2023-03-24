@@ -4,7 +4,7 @@ Plugin Name: Post Pay Counter
 Plugin URI: https://postpaycounter.com
 Description: Easily handle authors payments on a multi-author blog by computing posts pay basing on admin defined rules.
 Author: Stefano Ottolenghi
-Version: 2.771
+Version: 2.772
 Author URI: http://www.thecrowned.org/
 Text Domain: post-pay-counter
 */
@@ -62,7 +62,7 @@ class post_pay_counter {
         global $ppc_global_settings;
 
         $ppc_global_settings['current_version'] = get_option( 'ppc_current_version' );
-        $ppc_global_settings['newest_version'] = '2.771';
+        $ppc_global_settings['newest_version'] = '2.772';
         $ppc_global_settings['option_name'] = 'ppc_settings';
         $ppc_global_settings['option_errors'] = 'ppc_errors';
         $ppc_global_settings['option_stats_cache_incrementor'] = 'ppc_stats_cache_incrementor';
@@ -599,10 +599,10 @@ class post_pay_counter {
 
 		if( isset( $_REQUEST['role'] ) )
 			$ppc_global_settings['stats_role'] = sanitize_text_field( $_REQUEST['role'] );
-		
+
 		//If filtered by user role, add filter to stats generation args and complete page permalink
 		if( isset( $ppc_global_settings['stats_role'] ) ) {
-			add_filter( 'ppc_get_requested_posts_args', function( $grp_args ) { 
+			add_filter( 'ppc_get_requested_posts_args', function( $grp_args ) {
 				global $ppc_global_settings;
 				$grp_args['ppc_allowed_user_roles'] = array( $ppc_global_settings['stats_role'] );
 
@@ -743,7 +743,7 @@ class post_pay_counter {
 			//If filtered by user role, add filter to stats generation args and complete page permalink
 			if( isset( $_REQUEST['role'] ) )
 				$page_permalink .= '&amp;role='.$ppc_global_settings['stats_role'];
-			
+
 			//If filtered by category, add filter to stats generation args and complete page permalink
 			if( isset( $_REQUEST['category'] ) )
 				$page_permalink .= '&amp;category='.$ppc_global_settings['stats_category'];
