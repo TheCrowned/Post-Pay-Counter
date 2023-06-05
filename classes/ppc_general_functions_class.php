@@ -347,19 +347,19 @@ class PPC_general_functions {
 	}
 
     /**
-	 * Parses visits callback function.
-	 *
-	 * @access 	public
-	 * @since	2.770
-	 * @param	callback to be parsed
-	 * @return 	mixed (string/array) visits count PHP callable
-	 */
+     * Parses visits callback function.
+     *
+     * @access 	public
+     * @since	2.770
+     * @param	callback to be parsed
+     * @return 	mixed (string/array) visits count PHP callable
+     */
     static function parse_visits_callback_function( $callback = '' ) {
         $explode = explode( ',', $callback );
 
         $return = $callback;
-		if( count( $explode ) == 2 ) //if callback is in the form classname, methodname
-			$return = array( trim( $explode[0] ), trim( $explode[1] ) );
+	if( count( $explode ) == 2 ) //if callback is in the form classname, methodname
+	    $return = array( trim( $explode[0] ), trim( $explode[1] ) );
 
         return $return;
     }
@@ -383,22 +383,24 @@ if( ! function_exists( "array_column" ) ) {
 
 //Callback for stats sorting
 function ppc_uasort_stats_sort( $a, $b ) {
-	$result = strnatcasecmp( $a[$_REQUEST['orderby']], $b[$_REQUEST['orderby']] ); //Determine sort order
-	return ( $_REQUEST['order'] === 'asc' ) ? $result : -$result; //Send final sort direction to usort
+    $result = strnatcasecmp( $a[$_REQUEST['orderby']], $b[$_REQUEST['orderby']] ); //Determine sort order
+    return ( $_REQUEST['order'] === 'asc' ) ? $result : -$result; //Send final sort direction to usort
 }
 
 //Get a list with how settings should be prioritized (for addons)
 //Assumes that every action has a different priority
 function ppc_get_settings_priority( $setting_type ) {
-	global $wp_filter;
-	
-	$settings_priority = array();
-	foreach( $wp_filter['ppc_get_settings']->callbacks as $priority => $callbacks ) {
-		#$settings_priority[key($callbacks)] = $priority;
-		if( strpos( key( $callbacks ), $setting_type ) !== false )
-			return $priority;
-	}
-	
-	return false;
-	#return $settings_priority;
+    global $wp_filter;
+    $settings_priority = array();
+    foreach( $wp_filter['ppc_get_settings']->callbacks as $priority => $callbacks ) {
+	//$settings_priority[key($callbacks)] = $priority;
+	if( strpos( key( $callbacks ), $setting_type ) !== false )
+	    return $priority;
+    }
+    return false;
+}
+
+//wp's is_plugin_active is only available in wp_admin, and after admin_init
+function ppc_is_plugin_active( $slug ) {
+    return in_array($slug, apply_filters('active_plugins', get_option('active_plugins')));
 }

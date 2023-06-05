@@ -81,7 +81,7 @@ jQuery(document).ready(function($) {
 	post_pay_counter_checkbox_auto_toggle("#counting_comments", "#ppc_counting_comments_content");
 
 	//Visits counting methods
-	post_pay_counter_radio_auto_toggle("#counting_visits_postmeta", "#counting_visits_postmeta_content", "#counting_visits_callback", "#counting_visits_callback_content");
+	post_pay_counter_radio_auto_toggle("#counting_visits_ppc_supported_tracker", "#counting_visits_ppc_supported_tracker_content", "#counting_visits_callback", "#counting_visits_callback_content");
 
 	//Payments systems
 	post_pay_counter_radio_auto_toggle("#counting_words_system_zonal", "#counting_words_system_zonal_content", "#counting_words_system_incremental", "#counting_words_system_incremental_content");

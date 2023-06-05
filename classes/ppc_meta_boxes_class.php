@@ -234,7 +234,7 @@ class PPC_meta_boxes {
      * @param   array plugin settings
      */
     static function meta_box_counting_settings( $post, $current_settings ) {
-        global $wp_roles, $ppc_global_settings;
+        global $wp_roles, $ppc_global_settings, $ppc_visits_trackers;
         $current_settings = $current_settings['args'];
 
         echo '<p>'.__( 'Here you can define the criteria which post payments will be computed with.' , 'post-pay-counter').'</p>';
@@ -286,15 +286,32 @@ class PPC_meta_boxes {
         echo PPC_HTML_functions::echo_p_field( __( 'Visits contribute to payment computation' , 'post-pay-counter'), $current_settings['counting_visits'], 'checkbox', 'counting_visits', __( 'You may define a post value basing on the number of visits that it registers as well. The more people see a post, the more interesting the post is supposed to be, the more it should be paid. You will be able to choose how much each visit is worth.' , 'post-pay-counter'), NULL, 'counting_visits' );
         echo '</div>';
         echo '<div class="ppc_content" id="ppc_counting_visits_content">';
-        echo '<p>'.sprintf( __( 'How to setup visits payment? Have a look at our %1$svisits tutorials%2$s.', 'post-pay-counter' ), '<a href="https://postpaycounter.com/tag/visits/?utm_source=users_site&utm_medium=options_box&utm_campaign=tutorials" title="Visits tutorials" target="_blank">', '</a>' ).'</p>';
+        echo '<p>'.sprintf( __( 'How to setup visits payment? Have a look at our %1$svisits tutorials%2$s.', 'post-pay-counter' ), '<a href="https://postpaycounter.com/docs/pay-writers-per-visit-wordpress/?utm_source=users_site&utm_medium=options_box&utm_campaign=tutorials" title="Visits tutorials" target="_blank">', '</a>' ).'</p>';
 
         if( ! isset( $_GET['userid'] ) OR ( isset( $_GET['userid'] ) AND $_GET['userid'] == 'general' ) ) { // hide counting method in personalized settings
+            $rand_post = current( get_posts( array( 'posts_per_page' => 1, 'orderby' => 'rand' ) ) );
             echo '<div class="ppc_title">'.__( 'Counting method' , 'post-pay-counter').'</div>';
-            echo PPC_HTML_functions::echo_p_field( __( 'I have my own visit counter (postmeta)' , 'post-pay-counter'), $current_settings['counting_visits_postmeta'], 'radio', 'counting_visits_method', sprintf( __( 'If you already have some plugin counting visits, and you know the %1$spostmeta%2$s name it stores them into, you can use those data to compute payments. Activate this setting and put the postmeta in the field below.' , 'post-pay-counter'), '<em>', '</em>' ), 'counting_visits_postmeta', 'counting_visits_postmeta' );
-            echo '<div id="counting_visits_postmeta_content" class="field_value">';
-            echo PPC_HTML_functions::echo_text_field( 'counting_visits_postmeta_value', $current_settings['counting_visits_postmeta_value'], __( 'The postmeta holding the visits' , 'post-pay-counter'), 22 );
+            echo PPC_HTML_functions::echo_p_field( __( 'A supported visits tracker' , 'post-pay-counter'), $current_settings['counting_visits_ppc_supported_tracker'], 'radio', 'counting_visits_method', sprintf( __( '' ) ), 'counting_visits_ppc_supported_tracker', 'counting_visits_ppc_supported_tracker' );
+            echo '<div id="counting_visits_ppc_supported_tracker_content" class="field_value">';
+            echo '<select name="counting_visits_tracker" style="float:none;">';
+            foreach( $ppc_visits_trackers as $group => $trackers ) {
+                echo "<optgroup label='$group'>";
+                foreach( $trackers as $slug => $tracker ) {
+                    //$slug = strtolower( str_replace( ' ', '-', $tracker['name'] ) );
+                    $disabled = '';
+                    if( call_user_func( $tracker['callback'], $rand_post ) == -1 )
+                        $disabled = 'disabled=disabled';
+                    $selected = '';
+                    if( $current_settings['counting_visits_tracker'] == $slug )
+                        $selected = 'selected=selected';
+                    echo "<option value='$slug' $disabled $selected>{$tracker['name']}</option>";
+                }
+                echo '</optgroup>';
+            }
+            echo '</select>';
+            echo '</label>';
             echo '</div>';
-            echo PPC_HTML_functions::echo_p_field( __( 'I have my own visit counter (callback)' , 'post-pay-counter'), $current_settings['counting_visits_callback'], 'radio', 'counting_visits_method', sprintf( __( 'If you already have some plugin counting visits, and it provides a PHP %1$scallback%2$s which accepts as input the $post WP object and outputs an integer number of visits, you can use those data to compute payments. If the callback is a class method, specify it in the form of %1$sclassname, methodname%2$s. This is NOT user-personalizable.' , 'post-pay-counter'), '<em>', '</em>' ), 'counting_visits_callback', 'counting_visits_callback' );
+            echo PPC_HTML_functions::echo_p_field( __( 'A custom visit counter (callback)' , 'post-pay-counter'), $current_settings['counting_visits_callback'], 'radio', 'counting_visits_method', sprintf( __( 'If you have some other plugin counting visits, and it provides a PHP %1$scallback%2$s which accepts as input the $post WP object and outputs an integer number of visits, you can use those data to compute payments. If the callback is a class method, specify it in the form of %1$sclassname, methodname%2$s.' , 'post-pay-counter'), '<em>', '</em>' ), 'counting_visits_callback', 'counting_visits_callback' );
             echo '<div id="counting_visits_callback_content" class="field_value">';
             echo PPC_HTML_functions::echo_text_field( 'counting_visits_callback_value', $current_settings['counting_visits_callback_value'], __( 'Callback name' , 'post-pay-counter'), 22, 'function_name OR class_name, method_name' );
             echo '</div>';

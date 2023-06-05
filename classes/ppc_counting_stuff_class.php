@@ -57,7 +57,7 @@ class PPC_counting_stuff {
      * @since   2.0
      * @param   $data array grouped by author stats result
      * @param   $author array optional an array of user ids of whom stats should be taken
-     * @param   $settings array optional settings to be used for payment computation, instead of default one 
+     * @param   $settings array optional settings to be used for payment computation, instead of default one
      * @return  array the posts array along with their counting & payment data
      */
     static function data2cash( $data, $author = NULL, $settings = NULL ) {
@@ -73,7 +73,7 @@ class PPC_counting_stuff {
 
         foreach( $data as $author_id => &$author_stats ) {
             self::$being_processed_author = $author_id;
-            
+
             //If some settings are given, use them instead of what would apply to the current scenario
             //Used, for ex, by Publisher Bonus.
             if( $settings !== NULL ) {
@@ -83,7 +83,7 @@ class PPC_counting_stuff {
                 self::$settings = PPC_general_functions::get_settings( $author_id, TRUE );
                 $settings_override = false;
             }
-            
+
             self::$current_active_counting_types_post = $ppc_global_settings['counting_types_object']->get_active_counting_types( 'post', $author_id, self::$settings );
             self::$current_active_counting_types_author = $ppc_global_settings['counting_types_object']->get_active_counting_types( 'author', $author_id, self::$settings );
 
@@ -317,7 +317,7 @@ class PPC_counting_stuff {
             $purged_content = apply_filters( 'ppc_clean_post_content_word_count', trim( $purged_content ) ); //need to trim to remove final new lines
             $post_words['real'] = str_word_count( $purged_content );
         }
-        
+
         //Include excerpt text if needed
         if( self::$settings['counting_words_include_excerpt'] AND is_a( $post, 'WP_Post' ) AND ! empty( $post->post_excerpt ) ) {
             $excerpt_words = self::count_post_words( $post->post_excerpt );
@@ -351,17 +351,26 @@ class PPC_counting_stuff {
             'to_count' => 0
         );
 
-        if( self::$settings['counting_visits_callback'] ) {
-            $visits_callback = apply_filters( 'ppc_counting_visits_callback', self::$settings['counting_visits_callback_value'] );
+        if( self::$settings['counting_visits_postmeta'] ) {
+            $visits_postmeta = apply_filters( 'ppc_counting_visits_postmeta', self::$settings['counting_visits_postmeta_value'] );
+            $post_visits['real'] = (int) get_post_meta( $post->ID, $visits_postmeta, TRUE );
+        } else {
+            if( self::$settings['counting_visits_ppc_supported_tracker'] ) {
+                global $ppc_visits_trackers;
+                $flattened_callbacks = array();
+                foreach( $ppc_visits_trackers as $group => $trackers )
+                    $flattened_callbacks = array_merge( $trackers, $flattened_callbacks );
+                $visits_callback = $flattened_callbacks[self::$settings['counting_visits_tracker']]['callback'];
+            } else if( self::$settings['counting_visits_callback'] ) {
+                $visits_callback = self::$settings['counting_visits_callback_value'];
+            }
+
+            $visits_callback = apply_filters( 'ppc_counting_visits_callback', $visits_callback );
 
             if( is_callable( $visits_callback ) )
                 $post_visits['real'] = (int) call_user_func( $visits_callback, $post );
             else
                 $post_visits['real'] = -1;
-
-        } else {
-            $visits_postmeta = apply_filters( 'ppc_counting_visits_postmeta', self::$settings['counting_visits_postmeta_value'] );
-            $post_visits['real'] = (int) get_post_meta( $post->ID, $visits_postmeta, TRUE );
         }
 
         $post_visits['real'] = (int) ($post_visits['real']*self::$settings['counting_visits_display_percentage']/100); //we cannot do this in to_count or it would create issues for already paid posts if the percentage is changed
