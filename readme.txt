@@ -3,7 +3,7 @@ Contributors: Ste_95
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22
 Tags: earnings, authors, payments, revenue sharing, stats
 Tested up to: 6.2
-Stable tag: 2.772
+Stable tag: 2.780
 Requires at least: 3.7
 
 Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
@@ -76,6 +76,11 @@ From this: *define( 'PPC_DEBUG_LOG', true );*
 It must become: *define( 'PPC_DEBUG_LOG', false );*
 
 == Changelog ==
+= 2.780 (2023-06-07) =
+* New: easy visits trackers selection. Old callback/postmeta settings will be migrated automatically.
+* New: support for Active Analytics visits plugin.
+* Fix: potential error in plugins error log box.
+
 = 2.772 (2023-03-24) =
 * Fix: ensure log file exists before opening it.
 * Fix: settings saving for PRO version 1.9.
