@@ -20,7 +20,7 @@ class PPC_install_functions {
     static function ppc_install( $network_wide ) {
         global $wpdb, $ppc_global_settings;
 
-		//Network activation
+        //Network activation
         if( $network_wide ) {
 			$blog_ids = $wpdb->get_col( "SELECT blog_id FROM ".$wpdb->blogs );
 
@@ -109,10 +109,12 @@ class PPC_install_functions {
 				'counting_words_apply_shortcodes' => 0,
 				'counting_words_global_threshold' => 0,
                 'counting_visits' => 0,
-                'counting_visits_postmeta' => 1,
+                'counting_visits_postmeta' => 0,
                 'counting_visits_postmeta_value' => '',
 				'counting_visits_callback' => 0,
 				'counting_visits_callback_value' => '',
+                'counting_visits_ppc_supported_tracker' = 1,
+                'counting_visits_tracker' = '',
                 'counting_visits_system_zonal' => 0,
                 'counting_visits_system_zonal_value' => array(
                     0 => array(

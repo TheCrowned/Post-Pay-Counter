@@ -111,34 +111,33 @@ class PPC_update_class {
 
 	//Migrate visits trackers
 	if( ! isset( $general_settings['counting_visits_tracker'] ) ) {
-	    $tracker = '';
 	    if( $general_settings['counting_visits_callback'] == 'ppc_wp_slimstat_views' ) {
-		$tracker = 'slimstat-analytics';
+		$general_settings['counting_visits_tracker'] = 'slimstat-analytics';
 		$general_settings['counting_visits_ppc_supported_tracker'] = 1;
 		$general_settings['counting_visits_callback'] = 0;
 	    }
 	    if( $general_settings['counting_visits_callback'] == 'ppc_pvc_views' ) {
-		$tracker = 'post-views-counter';
+		$general_settings['counting_visits_tracker'] = 'post-views-counter';
 		$general_settings['counting_visits_ppc_supported_tracker'] = 1;
 		$general_settings['counting_visits_callback'] = 0;
 	    }
 	    if( $general_settings['counting_visits_postmeta'] == 'views' ) {
-		$tracker = 'wp-postviews';
+		$general_settings['counting_visits_tracker'] = 'wp-postviews';
 		$general_settings['counting_visits_ppc_supported_tracker'] = 1;
 		$general_settings['counting_visits_postmeta'] = 0;
 	    }
 	    if( isset( $general_settings['counting_visits_google_analytics'] ) AND $general_settings['counting_visits_google_analytics'] ) {
-		$tracker = 'google-universal-analytics';
+		$general_settings['counting_visits_tracker'] = 'google-universal-analytics';
 		$general_settings['counting_visits_ppc_supported_tracker'] = 1;
 		$general_settings['counting_visits_callback'] = 0;
 	    }
 	    if( isset( $general_settings['counting_visits_matomo'] ) AND $general_settings['counting_visits_matomo'] ) {
-		$tracker = 'matomo-analytics';
+		$general_settings['counting_visits_tracker'] = 'matomo-analytics';
 		$general_settings['counting_visits_ppc_supported_tracker'] = 1;
 		$general_settings['counting_visits_callback'] = 0;
 	    }
 	    if( isset( $general_settings['counting_visits_plausible'] ) AND $general_settings['counting_visits_plausible'] ) {
-		$tracker = 'plausible-analytics';
+		$general_settings['counting_visits_tracker'] = 'plausible-analytics';
 		$general_settings['counting_visits_ppc_supported_tracker'] = 1;
 		$general_settings['counting_visits_callback'] = 0;
 	    }
