@@ -449,15 +449,16 @@ class PPC_meta_boxes {
         $userid = $current_settings['userid'];
 
         if( empty( $userid ) ) $userid = 'general'; //when settings break
+        $settings_to_export = PPC_general_functions::get_settings( $userid, false, false );
 
         echo '<form action="" id="ppc_import_export_form" method="post">';
         echo '<p>'.sprintf( __( 'Have more than website but use the same settings? You can transfer settings from one installation of the plugin to another. All addons settings will be taken as well. It works both for general and for user personalized settings, depending on what page you are. If you want to export this website\'s settings, copy the code below. If you want to import another website\'s settings, paste its settings code in the field below and click %s. Once you import settings, it will not be possible to go back to the previous settings. Do not edit settings code unless you know what base64 and serialization are and are sure of what you are doing!', 'post-pay-counter' ), __( 'Import settings', 'post-pay-counter' ) ).'</p>';
 
-        echo '<textarea onclick="this.focus();this.select()" style="width: 100%; height: 100px;" name="ppc_import_settings_content" id="ppc_import_settings_content">'.base64_encode( json_encode( apply_filters( 'ppc_export_settings_content', $current_settings ) ) ).'</textarea>';
+        echo '<textarea onclick="this.focus();this.select()" style="width: 100%; height: 100px;" name="ppc_import_settings_content" id="ppc_import_settings_content">'.base64_encode( json_encode( apply_filters( 'ppc_export_settings_content', $settings_to_export ) ) ).'</textarea>';
         echo '<div class="clear"></div>';
         echo '<br />';
 
-        do_action( 'ppc_import_export_settings_after_default', $current_settings );
+        do_action( 'ppc_import_export_settings_after_default', $settings_to_export );
         ?>
 
         <div class="ppc_save_success" id="ppc_import_settings_success"><?php _e( 'Settings were successfully updated.' , 'post-pay-counter'); ?></div>

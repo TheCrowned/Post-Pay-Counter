@@ -14,7 +14,7 @@ class PPC_save_options {
      * @param   $settings array new settings
      */
     static function save_counting_settings( $settings ) {
-		//$current_settings = PPC_general_functions::get_settings( $settings['userid'] );
+        //$current_settings = PPC_general_functions::get_settings( $settings['userid'] );
         $new_settings = array(
             'userid' => $settings['userid'],
             'counting_allowed_post_statuses' => array(
@@ -32,12 +32,12 @@ class PPC_save_options {
         $new_settings['counting_words_exclude_pre'] = @PPC_options_fields::get_checkbox_value( $settings['counting_words_exclude_pre'] );
         $new_settings['counting_words_exclude_captions'] = @PPC_options_fields::get_checkbox_value( $settings['counting_words_exclude_captions'] );
         $new_settings['counting_words_apply_shortcodes'] = @PPC_options_fields::get_checkbox_value( $settings['counting_words_apply_shortcodes'] );
-		$new_settings['counting_words_parse_spaces'] = @PPC_options_fields::get_checkbox_value( $settings['counting_words_parse_spaces'] );
-		$new_settings['counting_words_legacy'] = @PPC_options_fields::get_checkbox_value( $settings['counting_words_legacy'] );
+        $new_settings['counting_words_parse_spaces'] = @PPC_options_fields::get_checkbox_value( $settings['counting_words_parse_spaces'] );
+        $new_settings['counting_words_legacy'] = @PPC_options_fields::get_checkbox_value( $settings['counting_words_legacy'] );
         $new_settings['counting_visits'] = @PPC_options_fields::get_checkbox_value( $settings['counting_visits'] );
         $new_settings['counting_images'] = @PPC_options_fields::get_checkbox_value( $settings['counting_images'] );
         $new_settings['counting_images_include_featured'] = @PPC_options_fields::get_checkbox_value( $settings['counting_images_include_featured'] );
-		$new_settings['counting_images_include_galleries'] = @PPC_options_fields::get_checkbox_value( $settings['counting_images_include_galleries'] );
+        $new_settings['counting_images_include_galleries'] = @PPC_options_fields::get_checkbox_value( $settings['counting_images_include_galleries'] );
         $new_settings['counting_comments'] = @PPC_options_fields::get_checkbox_value( $settings['counting_comments'] );
         $new_settings['counting_payment_only_when_total_threshold'] = @PPC_options_fields::get_checkbox_value( $settings['counting_payment_only_when_total_threshold'] );
         $new_settings['counting_exclude_quotations'] = @PPC_options_fields::get_checkbox_value( $settings['counting_exclude_quotations'] );
@@ -46,7 +46,7 @@ class PPC_save_options {
         if( @PPC_options_fields::get_checkbox_value( $settings['counting_count_pending_revision_posts'] ) )
             $new_settings['counting_allowed_post_statuses']['pending'] = 1;
 
-		if( @PPC_options_fields::get_checkbox_value( $settings['counting_count_future_scheduled_posts'] ) )
+        if( @PPC_options_fields::get_checkbox_value( $settings['counting_count_future_scheduled_posts'] ) )
             $new_settings['counting_allowed_post_statuses']['future'] = 1;
 
         if( @PPC_options_fields::get_checkbox_value( $settings['counting_count_private_posts'] ) )
@@ -63,6 +63,10 @@ class PPC_save_options {
             $counting_visits_method = PPC_options_fields::get_radio_value( $settings['counting_visits_method'], 'counting_visits_ppc_supported_tracker', 'counting_visits_callback' );
             $new_settings = array_merge( $new_settings, $counting_visits_method );
         }
+        if( isset( $settings['counting_visits_method'] ) AND $settings['counting_visits_method'] != NULL ) { // not a user's settings
+            $new_settings['counting_visits_tracker'] = $settings['counting_visits_tracker'];
+        }
+
 
         //Fields that need special attention (text)
         $new_settings['basic_payment_value'] = (float) str_replace( ',', '.', $settings['basic_payment_value'] );
@@ -71,8 +75,7 @@ class PPC_save_options {
         $new_settings['counting_words_threshold_max'] = (int) $settings['counting_words_threshold_max'];
         $new_settings['counting_words_global_threshold'] = (int) $settings['counting_words_global_threshold'];
         $new_settings['counting_words_display_status'] = $settings['counting_words_display_status'];
-        $new_settings['counting_visits_tracker'] = $settings['counting_visits_tracker'];
-		$new_settings['counting_visits_system_incremental_value'] = (float) str_replace( ',', '.', $settings['counting_visits_system_incremental_value'] );
+        $new_settings['counting_visits_system_incremental_value'] = (float) str_replace( ',', '.', $settings['counting_visits_system_incremental_value'] );
         $new_settings['counting_visits_threshold_max'] = (int) $settings['counting_visits_threshold_max'];
         $new_settings['counting_visits_global_threshold'] = (int) $settings['counting_visits_global_threshold'];
         $new_settings['counting_visits_display_percentage'] = (int) $settings['counting_visits_display_percentage'];
@@ -149,7 +152,7 @@ class PPC_save_options {
      * @param   $settings array new settings
      */
     static function save_misc_settings( $settings ) {
-		//$current_settings = PPC_general_functions::get_settings( 'general' );
+        //$current_settings = PPC_general_functions::get_settings( 'general' );
         $new_settings = array( 'counting_allowed_post_types' => array(), 'counting_allowed_user_roles' => array(), 'can_see_options_user_roles' => array(), 'can_see_stats_user_roles' => array() );
 
         $default_stats_time_range = PPC_options_fields::get_radio_value( $settings['default_stats_time_range'], false, false, false, array( 'default_stats_time_range_month', 'default_stats_time_range_week', 'default_stats_time_range_custom', 'default_stats_time_range_start_day', 'default_stats_time_range_last_month', 'default_stats_time_range_all_time', 'default_stats_time_range_this_month', 'default_stats_time_range_this_year' ) );
@@ -158,13 +161,13 @@ class PPC_save_options {
         $new_settings['default_stats_time_range_start_day_value'] = substr( trim( $settings['default_stats_time_range_start_day_value'] ), 0, 10);
         $new_settings['payment_display_round_digits'] = (int) $settings['payment_display_round_digits'];
 
-		$new_settings['admins_override_permissions'] = @PPC_options_fields::get_checkbox_value( $settings['admins_override_permissions'] );
-		$new_settings['display_overall_stats'] = @PPC_options_fields::get_checkbox_value( $settings['display_overall_stats'] );
-		$new_settings['stats_display_edit_post_link'] = @PPC_options_fields::get_checkbox_value( $settings['stats_display_edit_post_link'] );
-		$new_settings['enable_stats_payments_tooltips'] = @PPC_options_fields::get_checkbox_value( $settings['enable_stats_payments_tooltips'] );
-		$new_settings['enable_post_stats_caching'] = @PPC_options_fields::get_checkbox_value( $settings['enable_post_stats_caching'] );
-		$new_settings['save_stats_order'] = @PPC_options_fields::get_checkbox_value( $settings['save_stats_order'] );
-		$new_settings['stats_show_all_users'] = @PPC_options_fields::get_checkbox_value( $settings['stats_show_all_users'] );
+        $new_settings['admins_override_permissions'] = @PPC_options_fields::get_checkbox_value( $settings['admins_override_permissions'] );
+        $new_settings['display_overall_stats'] = @PPC_options_fields::get_checkbox_value( $settings['display_overall_stats'] );
+        $new_settings['stats_display_edit_post_link'] = @PPC_options_fields::get_checkbox_value( $settings['stats_display_edit_post_link'] );
+        $new_settings['enable_stats_payments_tooltips'] = @PPC_options_fields::get_checkbox_value( $settings['enable_stats_payments_tooltips'] );
+        $new_settings['enable_post_stats_caching'] = @PPC_options_fields::get_checkbox_value( $settings['enable_post_stats_caching'] );
+        $new_settings['save_stats_order'] = @PPC_options_fields::get_checkbox_value( $settings['save_stats_order'] );
+        $new_settings['stats_show_all_users'] = @PPC_options_fields::get_checkbox_value( $settings['stats_show_all_users'] );
 
         foreach( $settings as $option => $value ) {
 
@@ -190,8 +193,8 @@ class PPC_save_options {
             }
         }
 
-		if( empty( $new_settings['can_see_options_user_roles'] ) )
-			return new WP_Error( 'ppc_save_options_misc_error', __( 'At least one role must be allowed to access the options page', 'post-pay-counter' ) );
+        if( empty( $new_settings['can_see_options_user_roles'] ) )
+            return new WP_Error( 'ppc_save_options_misc_error', __( 'At least one role must be allowed to access the options page', 'post-pay-counter' ) );
 
         $new_settings = apply_filters( 'ppc_save_misc_settings', $new_settings, $settings );
 
@@ -230,29 +233,29 @@ class PPC_save_options {
      * @since   2.0
      * @param   string the userid of the to be updated item (general, trial, [int])
      * @param   $settings array the new settings
-     * @return 	true in case of success, WP_Error otherwise
+     * @return  true in case of success, WP_Error otherwise
      */
     static function update_settings( $userid, $new_settings ) {
         global $ppc_global_settings;
         $current_general_settings = PPC_general_functions::get_settings( 'general' );
 
-		//"Always assume nonces can be compromised"
-		if( ! current_user_can( $ppc_global_settings['cap_manage_options'] ) )
-			return new WP_Error( 'save_settings_error', __( 'Are you sure you want to do this?' ) );
+        //"Always assume nonces can be compromised"
+        if( ! current_user_can( $ppc_global_settings['cap_manage_options'] ) )
+            return new WP_Error( 'save_settings_error', __( 'Are you sure you want to do this?' ) );
 
         if( is_numeric( $userid ) ) {
             $new_settings['userid'] = (int) $new_settings['userid'];
 
             $current_user_settings = get_user_option( $ppc_global_settings['option_name'], $userid );
-            if( ! is_array( $current_user_settings ) )	$current_user_settings = array();
+            if( ! is_array( $current_user_settings ) )  $current_user_settings = array();
 
             $new_settings = array_merge( (array) $current_user_settings, $new_settings );
 
             //Only adds a setting index in the array of the to-be-updated if it differs from general settings.
             foreach( $new_settings as $key => &$single ) {
-				if( $single == $current_general_settings[$key] )
-					unset( $new_settings[$key] );
-			}
+                if( $single == $current_general_settings[$key] )
+                    unset( $new_settings[$key] );
+            }
 
             if( $new_settings == $current_user_settings ) return; //avoid updating with same data, which would result in an error
 
@@ -260,8 +263,8 @@ class PPC_save_options {
                 return new WP_Error( 'save_user_settings_error', __( 'Error: could not update settings.' , 'post-pay-counter') );
 
         } else if( $userid == 'general' ) {
-			$new_settings = array_merge( (array) $current_general_settings, $new_settings );
-			if( $new_settings == $current_general_settings ) return; //avoid updating with same data, which would result in an error
+            $new_settings = array_merge( (array) $current_general_settings, $new_settings );
+            if( $new_settings == $current_general_settings ) return; //avoid updating with same data, which would result in an error
 
             if( ! $update = update_option( $ppc_global_settings['option_name'], $new_settings ) )
                 return new WP_Error( 'save_general_settings_error', __( 'Error: could not update settings.' , 'post-pay-counter') );
@@ -269,18 +272,18 @@ class PPC_save_options {
             $ppc_global_settings['general_settings'] = $new_settings;
         }
 
-		PPC_general_functions::clear_settings_cache( $userid );
+        PPC_general_functions::clear_settings_cache( $userid );
 
         /**
-		 * Fires after settings have been updated.
-		 *
-		 * @since	2.518
-		 * @param	$userid string user id updated
-		 * @param	$new_settings array new values for settings
-		 */
+         * Fires after settings have been updated.
+         *
+         * @since   2.518
+         * @param   $userid string user id updated
+         * @param   $new_settings array new values for settings
+         */
         do_action( 'ppc_settings_updated', $userid, $new_settings );
 
-		//Clear all cache
+        //Clear all cache
         PPC_general_functions::clear_settings_cache( $userid );
         PPC_cache_functions::clear_stats();
 

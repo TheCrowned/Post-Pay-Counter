@@ -41,6 +41,10 @@ function ppc_define_visits_trackers() {
                 'name' => 'WordPress Popular Posts',
                 'callback' => 'ppc_get_wordpress_popular_posts_views',
              ),
+            'top-10' => array(
+                'name' => 'Top 10',
+                'callback' => 'ppc_get_top_10_posts_views',
+             ),
         ),
     ) );
 }
@@ -83,6 +87,13 @@ function ppc_get_active_analytics_views( $post ) {
         return ppc_default_visits_callback( $post );
     $postmeta_name = get_option( 'wpaa_pageviews_key' );
     $post_views = (int) get_post_meta( $post->ID, $postmeta_name, true );
+    return $post_views;
+}
+
+function ppc_get_top_10_posts_views( $post ) {
+    if( ! ppc_is_plugin_active( 'top-10/top-10.php' ) )
+        return ppc_default_visits_callback( $post );
+    $post_views = (int) get_tptn_post_count_only( $post->ID );
     return $post_views;
 }
 
