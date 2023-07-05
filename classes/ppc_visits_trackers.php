@@ -7,8 +7,8 @@
  */
 
 global $ppc_wp_slimstat_include_status, $ppc_visits_trackers;
-add_action( 'init', 'ppc_wp_slimstat_include_file' );
-function ppc_wp_slimstat_include_file() {
+add_action( 'init', 'ppc_wp_slimstat_include' );
+function ppc_wp_slimstat_include() {
 	global $ppc_wp_slimstat_include_status;
     $ppc_wp_slimstat_include_status = false;
     $path = WP_PLUGIN_DIR . '/wp-slimstat/admin/view/wp-slimstat-db.php';
