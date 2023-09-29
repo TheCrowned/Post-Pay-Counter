@@ -93,7 +93,7 @@ class PPC_HTML_functions {
 			}
 
 			echo '</select>';
-			
+
 			echo ' - '.__( 'User', 'post-pay-counter' ).' ';
 			echo '<select name="author" id="ppc_stats_user">';
 			echo '<option value="ppc_any">'.__( 'Any', 'post-pay-counter' ).'</option>';
@@ -110,7 +110,7 @@ class PPC_HTML_functions {
 
 			echo '</select>';
 		}
-		
+
 		echo '</div>';
 
 		/**
