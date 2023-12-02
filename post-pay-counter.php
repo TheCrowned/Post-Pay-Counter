@@ -586,11 +586,11 @@ class post_pay_counter {
 		unset( $_REQUEST['role'] );
 
 	    //Assign to global var
-	    $ppc_global_settings['stats_tstart'] = sanitize_text_field( $_REQUEST['tstart'] );
-	    $ppc_global_settings['stats_tend'] = sanitize_text_field( $_REQUEST['tend'] );
+	    $ppc_global_settings['stats_tstart'] = esc_attr( $_REQUEST['tstart'] );
+	    $ppc_global_settings['stats_tend'] = esc_attr( $_REQUEST['tend'] );
 
 	    if( isset( $_REQUEST['role'] ) )
-		$ppc_global_settings['stats_role'] = sanitize_text_field( $_REQUEST['role'] );
+		$ppc_global_settings['stats_role'] = esc_attr( $_REQUEST['role'] );
 
 	    //If filtered by user role, add filter to stats generation args and complete page permalink
 	    if( isset( $ppc_global_settings['stats_role'] ) ) {
@@ -724,7 +724,7 @@ class post_pay_counter {
 	    $page_permalink = $ppc_global_settings['stats_menu_link'].'&amp;tstart='.$ppc_global_settings['stats_tstart'].'&amp;tend='.$ppc_global_settings['stats_tend'];
 
 	    if( isset( $_REQUEST['ppc-time-range'] ) )
-		$page_permalink .= '&amp;ppc-time-range='.$_REQUEST['ppc-time-range'];
+		$page_permalink .= '&amp;ppc-time-range='.esc_attr( $_REQUEST['ppc-time-range'] );
 	    if( isset( $_REQUEST['orderby'] ) )
 		$page_permalink .= '&amp;orderby='.$_REQUEST['orderby'];
 	    if( isset( $_REQUEST['order'] ) )
