@@ -420,7 +420,7 @@ class PPC_counting_stuff {
 
         $ppc_payment['normal_payment']['total'] = array_sum( $ppc_payment['normal_payment'] );
 
-        $ppc_payment = self::are_countings_above_thresholds( $ppc_payment, $post_countings, $post );
+        $ppc_payment = self::are_countings_above_thresholds( $ppc_payment, $post_countings );
 
         $ppc_misc['exceed_threshold'] = false;
         if( self::$settings['counting_payment_total_threshold'] != 0 ) {
@@ -442,8 +442,7 @@ class PPC_counting_stuff {
      * @param   $post WP_Post Object
      * @return  array ppc_payment
      */
-    static function are_countings_above_thresholds( $ppc_payment, $countings, $post ) {
-
+    static function are_countings_above_thresholds( $ppc_payment, $countings ) {
         foreach( $countings as $counting_type => $single ) {
             if( isset( PPC_counting_stuff::$settings['counting_'.$counting_type.'_global_threshold'] ) ) {
                 if( $single['real'] < PPC_counting_stuff::$settings['counting_'.$counting_type.'_global_threshold'] )
@@ -462,7 +461,7 @@ class PPC_counting_stuff {
      * @param   $countings array the countings to be paid
      * @return  array the payment data
      */
-    static function get_countings_payment( $countings, $author = 'general', $post_ID = NULL ) {
+    static function get_countings_payment( $countings, $author = 'general', $post_ID = NULL, $check_thresholds = false ) {
         global $ppc_global_settings;
 
         $ppc_payment = array();
@@ -480,6 +479,9 @@ class PPC_counting_stuff {
                 }
             }
         }
+
+        if( $check_thresholds )
+            $ppc_payment = self::are_countings_above_thresholds( $ppc_payment, $countings );
 
         $ppc_payment = apply_filters( 'ppc_get_countings_payment', $ppc_payment, $countings );
 
@@ -520,6 +522,11 @@ class PPC_counting_stuff {
                     $tooltip .= ucfirst( $id ).': '.$countings[$id]['to_count'].' => '.PPC_general_functions::format_payment( $value )."&#013;";
                 }
             }
+        }
+
+        if( $payment['total'] == 0 and
+            self::get_countings_payment( $countings, self::$being_processed_author, null, true ) != self::get_countings_payment( $countings, self::$being_processed_author, null, false ) ) {
+            $tooltip .= "&#013;".__( 'Payment total is zero because counting thresholds are not met.', 'ppc' )."&#013;";
         }
 
         return apply_filters( 'ppc_payment_details_tooltip', $tooltip, $countings, $payment );
