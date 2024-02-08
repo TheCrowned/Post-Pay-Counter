@@ -3,7 +3,7 @@ Contributors: Ste_95
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22
 Tags: earnings, authors, payments, revenue sharing, stats
 Tested up to: 6.3
-Stable tag: 2.784
+Stable tag: 2.790
 Requires at least: 3.7
 
 Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
@@ -76,6 +76,10 @@ From this: *define( 'PPC_DEBUG_LOG', true );*
 It must become: *define( 'PPC_DEBUG_LOG', false );*
 
 == Changelog ==
+= 2.790 (2024-02-08) =
+* Fix: CVE-2023-47673 (issues with version numbers, but fix was already in previous version).
+* Fix: XSS in `order` and `orderby` params.
+
 = 2.784 (2023-12-06) =
 * Fix: CVE-2023-47673.
 * Fix: payment thresholds misbehaving.
