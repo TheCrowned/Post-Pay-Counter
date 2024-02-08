@@ -726,9 +726,9 @@ class post_pay_counter {
 	    if( isset( $_REQUEST['ppc-time-range'] ) )
 		$page_permalink .= '&amp;ppc-time-range='.esc_attr( $_REQUEST['ppc-time-range'] );
 	    if( isset( $_REQUEST['orderby'] ) )
-		$page_permalink .= '&amp;orderby='.$_REQUEST['orderby'];
+		$page_permalink .= '&amp;orderby='.esc_attr( $_REQUEST['orderby'] );
 	    if( isset( $_REQUEST['order'] ) )
-		$page_permalink .= '&amp;order='.$_REQUEST['order'];
+		$page_permalink .= '&amp;order='.esc_attr( $_REQUEST['order'] );
 
 	    //If filtered by user role, add filter to stats generation args and complete page permalink
 	    if( isset( $_REQUEST['role'] ) )
