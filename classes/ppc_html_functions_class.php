@@ -113,6 +113,30 @@ class PPC_HTML_functions {
 
 		echo '</div>';
 
+		// taxonomies
+		echo '<div style="margin-top: 10px;">';
+		if( $ppc_global_settings['current_page'] == 'stats_general' AND $perm->can_see_others_general_stats() ) {
+			echo __( 'Filter by', 'post-pay-counter' ). ' ';
+
+			foreach( array_slice(get_taxonomies(), 0, 5) as $tax ) {
+				echo ' - '.ucfirst($tax).' ';
+				echo '<select name="taxonomy" id="ppc_stats_taxonomy_'.$tax.'" multiple>';
+				echo '<option value="ppc_any">'.__( 'Any', 'post-pay-counter' ).'</option>';
+
+				foreach( get_terms(array('taxonomy'=>$tax)) as $tag ) {
+
+					if( isset( $ppc_global_settings['stats_role'] ) AND $key == $ppc_global_settings['stats_role'] )
+						$checked = 'selected="selected"';
+
+					echo '<option value="'.$tag->slug.'" '.$checked.'>'.$tag->name.'</option>';
+				}
+
+				echo '</select>';
+			}
+		}
+
+		echo '</div>';
+
 		/**
 		 * Fires after the HTML display of "Showing stats from ... to ... - "General|User" - Role" in stats page heading.
 		 *
