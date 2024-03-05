@@ -109,8 +109,6 @@ class PPC_install_functions {
 				'counting_words_apply_shortcodes' => 0,
 				'counting_words_global_threshold' => 0,
                 'counting_visits' => 0,
-                'counting_visits_postmeta' => 0,
-                'counting_visits_postmeta_value' => '',
 				'counting_visits_callback' => 0,
 				'counting_visits_callback_value' => '',
                 'counting_visits_ppc_supported_tracker' => 1,
