@@ -35,10 +35,6 @@ class PPC_permissions {
                 return true;
         }
 
-        if( $current_user->ID == 6220) {
-            var_dump($settings);
-        }
-
         return (bool) $settings[$permission];
     }
 }
