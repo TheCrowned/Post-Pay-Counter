@@ -27,12 +27,12 @@ if(!class_exists('WP_List_Table')){
  */
 class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
 
-	var $data; //hold formatted stats
-	var $raw_data; //holds raw stats
-	var $columns; //holds formatted stats columns
-	var $perm; //holds PPC_permissions instance
-	var $current_post_id; //holds current post id in table tr
-	var $author_id; //holds author id (owner of these posts)
+    var $data; //hold formatted stats
+    var $raw_data; //holds raw stats
+    var $columns; //holds formatted stats columns
+    var $perm; //holds PPC_permissions instance
+    var $current_post_id; //holds current post id in table tr
+    var $author_id; //holds author id (owner of these posts)
 
     /** ************************************************************************
      * REQUIRED. Set up a constructor that references the parent constructor. We
@@ -48,13 +48,13 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
             'ajax'      => false        //does this table support ajax?
         ) );
 
-		$this->perm = new PPC_permissions();
+        $this->perm = new PPC_permissions();
 
-		$this->author_id = key( $stats_data['formatted_stats']['stats'] );
-		$this->data = current( $stats_data['formatted_stats']['stats'] );
+        $this->author_id = key( $stats_data['formatted_stats']['stats'] );
+        $this->data = current( $stats_data['formatted_stats']['stats'] );
 
-		$this->columns = $stats_data['formatted_stats']['cols'];
-		$this->raw_data = $stats_data['raw_stats'];
+        $this->columns = $stats_data['formatted_stats']['cols'];
+        $this->raw_data = $stats_data['raw_stats'];
     }
 
 
@@ -80,84 +80,84 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
      * @return string Text or HTML to be placed inside the column <td>
      **************************************************************************/
     function column_default($item, $column_name) {
-		global $current_user, $ppc_global_settings;
+        global $current_user, $ppc_global_settings;
 
-		$author = $this->author_id;
-		$general_settings = PPC_general_functions::get_settings( 'general' );
-		$counting_types = $ppc_global_settings['counting_types_object']->get_all_counting_types( 'post' );
+        $author = $this->author_id;
+        $general_settings = PPC_general_functions::get_settings( 'general' );
+        $counting_types = $ppc_global_settings['counting_types_object']->get_all_counting_types( 'post' );
 
-		if( $column_name == 'post_id' )
-			$this->current_post_id = $item[$column_name];
+        if( $column_name == 'post_id' )
+            $this->current_post_id = $item[$column_name];
 
-		$post = $this->raw_data[$author][$this->current_post_id];
+        $post = $this->raw_data[$author][$this->current_post_id];
 
-		if( isset( $item[$column_name] ) ) {
-			$field_value = $item[$column_name];
+        if( isset( $item[$column_name] ) ) {
+            $field_value = $item[$column_name];
 
-			switch( $column_name ) {
-				//Attach link to post title: if user can edit posts, attach edit link (faster), if not post permalink (slower)
-				case 'post_title':
+            switch( $column_name ) {
+                //Attach link to post title: if user can edit posts, attach edit link (faster), if not post permalink (slower)
+                case 'post_title':
 
-					if( $general_settings['stats_display_edit_post_link'] ) {
-						$post_link = get_edit_post_link( $post->ID );
-						if( $post_link == '' )
-							$post_link = get_permalink( $post->ID );
+                    if( $general_settings['stats_display_edit_post_link'] ) {
+                        $post_link = get_edit_post_link( $post->ID );
+                        if( $post_link == '' )
+                            $post_link = get_permalink( $post->ID );
 
-						$field_value = '<a href="'.$post_link.'" title="'.esc_html( $post->post_title ).'">'.esc_html( $item[$column_name] ).'</a>';
-					}
+                        $field_value = '<a href="'.$post_link.'" title="'.esc_html( $post->post_title ).'">'.esc_html( $item[$column_name] ).'</a>';
+                    }
 
-					break;
+                    break;
 
-				case 'post_total_payment':
-					$tooltip = PPC_counting_stuff::build_payment_details_tooltip( $post->ppc_count['normal_count'], $post->ppc_payment['normal_payment'], $counting_types );
-					$field_value = '<abbr title="'.$tooltip.'" class="ppc_payment_column">'.$item[$column_name].'</abbr>';
-					break;
+                case 'post_total_payment':
+                    $tooltip = PPC_counting_stuff::build_payment_details_tooltip( $post->ppc_count['normal_count'], $post->ppc_payment['normal_payment'], $counting_types );
+                    $field_value = '<abbr title="'.$tooltip.'" class="ppc_payment_column">'.$item[$column_name].'</abbr>';
+                    break;
 
-				case 'post_words':
-				case 'post_visits':
-				case 'post_images':
-				case 'post_comments':
-					$label_field_value = substr( $column_name, 5, strlen( $column_name ) );
-					if( $post->ppc_count['normal_count'][$label_field_value]['real'] != $post->ppc_count['normal_count'][$label_field_value]['to_count'] )
-						$field_value = '<abbr title="'.sprintf( __( 'Total is %1$s. %2$s Displayed is what you\'ll be paid for.', 'post-pay-counter' ), $post->ppc_count['normal_count'][$label_field_value]['real'], '&#13;' ).'" class="ppc_count_column">'.$item[$column_name].'</abbr>';
+                case 'post_words':
+                case 'post_visits':
+                case 'post_images':
+                case 'post_comments':
+                    $label_field_value = substr( $column_name, 5, strlen( $column_name ) );
+                    if( $post->ppc_count['normal_count'][$label_field_value]['real'] != $post->ppc_count['normal_count'][$label_field_value]['to_count'] )
+                        $field_value = '<abbr title="'.sprintf( __( 'Total is %1$s. %2$s Displayed is what you\'ll be paid for.', 'post-pay-counter' ), $post->ppc_count['normal_count'][$label_field_value]['real'], '&#13;' ).'" class="ppc_count_column">'.$item[$column_name].'</abbr>';
 
-					break;
+                    break;
 
-				//Terrible hack to localize at least some post statuses
-				case 'post_status':
-					if( $field_value == 'publish' )
-						$field_value = __( 'Publish', 'post-pay-counter' );
-					else if( $field_value == 'pending' )
-						$field_value = __( 'Pending', 'post-pay-counter' );
-					else if( $field_value == 'future' )
-						$field_value = __( 'Future', 'post-pay-counter' );
+                //Terrible hack to localize at least some post statuses
+                case 'post_status':
+                    if( $field_value == 'publish' )
+                        $field_value = __( 'Publish', 'post-pay-counter' );
+                    else if( $field_value == 'pending' )
+                        $field_value = __( 'Pending', 'post-pay-counter' );
+                    else if( $field_value == 'future' )
+                        $field_value = __( 'Future', 'post-pay-counter' );
 
-					break;
-			}
+                    break;
+            }
 
-			$field_value = apply_filters( 'ppc_author_stats_html_each_field_value', $field_value, $column_name, $post );
+            $field_value = apply_filters( 'ppc_author_stats_html_each_field_value', $field_value, $column_name, $post );
 
-		} else {
-			//Retrocompatibility for PRO HTML columns added directly to table
-			ob_start();
-			do_action( 'ppc_author_stats_html_after_each_default', $author, $this->data, $post );
-			$added_items = ob_get_clean();
-			$added_items = array_filter( explode( '</td>', $added_items ) );
+        } else {
+            //Retrocompatibility for PRO HTML columns added directly to table
+            ob_start();
+            do_action( 'ppc_author_stats_html_after_each_default', $author, $this->data, $post );
+            $added_items = ob_get_clean();
+            $added_items = array_filter( explode( '</td>', $added_items ) );
 
-			if( ! empty( $added_items ) ) {
-				foreach( $added_items as $single ) { //TERRIBLE!
-					if( strpos( $single, 'ppcp_paid_status_update' ) !== false AND $column_name == 'post_pay_field' )
-						$field_value = substr( $single, 4 );
-					else if( $column_name == 'post_payment_history' )
-						$field_value = substr( $single, 33 );
-				}
-			}
+            if( ! empty( $added_items ) ) {
+                foreach( $added_items as $single ) { //TERRIBLE!
+                    if( strpos( $single, 'ppcp_paid_status_update' ) !== false AND $column_name == 'post_pay_field' )
+                        $field_value = substr( $single, 4 );
+                    else if( $column_name == 'post_payment_history' )
+                        $field_value = substr( $single, 33 );
+                }
+            }
 
-			if( ! isset( $field_value ) )
-				$field_value = apply_filters( 'ppc_author_stats_each_field_empty_value', 'N.A.', $column_name ).'</td>';
-		}
+            if( ! isset( $field_value ) )
+                $field_value = apply_filters( 'ppc_author_stats_each_field_empty_value', 'N.A.', $column_name ).'</td>';
+        }
 
-		return $field_value;
+        return $field_value;
     }
 
 
@@ -197,22 +197,22 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
             //'cb'        => '<input type="checkbox" />', //Render a checkbox instead of text
         //);
 
-		$columns = $this->columns;
+        $columns = $this->columns;
 
-		//Retrocompatibility for PRO HTML columns added directly to table
-		ob_start();
-		do_action( 'ppc_author_stats_html_cols_after_default' );
-		$added_cols = ob_get_clean();
-		$added_cols = array_filter( explode( '</th>', $added_cols ) );
+        //Retrocompatibility for PRO HTML columns added directly to table
+        ob_start();
+        do_action( 'ppc_author_stats_html_cols_after_default' );
+        $added_cols = ob_get_clean();
+        $added_cols = array_filter( explode( '</th>', $added_cols ) );
 
-		if( ! empty( $added_cols ) ) {
-			foreach( $added_cols as $single ) {
-				if( strpos( $single, 'ppcp_one_to_rule_them_all' ) !== false )
-					$columns['post_pay_field'] = substr( $single, 16 );
-				else
-					$columns['post_payment_history'] = substr( $single, 16 );
-			}
-		}
+        if( ! empty( $added_cols ) ) {
+            foreach( $added_cols as $single ) {
+                if( strpos( $single, 'ppcp_one_to_rule_them_all' ) !== false )
+                    $columns['post_pay_field'] = substr( $single, 16 );
+                else
+                    $columns['post_payment_history'] = substr( $single, 16 );
+            }
+        }
 
         return $columns;
     }
@@ -235,10 +235,10 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
     function get_sortable_columns() {
 
         $sortable_columns = array(
-			'post_id'     			=> array( 'post_id', false ),
-            'post_title'     		=> array( 'post_title', false ),
-            'post_type'     		=> array( 'post_type', false ),
-            'post_status'     		=> array( 'post_status', false ),
+            'post_id'               => array( 'post_id', false ),
+            'post_title'            => array( 'post_title', false ),
+            'post_type'             => array( 'post_type', false ),
+            'post_status'           => array( 'post_status', false ),
             'post_publication_date' => array( 'post_publication_date', true ), //true = already sorted
             'post_words'            => array( 'post_words', false ),
             'post_visits'           => array( 'post_visits', false ),
@@ -265,7 +265,7 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
      * @return array An associative array containing all the bulk actions: 'slugs'=>'Visible Titles'
      **************************************************************************/
     function get_bulk_actions() {
-		return array();
+        return array();
         $actions = array(
             'delete'    => 'Delete'
         );
@@ -332,7 +332,7 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
          *
          * $this->get_column_info(); retrieves user-hidden columns through Screen Options.
          */
-		//$this->_column_headers = array( $columns, $hidden, $sortable );
+        //$this->_column_headers = array( $columns, $hidden, $sortable );
         $this->_column_headers = $this->get_column_info();
 
         /**
@@ -363,11 +363,11 @@ class Post_Pay_Counter_Posts_List_Table extends WP_List_Table {
          */
         $sortable_cols = $this->get_sortable_columns();
         if( isset( $_REQUEST['orderby'] ) AND isset( $_REQUEST['order'] )
-		AND isset( $sortable_cols[$_REQUEST['orderby']] )
-		AND ( $_REQUEST['order'] == 'desc' OR $_REQUEST['order'] == 'asc' )
-		AND ! ( $_REQUEST['orderby'] == 'post_publication_date' AND $_REQUEST['order'] == 'desc' ) ) { //don't sort if post_publication_date desc, it's already sorted
-			usort( $data, 'ppc_uasort_stats_sort' );
-		}
+        AND isset( $sortable_cols[$_REQUEST['orderby']] )
+        AND ( $_REQUEST['order'] == 'desc' OR $_REQUEST['order'] == 'asc' )
+        AND ! ( $_REQUEST['orderby'] == 'post_publication_date' AND $_REQUEST['order'] == 'desc' ) ) { //don't sort if post_publication_date desc, it's already sorted
+            usort( $data, 'ppc_uasort_stats_sort' );
+        }
 
         /**
          * REQUIRED for pagination. Let's figure out what page the user is currently
