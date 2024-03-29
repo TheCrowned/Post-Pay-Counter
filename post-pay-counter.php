@@ -617,7 +617,7 @@ class post_pay_counter {
 		     );
 		    add_screen_option( $option, $args );
 
-		    $this->stats_table = new Post_Pay_Counter_Posts_List_Table( $this->stats );
+            $this->stats_table = apply_filters( 'ppc_init_author_stats_table', new Post_Pay_Counter_Posts_List_Table( $this->stats ), $this->stats, $this->author );
 		}
 
 	    } else {
@@ -632,7 +632,7 @@ class post_pay_counter {
 		     );
 		    add_screen_option( $option, $args );
 
-		    $this->stats_table = new Post_Pay_Counter_Authors_List_Table( $this->stats );
+            $this->stats_table = apply_filters( 'ppc_init_general_stats_table', new Post_Pay_Counter_Authors_List_Table( $this->stats ), $this->stats );
 		}
 	    }
 	}
