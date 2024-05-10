@@ -64,7 +64,10 @@ class PPC_auto_update {
         $this->plugin_slug = $plugin_slug;
         $this->activation_key_name = $activation_key_name;
         $this->activation_key = get_option( $activation_key_name );
-		$this->activation_key = $this->activation_key['activation_key'];
+        if( isset( $this->activation_key['activation_key'] ) )
+            $this->activation_key = $this->activation_key['activation_key'];
+        else
+            $this->activation_key = '';
 
         list($t1, $t2) = explode('/', $plugin_slug);
         $this->slug = str_replace('.php', '', $t2);
