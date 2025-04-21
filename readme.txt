@@ -2,8 +2,8 @@
 Contributors: Ste_95
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SM5Q9BVU4RT22
 Tags: earnings, authors, payments, revenue sharing, stats
-Tested up to: 6.3
-Stable tag: 2.790
+Tested up to: 6.8
+Stable tag: 2.793
 Requires at least: 3.7
 
 Easily handle authors' payments on a multi-author blog by computing posts' remuneration basing on admin defined rules.
@@ -76,6 +76,19 @@ From this: *define( 'PPC_DEBUG_LOG', true );*
 It must become: *define( 'PPC_DEBUG_LOG', false );*
 
 == Changelog ==
+= 2.793 (2025-04-21) =
+**This version does NOT contain changes from 2.792.**
+
+* Tweak: cache versions on addons autoupdate checks (3 hours).
+* Fix: PHP Warning on empty activation keys.
+* Tweak: remove quasi-invisible debug code.
+
+= 2.792 =
+*Retired shortly after release due to issues.*
+
+= 2.791 (2024-02-09) =
+* Fix: remove mistaken preview feature.
+
 = 2.790 (2024-02-08) =
 * Fix: CVE-2023-47673 (issues with version numbers, but fix was already in previous version).
 * Fix: XSS in `order` and `orderby` params.
